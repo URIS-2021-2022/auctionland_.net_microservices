@@ -1,3 +1,4 @@
+using Liciter___Agregat.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -32,6 +33,11 @@ namespace Liciter___Agregat
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Liciter___Agregat", Version = "v1" });
             });
+            services.AddSingleton<IPravnoLiceRepository, PravnoLiceRepository>();
+            services.AddSingleton<IFizickoLiceRepository, FizickoLiceRepository>();
+            services.AddSingleton<IOvlascenoLiceRepository, OvlascenoLiceRepository>();
+            services.AddSingleton<IKupacRepository, KupacRepository>();
+            services.AddSingleton<ILiciterRepository, LiciterRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

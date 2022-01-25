@@ -12,49 +12,49 @@ namespace Liciter___Agregat.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    class LiciterController : ControllerBase
+    class KupacController : ControllerBase
     {
-        private readonly ILiciterRepository liciterRepository;
+        private readonly IKupacRepository kupacRepository;
         private readonly LinkGenerator linkGenerator;
 
-        public LiciterController(ILiciterRepository liciterRepository, LinkGenerator linkGenerator)
+        public KupacController(IKupacRepository kupacRepository, LinkGenerator linkGenerator)
         {
-            this.liciterRepository = liciterRepository;
+            this.kupacRepository = kupacRepository;
             this.linkGenerator = linkGenerator;
         }
 
         [HttpGet]
-        public ActionResult<List<LiciterModel>> GetLiciteri(string JMBG_MaticniBroj)
+        public ActionResult<List<KupacModel>> GetKupci(string JMBG_MaticniBroj)
         {
-            List<LiciterModel> liciteri = liciterRepository.GetLiciters(/*JMBG_MaticniBroj*/);
-            if (liciteri == null || liciteri.Count == 0)
+            List<KupacModel> kupci = kupacRepository.GetKupci(JMBG_MaticniBroj);
+            if (kupci == null || kupci.Count == 0)
             {
                 return NoContent();
             }
-            return Ok(liciteri);
+            return Ok(kupci);
         }
 
-        [HttpGet("{liciterId}")]
-        public ActionResult<LiciterModel> GetLiciterbyId(Guid liciterId)
+        [HttpGet("{kupacId}")]
+        public ActionResult<KupacModel> GetKupacbyId(Guid kupacId)
         {
-            LiciterModel liciterModel = liciterRepository.GetLiciterById(liciterId);
-            if (liciterModel == null)
+            KupacModel kupacModel = kupacRepository.GetKupacById(kupacId);
+            if (kupacModel == null)
             {
                 return NotFound();
             }
-            return Ok(liciterModel);
+            return Ok(kupacModel);
         }
 
         [HttpPost]
-        public ActionResult<LiciterConfirmation> CreateLiciter([FromBody] LiciterModel liciter)
+        public ActionResult<KupacConfirmation> CreateKupac([FromBody] KupacModel kupac)
         {
             try
             {
 
 
-                LiciterConfirmation confirmation = liciterRepository.CreateLiciter(liciter);
+                KupacConfirmation confirmation = kupacRepository.CreateKupac(kupac);
                 // Dobar API treba da vrati lokator gde se taj resurs nalazi
-                string location = linkGenerator.GetPathByAction("GetLiciter", "Liciter", new { liciterId = confirmation.LiciterId });
+                string location = linkGenerator.GetPathByAction("GetKupac", "Kupac", new { kupacId = confirmation.KupacId });
                 return Created(location, confirmation);
             }
             catch
@@ -64,17 +64,17 @@ namespace Liciter___Agregat.Controllers
 
         }
 
-        [HttpDelete("{liciterId}")]
-        public IActionResult DeleteLiciter(Guid liciterId)
+        [HttpDelete("{kupacId}")]
+        public IActionResult DeleteKupac(Guid kupacId)
         {
             try
             {
-                LiciterModel liciterModel = liciterRepository.GetLiciterById(liciterId);
-                if (liciterModel == null)
+                KupacModel kupacModel = kupacRepository.GetKupacById(kupacId);
+                if (kupacModel == null)
                 {
                     return NotFound();
                 }
-                liciterRepository.DeleteLiciter(liciterId);
+                kupacRepository.DeleteKupac(kupacId);
                 // Status iz familije 2xx koji se koristi kada se ne vraca nikakav objekat, ali naglasava da je sve u redu
                 return NoContent();
             }
