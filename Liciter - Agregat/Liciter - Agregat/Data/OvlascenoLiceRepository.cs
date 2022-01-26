@@ -51,7 +51,7 @@ namespace Liciter___Agregat.Data
             return ovlascenaLica.FirstOrDefault(e => e.OvlascenoLiceId == OvlascenoLiceId);
         }
 
-        public OvlascenoLiceConfirmation OvlascenoPravnoLice(OvlascenoLiceModel ovlascenoLice)
+        public OvlascenoLiceConfirmation UpdateOvlascenoLice(OvlascenoLiceModel ovlascenoLice)
         {
             OvlascenoLiceModel lice = GetOvlascenoLiceById(ovlascenoLice.OvlascenoLiceId);
 

@@ -1,4 +1,6 @@
-﻿using Liciter___Agregat.Data;
+﻿using AutoMapper;
+using Liciter___Agregat.Data;
+using Liciter___Agregat.DTOs.Kupac;
 using Liciter___Agregat.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -16,46 +18,48 @@ namespace Liciter___Agregat.Controllers
     {
         private readonly IKupacRepository kupacRepository;
         private readonly LinkGenerator linkGenerator;
+        private readonly IMapper mapper;
 
-        public KupacController(IKupacRepository kupacRepository, LinkGenerator linkGenerator)
+        public KupacController(IKupacRepository kupacRepository, LinkGenerator linkGenerator, IMapper mapper)
         {
             this.kupacRepository = kupacRepository;
             this.linkGenerator = linkGenerator;
+            this.mapper = mapper;
         }
 
         [HttpGet]
-        public ActionResult<List<KupacModel>> GetKupci(string JMBG_MaticniBroj)
+        public ActionResult<List<KupacDto>> GetKupci(string JMBG_MaticniBroj)
         {
             List<KupacModel> kupci = kupacRepository.GetKupci(JMBG_MaticniBroj);
             if (kupci == null || kupci.Count == 0)
             {
                 return NoContent();
             }
-            return Ok(kupci);
+            return Ok(mapper.Map<List<KupacDto>>(kupci));
         }
 
         [HttpGet("{kupacId}")]
-        public ActionResult<KupacModel> GetKupacbyId(Guid kupacId)
+        public ActionResult<KupacDto> GetKupacbyId(Guid kupacId)
         {
             KupacModel kupacModel = kupacRepository.GetKupacById(kupacId);
             if (kupacModel == null)
             {
                 return NotFound();
             }
-            return Ok(kupacModel);
+            return Ok(mapper.Map<KupacDto>(kupacModel));
         }
 
         [HttpPost]
-        public ActionResult<KupacConfirmation> CreateKupac([FromBody] KupacModel kupac)
+        public ActionResult<KupacConfirmationDto> CreateKupac([FromBody] KupacCreationDto kupac)
         {
             try
             {
 
-
-                KupacConfirmation confirmation = kupacRepository.CreateKupac(kupac);
+                KupacModel kupac2 = mapper.Map<KupacModel>(kupac);
+                KupacConfirmation confirmation = kupacRepository.CreateKupac(kupac2);
                 // Dobar API treba da vrati lokator gde se taj resurs nalazi
                 string location = linkGenerator.GetPathByAction("GetKupac", "Kupac", new { kupacId = confirmation.KupacId });
-                return Created(location, confirmation);
+                return Created(location, mapper.Map<KupacConfirmationDto>(confirmation));
             }
             catch
             {
@@ -81,6 +85,26 @@ namespace Liciter___Agregat.Controllers
             catch
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, "Delete Error");
+            }
+        }
+
+        [HttpPut]
+        public ActionResult<KupacConfirmationDto> UpdateKupac(KupacUpdateDto kupac)
+        {
+            try
+            {
+                //Proveriti da li uopšte postoji prijava koju pokušavamo da ažuriramo.
+                if (kupacRepository.GetKupacById(kupac.KupacId) == null)
+                {
+                    return NotFound(); //Ukoliko ne postoji vratiti status 404 (NotFound).
+                }
+                KupacModel kupacModel = mapper.Map<KupacModel>(kupac);
+                KupacConfirmation confirmation = kupacRepository.UpdateKupac(kupacModel);
+                return Ok(mapper.Map<KupacConfirmationDto>(confirmation));
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Update error");
             }
         }
     }

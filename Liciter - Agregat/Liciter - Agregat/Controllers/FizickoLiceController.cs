@@ -1,4 +1,6 @@
-﻿using Liciter___Agregat.Data;
+﻿using AutoMapper;
+using Liciter___Agregat.Data;
+using Liciter___Agregat.DTOs.FizickoLice;
 using Liciter___Agregat.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -16,46 +18,48 @@ namespace Liciter___Agregat.Controllers
     {
         private readonly IFizickoLiceRepository fizickoLiceRepository;
         private readonly LinkGenerator linkGenerator;
+        private readonly IMapper mapper;
 
-        public FizickoLiceController(IFizickoLiceRepository fizickoLiceRepository, LinkGenerator linkGenerator)
+        public FizickoLiceController(IFizickoLiceRepository fizickoLiceRepository, LinkGenerator linkGenerator, IMapper mapper)
         {
             this.fizickoLiceRepository = fizickoLiceRepository;
             this.linkGenerator = linkGenerator;
+            this.mapper = mapper;
         }
 
         [HttpGet]
-        public ActionResult<List<FizickoLiceModel>> GetFizickaLicas(string JMBG)
+        public ActionResult<List<FizickoLiceDto>> GetFizickaLicas(string JMBG)
         {
             List<FizickoLiceModel> lica = fizickoLiceRepository.GetFizickaLicas(JMBG);
             if (lica == null || lica.Count == 0)
             {
                 return NoContent();
             }
-            return Ok(lica);
+            return Ok(mapper.Map<List<FizickoLiceDto>>(lica));
         }
 
         [HttpGet("{fizickoLiceId}")]
-        public ActionResult<FizickoLiceModel> GetFizickoLicebyId(Guid fizickoLiceId)
+        public ActionResult<FizickoLiceDto> GetFizickoLicebyId(Guid fizickoLiceId)
         {
             FizickoLiceModel fizickoLiceModel = fizickoLiceRepository.GetFizickoLiceById(fizickoLiceId);
             if (fizickoLiceModel == null)
             {
                 return NotFound();
             }
-            return Ok(fizickoLiceModel);
+            return Ok(mapper.Map<FizickoLiceDto>(fizickoLiceModel));
         }
 
         [HttpPost]
-        public ActionResult<PravnoLiceConfirmation> CreateFizickoLice([FromBody] FizickoLiceModel fizickoLice)
+        public ActionResult<FizickoLiceConfirmationDto> CreateFizickoLice([FromBody] FizickoLiceCreationDto fizickoLice)
         {
             try
             {
 
-
-                FizickoLiceConfirmation confirmation = fizickoLiceRepository.CreateFizickoLice(fizickoLice);
+                FizickoLiceModel lice = mapper.Map<FizickoLiceModel>(fizickoLice);
+                FizickoLiceConfirmation confirmation = fizickoLiceRepository.CreateFizickoLice(lice);
                 // Dobar API treba da vrati lokator gde se taj resurs nalazi
                 string location = linkGenerator.GetPathByAction("GetFizickoLice", "FizickoLice", new { fizickoLiceId = confirmation.FizickoLiceId });
-                return Created(location, confirmation);
+                return Created(location, mapper.Map<FizickoLiceConfirmationDto>(confirmation));
             }
             catch
             {
@@ -81,6 +85,26 @@ namespace Liciter___Agregat.Controllers
             catch
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, "Delete Error");
+            }
+        }
+
+        [HttpPut]
+        public ActionResult<FizickoLiceConfirmationDto> UpdateFizickoLice(FizickoLiceUpdateDto fizickoLice)
+        {
+            try
+            {
+                //Proveriti da li uopšte postoji prijava koju pokušavamo da ažuriramo.
+                if (fizickoLiceRepository.GetFizickoLiceById(fizickoLice.FizickoLiceId) == null)
+                {
+                    return NotFound(); //Ukoliko ne postoji vratiti status 404 (NotFound).
+                }
+                FizickoLiceModel fizickoLiceModel = mapper.Map<FizickoLiceModel>(fizickoLice);
+                FizickoLiceConfirmation confirmation = fizickoLiceRepository.UpdateFizickoLice(fizickoLiceModel);
+                return Ok(mapper.Map<FizickoLiceConfirmationDto>(confirmation));
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Update error");
             }
         }
     }

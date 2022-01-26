@@ -1,9 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "KT1GgVSGu66PkdOe3H8olJWHwBqNBBxp1/X6Q3b3sT4THe4+Ls3BCMwJLCLtS5i+Az8tD7/siEpA4w5d64LSKA==",
+  "dgSpecHash": "BH8iRDDjCt339t9mmvekfQnXvLejDH9PC2uvx2u5QcNb/ty6cfEbQvmTELTWbgbaRCJT6WIXjwXEFNDGOj2bRQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\Luka\\Documents\\GitHub\\tim-6---auctionland-tim-6-nopcommerce\\Liciter - Agregat\\Liciter - Agregat\\Liciter - Agregat.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Luka\\.nuget\\packages\\automapper\\11.0.0\\automapper.11.0.0.nupkg.sha512",
+    "C:\\Users\\Luka\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\Luka\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
     "C:\\Users\\Luka\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
     "C:\\Users\\Luka\\.nuget\\packages\\swashbuckle.aspnetcore\\5.6.3\\swashbuckle.aspnetcore.5.6.3.nupkg.sha512",

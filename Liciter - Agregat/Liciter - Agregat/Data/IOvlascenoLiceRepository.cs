@@ -14,7 +14,7 @@ namespace Liciter___Agregat.Data
 
         OvlascenoLiceConfirmation CreateOvlascenoLice(OvlascenoLiceModel ovlascenoLice);
 
-        OvlascenoLiceConfirmation OvlascenoPravnoLice(OvlascenoLiceModel ovlascenoLice);
+        OvlascenoLiceConfirmation UpdateOvlascenoLice(OvlascenoLiceModel ovlascenoLice);
 
         void DeleteOvlascenoLice(Guid OvlascenoLiceId);
     }
