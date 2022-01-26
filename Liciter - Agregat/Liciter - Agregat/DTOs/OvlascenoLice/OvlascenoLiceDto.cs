@@ -8,8 +8,7 @@ namespace Liciter___Agregat.DTOs.OvlascenoLice
 {
     public class OvlascenoLiceDto
     {
-        public string Ime { get; set; }
-        public string Prezime { get; set; }
+        public string Ime_Prezime { get; set; }
         public string JMBG_Br_Pasosa { get; set; }
         public string Adresa { get; set; } //adresa je entitet
         public List<KupacModel> Kupac { get; set; }
