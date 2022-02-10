@@ -1,4 +1,5 @@
-﻿using Liciter___Agregat.Models;
+﻿using AutoMapper;
+using Liciter___Agregat.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,50 +9,40 @@ namespace Liciter___Agregat.Data
 {
     public class FizickoLiceRepository : IFizickoLiceRepository
     {
-        public static List<FizickoLiceModel> fizickaLica { get; set; } = new List<FizickoLiceModel>();
+        private readonly DataBaseContext context;
+        private readonly IMapper mapper;
 
-        public FizickoLiceRepository ()
+        public FizickoLiceRepository (DataBaseContext context, IMapper mapper)
         {
-            FillData();
+            this.context = context;
+            this.mapper = mapper;
         }
 
-        private void FillData()
+        public bool SaveChanges()
         {
-
+            return context.SaveChanges() > 0;
         }
 
         public FizickoLiceConfirmation CreateFizickoLice(FizickoLiceModel fizickoLice)
         {
-            fizickoLice.FizickoLiceId = Guid.NewGuid();
-            fizickaLica.Add(fizickoLice);
-            FizickoLiceModel lice = GetFizickoLiceById(fizickoLice.FizickoLiceId);
-
-            return new FizickoLiceConfirmation
-            {
-                FizickoLiceId = lice.FizickoLiceId,
-
-                Ime = lice.Ime,
-
-                Prezime = lice.Prezime
-
-            };
+            var createdEntity = context.Add(fizickoLice);
+            return mapper.Map<FizickoLiceConfirmation>(createdEntity.Entity);
         }
 
         public void DeleteFizickoLice(Guid FizickoLiceId)
         {
-            fizickaLica.Remove(fizickaLica.FirstOrDefault(e => e.FizickoLiceId == FizickoLiceId));
+            var fizickoLice = GetFizickoLiceById(FizickoLiceId);
+            context.Remove(fizickoLice);
         }
 
         public List<FizickoLiceModel> GetFizickaLicas(string JMBG = null)
         {
-           return (from e in fizickaLica
-                           where string.IsNullOrEmpty(JMBG) || e.JMBG == JMBG
-                           select e).ToList();
+            return context.FizickoLiceModels.Where(e => (JMBG == null || e.JMBG == JMBG)).ToList();
         }
 
         public FizickoLiceModel GetFizickoLiceById(Guid FizickoLiceId)
         {
-            return fizickaLica.FirstOrDefault(e => e.FizickoLiceId == FizickoLiceId);
+            return context.FizickoLiceModels.FirstOrDefault(e => e.FizickoLiceId == FizickoLiceId);
         }
 
         public FizickoLiceConfirmation UpdateFizickoLice(FizickoLiceModel fizickoLice)

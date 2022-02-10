@@ -71,7 +71,7 @@ namespace Liciter___Agregat.Data
             kupac2.FizickoLice = kupac.FizickoLice;
             kupac2.JavnaNadmetanja = kupac.JavnaNadmetanja;
             kupac2.OstvarenaPovrsina = kupac.OstvarenaPovrsina;
-            kupac2.OvlascenoLice = kupac.OvlascenoLice;
+            kupac2.OvlascenaLica = kupac.OvlascenaLica;
             kupac2.PravnoLice = kupac.PravnoLice;
             kupac2.Prioritet = kupac.Prioritet;
             kupac2.Uplate = kupac.Uplate;

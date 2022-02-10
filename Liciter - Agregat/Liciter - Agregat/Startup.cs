@@ -1,4 +1,5 @@
 ﻿using Liciter___Agregat.Data;
+using Liciter___Agregat.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -83,7 +84,7 @@ namespace Liciter___Agregat
                     };
                 });
 
-            //services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 
 
@@ -122,12 +123,16 @@ namespace Liciter___Agregat
 
             
 
-            services.AddSingleton<IPravnoLiceRepository, PravnoLiceRepository>();
-            services.AddSingleton<IFizickoLiceRepository, FizickoLiceRepository>();
-            services.AddSingleton<IOvlascenoLiceRepository, OvlascenoLiceRepository>();
-            services.AddSingleton<IKupacRepository, KupacRepository>();
-            services.AddSingleton<ILiciterRepository, LiciterRepository>();
+            services.AddScoped<IPravnoLiceRepository, PravnoLiceRepository>();
+            services.AddScoped<IFizickoLiceRepository, FizickoLiceRepository>();
+            services.AddScoped<IOvlascenoLiceRepository, OvlascenoLiceRepository>();
+            services.AddScoped<IKupacRepository, KupacRepository>();
+            services.AddScoped<ILiciterRepository, LiciterRepository>();
+
+            services.AddDbContext<DataBaseContext>();
         }
+
+        
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
