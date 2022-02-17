@@ -1,4 +1,6 @@
-﻿using Licitacija_agregat.Data;
+﻿using AutoMapper;
+using Licitacija_agregat.Data;
+using Licitacija_agregat.Entities;
 using Licitacija_agregat.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -11,49 +13,54 @@ using System.Threading.Tasks;
 namespace Licitacija_agregat.Controllers
 {
     [ApiController]
-    [Route("api/licitacija")]
+    [Route("api/[controller]")]
     public class LicitacijaController : ControllerBase
     {
         private readonly ILicitacijaRepository licitacijaRepository;
         private readonly LinkGenerator link;
+        private readonly IMapper mapper;
 
-        public LicitacijaController(ILicitacijaRepository licitacijaRepository, LinkGenerator link)
+        public LicitacijaController(ILicitacijaRepository licitacijaRepository, LinkGenerator link, IMapper mapper)
         {
             this.licitacijaRepository = licitacijaRepository;
             this.link = link;
+            this.mapper = mapper;
         }
 
         [HttpGet]
-        public ActionResult<List<LicitacijaModel>> GetLicitacijas(DateTime datum)
+        [HttpHead]
+        public ActionResult<List<Licitacija>> GetLicitacijas(DateTime datum)
         {
             var licitacije = licitacijaRepository.GetLicitacijas(datum);
             if (licitacije == null || licitacije.Count == 0)
             {
                 return NoContent();
             }
-            return Ok(licitacije);
+            return Ok(mapper.Map<List<Licitacija>>(licitacije));
         }
 
         [HttpGet("{licitacijaId}")]
-        public ActionResult<LicitacijaModel> GetLicitacijaById(Guid licitacijaId)
+        public ActionResult<LicitacijaDto> GetLicitacijaById(Guid licitacijaId)
         {
-            LicitacijaModel licitacijaModel = licitacijaRepository.GetLicitacijaById(licitacijaId);
+            var licitacijaModel = licitacijaRepository.GetLicitacijaById(licitacijaId);
 
             if(licitacijaModel == null)
             {
                 return NotFound();
             }
-            return Ok(licitacijaModel);
+            return Ok(mapper.Map<List<LicitacijaDto>>(licitacijaModel));
         }
 
         [HttpPost]
-        public ActionResult<LicitacijaModel> CreateLicitacija([FromBody] LicitacijaModel licitacija)
+        public ActionResult<LicitacijaDto> CreateLicitacija([FromBody] LicitacijaCreationDto licitacija)
         {
             try
             {
-                LicitacijaConfirmation confirmation = licitacijaRepository.CreateLicitacija(licitacija);
+                var licitacijaEntity = mapper.Map<Licitacija>(licitacija);
+
+                var confirmation = licitacijaRepository.CreateLicitacija(licitacijaEntity);
                 string location = link.GetPathByAction("GetLicitacijas", "Licitacija", new { licitacijaId = confirmation.LicitacijaId });
-                return Created(location, confirmation);
+                return Created(location, mapper.Map<LicitacijaConfirmationDto>(confirmation));
             }
             catch (Exception)
             {
@@ -61,7 +68,7 @@ namespace Licitacija_agregat.Controllers
             }
         }
 
-        [HttpDelete]
+        [HttpDelete("{LicitacijaId}")]
         public IActionResult DeleteLicitacija(Guid licitacijaId)
         {
             try
@@ -83,6 +90,33 @@ namespace Licitacija_agregat.Controllers
             }
         }
 
-        
+        [HttpPut]
+        public ActionResult<LicitacijaConfirmationDto> UpdateLicitacija([FromBody] LicitacijaUpdateDto licitacija)
+        {
+            try
+            {
+                //Proveriti da li uopšte postoji prijava koju pokušavamo da ažuriramo.
+                if (licitacijaRepository.GetLicitacijaById(licitacija.LicitacijaId) == null)
+                {
+                    return NotFound(); //Ukoliko ne postoji vratiti status 404 (NotFound).
+                }
+                Licitacija licitacijaEntity = mapper.Map<Licitacija>(licitacija);
+                LicitacijaConfirmation confirmation = licitacijaRepository.UpdateLicitacija(licitacijaEntity);
+                return Ok(mapper.Map<LicitacijaConfirmationDto>(confirmation));
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "An error has occurred while updating the object.");
+            }
+        }
+
+        [HttpOptions]
+        public IActionResult GetExamRegistrationOptions()
+        {
+            Response.Headers.Add("Allow", "GET, POST, PUT, DELETE");
+            return Ok();
+        }
+
+
     }
 }

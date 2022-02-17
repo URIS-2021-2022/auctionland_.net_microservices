@@ -26,3 +26,9 @@ C:\Users\Vlado\Documents\GitHub\tim-6---auctionland-tim-6-nopcommerce\Licitacija
 C:\Users\Vlado\Documents\GitHub\tim-6---auctionland-tim-6-nopcommerce\Licitacija_agregat\Licitacija_agregat\obj\Debug\net5.0\ref\Licitacija_agregat.dll
 C:\Users\Vlado\Documents\GitHub\tim-6---auctionland-tim-6-nopcommerce\Licitacija_agregat\Licitacija_agregat\obj\Debug\net5.0\Licitacija_agregat.pdb
 C:\Users\Vlado\Documents\GitHub\tim-6---auctionland-tim-6-nopcommerce\Licitacija_agregat\Licitacija_agregat\obj\Debug\net5.0\Licitacija_agregat.genruntimeconfig.cache
+C:\Users\Vlado\Documents\GitHub\tim-6---auctionland-tim-6-nopcommerce\Licitacija_agregat\Licitacija_agregat\bin\Debug\net5.0\AutoMapper.dll
+C:\Users\Vlado\Documents\GitHub\tim-6---auctionland-tim-6-nopcommerce\Licitacija_agregat\Licitacija_agregat\bin\Debug\net5.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+C:\Users\Vlado\Documents\GitHub\tim-6---auctionland-tim-6-nopcommerce\Licitacija_agregat\Licitacija_agregat\bin\Debug\net5.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\Vlado\Documents\GitHub\tim-6---auctionland-tim-6-nopcommerce\Licitacija_agregat\Licitacija_agregat\bin\Debug\net5.0\Microsoft.Extensions.Options.dll
+C:\Users\Vlado\Documents\GitHub\tim-6---auctionland-tim-6-nopcommerce\Licitacija_agregat\Licitacija_agregat\bin\Debug\net5.0\Microsoft.Extensions.Primitives.dll
+C:\Users\Vlado\Documents\GitHub\tim-6---auctionland-tim-6-nopcommerce\Licitacija_agregat\Licitacija_agregat\bin\Debug\net5.0\System.Runtime.CompilerServices.Unsafe.dll

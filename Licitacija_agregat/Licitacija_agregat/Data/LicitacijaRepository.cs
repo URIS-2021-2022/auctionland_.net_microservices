@@ -1,4 +1,5 @@
-﻿using Licitacija_agregat.Models;
+﻿using Licitacija_agregat.Entities;
+using Licitacija_agregat.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +9,7 @@ namespace Licitacija_agregat.Data
 {
     public class LicitacijaRepository : ILicitacijaRepository
     {
-        public static List<LicitacijaModel> Licitacije { get; set; } = new List<LicitacijaModel>();
+        public static List<Licitacija> Licitacije { get; set; } = new List<Licitacija>();
 
         public LicitacijaRepository()
         {
@@ -20,7 +21,7 @@ namespace Licitacija_agregat.Data
             
         }
 
-        public LicitacijaConfirmation CreateLicitacija(LicitacijaModel licitacijaModel)
+        public LicitacijaConfirmation CreateLicitacija(Licitacija licitacijaModel)
         {
             licitacijaModel.LicitacijaId = Guid.NewGuid();
             Licitacije.Add(licitacijaModel);
@@ -39,19 +40,19 @@ namespace Licitacija_agregat.Data
             Licitacije.Remove(Licitacije.FirstOrDefault(e => e.LicitacijaId == LicitacijaId));
         }
 
-        public LicitacijaModel GetLicitacijaById(Guid LicitacijaId)
+        public Licitacija GetLicitacijaById(Guid LicitacijaId)
         {
             return Licitacije.FirstOrDefault(e => e.LicitacijaId == LicitacijaId);
         }
 
-        public List<LicitacijaModel> GetLicitacijas(DateTime datum = default)
+        public List<Licitacija> GetLicitacijas(DateTime datum = default)
         {
             return (from e in Licitacije
                     where e.Datum.Equals(datum) || datum == default
                     select e).ToList();
         }
 
-        public LicitacijaConfirmation UpdateLicitacija(LicitacijaModel licitacijaModel)
+        public LicitacijaConfirmation UpdateLicitacija(Licitacija licitacijaModel)
         {
             var licitacija = GetLicitacijaById(licitacijaModel.LicitacijaId);
 

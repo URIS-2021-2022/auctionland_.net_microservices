@@ -1,4 +1,4 @@
-﻿using Licitacija_agregat.Models;
+﻿using Licitacija_agregat.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,10 +8,10 @@ namespace Licitacija_agregat.Data
 {
     public interface IEtapaRepository
     {
-        List<EtapaModel> GetEtapas(DateTime dan = default);
-        EtapaModel GetEtapaById(Guid EtapaId);
-        EtapaConfirmation CreateEtapa(EtapaModel etapaModel);
-        EtapaConfirmation UpdateEtapa(EtapaModel etapaModel);
+        List<Etapa> GetEtapas(DateTime dan = default);
+        Etapa GetEtapaById(Guid EtapaId);
+        EtapaConfirmation CreateEtapa(Etapa etapaModel);
+        EtapaConfirmation UpdateEtapa(Etapa etapaModel);
         void DeleteEtapa(Guid EtapaId);
     }
 }

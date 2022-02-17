@@ -5,10 +5,8 @@ using System.Threading.Tasks;
 
 namespace Licitacija_agregat.Models
 {
-    public class EtapaModel
+    public class EtapaConfirmationDto
     {
-        public Guid EtapaId { get; set; }
         public DateTime Dan { get; set; }
-        public int BrojEtape { get; set; }
     }
 }

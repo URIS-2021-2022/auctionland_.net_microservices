@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Licitacija_agregat.Models
+namespace Licitacija_agregat.Entities
 {
     public class LicitacijaConfirmation
     {

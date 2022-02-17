@@ -1,4 +1,5 @@
-﻿using Licitacija_agregat.Models;
+﻿using Licitacija_agregat.Entities;
+using Licitacija_agregat.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ namespace Licitacija_agregat.Data
     public class EtapaRepository : IEtapaRepository
     {
 
-        public static List<EtapaModel> Etape { get; set; } = new List<EtapaModel>();
+        public static List<Etapa> Etape { get; set; } = new List<Etapa>();
 
         public EtapaRepository()
         {
@@ -20,7 +21,7 @@ namespace Licitacija_agregat.Data
         {
 
         }
-        public EtapaConfirmation CreateEtapa(EtapaModel etapaModel)
+        public EtapaConfirmation CreateEtapa(Etapa etapaModel)
         {
             etapaModel.EtapaId = Guid.NewGuid();
             Etape.Add(etapaModel);
@@ -39,19 +40,19 @@ namespace Licitacija_agregat.Data
             Etape.Remove(Etape.FirstOrDefault(e => e.EtapaId == EtapaId));
         }
 
-        public EtapaModel GetEtapaById(Guid EtapaId)
+        public Etapa GetEtapaById(Guid EtapaId)
         {
             return Etape.FirstOrDefault(e => e.EtapaId == EtapaId);
         }
 
-        public List<EtapaModel> GetEtapas(DateTime dan = default)
+        public List<Etapa> GetEtapas(DateTime dan = default)
         {
             return (from e in Etape
                     where dan == default || e.Dan.Equals(dan)
                     select e).ToList();
         }
 
-        public EtapaConfirmation UpdateEtapa(EtapaModel etapaModel)
+        public EtapaConfirmation UpdateEtapa(Etapa etapaModel)
         {
             var etapa = GetEtapaById(etapaModel.EtapaId);
 
