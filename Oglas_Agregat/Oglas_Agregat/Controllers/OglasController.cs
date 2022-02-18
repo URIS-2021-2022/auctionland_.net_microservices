@@ -61,11 +61,11 @@ namespace Oglas_Agregat.Controllers
             }
             catch (Exception)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, "An error has occurred");
+                return StatusCode(StatusCodes.Status500InternalServerError, "An error has occurred while creating an object.");
             }
         }
 
-        [HttpDelete]
+        [HttpDelete("{oglasId}")]
         public IActionResult DeleteOglas(Guid oglasId)
         {
             try
@@ -83,8 +83,36 @@ namespace Oglas_Agregat.Controllers
             }
             catch (Exception)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, "Delete error");
+                return StatusCode(StatusCodes.Status500InternalServerError, "An error has occurred while deleting the object.");
             }
+        }
+
+        [HttpPut]
+        public ActionResult<OglasConfirmation> UpdateOglas(OglasModel oglas)
+        {
+            try
+            {
+                if (oglasRepository.GetOglasById(oglas.OglasId) == null)
+                { 
+                    return NotFound();
+                }
+
+                return Ok(oglasRepository.UpdateOglas(oglas));
+
+
+            }
+            catch (Exception)
+            {
+
+                return StatusCode(StatusCodes.Status500InternalServerError, "An error has occurred while updating the object.");
+            }
+        }
+
+        [HttpOptions]
+        public IActionResult GetEtapaOptions()
+        {
+            Response.Headers.Add("Allow", "GET, POST, PUT, DELETE");
+            return Ok();
         }
 
 
