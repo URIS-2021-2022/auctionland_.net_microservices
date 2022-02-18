@@ -1,7 +1,9 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
 using Oglas_Agregat.Data;
+using Oglas_Agregat.Entities;
 using Oglas_Agregat.Models;
 using System;
 using System.Collections.Generic;
@@ -16,17 +18,19 @@ namespace Oglas_Agregat.Controllers
     {
         private readonly IOglasRepository oglasRepository;
         private readonly LinkGenerator link;
+        private readonly IMapper mapper;
 
-        public OglasController(IOglasRepository oglasRepository, LinkGenerator link) //kad se kreira objekat kontrolera mora da se prosledi nesto sto implementira ovaj interfejs, kod mene oglasConfirmation
+        public OglasController(IOglasRepository oglasRepository, LinkGenerator link, IMapper mapper) //kad se kreira objekat kontrolera mora da se prosledi nesto sto implementira ovaj interfejs, kod mene oglasConfirmation
         {
             this.oglasRepository = oglasRepository;
             this.link = link;
+            this.mapper = mapper;
         }
 
 
-        //ja hocu da napisem jednu akciju koja ce mi vratiti sve oglase
         [HttpGet]
-        public ActionResult GetOglasi(DateTime DatumObjave)
+        [HttpHead]
+        public ActionResult<List<OglasDto>> GetOglasi(DateTime DatumObjave)
         {
             //treba da zavisimo od apstrakcije a ne od konkretne implementacije, ne treba da pravimo instancu klase i direktno pozivamo metodu sto nije dobro, zato smo pravili interfejs
             var oglasi = oglasRepository.GetOglasi(DatumObjave);
@@ -34,39 +38,42 @@ namespace Oglas_Agregat.Controllers
             {
                 return NoContent();
             }
-            return Ok(oglasi);
+            return Ok(mapper.Map<List<OglasDto>>(oglasi));
         }
 
         [HttpGet("{oglasId}")]
-        public ActionResult<OglasModel> GetOglasById(Guid oglasId)
+        public ActionResult<OglasDto> GetOglasById(Guid oglasId)
         {
-            OglasModel oglasModel = oglasRepository.GetOglasById(oglasId);
+            var oglas = oglasRepository.GetOglasById(oglasId);
 
-            if (oglasModel == null)
+            if (oglas == null)
             {
                 return NotFound();
             }
-            return Ok(oglasModel);
+            return Ok(mapper.Map<OglasDto>(oglas));
         }
 
         [HttpPost]
-        public ActionResult<OglasModel> CreateOglas([FromBody] OglasModel oglas) //pogledaj u body i izvuci model
+        public ActionResult<OglasConfirmationDto> CreateOglas([FromBody] OglasCreateDto oglas)
         {
             try
             {
-                OglasConfirmation confirmation = oglasRepository.CreateOglas(oglas);
-                string location = link.GetPathByAction("GetOglasi", "Oglas", new { oglasId = confirmation.OglasId }); //dobar api treba da vrati gde se novokreirani resurs nalazi
-                return Created(location, confirmation);
+                var oglasEntity = mapper.Map<Oglas>(oglas);
+
+                var confirmation = oglasRepository.CreateOglas(oglasEntity);
+
+                string location = link.GetPathByAction("GetOglasi", "Oglas", new { oglasId = confirmation.OglasId });
+                return Created(location, mapper.Map<OglasConfirmationDto>(confirmation));
 
             }
-            catch (Exception)
-            {
-                return StatusCode(StatusCodes.Status500InternalServerError, "An error has occurred while creating an object.");
+            catch (Exception) {
+                return StatusCode(StatusCodes.Status500InternalServerError, "An error has occurred while creating the object.");
+
             }
         }
 
         [HttpDelete("{oglasId}")]
-        public ActionResult DeleteOglas(Guid oglasId)
+        public IActionResult DeleteOglas(Guid oglasId)
         {
             try
             {
@@ -88,17 +95,18 @@ namespace Oglas_Agregat.Controllers
         }
 
         [HttpPut]
-        public ActionResult<OglasConfirmation> UpdateOglas(OglasModel oglas)
+        public ActionResult<OglasConfirmationDto> UpdateOglas(OglasUpdateDto oglas)
         {
             try
             {
                 if (oglasRepository.GetOglasById(oglas.OglasId) == null)
-                { 
+                {
                     return NotFound();
                 }
 
-                return Ok(oglasRepository.UpdateOglas(oglas));
-
+            Oglas oglasEntity = mapper.Map<Oglas>(oglas);
+            OglasConfirmation confirmation = oglasRepository.UpdateOglas(oglasEntity);
+            return Ok(mapper.Map<OglasConfirmationDto>(confirmation));
 
             }
             catch (Exception)
@@ -108,13 +116,13 @@ namespace Oglas_Agregat.Controllers
             }
         }
 
-/*        [HttpOptions]
+
+        [HttpOptions]
         public IActionResult GetOglasOptions()
         {
             Response.Headers.Add("Allow", "GET, POST, PUT, DELETE");
             return Ok();
-        }*/
-
+        }
 
 
 

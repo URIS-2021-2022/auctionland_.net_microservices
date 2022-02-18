@@ -5,9 +5,10 @@ using System.Threading.Tasks;
 
 namespace Oglas_Agregat.Models
 {
-    public class OglasConfirmation
+    public class OglasDto
     {
-        public Guid OglasId { get; set; }
+        //obrisala id jer necu da njega prikazuje korisniku 
+        public DateTime DatumObjave { get; set; }
         public string OpisOglasa { get; set; }
     }
 }

@@ -5,10 +5,9 @@ using System.Threading.Tasks;
 
 namespace Oglas_Agregat.Models
 {
-    public class OglasModel
+    public class OglasConfirmationDto
     {
         public Guid OglasId { get; set; }
-        public DateTime DatumObjave { get; set; }
         public string OpisOglasa { get; set; }
     }
 }

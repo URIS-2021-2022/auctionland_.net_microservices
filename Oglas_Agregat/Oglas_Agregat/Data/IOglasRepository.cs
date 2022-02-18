@@ -1,4 +1,5 @@
-﻿using Oglas_Agregat.Models;
+﻿using Oglas_Agregat.Entities; //ne koristim vise models nego entities
+using Oglas_Agregat.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,10 +9,10 @@ namespace Oglas_Agregat.Data
 {
     public interface IOglasRepository
     {
-        List<OglasModel> GetOglasi(DateTime DatumObjave = default);
-        OglasModel GetOglasById(Guid OglasId);
-        OglasConfirmation CreateOglas(OglasModel oglasModel);
-        OglasConfirmation UpdateOglas(OglasModel oglasModel);
+        List<Oglas> GetOglasi(DateTime DatumObjave = default);
+        Oglas GetOglasById(Guid OglasId);
+        OglasConfirmation CreateOglas(Oglas oglas);
+        OglasConfirmation UpdateOglas(Oglas oglas);
         void DeleteOglas(Guid OglasId);
 
 

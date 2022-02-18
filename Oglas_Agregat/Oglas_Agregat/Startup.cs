@@ -29,7 +29,13 @@ namespace Oglas_Agregat
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddControllers();
+            services.AddControllers(setup =>
+            {
+                setup.ReturnHttpNotAcceptable = true;
+            }
+            ).AddXmlDataContractSerializerFormatters();
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies()); //pogledaj ceo domen i trazi konfiguracije za automaper. to su profili. mi za svako mapiranje definisemo profil tj iz tog objekta mi mapiraj u taj objekat na taj nacin
+
             services.AddSingleton<IOglasRepository, OglasRepository>(); //kada sretnes da se trazi prvo prosledi drugo tj napravi instancu drugog i koristi je, singleton je zivotni ciklus drugog
             services.AddSingleton<ISluzbeniListRepository, SluzbeniListRepository>();
 

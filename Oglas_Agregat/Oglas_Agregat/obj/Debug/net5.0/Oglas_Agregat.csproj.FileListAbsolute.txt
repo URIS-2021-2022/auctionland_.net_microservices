@@ -26,3 +26,9 @@ C:\Users\Dell\Documents\GitHub\tim-6---auctionland-tim-6-nopcommerce\Oglas_Agreg
 C:\Users\Dell\Documents\GitHub\tim-6---auctionland-tim-6-nopcommerce\Oglas_Agregat\Oglas_Agregat\obj\Debug\net5.0\ref\Oglas_Agregat.dll
 C:\Users\Dell\Documents\GitHub\tim-6---auctionland-tim-6-nopcommerce\Oglas_Agregat\Oglas_Agregat\obj\Debug\net5.0\Oglas_Agregat.pdb
 C:\Users\Dell\Documents\GitHub\tim-6---auctionland-tim-6-nopcommerce\Oglas_Agregat\Oglas_Agregat\obj\Debug\net5.0\Oglas_Agregat.genruntimeconfig.cache
+C:\Users\Dell\Documents\GitHub\tim-6---auctionland-tim-6-nopcommerce\Oglas_Agregat\Oglas_Agregat\bin\Debug\net5.0\AutoMapper.dll
+C:\Users\Dell\Documents\GitHub\tim-6---auctionland-tim-6-nopcommerce\Oglas_Agregat\Oglas_Agregat\bin\Debug\net5.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+C:\Users\Dell\Documents\GitHub\tim-6---auctionland-tim-6-nopcommerce\Oglas_Agregat\Oglas_Agregat\bin\Debug\net5.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\Dell\Documents\GitHub\tim-6---auctionland-tim-6-nopcommerce\Oglas_Agregat\Oglas_Agregat\bin\Debug\net5.0\Microsoft.Extensions.Options.dll
+C:\Users\Dell\Documents\GitHub\tim-6---auctionland-tim-6-nopcommerce\Oglas_Agregat\Oglas_Agregat\bin\Debug\net5.0\Microsoft.Extensions.Primitives.dll
+C:\Users\Dell\Documents\GitHub\tim-6---auctionland-tim-6-nopcommerce\Oglas_Agregat\Oglas_Agregat\bin\Debug\net5.0\System.Runtime.CompilerServices.Unsafe.dll
