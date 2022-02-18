@@ -57,7 +57,6 @@ namespace Oglas_Agregat.Data
 
             oglas.OglasId = oglasModel.OglasId;
             oglas.DatumObjave = oglasModel.DatumObjave;
-            oglas.KrajRokaZaZalbu = oglasModel.KrajRokaZaZalbu;
             oglas.OpisOglasa = oglasModel.OpisOglasa;
 
             return new OglasConfirmation()

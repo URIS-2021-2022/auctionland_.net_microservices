@@ -31,6 +31,7 @@ namespace Oglas_Agregat
 
             services.AddControllers();
             services.AddSingleton<IOglasRepository, OglasRepository>(); //kada sretnes da se trazi prvo prosledi drugo tj napravi instancu drugog i koristi je, singleton je zivotni ciklus drugog
+            services.AddSingleton<ISluzbeniListRepository, SluzbeniListRepository>();
 
         }
 

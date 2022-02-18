@@ -26,7 +26,7 @@ namespace Oglas_Agregat.Controllers
 
         //ja hocu da napisem jednu akciju koja ce mi vratiti sve oglase
         [HttpGet]
-        public IActionResult GetOglasi(DateTime DatumObjave)
+        public ActionResult GetOglasi(DateTime DatumObjave)
         {
             //treba da zavisimo od apstrakcije a ne od konkretne implementacije, ne treba da pravimo instancu klase i direktno pozivamo metodu sto nije dobro, zato smo pravili interfejs
             var oglasi = oglasRepository.GetOglasi(DatumObjave);
@@ -66,7 +66,7 @@ namespace Oglas_Agregat.Controllers
         }
 
         [HttpDelete("{oglasId}")]
-        public IActionResult DeleteOglas(Guid oglasId)
+        public ActionResult DeleteOglas(Guid oglasId)
         {
             try
             {
@@ -108,12 +108,12 @@ namespace Oglas_Agregat.Controllers
             }
         }
 
-        [HttpOptions]
-        public IActionResult GetEtapaOptions()
+/*        [HttpOptions]
+        public IActionResult GetOglasOptions()
         {
             Response.Headers.Add("Allow", "GET, POST, PUT, DELETE");
             return Ok();
-        }
+        }*/
 
 
 
