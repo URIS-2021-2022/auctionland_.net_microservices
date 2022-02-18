@@ -6,12 +6,27 @@ using System.Threading.Tasks;
 
 namespace Licitacija_agregat.Models
 {
+    /// <summary>
+    /// Predstavlja model kreiranja etape
+    /// </summary>
     public class EtapaCreationDto : IValidatableObject
     {
+        /// <summary>
+        /// Dan etape
+        /// </summary>
+        [Required]
         public DateTime Dan { get; set; }
 
+        /// <summary>
+        /// Broj etape
+        /// </summary>
         public int BrojEtape { get; set; }
 
+        /// <summary>
+        /// Potrebno je da broj etape bude pozitivan broj i da datum bude u budućnosti
+        /// </summary>
+        /// <param name="validationContext"></param>
+        /// <returns></returns>
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
             if(BrojEtape < 1)

@@ -14,6 +14,8 @@ namespace Licitacija_agregat.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Produces("application/json", "application/xml")]
+
     public class LicitacijaController : ControllerBase
     {
         private readonly ILicitacijaRepository licitacijaRepository;
@@ -27,6 +29,13 @@ namespace Licitacija_agregat.Controllers
             this.mapper = mapper;
         }
 
+        /// <summary>
+        /// Vraća sve licitacije na osnovu prosleđenog parametra
+        /// </summary>
+        /// <param name="datum"></param>
+        /// <returns>Listu licitacija</returns>
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
         [HttpGet]
         [HttpHead]
         public ActionResult<List<Licitacija>> GetLicitacijas(DateTime datum)
@@ -38,7 +47,13 @@ namespace Licitacija_agregat.Controllers
             }
             return Ok(mapper.Map<List<Licitacija>>(licitacije));
         }
-
+        /// <summary>
+        /// Vraća licitaciju po zadatoj vrednosti id-a
+        /// </summary>
+        /// <param name="licitacijaId"></param>
+        /// <returns>Objekat licitacije</returns>
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         [HttpGet("{licitacijaId}")]
         public ActionResult<LicitacijaDto> GetLicitacijaById(Guid licitacijaId)
         {
@@ -51,6 +66,27 @@ namespace Licitacija_agregat.Controllers
             return Ok(mapper.Map<List<LicitacijaDto>>(licitacijaModel));
         }
 
+        /// <summary>
+        /// Kreira novu Licitaciju
+        /// </summary>
+        /// <param name="licitacija"></param>
+        /// <returns>Potvrdu o kreiranoj licitaciji</returns>
+        /// <remarks> Primer zahteva za kreiranje nove licitacije
+        /// {
+        ///     "Broj" : 5,
+        ///     "Godina" : 23,
+        ///     "Datum" : "2066-05-16T05:50:06",
+        ///     "Ogranicenje" : 234,
+        ///     "Korak_cene" : 1235,
+        ///     "Lista_dokumentacije_fizicka_lica" : ["Vlado", "Kika", "Cile"],
+        ///     "Lista_dokumentacije_pravna_lica" : ["Malena", "Flemi", "Djole"],
+        ///     "JavnoNadmetanje" : ["Subotica"],
+        ///     "Rok_za_dostavljanje_prijave" : "2005-06-16T05:50:06"
+        /// }
+        /// </remarks>
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [HttpPost]
         public ActionResult<LicitacijaDto> CreateLicitacija([FromBody] LicitacijaCreationDto licitacija)
         {
@@ -68,6 +104,14 @@ namespace Licitacija_agregat.Controllers
             }
         }
 
+        /// <summary>
+        /// Briše licitaciju po zadatoj vrednosti id-a
+        /// </summary>
+        /// <param name="licitacijaId"></param>
+        /// <returns>Prazan payload</returns>
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [HttpDelete("{LicitacijaId}")]
         public IActionResult DeleteLicitacija(Guid licitacijaId)
         {
@@ -89,7 +133,14 @@ namespace Licitacija_agregat.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, "Delete error");
             }
         }
-
+        /// <summary>
+        /// Menja vrednost zadate licitacije
+        /// </summary>
+        /// <param name="licitacija"></param>
+        /// <returns>Potvrdu o izmenjenom objektu</returns>
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [HttpPut]
         public ActionResult<LicitacijaConfirmationDto> UpdateLicitacija([FromBody] LicitacijaUpdateDto licitacija)
         {
@@ -110,6 +161,10 @@ namespace Licitacija_agregat.Controllers
             }
         }
 
+        /// <summary>
+        /// Prikazuje sve moguće tipove zahteva 
+        /// </summary>
+        /// <returns>Listu mogućih zahteva</returns>
         [HttpOptions]
         public IActionResult GetExamRegistrationOptions()
         {

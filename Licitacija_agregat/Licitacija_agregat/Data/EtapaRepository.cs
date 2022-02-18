@@ -14,13 +14,9 @@ namespace Licitacija_agregat.Data
 
         public EtapaRepository()
         {
-            FillData();
-        }
-
-        private void FillData()
-        {
 
         }
+
         public EtapaConfirmation CreateEtapa(Etapa etapaModel)
         {
             etapaModel.EtapaId = Guid.NewGuid();

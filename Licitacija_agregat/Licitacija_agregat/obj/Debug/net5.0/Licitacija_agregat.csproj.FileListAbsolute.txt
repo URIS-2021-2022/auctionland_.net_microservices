@@ -32,3 +32,4 @@ C:\Users\Vlado\Documents\GitHub\tim-6---auctionland-tim-6-nopcommerce\Licitacija
 C:\Users\Vlado\Documents\GitHub\tim-6---auctionland-tim-6-nopcommerce\Licitacija_agregat\Licitacija_agregat\bin\Debug\net5.0\Microsoft.Extensions.Options.dll
 C:\Users\Vlado\Documents\GitHub\tim-6---auctionland-tim-6-nopcommerce\Licitacija_agregat\Licitacija_agregat\bin\Debug\net5.0\Microsoft.Extensions.Primitives.dll
 C:\Users\Vlado\Documents\GitHub\tim-6---auctionland-tim-6-nopcommerce\Licitacija_agregat\Licitacija_agregat\bin\Debug\net5.0\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\Vlado\Documents\GitHub\tim-6---auctionland-tim-6-nopcommerce\Licitacija_agregat\Licitacija_agregat\bin\Debug\net5.0\Licitacija_agregat.xml

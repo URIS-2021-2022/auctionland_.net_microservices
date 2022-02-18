@@ -6,18 +6,53 @@ using System.Threading.Tasks;
 
 namespace Licitacija_agregat.Models
 {
+    /// <summary>
+    /// Predstavlja model kreiranja licitacije
+    /// </summary>
     public class LicitacijaCreationDto : IValidatableObject
     {
+        /// <summary>
+        /// Broj licitacije
+        /// </summary>
         public int Broj { get; set; }
+        /// <summary>
+        /// Godina licitacije
+        /// </summary>
         public int Godina { get; set; }
+        /// <summary>
+        /// Datum licitacije
+        /// </summary>
         public DateTime Datum { get; set; }
+        /// <summary>
+        /// Ograničenje licitacije
+        /// </summary>
         public int Ogranicenje { get; set; }
+        /// <summary>
+        /// Korak uvećanja cene licitacije
+        /// </summary>
         public int Korak_cene { get; set; }
+        /// <summary>
+        /// Lista koja sadrži dokumentaciju za fizička lica
+        /// </summary>
         public List<string> Lista_dokumentacije_fizicka_lica { get; set; }
+        /// <summary>
+        /// Lista koja sadrži dokumentaciju za pravna lica
+        /// </summary>
         public List<string> Lista_dokumentacije_pravna_lica { get; set; }
+        /// <summary>
+        /// Lista javnih nadmetanja
+        /// </summary>
         public List<string> JavnoNadmetanje { get; set; } // tudji servis
+        /// <summary>
+        /// Datum koji predstavlja rok za dostavljanje prijave
+        /// </summary>
         public DateTime Rok_za_dostavljanje_prijave { get; set; }
 
+        /// <summary>
+        /// Broj licitacije i korak cene moraju da budu pozitivni, datum mora da bude u budućnost
+        /// </summary>
+        /// <param name="validationContext"></param>
+        /// <returns></returns>
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
             if (Broj < 1)

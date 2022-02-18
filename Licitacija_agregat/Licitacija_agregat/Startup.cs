@@ -1,4 +1,4 @@
-using Licitacija_agregat.Data;
+﻿using Licitacija_agregat.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -11,7 +11,9 @@ using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 
 namespace Licitacija_agregat
@@ -38,6 +40,27 @@ namespace Licitacija_agregat
 
             services.AddSingleton<IEtapaRepository, EtapaRepository>();
             services.AddSingleton<ILicitacijaRepository, LicitacijaRepository>();
+
+            services.AddSwaggerGen(setupAction =>
+            {
+                setupAction.SwaggerDoc("LicitacijaOpenApiSpecification", 
+                    new Microsoft.OpenApi.Models.OpenApiInfo()
+                    {
+                        Title = "Licitacija API",
+                        Version = "1",
+                        Description = "Pomoću ovog API-ja se vrši kreiranje, modifikacija i pregled kreiranih licitacija i etapa.",
+                         Contact = new Microsoft.OpenApi.Models.OpenApiContact
+                         {
+                             Name = "Vlado Ćetković",
+                             Email = "cetkovic@uns.ac.rs"
+                         }
+                    });
+
+                var xmlComments = $"{ Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlCommentsPath = Path.Combine(AppContext.BaseDirectory, xmlComments);
+
+                setupAction.IncludeXmlComments(xmlCommentsPath);
+            });
            
         }
 
@@ -63,6 +86,14 @@ namespace Licitacija_agregat
           
 
             app.UseHttpsRedirection();
+
+            app.UseSwagger();
+
+            app.UseSwaggerUI(setupAction =>
+            {
+                setupAction.SwaggerEndpoint("/swagger/LicitacijaOpenApiSpecification/swagger.json", "Licitacija API");
+                setupAction.RoutePrefix = "";
+            });
 
             app.UseRouting();
 
