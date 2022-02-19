@@ -213,11 +213,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\ASUS ROG\\Desktop\\faks\\7. semestar\\URIS\\Projekat\\Komisija_Agregat\\Komisija_Agregat.csproj",
+      "projectUniqueName": "C:\\Users\\ASUS ROG\\Source\\Repos\\tim-6---auctionland-tim-6-nopcommerce\\Komisija_Agregat\\Komisija_Agregat.csproj",
       "projectName": "Komisija_Agregat",
-      "projectPath": "C:\\Users\\ASUS ROG\\Desktop\\faks\\7. semestar\\URIS\\Projekat\\Komisija_Agregat\\Komisija_Agregat.csproj",
+      "projectPath": "C:\\Users\\ASUS ROG\\Source\\Repos\\tim-6---auctionland-tim-6-nopcommerce\\Komisija_Agregat\\Komisija_Agregat.csproj",
       "packagesPath": "C:\\Users\\ASUS ROG\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\ASUS ROG\\Desktop\\faks\\7. semestar\\URIS\\Projekat\\Komisija_Agregat\\obj\\",
+      "outputPath": "C:\\Users\\ASUS ROG\\Source\\Repos\\tim-6---auctionland-tim-6-nopcommerce\\Komisija_Agregat\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\ASUS ROG\\AppData\\Roaming\\NuGet\\NuGet.Config",

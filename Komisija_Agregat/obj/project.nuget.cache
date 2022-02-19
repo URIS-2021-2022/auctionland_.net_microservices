@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "a+GxOmNKP+aAlzr9BsGJz2hn2XQYPQlP5qwhQnqzyX9PzWYPXdHG0Inz6RSXRBbaW8wF/eD7AZiR1J0kWvOy6g==",
+  "dgSpecHash": "SNqtsa1cJCyJ7SHHvJlr1epaGd2p/1a7yhRUibpBypAXT1HIgg/6qM4Ul7waMECC/qboa93hk+1UAc2va9hp/w==",
   "success": true,
-  "projectFilePath": "C:\\Users\\ASUS ROG\\Desktop\\faks\\7. semestar\\URIS\\Projekat\\Komisija_Agregat\\Komisija_Agregat.csproj",
+  "projectFilePath": "C:\\Users\\ASUS ROG\\source\\repos\\tim-6---auctionland-tim-6-nopcommerce\\Komisija_Agregat\\Komisija_Agregat.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ASUS ROG\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
     "C:\\Users\\ASUS ROG\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
