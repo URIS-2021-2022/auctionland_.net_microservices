@@ -1,4 +1,5 @@
-﻿using Oglas_Agregat.Models;
+﻿using Oglas_Agregat.Entities;
+using Oglas_Agregat.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,10 +9,10 @@ namespace Oglas_Agregat.Data
 {
     public interface ISluzbeniListRepository
     {
-        List<SluzbeniListModel> GetSluzbeniListovi(int BrojLista = default);
-        SluzbeniListModel GetSluzbeniListById(Guid SluzbeniListId);
-        SluzbeniListConfirmation CreateSluzbeniList(SluzbeniListModel sluzbeniListModel);
-        SluzbeniListConfirmation UpdateSluzbeniList(SluzbeniListModel sluzbeniListModel);
+        List<SluzbeniList> GetSluzbeniListovi(int BrojLista = default);
+        SluzbeniList GetSluzbeniListById(Guid SluzbeniListId);
+        SluzbeniListConfirmation CreateSluzbeniList(SluzbeniList sluzbeniList);
+        SluzbeniListConfirmation UpdateSluzbeniList(SluzbeniList sluzbeniList);
         void DeleteSluzbeniList(Guid SluzbeniListId);
     }
 }

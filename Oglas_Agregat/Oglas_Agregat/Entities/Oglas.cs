@@ -9,6 +9,7 @@ namespace Oglas_Agregat.Entities
     {
         public Guid OglasId { get; set; }
         public DateTime DatumObjave { get; set; }
+        public DateTime RokZaZalbu { get; set; }
         public string OpisOglasa { get; set; }
     }
 }

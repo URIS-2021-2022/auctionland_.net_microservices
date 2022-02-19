@@ -1,7 +1,9 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
 using Oglas_Agregat.Data;
+using Oglas_Agregat.Entities;
 using Oglas_Agregat.Models;
 using System;
 using System.Collections.Generic;
@@ -16,43 +18,50 @@ namespace Oglas_Agregat.Controllers
     {
         private readonly ISluzbeniListRepository sluzbeniListRepository;
         private readonly LinkGenerator link;
+        private readonly IMapper mapper;
 
-        public SluzbeniListController(ISluzbeniListRepository sluzbeniListRepository, LinkGenerator link)
+        public SluzbeniListController(ISluzbeniListRepository sluzbeniListRepository, LinkGenerator link, IMapper mapper)
         {
             this.sluzbeniListRepository = sluzbeniListRepository;
             this.link = link;
+            this.mapper = mapper;
         }
 
         [HttpGet]
-        public IActionResult GetSluzbeniListovi(int BrojLista)
+        [HttpHead]
+        public ActionResult<List<SluzbeniListDto>> GetSluzbeniListovi(int BrojLista)
         {
             var sluzbeniListovi = sluzbeniListRepository.GetSluzbeniListovi(BrojLista);
             if (sluzbeniListovi == null || sluzbeniListovi.Count == 0)
             {
                 return NoContent();
             }
-            return Ok(sluzbeniListovi);
+            return Ok(mapper.Map<List<SluzbeniListDto>>(sluzbeniListovi));
         }
 
         [HttpGet("{sluzbeniListId}")]
-        public ActionResult<SluzbeniListModel> GetSluzbeniListById(Guid sluzbeniListId)
+        public ActionResult<SluzbeniListDto> GetSluzbeniListById(Guid sluzbeniListId)
         {
-            SluzbeniListModel sluzbeniListModel = sluzbeniListRepository.GetSluzbeniListById(sluzbeniListId);
+            var sluzbeniList = sluzbeniListRepository.GetSluzbeniListById(sluzbeniListId);
 
-            if (sluzbeniListModel == null)
+            if (sluzbeniList == null)
             {
                 return NotFound();
             }
-            return Ok(sluzbeniListModel);
+            return Ok(mapper.Map<SluzbeniListDto>(sluzbeniList));
         }
 
-        public ActionResult<SluzbeniListModel> CreateSluzbeniList([FromBody] SluzbeniListModel sluzbeniList)
+        [HttpPost]
+        public ActionResult<SluzbeniListConfirmationDto> CreateSluzbeniList([FromBody] SluzbeniListCreateDto sluzbeniList)
         {
             try
             {
-                SluzbeniListConfirmation confirmation = sluzbeniListRepository.CreateSluzbeniList(sluzbeniList);
+                var sluzbeniListEntity = mapper.Map<SluzbeniList>(sluzbeniList);
+
+                var confirmation = sluzbeniListRepository.CreateSluzbeniList(sluzbeniListEntity);
+
                 string location = link.GetPathByAction("GetSluzbeniListovi", "SluzbeniList", new { sluzbeniListId = confirmation.SluzbeniListId });
-                return Created(location, confirmation);
+                return Created(location, mapper.Map<SluzbeniListConfirmationDto>(confirmation));
 
             }
             catch (Exception)
@@ -62,7 +71,7 @@ namespace Oglas_Agregat.Controllers
         }
 
         [HttpDelete("{sluzbeniListId}")]
-        public ActionResult DeleteSluzbeniList(Guid sluzbeniListId)
+        public IActionResult DeleteSluzbeniList(Guid sluzbeniListId)
         {
             try
             {
@@ -84,7 +93,7 @@ namespace Oglas_Agregat.Controllers
         }
 
         [HttpPut]
-        public ActionResult<SluzbeniListConfirmation> UpdateSluzbeniList(SluzbeniListModel sluzbeniList)
+        public ActionResult<SluzbeniListConfirmationDto> UpdateSluzbeniList(SluzbeniListUpdateDto sluzbeniList)
         {
             try
             {
@@ -93,8 +102,9 @@ namespace Oglas_Agregat.Controllers
                     return NotFound();
                 }
 
-                return Ok(sluzbeniListRepository.UpdateSluzbeniList(sluzbeniList));
-
+                SluzbeniList sluzbeniListEntity = mapper.Map<SluzbeniList>(sluzbeniList);
+                SluzbeniListConfirmation confirmation = sluzbeniListRepository.UpdateSluzbeniList(sluzbeniListEntity);
+                return Ok(mapper.Map<SluzbeniListConfirmationDto>(confirmation));
 
             }
             catch (Exception)
@@ -102,6 +112,13 @@ namespace Oglas_Agregat.Controllers
 
                 return StatusCode(StatusCodes.Status500InternalServerError, "An error has occurred while updating the object.");
             }
+        }
+
+        [HttpOptions]
+        public IActionResult GetSluzbeniListOptions()
+        {
+            Response.Headers.Add("Allow", "GET, POST, PUT, DELETE");
+            return Ok();
         }
 
 

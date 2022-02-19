@@ -9,5 +9,7 @@ namespace Oglas_Agregat.Models
     {
         public Guid OglasId { get; set; }
         public string OpisOglasa { get; set; }
+
+
     }
 }

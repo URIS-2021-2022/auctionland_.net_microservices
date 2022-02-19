@@ -16,6 +16,8 @@ namespace Oglas_Agregat.Models
         [MaxLength(100, ErrorMessage = "Opis oglasa ne sme da prevaziđe 100 karaktera.")]
         public string OpisOglasa { get; set; }
 
+        public DateTime RokZaZalbu { get; set; }
+
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
 

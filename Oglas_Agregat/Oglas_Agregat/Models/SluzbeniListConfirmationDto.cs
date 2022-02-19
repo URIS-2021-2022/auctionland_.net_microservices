@@ -5,10 +5,9 @@ using System.Threading.Tasks;
 
 namespace Oglas_Agregat.Models
 {
-    public class SluzbeniListModel
+    public class SluzbeniListConfirmationDto
     {
         public Guid SluzbeniListId { get; set; }
-        public DateTime DatumIzdanja { get; set; }
         public int BrojLista { get; set; }
     }
 }

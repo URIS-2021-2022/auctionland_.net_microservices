@@ -12,6 +12,8 @@ namespace Oglas_Agregat.Models
         public DateTime DatumObjave { get; set; }
         [MaxLength(100, ErrorMessage = "Opis oglasa ne sme da prevaziđe 100 karaktera.")]
         public string OpisOglasa { get; set; }
+        [Required]
+        public DateTime RokZaZalbu { get; set; }
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {

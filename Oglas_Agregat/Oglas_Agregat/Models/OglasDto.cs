@@ -9,6 +9,7 @@ namespace Oglas_Agregat.Models
     {
         //obrisala id jer necu da njega prikazuje korisniku 
         public DateTime DatumObjave { get; set; }
+        public DateTime RokZaZalbu { get; set; }
         public string OpisOglasa { get; set; }
     }
 }

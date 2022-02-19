@@ -25,6 +25,7 @@ namespace Oglas_Agregat.Data
                 {
                     OglasId = Guid.Parse("00f78e6b-a2bb-43b5-b3bb-f5708d1a5129"),
                     OpisOglasa = "fdafdafa",
+                    RokZaZalbu = DateTime.Parse("02-02-2000"),
                     DatumObjave = DateTime.Parse("01-01-2000")
                 }
             });
@@ -67,6 +68,7 @@ namespace Oglas_Agregat.Data
 
             oglas.OglasId = oglasModel.OglasId;
             oglas.DatumObjave = oglasModel.DatumObjave;
+            oglas.RokZaZalbu = oglasModel.RokZaZalbu;
             oglas.OpisOglasa = oglasModel.OpisOglasa;
 
             return new OglasConfirmation()

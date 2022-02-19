@@ -5,10 +5,9 @@ using System.Threading.Tasks;
 
 namespace Oglas_Agregat.Entities
 {
-    public class OglasConfirmation
+    public class SluzbeniListConfirmation
     {
-        public Guid OglasId { get; set; }
-        public string OpisOglasa { get; set; }
-
+        public Guid SluzbeniListId { get; set; }
+        public int BrojLista { get; set; }
     }
 }
