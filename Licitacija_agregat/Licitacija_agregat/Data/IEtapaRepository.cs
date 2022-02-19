@@ -11,7 +11,9 @@ namespace Licitacija_agregat.Data
         List<Etapa> GetEtapas(DateTime dan = default);
         Etapa GetEtapaById(Guid EtapaId);
         EtapaConfirmation CreateEtapa(Etapa etapaModel);
-        EtapaConfirmation UpdateEtapa(Etapa etapaModel);
+        void UpdateEtapa(Etapa etapaModel);
         void DeleteEtapa(Guid EtapaId);
+
+        bool SaveChanges();
     }
 }

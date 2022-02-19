@@ -1,9 +1,11 @@
 ﻿using Licitacija_agregat.Data;
+using Licitacija_agregat.Entities;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -38,8 +40,8 @@ namespace Licitacija_agregat
 
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
-            services.AddSingleton<IEtapaRepository, EtapaRepository>();
-            services.AddSingleton<ILicitacijaRepository, LicitacijaRepository>();
+            services.AddScoped<IEtapaRepository, EtapaRepository>();
+            services.AddScoped<ILicitacijaRepository, LicitacijaRepository>();
 
             services.AddSwaggerGen(setupAction =>
             {
@@ -61,6 +63,8 @@ namespace Licitacija_agregat
 
                 setupAction.IncludeXmlComments(xmlCommentsPath);
             });
+
+            services.AddDbContext<LicitacijaContext>();
            
         }
 

@@ -1,4 +1,5 @@
-﻿using Licitacija_agregat.Entities;
+﻿using AutoMapper;
+using Licitacija_agregat.Entities;
 using Licitacija_agregat.Models;
 using System;
 using System.Collections.Generic;
@@ -9,48 +10,48 @@ namespace Licitacija_agregat.Data
 {
     public class EtapaRepository : IEtapaRepository
     {
+        private readonly LicitacijaContext context;
+        private readonly IMapper mapper;
 
         public static List<Etapa> Etape { get; set; } = new List<Etapa>();
 
-        public EtapaRepository()
+        public EtapaRepository(LicitacijaContext context, IMapper mapper)
         {
+            this.context = context;
+            this.mapper = mapper;
+        }
 
+        public bool SaveChanges()
+        {
+            return context.SaveChanges() > 0;
         }
 
         public EtapaConfirmation CreateEtapa(Etapa etapaModel)
         {
-            etapaModel.EtapaId = Guid.NewGuid();
-            Etape.Add(etapaModel);
-            var etapa = GetEtapaById(etapaModel.EtapaId);
-
-            return new EtapaConfirmation()
-            {
-                EtapaId = etapa.EtapaId,
-                Dan = etapa.Dan
-               
-            };
+            var createdEntity = context.Add(etapaModel);
+            return mapper.Map<EtapaConfirmation>(createdEntity.Entity);
         }
 
         public void DeleteEtapa(Guid EtapaId)
         {
-            Etape.Remove(Etape.FirstOrDefault(e => e.EtapaId == EtapaId));
+            var etapa = GetEtapaById(EtapaId);
+            context.Remove(etapa);
         }
 
         public Etapa GetEtapaById(Guid EtapaId)
         {
-            return Etape.FirstOrDefault(e => e.EtapaId == EtapaId);
+            return context.Etape.FirstOrDefault(e => e.EtapaId == EtapaId);
         }
 
         public List<Etapa> GetEtapas(DateTime dan = default)
         {
-            return (from e in Etape
-                    where dan == default || e.Dan.Equals(dan)
-                    select e).ToList();
+            
+            return context.Etape.Where(e => (dan == default || e.Dan == dan)).ToList();
         }
 
-        public EtapaConfirmation UpdateEtapa(Etapa etapaModel)
+        public void UpdateEtapa(Etapa etapaModel)
         {
-            var etapa = GetEtapaById(etapaModel.EtapaId);
+/*            var etapa = GetEtapaById(etapaModel.EtapaId);
 
             etapa.EtapaId = etapaModel.EtapaId;
             etapa.Dan = etapaModel.Dan;
@@ -60,7 +61,7 @@ namespace Licitacija_agregat.Data
             {
                 EtapaId = etapa.EtapaId,
                 Dan = etapa.Dan
-            };
+            };*/
         }
     }
 }

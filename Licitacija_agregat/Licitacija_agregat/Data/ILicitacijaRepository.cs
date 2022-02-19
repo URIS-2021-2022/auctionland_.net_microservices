@@ -11,8 +11,9 @@ namespace Licitacija_agregat.Data
         List<Licitacija> GetLicitacijas(DateTime datum = default);
         Licitacija GetLicitacijaById(Guid LicitacijaId);
         LicitacijaConfirmation CreateLicitacija(Licitacija licitacijaModel);
-        LicitacijaConfirmation UpdateLicitacija(Licitacija licitacijaModel);
+        void UpdateLicitacija(Licitacija licitacijaModel);
         void DeleteLicitacija(Guid LicitacijaId);
 
+        bool SaveChanges();
     }
 }

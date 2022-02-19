@@ -1,4 +1,5 @@
-﻿using Licitacija_agregat.Entities;
+﻿using AutoMapper;
+using Licitacija_agregat.Entities;
 using Licitacija_agregat.Models;
 using System;
 using System.Collections.Generic;
@@ -9,52 +10,47 @@ namespace Licitacija_agregat.Data
 {
     public class LicitacijaRepository : ILicitacijaRepository
     {
+        private readonly LicitacijaContext context;
+        private readonly IMapper mapper;
+
         public static List<Licitacija> Licitacije { get; set; } = new List<Licitacija>();
 
-        public LicitacijaRepository()
+        public LicitacijaRepository(LicitacijaContext context, IMapper mapper)
         {
-            FillData();
+            this.context = context;
+            this.mapper = mapper;
         }
 
-        private void FillData()
+        public bool SaveChanges()
         {
-            
+            return context.SaveChanges() > 0;
         }
 
         public LicitacijaConfirmation CreateLicitacija(Licitacija licitacijaModel)
         {
-            licitacijaModel.LicitacijaId = Guid.NewGuid();
-            Licitacije.Add(licitacijaModel);
-            var licitacija = GetLicitacijaById(licitacijaModel.LicitacijaId);
-
-            return new LicitacijaConfirmation()
-            {
-                LicitacijaId = licitacija.LicitacijaId,
-                Broj = licitacija.Broj,
-                Datum = licitacija.Datum
-            };
+            var createdEntity = context.Add(licitacijaModel);
+            return mapper.Map<LicitacijaConfirmation>(createdEntity.Entity);
         }
 
         public void DeleteLicitacija(Guid LicitacijaId)
         {
-            Licitacije.Remove(Licitacije.FirstOrDefault(e => e.LicitacijaId == LicitacijaId));
+            var licitacija = GetLicitacijaById(LicitacijaId);
+            context.Remove(licitacija);
         }
 
         public Licitacija GetLicitacijaById(Guid LicitacijaId)
         {
-            return Licitacije.FirstOrDefault(e => e.LicitacijaId == LicitacijaId);
+            return context.Licitacije.FirstOrDefault(e => e.LicitacijaId == LicitacijaId);
         }
 
         public List<Licitacija> GetLicitacijas(DateTime datum = default)
         {
-            return (from e in Licitacije
-                    where e.Datum.Equals(datum) || datum == default
-                    select e).ToList();
+            return context.Licitacije.Where(e => (e.Datum.Equals(datum) || datum == default)).ToList();
         }
 
-        public LicitacijaConfirmation UpdateLicitacija(Licitacija licitacijaModel)
+        public void UpdateLicitacija(Licitacija licitacijaModel)
         {
-            var licitacija = GetLicitacijaById(licitacijaModel.LicitacijaId);
+/*            var licitacija = GetLicitacijaById(licitacijaModel.LicitacijaId);
 
             licitacija.LicitacijaId = licitacijaModel.LicitacijaId;
             licitacija.Broj = licitacijaModel.Broj;
@@ -71,7 +67,9 @@ namespace Licitacija_agregat.Data
                 LicitacijaId = licitacija.LicitacijaId,
                 Broj = licitacija.Broj,
                 Datum = licitacija.Datum
-            };
+            };*/
         }
+
+
     }
 }

@@ -87,6 +87,7 @@ namespace Licitacija_agregat.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [Consumes("application/json")]
         [HttpPost]
         public ActionResult<LicitacijaDto> CreateLicitacija([FromBody] LicitacijaCreationDto licitacija)
         {
@@ -95,6 +96,7 @@ namespace Licitacija_agregat.Controllers
                 var licitacijaEntity = mapper.Map<Licitacija>(licitacija);
 
                 var confirmation = licitacijaRepository.CreateLicitacija(licitacijaEntity);
+                licitacijaRepository.SaveChanges();
                 string location = link.GetPathByAction("GetLicitacijas", "Licitacija", new { licitacijaId = confirmation.LicitacijaId });
                 return Created(location, mapper.Map<LicitacijaConfirmationDto>(confirmation));
             }
@@ -125,6 +127,7 @@ namespace Licitacija_agregat.Controllers
                 }
 
                 licitacijaRepository.DeleteLicitacija(licitacijaId);
+                licitacijaRepository.SaveChanges();
                 return NoContent();
 
             }
@@ -141,18 +144,21 @@ namespace Licitacija_agregat.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [Consumes("application/json")]
         [HttpPut]
         public ActionResult<LicitacijaConfirmationDto> UpdateLicitacija([FromBody] LicitacijaUpdateDto licitacija)
         {
             try
             {
+                var confirmation = licitacijaRepository.GetLicitacijaById(licitacija.LicitacijaId);
+
                 //Proveriti da li uopšte postoji prijava koju pokušavamo da ažuriramo.
                 if (licitacijaRepository.GetLicitacijaById(licitacija.LicitacijaId) == null)
                 {
                     return NotFound(); //Ukoliko ne postoji vratiti status 404 (NotFound).
                 }
                 Licitacija licitacijaEntity = mapper.Map<Licitacija>(licitacija);
-                LicitacijaConfirmation confirmation = licitacijaRepository.UpdateLicitacija(licitacijaEntity);
+                licitacijaRepository.SaveChanges();
                 return Ok(mapper.Map<LicitacijaConfirmationDto>(confirmation));
             }
             catch (Exception)

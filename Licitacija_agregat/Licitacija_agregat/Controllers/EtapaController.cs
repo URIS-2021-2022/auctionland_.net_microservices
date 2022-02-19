@@ -33,6 +33,7 @@ namespace Licitacija_agregat.Controllers
         /// </summary>
         /// <param name="dan">Dan etape</param>
         /// <returns>Listu etapa</returns>
+
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [HttpGet]
@@ -92,9 +93,11 @@ namespace Licitacija_agregat.Controllers
 
                 var confirmation = etapaRepository.CreateEtapa(etapaEntity);
 
+                etapaRepository.SaveChanges();
+
                 string location = link.GetPathByAction("GetEtapas", "Etapa", new { etapaId = confirmation.EtapaId });
                 return Created(location, mapper.Map<EtapaConfirmationDto>(confirmation));
-                    
+                  
             }
             catch (Exception)
             {
@@ -122,6 +125,7 @@ namespace Licitacija_agregat.Controllers
                 }
 
                 etapaRepository.DeleteEtapa(etapaId);
+                etapaRepository.SaveChanges();
                 return NoContent();
 
             }
@@ -139,18 +143,23 @@ namespace Licitacija_agregat.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [Consumes("application/json")]
         [HttpPut]
         public ActionResult<EtapaConfirmationDto> UpdateEtapa(EtapaUpdateDto etapa)
         {
             try
             {
+
+                var confirmation = etapaRepository.GetEtapaById(etapa.EtapaId);
                 if(etapaRepository.GetEtapaById(etapa.EtapaId) == null)
                 {
                     return NotFound();
                 }
 
                 Etapa etapaEntity = mapper.Map<Etapa>(etapa);
-                var confirmation = etapaRepository.UpdateEtapa(etapaEntity);
+
+                etapaRepository.SaveChanges();
+
                 return Ok(mapper.Map<EtapaConfirmationDto>(confirmation));
 
 
