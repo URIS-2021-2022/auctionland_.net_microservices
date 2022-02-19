@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "LYirBtJC5EiVgKS9CEx62xcxxomRKo89lelBv51C1HhvgjcJIp74PWsvPJ2BRIPexbgZPrIB28bexyyag+pJiQ==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\ASUS ROG\\source\\repos\\tim-6---auctionland-tim-6-nopcommerce\\Program_Agregat\\Program_Agregat.fsproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\ASUS ROG\\.nuget\\packages\\fsharp.core\\6.0.1\\fsharp.core.6.0.1.nupkg.sha512"
+  ],
+  "logs": []
+}
