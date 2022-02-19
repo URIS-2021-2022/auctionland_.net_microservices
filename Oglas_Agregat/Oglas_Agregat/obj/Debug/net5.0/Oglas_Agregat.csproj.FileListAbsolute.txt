@@ -32,3 +32,4 @@ C:\Users\Dell\Documents\GitHub\tim-6---auctionland-tim-6-nopcommerce\Oglas_Agreg
 C:\Users\Dell\Documents\GitHub\tim-6---auctionland-tim-6-nopcommerce\Oglas_Agregat\Oglas_Agregat\bin\Debug\net5.0\Microsoft.Extensions.Options.dll
 C:\Users\Dell\Documents\GitHub\tim-6---auctionland-tim-6-nopcommerce\Oglas_Agregat\Oglas_Agregat\bin\Debug\net5.0\Microsoft.Extensions.Primitives.dll
 C:\Users\Dell\Documents\GitHub\tim-6---auctionland-tim-6-nopcommerce\Oglas_Agregat\Oglas_Agregat\bin\Debug\net5.0\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\Dell\Documents\GitHub\tim-6---auctionland-tim-6-nopcommerce\Oglas_Agregat\Oglas_Agregat\bin\Debug\net5.0\Oglas_Agregat.xml

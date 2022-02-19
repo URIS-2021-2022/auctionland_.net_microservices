@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace Oglas_Agregat.Data
 {
+    /// <summary>
+    /// Interfejs za SluzbeniListRepository
+    /// </summary>
     public interface ISluzbeniListRepository
     {
         List<SluzbeniList> GetSluzbeniListovi(int BrojLista = default);
