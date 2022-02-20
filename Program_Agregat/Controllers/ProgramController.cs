@@ -15,12 +15,12 @@ namespace Program_Agregat.Controllers
     class ProgramController : ControllerBase
     {
         private readonly IProgramRepository programRepository;
-        private readonly LingGenerator lingGenerator;
+        private readonly LinkGenerator linkGenerator;
 
         public ProgramController(IProgramRepository programRepository, LinkGenerator linkGenerator)
         {
             this.programRepository = programRepository;
-            this.lingGenerator = linkGenerator;
+            this.linkGenerator = linkGenerator;
         }
 
         [HttpGet]
@@ -51,7 +51,7 @@ namespace Program_Agregat.Controllers
             try
             {
                 ProgramConfirmation confirmation = programRepository.CreateProgram(program);
-                string location = lingGenerator.GetPathByAction("GetProgram", "Program", new { programId = confirmation.ProgramId });
+                string location = linkGenerator.GetPathByAction("GetProgram", "Program", new { programId = confirmation.ProgramId });
                 return Created(location, confirmation);
             }
             catch

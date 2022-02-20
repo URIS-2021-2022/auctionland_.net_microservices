@@ -15,12 +15,12 @@ namespace Program_Agregat.Controllers
     class PredlogPlanaController : ControllerBase
     {
         private readonly IPredlogPlanaRepository predlogPlanaRepository;
-        private readonly LingGenerator lingGenerator;
+        private readonly LinkGenerator linkGenerator;
 
         public PredlogPlanaController(IPredlogPlanaRepository predlogPlanaRepository, LinkGenerator linkGenerator)
         {
             this.predlogPlanaRepository = predlogPlanaRepository;
-            this.lingGenerator = linkGenerator;
+            this.linkGenerator = linkGenerator;
         }
 
         [HttpGet]
@@ -51,7 +51,7 @@ namespace Program_Agregat.Controllers
             try
             {
                 PredlogPlanaConfirmation confirmation = predlogPlanaRepository.CreatePredlogPlana(predlogPlana);
-                string location = lingGenerator.GetPathByAction("GetPredlogPlana", "PredlogPlana", new { predlogPlanaId = confirmation.PredlogPlanaId });
+                string location = linkGenerator.GetPathByAction("GetPredlogPlana", "PredlogPlana", new { predlogPlanaId = confirmation.PredlogPlanaId });
                 return Created(location, confirmation);
             }
             catch
