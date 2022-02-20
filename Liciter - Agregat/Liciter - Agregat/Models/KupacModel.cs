@@ -17,13 +17,13 @@ namespace Liciter___Agregat.Models
         public FizickoLiceModel FizickoLice { get; set; }
         public PravnoLiceModel PravnoLice { get; set; }
         public int OstvarenaPovrsina { get; set; }
-        public List<string> Uplate { get; set; } // uplate su entitet
+        public List<Uplata> Uplate { get; set; } // uplate su entitet
         public List<OvlascenoLiceModel> OvlascenaLica { get; set; }
         public bool ImaZabranu { get; set; }
         public DateTime DatumPocetkaZabrane { get; set; }
         public int DuzinaTrajanjaZabraneGod { get; set; }
         public DateTime DatumPrestankaZabrane { get; set; }
-        public List<string> JavnaNadmetanja { get; set; } // iz necijeg drugog servisa
+        public List<JavnaNadmetanja> JavnaNadmetanja { get; set; } // iz necijeg drugog servisa
 
     }
 }

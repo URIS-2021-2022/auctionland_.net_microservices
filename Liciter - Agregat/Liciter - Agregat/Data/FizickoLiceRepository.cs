@@ -37,12 +37,12 @@ namespace Liciter___Agregat.Data
 
         public List<FizickoLiceModel> GetFizickaLicas(string JMBG = null)
         {
-            return context.FizickoLiceModels.Where(e => (JMBG == null || e.JMBG == JMBG)).ToList();
+            return context.FizickaLica.Where(e => (JMBG == null || e.JMBG == JMBG)).ToList();
         }
 
         public FizickoLiceModel GetFizickoLiceById(Guid FizickoLiceId)
         {
-            return context.FizickoLiceModels.FirstOrDefault(e => e.FizickoLiceId == FizickoLiceId);
+            return context.FizickaLica.FirstOrDefault(e => e.FizickoLiceId == FizickoLiceId);
         }
 
         public FizickoLiceConfirmation UpdateFizickoLice(FizickoLiceModel fizickoLice)

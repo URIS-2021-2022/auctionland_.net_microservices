@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Liciter___Agregat.Data
 {
-    interface IFizickoLiceRepository
+    public interface IFizickoLiceRepository
     {
         List<FizickoLiceModel> GetFizickaLicas(string JMBG = null);
 
@@ -15,6 +15,8 @@ namespace Liciter___Agregat.Data
         FizickoLiceConfirmation CreateFizickoLice(FizickoLiceModel fizickoLice);
 
         FizickoLiceConfirmation UpdateFizickoLice(FizickoLiceModel fizickoLice);
+
+        bool SaveChanges();
 
         void DeleteFizickoLice(Guid FizickoLiceId);
     }

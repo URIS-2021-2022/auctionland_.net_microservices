@@ -16,6 +16,6 @@ namespace Liciter___Agregat.Models
         public string Adresa { get; set; } //adresa je entitet
         public List<KupacModel> Kupac { get; set; }
         public string Drzava { get; set; }
-        public List<int> BrojTable { get; set; }
+        public int BrojTable { get; set; }
     }
 }

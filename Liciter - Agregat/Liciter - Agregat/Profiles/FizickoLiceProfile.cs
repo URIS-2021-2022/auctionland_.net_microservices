@@ -15,12 +15,13 @@ namespace Liciter___Agregat.Profiles
             CreateMap<FizickoLiceModel, FizickoLiceDto>()
                 .ForMember(
                 dest => dest.Ime_Prezime,
-                opt => opt.MapFrom(src => src.Ime + " " + src.Prezime))
+                opt => opt.MapFrom(src => $"{ src.Ime } { src.Prezime } "))
                 .ForMember(
                 dest => dest.BrojeviTelefona,
-                opt => opt.MapFrom(src => src.BrojTelefona1 + " , " + src.BrojTelefona2));
-            CreateMap<FizickoLiceModel, FizickoLiceUpdateDto>();
-            CreateMap<FizickoLiceModel, FizickoLiceCreationDto>();
+                opt => opt.MapFrom(src => $"{ src.BrojTelefona1 } { src.BrojTelefona2 } "));
+
+            CreateMap<FizickoLiceUpdateDto, FizickoLiceModel>();
+            CreateMap<FizickoLiceCreationDto, FizickoLiceModel>();
         }
     }
 }

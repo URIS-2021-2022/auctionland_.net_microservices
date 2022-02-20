@@ -21,8 +21,11 @@ namespace Liciter___Agregat.Models
 
         }
 
-        public DbSet<FizickoLiceModel> FizickoLiceModels { get; set; }
-        public DbSet<PravnoLiceModel> PravnoLiceModels { get; set; }
+        public DbSet<FizickoLiceModel> FizickaLica { get; set; }
+        public DbSet<PravnoLiceModel> PravnaLica { get; set; }
+        public DbSet<OvlascenoLiceModel> OvlascenaLica { get; set; }
+        public DbSet<KupacModel> Kupci { get; set; }
+        public DbSet<LiciterModel> Liciteri { get; set; }
         
 
 

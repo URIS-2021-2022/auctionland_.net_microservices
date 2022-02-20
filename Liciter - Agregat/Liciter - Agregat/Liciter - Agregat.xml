@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Liciter - Agregat</name>
+    </assembly>
+    <members>
+        <member name="M:Liciter___Agregat.Controllers.FizickoLiceController.GetFizickoLicebyId(System.Guid)">
+            <summary>
+            Vraća fizičko lice na osnovu id-a
+            </summary>
+            <param name="fizickoLiceId"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

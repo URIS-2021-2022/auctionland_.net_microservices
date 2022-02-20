@@ -18,6 +18,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
+using AutoMapper;
 
 namespace Liciter___Agregat
 {
@@ -140,8 +141,7 @@ namespace Liciter___Agregat
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Liciter___Agregat v1"));
+                
             }
 
             else //Ukoliko se nalazimo u Production modu postavljamo default poruku za greške koje nastaju na servisu
@@ -167,7 +167,7 @@ namespace Liciter___Agregat
             app.UseSwaggerUI(setupAction =>
             {
                 //Podesavamo endpoint gde Swagger UI moze da pronadje OpenAPI specifikaciju
-                setupAction.SwaggerEndpoint("/swagger/ExamRegistrationOpenApiSpecification/swagger.json", "Student Exam Registration API");
+                setupAction.SwaggerEndpoint("/swagger/LiciterOpenApiSpecification/swagger.json", "Liciter API");
                 setupAction.RoutePrefix = ""; //Dokumentacija ce sada biti dostupna na root-u (ne mora da se pise /swagger)
             });
 

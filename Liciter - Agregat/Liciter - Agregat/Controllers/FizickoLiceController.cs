@@ -12,14 +12,14 @@ using System.Threading.Tasks;
 
 namespace Liciter___Agregat.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/fizickolice")]
     [ApiController]
-    class FizickoLiceController : ControllerBase
+    public class FizickoLiceController : ControllerBase
     {
-        private readonly IFizickoLiceRepository fizickoLiceRepository;
+        public readonly IFizickoLiceRepository fizickoLiceRepository;
         private readonly LinkGenerator linkGenerator;
         private readonly IMapper mapper;
-
+        
         public FizickoLiceController(IFizickoLiceRepository fizickoLiceRepository, LinkGenerator linkGenerator, IMapper mapper)
         {
             this.fizickoLiceRepository = fizickoLiceRepository;
@@ -38,6 +38,11 @@ namespace Liciter___Agregat.Controllers
             return Ok(mapper.Map<List<FizickoLiceDto>>(lica));
         }
 
+        /// <summary>
+        /// Vraća fizičko lice na osnovu id-a
+        /// </summary>
+        /// <param name="fizickoLiceId"></param>
+        /// <returns></returns>
         [HttpGet("{fizickoLiceId}")]
         public ActionResult<FizickoLiceDto> GetFizickoLicebyId(Guid fizickoLiceId)
         {
@@ -57,13 +62,14 @@ namespace Liciter___Agregat.Controllers
 
                 FizickoLiceModel lice = mapper.Map<FizickoLiceModel>(fizickoLice);
                 FizickoLiceConfirmation confirmation = fizickoLiceRepository.CreateFizickoLice(lice);
+                fizickoLiceRepository.SaveChanges();
                 // Dobar API treba da vrati lokator gde se taj resurs nalazi
-                string location = linkGenerator.GetPathByAction("GetFizickoLice", "FizickoLice", new { fizickoLiceId = confirmation.FizickoLiceId });
+                string location = linkGenerator.GetPathByAction("GetFizickoLicebyId", "FizickoLice", new { fizickoLiceId = confirmation.FizickoLiceId });
                 return Created(location, mapper.Map<FizickoLiceConfirmationDto>(confirmation));
             }
-            catch
+            catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, "Create Error");
+                return StatusCode(StatusCodes.Status500InternalServerError, "Create Error " + ex.Message);
             }
 
         }

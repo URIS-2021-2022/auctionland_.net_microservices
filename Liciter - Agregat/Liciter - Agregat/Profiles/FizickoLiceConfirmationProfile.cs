@@ -13,6 +13,8 @@ namespace Liciter___Agregat.Profiles
         public FizickoLiceConfirmationProfile()
         {
             CreateMap<FizickoLiceConfirmation, FizickoLiceConfirmationDto>();
+            CreateMap<FizickoLiceModel, FizickoLiceConfirmation>();
+
         }
     }
 }

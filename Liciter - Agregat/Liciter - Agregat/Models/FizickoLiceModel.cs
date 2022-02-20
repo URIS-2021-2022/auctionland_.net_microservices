@@ -9,7 +9,7 @@ namespace Liciter___Agregat.Models
     public class FizickoLiceModel
     {
         [Key]
-        public Guid FizickoLiceId { get; set; }
+        public Guid FizickoLiceId { get; set; } = Guid.NewGuid();
         public string Ime { get; set; }
         public string Prezime { get; set; }
         public string JMBG { get; set; }
