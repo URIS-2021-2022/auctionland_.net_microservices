@@ -146,24 +146,26 @@ namespace Licitacija_agregat.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [Consumes("application/json")]
         [HttpPut]
-        public ActionResult<LicitacijaConfirmationDto> UpdateLicitacija([FromBody] LicitacijaUpdateDto licitacija)
+        public ActionResult<LicitacijaDto> UpdateLicitacija(LicitacijaUpdateDto licitacija)
         {
             try
             {
-                var confirmation = licitacijaRepository.GetLicitacijaById(licitacija.LicitacijaId);
-
                 //Proveriti da li uopšte postoji prijava koju pokušavamo da ažuriramo.
-                if (licitacijaRepository.GetLicitacijaById(licitacija.LicitacijaId) == null)
+                var oldLicitacija = licitacijaRepository.GetLicitacijaById(licitacija.LicitacijaId);
+                if (oldLicitacija == null)
                 {
                     return NotFound(); //Ukoliko ne postoji vratiti status 404 (NotFound).
                 }
                 Licitacija licitacijaEntity = mapper.Map<Licitacija>(licitacija);
-                licitacijaRepository.SaveChanges();
-                return Ok(mapper.Map<LicitacijaConfirmationDto>(confirmation));
+
+                mapper.Map(licitacijaEntity, oldLicitacija); //Update objekta koji treba da sačuvamo u bazi                
+
+                licitacijaRepository.SaveChanges(); //Perzistiramo promene
+                return Ok(mapper.Map<LicitacijaDto>(oldLicitacija));
             }
             catch (Exception)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, "An error has occurred while updating the object.");
+                return StatusCode(StatusCodes.Status500InternalServerError, "Update error");
             }
         }
 

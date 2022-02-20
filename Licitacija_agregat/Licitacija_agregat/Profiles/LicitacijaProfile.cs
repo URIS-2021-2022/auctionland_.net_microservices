@@ -17,6 +17,8 @@ namespace Licitacija_agregat.Profiles
             CreateMap<LicitacijaCreationDto, Licitacija>();
 
             CreateMap<LicitacijaUpdateDto, Licitacija>();
+
+            CreateMap<Licitacija, Licitacija>();
         }
         
     }

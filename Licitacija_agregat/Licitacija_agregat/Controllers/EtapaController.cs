@@ -157,27 +157,22 @@ namespace Licitacija_agregat.Controllers
 
             try
             {
-
+                //Proveriti da li uopšte postoji prijava koju pokušavamo da ažuriramo.
                 var oldEtapa = etapaRepository.GetEtapaById(etapa.EtapaId);
-
                 if (oldEtapa == null)
                 {
-                    return NotFound();
+                    return NotFound(); //Ukoliko ne postoji vratiti status 404 (NotFound).
                 }
+                Etapa etapaEntity = mapper.Map<Etapa>(etapa);
 
-                Etapa etapaEntity = mapper.Map<Etapa>(oldEtapa);
+                mapper.Map(etapaEntity, oldEtapa); //Update objekta koji treba da sačuvamo u bazi                
 
-                mapper.Map(etapaEntity, oldEtapa);
-
-                etapaRepository.SaveChanges();
-                return Ok(mapper.Map<EtapaConfirmationDto>(oldEtapa));
-
-
+                etapaRepository.SaveChanges(); //Perzistiramo promene
+                return Ok(mapper.Map<EtapaDto>(oldEtapa));
             }
             catch (Exception)
             {
-
-                return StatusCode(StatusCodes.Status500InternalServerError, "An error has occurred while updating the object.");
+                return StatusCode(StatusCodes.Status500InternalServerError, "Update error");
             }
         }
 
