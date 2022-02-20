@@ -158,32 +158,19 @@ namespace Licitacija_agregat.Controllers
             try
             {
 
-                /*          KATIN      var oldEtapa = etapaRepository.GetEtapaById(etapa.EtapaId);
-
-                                if(oldEtapa == null)
-                                {
-                                    return NotFound();
-                                }
-
-                                Etapa etapaEntity = mapper.Map<Etapa>(etapa);
-
-                                mapper.Map(etapaEntity, oldEtapa);
-
-                                etapaRepository.SaveChanges();
-                                return Ok(mapper.Map<EtapaDto>(oldEtapa));*/
                 var oldEtapa = etapaRepository.GetEtapaById(etapa.EtapaId);
 
                 if (oldEtapa == null)
                 {
-                    return NotFound(); //Ukoliko ne postoji vratiti status 404 (NotFound).
+                    return NotFound();
                 }
-                Etapa etapaEntity = mapper.Map<Etapa>(oldEtapa);
-                EtapaConfirmation confirmation = mapper.Map<EtapaConfirmation>(etapaEntity);
 
-                mapper.Map(etapaEntity, oldEtapa); 
+                Etapa etapaEntity = mapper.Map<Etapa>(oldEtapa);
+
+                mapper.Map(etapaEntity, oldEtapa);
 
                 etapaRepository.SaveChanges();
-                return Ok(mapper.Map<EtapaConfirmationDto>(confirmation));
+                return Ok(mapper.Map<EtapaConfirmationDto>(oldEtapa));
 
 
             }
