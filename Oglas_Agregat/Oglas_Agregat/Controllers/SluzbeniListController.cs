@@ -93,6 +93,8 @@ namespace Oglas_Agregat.Controllers
 
                 var confirmation = sluzbeniListRepository.CreateSluzbeniList(sluzbeniListEntity);
 
+                sluzbeniListRepository.SaveChanges();
+
                 string location = link.GetPathByAction("GetSluzbeniListovi", "SluzbeniList", new { sluzbeniListId = confirmation.SluzbeniListId });
                 return Created(location, mapper.Map<SluzbeniListConfirmationDto>(confirmation));
 
@@ -108,7 +110,6 @@ namespace Oglas_Agregat.Controllers
         /// </summary>
         /// <param name="sluzbeniListId"></param>
         /// <returns>Prazan payload</returns>
-        /// <remarks>
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -125,6 +126,7 @@ namespace Oglas_Agregat.Controllers
                 }
 
                 sluzbeniListRepository.DeleteSluzbeniList(sluzbeniListId);
+                sluzbeniListRepository.SaveChanges();
                 return NoContent();
 
             }
@@ -156,13 +158,14 @@ namespace Oglas_Agregat.Controllers
         {
             try
             {
+                var confirmation = sluzbeniListRepository.GetSluzbeniListById(sluzbeniList.SluzbeniListId);
                 if (sluzbeniListRepository.GetSluzbeniListById(sluzbeniList.SluzbeniListId) == null)
                 {
                     return NotFound();
                 }
 
                 SluzbeniList sluzbeniListEntity = mapper.Map<SluzbeniList>(sluzbeniList);
-                SluzbeniListConfirmation confirmation = sluzbeniListRepository.UpdateSluzbeniList(sluzbeniListEntity);
+                sluzbeniListRepository.SaveChanges();                
                 return Ok(mapper.Map<SluzbeniListConfirmationDto>(confirmation));
 
             }

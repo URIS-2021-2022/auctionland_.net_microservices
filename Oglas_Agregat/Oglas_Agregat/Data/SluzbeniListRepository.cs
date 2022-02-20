@@ -1,4 +1,5 @@
-﻿using Oglas_Agregat.Entities;
+﻿using AutoMapper;
+using Oglas_Agregat.Entities;
 using Oglas_Agregat.Models;
 using System;
 using System.Collections.Generic;
@@ -9,61 +10,48 @@ namespace Oglas_Agregat.Data
 {
     public class SluzbeniListRepository : ISluzbeniListRepository
     {
-        public static List<SluzbeniList> SluzbeniListovi { get; set; } = new List<SluzbeniList>();
 
-        public SluzbeniListRepository()
+        private readonly OglasContext context;
+        private readonly IMapper mapper;
+
+        public SluzbeniListRepository(OglasContext context, IMapper mapper)
         {
-            FillData();
+            this.context = context;
+            this.mapper = mapper;
         }
 
-        private void FillData()
+        public bool SaveChanges()
         {
-            SluzbeniListovi.AddRange(new List<SluzbeniList>
-            {
-                new SluzbeniList
-                {
-                    SluzbeniListId = Guid.Parse("00f78e6b-a2bb-43b5-b3bb-f5708d1a5129"),
-                    DatumIzdanja = DateTime.Parse("01-01-2001"),
-                    BrojLista = 33
-                }
-            });
-
+            return context.SaveChanges() > 0;
         }
+
 
         public SluzbeniListConfirmation CreateSluzbeniList(SluzbeniList sluzbeniListModel)
         {
-            sluzbeniListModel.SluzbeniListId = Guid.NewGuid();
-            SluzbeniListovi.Add(sluzbeniListModel);
-            var sluzbeniList = GetSluzbeniListById(sluzbeniListModel.SluzbeniListId);
-
-            return new SluzbeniListConfirmation()
-            {
-                SluzbeniListId = sluzbeniList.SluzbeniListId,
-                BrojLista = sluzbeniList.BrojLista
-            };
+            var createdEntity = context.Add(sluzbeniListModel);
+            return mapper.Map<SluzbeniListConfirmation>(createdEntity.Entity);
         }
 
 
         public void DeleteSluzbeniList(Guid SluzbeniListId)
         {
-            SluzbeniListovi.Remove(SluzbeniListovi.FirstOrDefault(e => e.SluzbeniListId == SluzbeniListId));
+            context.Remove(GetSluzbeniListById(SluzbeniListId));
         }
 
         public SluzbeniList GetSluzbeniListById(Guid SluzbeniListId)
         {
-            return SluzbeniListovi.FirstOrDefault(e => e.SluzbeniListId == SluzbeniListId);
+            return context.SluzbeniListovi.FirstOrDefault(e => e.SluzbeniListId == SluzbeniListId);
         }
 
         public List<SluzbeniList> GetSluzbeniListovi(int BrojLista = default)
         {
-            return (from e in SluzbeniListovi
-                    where BrojLista == default || e.BrojLista.Equals(BrojLista)
-                    select e).ToList();
+            return context.SluzbeniListovi.Where(e => (BrojLista == default || e.BrojLista.Equals(BrojLista))).ToList();
+
         }
 
-        public SluzbeniListConfirmation UpdateSluzbeniList(SluzbeniList sluzbeniListModel)
+        public void UpdateSluzbeniList(SluzbeniList sluzbeniListModel)
         {
-            var sluzbeniList = GetSluzbeniListById(sluzbeniListModel.SluzbeniListId);
+/*            var sluzbeniList = GetSluzbeniListById(sluzbeniListModel.SluzbeniListId);
 
             sluzbeniList.SluzbeniListId = sluzbeniListModel.SluzbeniListId;
             sluzbeniList.DatumIzdanja = sluzbeniListModel.DatumIzdanja;
@@ -73,7 +61,7 @@ namespace Oglas_Agregat.Data
             {
                 SluzbeniListId = sluzbeniList.SluzbeniListId,
                 BrojLista = sluzbeniList.BrojLista
-            };
+            };*/
         }
     }
 }

@@ -38,7 +38,13 @@
             }
             </remarks>
         </member>
-        <!-- Badly formed XML comment ignored for member "M:Oglas_Agregat.Controllers.OglasController.DeleteOglas(System.Guid)" -->
+        <member name="M:Oglas_Agregat.Controllers.OglasController.DeleteOglas(System.Guid)">
+            <summary>
+            Briše oglas po zadatoj vrednosti id-a
+            </summary>
+            <param name="oglasId"></param>
+            <returns>Prazan payload</returns>
+        </member>
         <member name="M:Oglas_Agregat.Controllers.OglasController.UpdateOglas(Oglas_Agregat.Models.OglasUpdateDto)">
             <summary>
             Menja vrednosti postojećeg oglasa
@@ -94,7 +100,13 @@
             }
             </remarks>
         </member>
-        <!-- Badly formed XML comment ignored for member "M:Oglas_Agregat.Controllers.SluzbeniListController.DeleteSluzbeniList(System.Guid)" -->
+        <member name="M:Oglas_Agregat.Controllers.SluzbeniListController.DeleteSluzbeniList(System.Guid)">
+            <summary>
+            Briše službeni list po zadatoj vrednosti id-a
+            </summary>
+            <param name="sluzbeniListId"></param>
+            <returns>Prazan payload</returns>
+        </member>
         <member name="M:Oglas_Agregat.Controllers.SluzbeniListController.UpdateSluzbeniList(Oglas_Agregat.Models.SluzbeniListUpdateDto)">
             <summary>
             Menja vrednosti postojećeg službenog lista

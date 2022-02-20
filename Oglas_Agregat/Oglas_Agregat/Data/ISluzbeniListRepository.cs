@@ -15,7 +15,9 @@ namespace Oglas_Agregat.Data
         List<SluzbeniList> GetSluzbeniListovi(int BrojLista = default);
         SluzbeniList GetSluzbeniListById(Guid SluzbeniListId);
         SluzbeniListConfirmation CreateSluzbeniList(SluzbeniList sluzbeniList);
-        SluzbeniListConfirmation UpdateSluzbeniList(SluzbeniList sluzbeniList);
+        void UpdateSluzbeniList(SluzbeniList sluzbeniList);
         void DeleteSluzbeniList(Guid SluzbeniListId);
+
+        bool SaveChanges();
     }
 }

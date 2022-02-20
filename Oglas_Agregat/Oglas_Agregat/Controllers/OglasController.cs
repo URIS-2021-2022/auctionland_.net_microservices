@@ -96,6 +96,8 @@ namespace Oglas_Agregat.Controllers
 
                 var confirmation = oglasRepository.CreateOglas(oglasEntity);
 
+                oglasRepository.SaveChanges();
+
                 string location = link.GetPathByAction("GetOglasi", "Oglas", new { oglasId = confirmation.OglasId });
                 return Created(location, mapper.Map<OglasConfirmationDto>(confirmation));
 
@@ -111,7 +113,6 @@ namespace Oglas_Agregat.Controllers
         /// </summary>
         /// <param name="oglasId"></param>
         /// <returns>Prazan payload</returns>
-        /// <remarks>
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -128,6 +129,7 @@ namespace Oglas_Agregat.Controllers
                 }
 
                 oglasRepository.DeleteOglas(oglasId);
+                oglasRepository.SaveChanges();
                 return NoContent(); //e sve je okej proslo ali ja ne vracam nikakav sadrzaj - 200
 
             }
@@ -160,13 +162,14 @@ namespace Oglas_Agregat.Controllers
         {
             try
             {
+                var confirmation = oglasRepository.GetOglasById(oglas.OglasId);
                 if (oglasRepository.GetOglasById(oglas.OglasId) == null)
                 {
                     return NotFound();
                 }
 
             Oglas oglasEntity = mapper.Map<Oglas>(oglas);
-            OglasConfirmation confirmation = oglasRepository.UpdateOglas(oglasEntity);
+            oglasRepository.SaveChanges();
             return Ok(mapper.Map<OglasConfirmationDto>(confirmation));
 
             }

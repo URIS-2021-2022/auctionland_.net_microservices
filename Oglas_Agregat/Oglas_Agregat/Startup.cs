@@ -14,6 +14,8 @@ using System.Threading.Tasks;
 using Oglas_Agregat.Data;
 using System.Reflection;
 using System.IO;
+using Oglas_Agregat.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace Oglas_Agregat
 {
@@ -37,8 +39,8 @@ namespace Oglas_Agregat
             ).AddXmlDataContractSerializerFormatters();
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies()); //pogledaj ceo domen i trazi konfiguracije za automaper. to su profili. mi za svako mapiranje definisemo profil tj iz tog objekta mi mapiraj u taj objekat na taj nacin
 
-            services.AddSingleton<IOglasRepository, OglasRepository>(); //kada sretnes da se trazi prvo prosledi drugo tj napravi instancu drugog i koristi je, singleton je zivotni ciklus drugog
-            services.AddSingleton<ISluzbeniListRepository, SluzbeniListRepository>();
+            services.AddScoped<IOglasRepository, OglasRepository>(); //kada sretnes da se trazi prvo prosledi drugo tj napravi instancu drugog i koristi je, singleton je zivotni ciklus drugog
+            services.AddScoped<ISluzbeniListRepository, SluzbeniListRepository>();
 
             services.AddSwaggerGen(setupAction =>
             {
@@ -61,6 +63,7 @@ namespace Oglas_Agregat
                 setupAction.IncludeXmlComments(xmlCommentsPath);
             });
 
+            services.AddDbContext<OglasContext>(options => options.UseSqlServer(Configuration.GetConnectionString("OglasDB")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

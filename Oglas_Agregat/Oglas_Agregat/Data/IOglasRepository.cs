@@ -16,8 +16,10 @@ namespace Oglas_Agregat.Data
         List<Oglas> GetOglasi(DateTime DatumObjave = default);
         Oglas GetOglasById(Guid OglasId);
         OglasConfirmation CreateOglas(Oglas oglas);
-        OglasConfirmation UpdateOglas(Oglas oglas);
+        void UpdateOglas(Oglas oglas);
         void DeleteOglas(Guid OglasId);
+
+        bool SaveChanges();
 
 
     }
