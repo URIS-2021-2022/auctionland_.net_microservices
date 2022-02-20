@@ -1,4 +1,5 @@
-﻿using OdlukaODavanjuUZakup.Models;
+﻿using OdlukaODavanjuUZakup.Entities;
+using OdlukaODavanjuUZakup.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +9,7 @@ namespace OdlukaODavanjuUZakup.Data
 {
     public class UgovoroZakupuRepository : IUgovoroZakupuRepository
     {
-        public static List<UgovoroZakupuModel> UgovorioZakupu { get; set; } = new List<UgovoroZakupuModel>();
+        public static List<UgovoroZakupu> UgovorioZakupu { get; set; } = new List<UgovoroZakupu>();
 
         public UgovoroZakupuRepository ()
         {
@@ -18,11 +19,11 @@ namespace OdlukaODavanjuUZakup.Data
         {
 
         }
-        public UgovoroZakupuConfirmation CreateUgovorOZakupu(UgovoroZakupuModel ugovoroZakupu)
+        public UgovoroZakupuConfirmation CreateUgovorOZakupu(UgovoroZakupu ugovoroZakupu)
         {
             ugovoroZakupu.UgovoroZakupuID = Guid.NewGuid();
             UgovorioZakupu.Add(ugovoroZakupu);
-            UgovoroZakupuModel ugovor = GetUgovoriOZakupuById(ugovoroZakupu.UgovoroZakupuID);
+            UgovoroZakupu ugovor = GetUgovoriOZakupuById(ugovoroZakupu.UgovoroZakupuID);
 
             return new UgovoroZakupuConfirmation
             {
@@ -37,21 +38,21 @@ namespace OdlukaODavanjuUZakup.Data
             UgovorioZakupu.Remove(UgovorioZakupu.FirstOrDefault(e => e.UgovoroZakupuID == UgovoroZakupuId));
         }
 
-        public List<UgovoroZakupuModel> GetUgovoriOZakupu(string zavodni_broj = null)
+        public List<UgovoroZakupu> GetUgovoriOZakupu(string zavodni_broj = null)
         {
             return (from e in UgovorioZakupu
                     where string.IsNullOrEmpty(zavodni_broj) || e.zavodni_Broj == zavodni_broj
                     select e).ToList();
         }
 
-        public UgovoroZakupuModel GetUgovoriOZakupuById(Guid UgovoroZakupuId)
+        public UgovoroZakupu GetUgovoriOZakupuById(Guid UgovoroZakupuId)
         {
             return UgovorioZakupu.FirstOrDefault(e => e.UgovoroZakupuID == UgovoroZakupuId);
         }
 
-        public UgovoroZakupuConfirmation UpdateUgovorOZakupu(UgovoroZakupuModel ugovoroZakupu)
+        public UgovoroZakupuConfirmation UpdateUgovorOZakupu(UgovoroZakupu ugovoroZakupu)
         {
-            UgovoroZakupuModel ugovor = GetUgovoriOZakupuById(ugovoroZakupu.UgovoroZakupuID);
+            UgovoroZakupu ugovor = GetUgovoriOZakupuById(ugovoroZakupu.UgovoroZakupuID);
 
             ugovor.UgovoroZakupuID = ugovoroZakupu.UgovoroZakupuID;
             ugovor.mesto_potpisivanja = ugovoroZakupu.mesto_potpisivanja;

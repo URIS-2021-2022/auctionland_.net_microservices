@@ -1,7 +1,9 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
 using OdlukaODavanjuUZakup.Data;
+using OdlukaODavanjuUZakup.Entities;
 using OdlukaODavanjuUZakup.Models;
 using System;
 using System.Collections.Generic;
@@ -16,14 +18,16 @@ namespace OdlukaODavanjuUZakup.Controllers
     {
         private readonly IUgovoroZakupuRepository ugovoroZakupuRepository;
         private readonly LinkGenerator linkGenerator;
+        private readonly IMapper mapper;
 
-        public UgovoroZakupuController(IUgovoroZakupuRepository ugovoroZakupuRepository, LinkGenerator linkGenerator)
+        public UgovoroZakupuController(IUgovoroZakupuRepository ugovoroZakupuRepository, LinkGenerator linkGenerator, IMapper mapper)
         {
             this.ugovoroZakupuRepository = ugovoroZakupuRepository;
             this.linkGenerator = linkGenerator;
+            this.mapper = mapper;
         }
         [HttpGet]
-        public ActionResult<List<UgovoroZakupuModel>> getUgovori(string zavodni_broj)
+        public ActionResult<List<UgovoroZakupuDto>> getUgovori(string zavodni_broj)
         {
             var ugovori = ugovoroZakupuRepository.GetUgovoriOZakupu(zavodni_broj);
 
@@ -31,20 +35,20 @@ namespace OdlukaODavanjuUZakup.Controllers
             {
                 return NoContent();
             }
-            return Ok(ugovori);
+            return Ok(mapper.Map<List<UgovoroZakupuDto>>(ugovori));
         }
         [HttpGet("UgovoroZakupuID)")]
-        public ActionResult<UgovoroZakupuModel> getUgovor(Guid UgovoroZakupuID)
+        public ActionResult<UgovoroZakupuDto> getUgovor(Guid UgovoroZakupuID)
         {
             var ugovor = ugovoroZakupuRepository.GetUgovoriOZakupuById(UgovoroZakupuID);
             if (ugovor == null)
             {
                 return NotFound();
             }
-            return Ok(ugovor);
+            return Ok(mapper.Map<UgovoroZakupuDto>(ugovor));
         }
         [HttpPost]
-        public ActionResult<UgovoroZakupuModel> createUgovoroZakupu ([FromBody] UgovoroZakupuModel ugovoroZakupu)
+        public ActionResult<UgovoroZakupuConfirmationDto> createUgovoroZakupu ([FromBody] UgovoroZakupuConfirmationDto ugovoroZakupu)
         {
             try
             {
@@ -54,7 +58,8 @@ namespace OdlukaODavanjuUZakup.Controllers
                 {
                     return BadRequest("Datum za rok nije validan");
                 }
-                var confirmation = ugovoroZakupuRepository.CreateUgovorOZakupu(ugovoroZakupu);
+                var ugovoroZakupuEntity = mapper.Map<UgovoroZakupu> (ugovoroZakupu);
+                var confirmation = ugovoroZakupuRepository.CreateUgovorOZakupu(ugovoroZakupuEntity);
                 var location = linkGenerator.GetPathByAction("getUgovori", "UgovoroZakupu", new { UgovoroZakupuID = confirmation.UgovoroZakupuID });
                 return Created(location, confirmation);
             }
@@ -63,12 +68,8 @@ namespace OdlukaODavanjuUZakup.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, "Create error");
             }
         }
-        private bool ValidateUgovoroZakupu(UgovoroZakupuModel ugovoroZakupu)
+        private bool ValidateUgovoroZakupu(UgovoroZakupuConfirmationDto ugovoroZakupu)
         {
-            if (ugovoroZakupu.rok_za_vracanje_zemljista < ugovoroZakupu.datum_zavodjenja)
-            {
-                return false;
-            }
             return true;
         }
         [HttpDelete]

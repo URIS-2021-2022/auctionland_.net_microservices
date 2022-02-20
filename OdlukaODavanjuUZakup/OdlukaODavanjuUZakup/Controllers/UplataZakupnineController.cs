@@ -1,7 +1,9 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
 using OdlukaODavanjuUZakup.Data;
+using OdlukaODavanjuUZakup.Entities;
 using OdlukaODavanjuUZakup.Models;
 using System;
 using System.Collections.Generic;
@@ -14,16 +16,18 @@ namespace OdlukaODavanjuUZakup.Controllers
     public class UplataZakupnineController : ControllerBase
     {
         private readonly LinkGenerator linkGenerator;
+        private readonly IMapper mapper;
         private readonly IUplataZakupnineRepository uplataZakupnineRepository;
 
-        public UplataZakupnineController(IUplataZakupnineRepository uplataZakupnineRepository, LinkGenerator linkGenerator)
+        public UplataZakupnineController(IUplataZakupnineRepository uplataZakupnineRepository, LinkGenerator linkGenerator, IMapper mapper)
 
         {
             this.linkGenerator = linkGenerator;
+            this.mapper = mapper;
             this.uplataZakupnineRepository = uplataZakupnineRepository;
         }
         [HttpGet]
-        public ActionResult<List<UplataZakupnineModel>> getUplate(string broj_racuna)
+        public ActionResult<List<UplataZakupnineDto>> getUplate(string broj_racuna)
         {
             var uplate = uplataZakupnineRepository.GetUplateZakupnine(broj_racuna);
 
@@ -31,11 +35,11 @@ namespace OdlukaODavanjuUZakup.Controllers
             {
                 return NoContent();
             }
-            return Ok(uplate);
+            return Ok(mapper.Map<List<UplataZakupnineDto>>(uplate));
         }
 
         [HttpGet("{UplataZakupnineID}")]
-        public ActionResult<UplataZakupnineModel> getUplata(Guid uplataZakupnineID)
+        public ActionResult<UplataZakupnineDto> getUplata(Guid uplataZakupnineID)
         {
             var uplata = uplataZakupnineRepository.GetUplataZakupnineById(uplataZakupnineID);
 
@@ -43,10 +47,10 @@ namespace OdlukaODavanjuUZakup.Controllers
             {
                 return NotFound();
             }
-            return Ok(uplata);
+            return Ok(mapper.Map<UplataZakupnineDto>(uplata));
         }
         [HttpPost]
-        public ActionResult<UplataZakupnineModel> createUplataZakupnine([FromBody] UplataZakupnineModel uplataZakupnine)
+        public ActionResult<UplataZakupnineConfirmationDto> CreateUplataZakupnine([FromBody] UplataZakupnineCreationDto uplataZakupnine)
         {
             try
             {
@@ -57,16 +61,18 @@ namespace OdlukaODavanjuUZakup.Controllers
                     return BadRequest("Iznos uplate je isuvise mali");
 
                 }
-                var confirmation = uplataZakupnineRepository.CreateUplataZakupnine(uplataZakupnine);
+
+                var uplataZakupnineEntity = mapper.Map<UplataZakupnine>(uplataZakupnine); 
+                var confirmation = uplataZakupnineRepository.CreateUplataZakupnine(uplataZakupnineEntity);
                 string location = linkGenerator.GetPathByAction("GetUplate", "UplataZakupnine", new { uplataZakupnineID = confirmation.UplataZakupnineID });
-                return Created(location, confirmation);
+                return Created(location, mapper.Map<UplataZakupnineConfirmationDto>(confirmation));
             }
             catch
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, "Create error");
             }
         }
-        private bool ValidateUplataZakupnine(UplataZakupnineModel uplataZakupnine)
+        private bool ValidateUplataZakupnine(UplataZakupnineCreationDto uplataZakupnine)
         {
             if (uplataZakupnine.iznos < 100)
             {
@@ -95,6 +101,11 @@ namespace OdlukaODavanjuUZakup.Controllers
             }
 
             }
-
+        [HttpOptions]
+        public IActionResult GetUplataZakupnineOptions()
+        {
+            Response.Headers.Add("Allow", "GET, POST, PUT, DELETE");
+            return Ok();
+        }
     }
 }

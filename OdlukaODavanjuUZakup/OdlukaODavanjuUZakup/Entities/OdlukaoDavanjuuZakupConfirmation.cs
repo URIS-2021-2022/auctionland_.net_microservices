@@ -3,14 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace OdlukaODavanjuUZakup.Models
+namespace OdlukaODavanjuUZakup.Entities
 {
-    public class OdlukaoDavanjuuZakupModel
+    public class OdlukaoDavanjuuZakupConfirmation
     {
         public Guid OdlukaoDavanjuuZakupID { get; set; }
-        public DateTime datum_donosenja_odluke { get; set; }
-
         public Boolean validnost { get; set; }
-
     }
 }

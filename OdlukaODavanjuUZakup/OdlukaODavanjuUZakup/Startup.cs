@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -26,7 +27,11 @@ namespace OdlukaODavanjuUZakup
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            services.AddControllers(setup =>
+            {
+                setup.ReturnHttpNotAcceptable = true;
+            }).AddXmlDataContractSerializerFormatters();
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddSingleton<IOdlukaoDavanjuuZakupRepository, OdlukaoDavanjuuZakupuRepository>();
             services.AddSingleton<IGarantPlacanjaRepository, GarantPlacanjaRepository>();
             services.AddSingleton<IUplataZakupnineRepository, UplataZakupnineRepository>();
@@ -39,6 +44,17 @@ namespace OdlukaODavanjuUZakup
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+            }
+            else
+            {
+                app.UseExceptionHandler(appBuilder =>
+                {
+                    appBuilder.Run(async context =>
+                  {
+                      context.Response.StatusCode = 500;
+                      await context.Response.WriteAsync("Doslo je do neocekivane greske. Molimo pokusajte kasnije");
+                  });
+                });
             }
 
             app.UseHttpsRedirection();

@@ -1,4 +1,5 @@
-﻿using OdlukaODavanjuUZakup.Models;
+﻿using OdlukaODavanjuUZakup.Entities;
+using OdlukaODavanjuUZakup.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,13 +9,13 @@ namespace OdlukaODavanjuUZakup.Data
 {
     public interface IGarantPlacanjaRepository
     {
-        List<GarantPlacanjaModel> GetGarantiPlacanja();
+        List<GarantPlacanja> GetGarantiPlacanja();
 
-        GarantPlacanjaModel GetGarantPlacanjaById(Guid GarantPlacanjaId);
+        GarantPlacanja GetGarantPlacanjaById(Guid GarantPlacanjaId);
 
-        GarantPlacanjaConfirmation CreateGarantPlacanja(GarantPlacanjaModel garantPlacanja);
+        GarantPlacanjaConfirmation CreateGarantPlacanja(GarantPlacanja garantPlacanja);
 
-        GarantPlacanjaConfirmation UpdateGarantPlacanja(GarantPlacanjaModel garantPlacanja);
+        GarantPlacanjaConfirmation UpdateGarantPlacanja(GarantPlacanja garantPlacanja);
 
         void DeleteGarantPlacanja(Guid GarantPlacanjaId);
     }

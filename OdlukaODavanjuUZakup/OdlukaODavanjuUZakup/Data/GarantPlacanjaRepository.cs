@@ -1,4 +1,5 @@
-﻿using OdlukaODavanjuUZakup.Models;
+﻿using OdlukaODavanjuUZakup.Entities;
+using OdlukaODavanjuUZakup.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +9,7 @@ namespace OdlukaODavanjuUZakup.Data
 {
     public class GarantPlacanjaRepository : IGarantPlacanjaRepository
     {
-        public static List<GarantPlacanjaModel> garantiPlacanja { get; set; } = new List<GarantPlacanjaModel>();
+        public static List<GarantPlacanja> garantiPlacanja { get; set; } = new List<GarantPlacanja>();
 
         public GarantPlacanjaRepository()
         {
@@ -19,11 +20,11 @@ namespace OdlukaODavanjuUZakup.Data
 
         }
 
-        public GarantPlacanjaConfirmation CreateGarantPlacanja(GarantPlacanjaModel garantPlacanja)
+        public GarantPlacanjaConfirmation CreateGarantPlacanja(GarantPlacanja garantPlacanja)
         {
             garantPlacanja.GarantPlacanjaID = Guid.NewGuid();
             garantiPlacanja.Add(garantPlacanja);
-            GarantPlacanjaModel garant = GetGarantPlacanjaById(garantPlacanja.GarantPlacanjaID);
+            GarantPlacanja garant = GetGarantPlacanjaById(garantPlacanja.GarantPlacanjaID);
 
             return new GarantPlacanjaConfirmation
             {
@@ -38,20 +39,20 @@ namespace OdlukaODavanjuUZakup.Data
             garantiPlacanja.Remove(garantiPlacanja.FirstOrDefault(e => e.GarantPlacanjaID == GarantPlacanjaId));
         }
 
-        public List<GarantPlacanjaModel> GetGarantiPlacanja()
+        public List<GarantPlacanja> GetGarantiPlacanja()
         {
             return (from e in garantiPlacanja
                     select e).ToList();
         }
 
-        public GarantPlacanjaModel GetGarantPlacanjaById(Guid GarantPlacanjaId)
+        public GarantPlacanja GetGarantPlacanjaById(Guid GarantPlacanjaId)
         {
             return garantiPlacanja.FirstOrDefault(e => e.GarantPlacanjaID == GarantPlacanjaId);
         }
 
-        public GarantPlacanjaConfirmation UpdateGarantPlacanja(GarantPlacanjaModel garantPlacanja)
+        public GarantPlacanjaConfirmation UpdateGarantPlacanja(GarantPlacanja garantPlacanja)
         {
-            GarantPlacanjaModel garant = GetGarantPlacanjaById(garantPlacanja.GarantPlacanjaID);
+            GarantPlacanja garant = GetGarantPlacanjaById(garantPlacanja.GarantPlacanjaID);
 
             garant.GarantPlacanjaID = garantPlacanja.GarantPlacanjaID;
             garant.Opis_garanta1 = garantPlacanja.Opis_garanta1;

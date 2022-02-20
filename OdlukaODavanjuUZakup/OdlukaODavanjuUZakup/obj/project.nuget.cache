@@ -1,8 +1,16 @@
 {
   "version": 2,
-  "dgSpecHash": "KzQTQ1s4U50i8CcqDYs8BmihDgX4RGjm6dLk/qqxXyaPiesPQKK5JmE68OMwSTjQoMC1w5M4TEYB797riVyRmQ==",
+  "dgSpecHash": "O0L0poF/7QknbDGhFl1FvG6IsILW5eFAtHdT5k29rZUp6KZET6rBNoccxLkF7OFyA1usJ0JzkGQUWZ2dBZBcRw==",
   "success": true,
   "projectFilePath": "C:\\Users\\Radonja\\Documents\\GitHub\\tim-6---auctionland-tim-6-nopcommerce\\OdlukaODavanjuUZakup\\OdlukaODavanjuUZakup\\OdlukaODavanjuUZakup.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\Radonja\\.nuget\\packages\\automapper\\11.0.0\\automapper.11.0.0.nupkg.sha512",
+    "C:\\Users\\Radonja\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\11.0.0\\automapper.extensions.microsoft.dependencyinjection.11.0.0.nupkg.sha512",
+    "C:\\Users\\Radonja\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
+    "C:\\Users\\Radonja\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\6.0.0\\microsoft.extensions.dependencyinjection.abstractions.6.0.0.nupkg.sha512",
+    "C:\\Users\\Radonja\\.nuget\\packages\\microsoft.extensions.options\\6.0.0\\microsoft.extensions.options.6.0.0.nupkg.sha512",
+    "C:\\Users\\Radonja\\.nuget\\packages\\microsoft.extensions.primitives\\6.0.0\\microsoft.extensions.primitives.6.0.0.nupkg.sha512",
+    "C:\\Users\\Radonja\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512"
+  ],
   "logs": []
 }

@@ -1,4 +1,5 @@
-﻿using OdlukaODavanjuUZakup.Models;
+﻿using OdlukaODavanjuUZakup.Entities;
+using OdlukaODavanjuUZakup.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +9,7 @@ namespace OdlukaODavanjuUZakup.Data
 {
     public class OdlukaoDavanjuuZakupuRepository :IOdlukaoDavanjuuZakupRepository
     {
-        public static List<OdlukaoDavanjuuZakupModel> odlukeoDavanjuuZakup { get; set; } = new List<OdlukaoDavanjuuZakupModel>();
+        public static List<OdlukaoDavanjuuZakup> odlukeoDavanjuuZakup { get; set; } = new List<OdlukaoDavanjuuZakup>();
 
         public OdlukaoDavanjuuZakupuRepository()
         {
@@ -18,22 +19,22 @@ namespace OdlukaODavanjuUZakup.Data
         {
 
         }
-        public List<OdlukaoDavanjuuZakupModel> GetOdluke()
+        public List<OdlukaoDavanjuuZakup> GetOdluke()
         {
             return (from e in odlukeoDavanjuuZakup
                     select e).ToList();
         }
 
-        public OdlukaoDavanjuuZakupModel GetOdlukaById(Guid OdlukaoDavanjuuZakupId)
+        public OdlukaoDavanjuuZakup GetOdlukaById(Guid OdlukaoDavanjuuZakupId)
         {
             return odlukeoDavanjuuZakup.FirstOrDefault(e => e.OdlukaoDavanjuuZakupID == OdlukaoDavanjuuZakupId);
         }
 
-        public OdlukaoDavanjuuZakupConfirmation CreateOdluka(OdlukaoDavanjuuZakupModel OdlukaoDavanjuuZakup)
+        public OdlukaoDavanjuuZakupConfirmation CreateOdluka(OdlukaoDavanjuuZakup OdlukaoDavanjuuZakup)
         { 
             OdlukaoDavanjuuZakup.OdlukaoDavanjuuZakupID = Guid.NewGuid();
             odlukeoDavanjuuZakup.Add(OdlukaoDavanjuuZakup);
-            OdlukaoDavanjuuZakupModel odluka = GetOdlukaById(OdlukaoDavanjuuZakup.OdlukaoDavanjuuZakupID);
+            OdlukaoDavanjuuZakup odluka = GetOdlukaById(OdlukaoDavanjuuZakup.OdlukaoDavanjuuZakupID);
 
             return new OdlukaoDavanjuuZakupConfirmation
             {
@@ -42,9 +43,9 @@ namespace OdlukaODavanjuUZakup.Data
             };
         }
 
-        public OdlukaoDavanjuuZakupConfirmation UpdateOdluka(OdlukaoDavanjuuZakupModel OdlukaoDavanjuuZakup)
+        public OdlukaoDavanjuuZakupConfirmation UpdateOdluka(OdlukaoDavanjuuZakup OdlukaoDavanjuuZakup)
         {
-            OdlukaoDavanjuuZakupModel odluka = GetOdlukaById(OdlukaoDavanjuuZakup.OdlukaoDavanjuuZakupID);
+            OdlukaoDavanjuuZakup odluka = GetOdlukaById(OdlukaoDavanjuuZakup.OdlukaoDavanjuuZakupID);
 
             odluka.OdlukaoDavanjuuZakupID = OdlukaoDavanjuuZakup.OdlukaoDavanjuuZakupID;
             odluka.datum_donosenja_odluke = OdlukaoDavanjuuZakup.datum_donosenja_odluke;

@@ -1,4 +1,5 @@
-﻿using OdlukaODavanjuUZakup.Models;
+﻿using OdlukaODavanjuUZakup.Entities;
+using OdlukaODavanjuUZakup.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +9,7 @@ namespace OdlukaODavanjuUZakup.Data
 {
     public class UplataZakupnineRepository : IUplataZakupnineRepository
     {
-        public static List<UplataZakupnineModel> uplateZakupnine { get; set; } = new List<UplataZakupnineModel>();
+        public static List<UplataZakupnine> UplateZakupnine { get; set; } = new List<UplataZakupnine>();
 
         public UplataZakupnineRepository ()
         {
@@ -18,13 +19,13 @@ namespace OdlukaODavanjuUZakup.Data
         {
 
         }
-        public UplataZakupnineConfirmation CreateUplataZakupnine(UplataZakupnineModel uplataZakupnine)
+        public UplataZakupnineConfirmationDto CreateUplataZakupnine(UplataZakupnine uplataZakupnine)
         {
             uplataZakupnine.UplataZakupnineID = Guid.NewGuid();
-            uplateZakupnine.Add(uplataZakupnine);
-            UplataZakupnineModel zakupnina = GetUplataZakupnineById(uplataZakupnine.UplataZakupnineID);
+            UplateZakupnine.Add(uplataZakupnine); 
+            UplataZakupnine zakupnina = GetUplataZakupnineById(uplataZakupnine.UplataZakupnineID);
 
-            return new UplataZakupnineConfirmation
+            return new UplataZakupnineConfirmationDto
             {
                 UplataZakupnineID = zakupnina.UplataZakupnineID,
                 broj_racuna = zakupnina.broj_racuna,
@@ -35,24 +36,24 @@ namespace OdlukaODavanjuUZakup.Data
 
         public void DeleteUplataZakupnine(Guid UplataZakupnineId)
         {
-            uplateZakupnine.Remove(uplateZakupnine.FirstOrDefault(e => e.UplataZakupnineID == UplataZakupnineId));
+            UplateZakupnine.Remove(UplateZakupnine.FirstOrDefault(e => e.UplataZakupnineID == UplataZakupnineId));
         }
 
-        public UplataZakupnineModel GetUplataZakupnineById(Guid UplataZakupnineId)
+        public UplataZakupnine GetUplataZakupnineById(Guid UplataZakupnineId)
         {
-            return uplateZakupnine.FirstOrDefault(e => e.UplataZakupnineID == UplataZakupnineId);
+            return UplateZakupnine.FirstOrDefault(e => e.UplataZakupnineID == UplataZakupnineId);
         }
 
-        public List<UplataZakupnineModel> GetUplateZakupnine(string broj_racuna = null)
+        public List<UplataZakupnine> GetUplateZakupnine(string broj_racuna = null)
         {
-            return (from e in uplateZakupnine
+            return (from e in UplateZakupnine
                     where string.IsNullOrEmpty(broj_racuna) || e.broj_racuna == broj_racuna
                     select e).ToList();
         }
 
-        public UplataZakupnineConfirmation UpdateUplataZakupnine(UplataZakupnineModel uplataZakupnine)
+        public UplataZakupnineConfirmationDto UpdateUplataZakupnine(UplataZakupnine uplataZakupnine)
         {
-            UplataZakupnineModel zakupnina = GetUplataZakupnineById(uplataZakupnine.UplataZakupnineID);
+            UplataZakupnine zakupnina = GetUplataZakupnineById(uplataZakupnine.UplataZakupnineID);
 
             zakupnina.UplataZakupnineID = uplataZakupnine.UplataZakupnineID;
             zakupnina.broj_racuna = uplataZakupnine.broj_racuna;
@@ -63,7 +64,7 @@ namespace OdlukaODavanjuUZakup.Data
             zakupnina.javno_nadmetanje = uplataZakupnine.javno_nadmetanje;
             zakupnina.uplatilac = uplataZakupnine.uplatilac;
 
-            return new UplataZakupnineConfirmation
+            return new UplataZakupnineConfirmationDto
             {
                 UplataZakupnineID = zakupnina.UplataZakupnineID,
                 broj_racuna = zakupnina.broj_racuna,

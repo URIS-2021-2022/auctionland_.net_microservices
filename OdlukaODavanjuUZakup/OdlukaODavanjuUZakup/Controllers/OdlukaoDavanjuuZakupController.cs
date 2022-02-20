@@ -1,7 +1,9 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
 using OdlukaODavanjuUZakup.Data;
+using OdlukaODavanjuUZakup.Entities;
 using OdlukaODavanjuUZakup.Models;
 using System;
 using System.Collections.Generic;
@@ -15,36 +17,38 @@ namespace OdlukaODavanjuUZakup.Controllers
     public class OdlukaoDavanjuuZakupController : ControllerBase
     {
         private readonly LinkGenerator linkGenerator;
+        private readonly IMapper mapper;
         private readonly IOdlukaoDavanjuuZakupRepository odlukaoDavanjuuZakupRepository;
 
-        public OdlukaoDavanjuuZakupController(IOdlukaoDavanjuuZakupRepository odlukaoDavanjuuZakupRepository, LinkGenerator linkGenerator)
+        public OdlukaoDavanjuuZakupController(IOdlukaoDavanjuuZakupRepository odlukaoDavanjuuZakupRepository, LinkGenerator linkGenerator, IMapper mapper)
 
         {
             this.linkGenerator = linkGenerator;
+            this.mapper = mapper;
             this.odlukaoDavanjuuZakupRepository = odlukaoDavanjuuZakupRepository;
         }
         [HttpGet]
-        public ActionResult<List<OdlukaoDavanjuuZakupModel>> GetOdluke()
+        public ActionResult<List<OdlukaoDavanjuuZakupDto>> GetOdluke()
         {
             var odluke = odlukaoDavanjuuZakupRepository.GetOdluke();
             if (odluke == null || odluke.Count == 0)
             {
                 return NoContent();
             }
-            return Ok(odluke);
+            return Ok(mapper.Map<List<OdlukaoDavanjuuZakupDto>>(odluke));
         }
         [HttpGet("OdlukaoDavanjuuZakupID")]
-        public ActionResult<OdlukaoDavanjuuZakupModel> getOdluka (Guid odlukaoDavanjuuZakupID)
+        public ActionResult<OdlukaoDavanjuuZakupDto> getOdluka (Guid odlukaoDavanjuuZakupID)
         {
             var odluka = odlukaoDavanjuuZakupRepository.GetOdlukaById(odlukaoDavanjuuZakupID);
             if (odluka == null)
             {
                 return NotFound();
             }
-            return Ok(odluka);
+            return Ok(mapper.Map<OdlukaoDavanjuuZakupDto>(odluka));
          }
         [HttpPost]
-        public ActionResult<OdlukaoDavanjuuZakupModel> createOdluka([FromBody] OdlukaoDavanjuuZakupModel odlukaoDavanjuuZakup)
+        public ActionResult<OdlukaoDavanjuuZakupDto> createOdluka([FromBody] OdlukaoDavanjuuZakupDto odlukaoDavanjuuZakup)
         {
             try
             {
@@ -54,9 +58,10 @@ namespace OdlukaODavanjuUZakup.Controllers
                 {
                     return BadRequest("Ne valja");
                 }
-                var confirmation = odlukaoDavanjuuZakupRepository.CreateOdluka(odlukaoDavanjuuZakup);
+                var odlukaoDavanjuuZakupEntity = mapper.Map<OdlukaoDavanjuuZakup>(odlukaoDavanjuuZakup);
+                var confirmation = odlukaoDavanjuuZakupRepository.CreateOdluka(odlukaoDavanjuuZakupEntity);
                 var location = linkGenerator.GetPathByAction("GetOdluke", "OdlukaoDavanjuuZakup", new { odlukaoDavanjuuZakupID = confirmation.OdlukaoDavanjuuZakupID });
-                return Created(location, confirmation);
+                return Created(location, mapper.Map<OdlukaoDavanjuuZakupConfirmationDto>(confirmation));
 
             }
             catch
@@ -64,7 +69,7 @@ namespace OdlukaODavanjuUZakup.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, "Create error");
             }
         }
-        private bool ValidateOdlukaoDavanjuuZakup(OdlukaoDavanjuuZakupModel odlukaoDavanjuuZakup)
+        private bool ValidateOdlukaoDavanjuuZakup(OdlukaoDavanjuuZakupDto odlukaoDavanjuuZakup)
         {
             return true;
             // Nemam adekvatni uslov

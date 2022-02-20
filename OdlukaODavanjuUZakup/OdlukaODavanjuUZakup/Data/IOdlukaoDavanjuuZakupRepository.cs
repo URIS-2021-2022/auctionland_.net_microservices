@@ -1,4 +1,5 @@
-﻿using OdlukaODavanjuUZakup.Models;
+﻿using OdlukaODavanjuUZakup.Entities;
+using OdlukaODavanjuUZakup.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,13 +9,13 @@ namespace OdlukaODavanjuUZakup.Data
 {
     public interface IOdlukaoDavanjuuZakupRepository
     {
-        List<OdlukaoDavanjuuZakupModel> GetOdluke();
+        List<OdlukaoDavanjuuZakup> GetOdluke();
 
-        OdlukaoDavanjuuZakupModel GetOdlukaById(Guid OdlukaoDavanjuuZakupId);
+        OdlukaoDavanjuuZakup GetOdlukaById(Guid OdlukaoDavanjuuZakupId);
 
-        OdlukaoDavanjuuZakupConfirmation CreateOdluka(OdlukaoDavanjuuZakupModel OdlukaoDavanjuuZakup);
+        OdlukaoDavanjuuZakupConfirmation CreateOdluka(OdlukaoDavanjuuZakup OdlukaoDavanjuuZakup);
 
-        OdlukaoDavanjuuZakupConfirmation UpdateOdluka(OdlukaoDavanjuuZakupModel OdlukaoDavanjuuZakup);
+        OdlukaoDavanjuuZakupConfirmation UpdateOdluka(OdlukaoDavanjuuZakup OdlukaoDavanjuuZakup);
 
         void DeleteOdluka(Guid OdlukaoDavanjuuZakupId);
     }

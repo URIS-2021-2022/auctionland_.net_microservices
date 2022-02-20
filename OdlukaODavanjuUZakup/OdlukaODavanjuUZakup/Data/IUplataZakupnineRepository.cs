@@ -1,4 +1,5 @@
-﻿using OdlukaODavanjuUZakup.Models;
+﻿using OdlukaODavanjuUZakup.Entities;
+using OdlukaODavanjuUZakup.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,13 +9,13 @@ namespace OdlukaODavanjuUZakup.Data
 {
     public interface IUplataZakupnineRepository
     {
-        List<UplataZakupnineModel> GetUplateZakupnine(string broj_racuna = null);
+        List<UplataZakupnine> GetUplateZakupnine(string broj_racuna = null);
 
-        UplataZakupnineModel GetUplataZakupnineById(Guid UplataZakupnineId);
+        UplataZakupnine GetUplataZakupnineById(Guid UplataZakupnineId);
 
-        UplataZakupnineConfirmation CreateUplataZakupnine(UplataZakupnineModel uplataZakupnine);
+        UplataZakupnineConfirmationDto CreateUplataZakupnine(UplataZakupnine uplataZakupnine);
 
-        UplataZakupnineConfirmation UpdateUplataZakupnine(UplataZakupnineModel uplataZakupnine);
+        UplataZakupnineConfirmationDto UpdateUplataZakupnine(UplataZakupnine uplataZakupnine);
 
         void DeleteUplataZakupnine(Guid UplataZakupnineId);
     }
