@@ -34,6 +34,14 @@ namespace Licitacija_agregat.Migrations
                     b.HasKey("EtapaId");
 
                     b.ToTable("Etape");
+
+                    b.HasData(
+                        new
+                        {
+                            EtapaId = new Guid("6a411c13-a195-48f7-8dbd-67596c3974c0"),
+                            BrojEtape = 5,
+                            Dan = new DateTime(2023, 11, 15, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        });
                 });
 
             modelBuilder.Entity("Licitacija_agregat.Entities.Licitacija", b =>
@@ -63,6 +71,18 @@ namespace Licitacija_agregat.Migrations
                     b.HasKey("LicitacijaId");
 
                     b.ToTable("Licitacije");
+
+                    b.HasData(
+                        new
+                        {
+                            LicitacijaId = new Guid("e1f1f516-a9c4-4209-baa7-02e1583484ce"),
+                            Broj = 5,
+                            Datum = new DateTime(2023, 11, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Godina = 2005,
+                            Korak_cene = 5,
+                            Ogranicenje = 5,
+                            Rok_za_dostavljanje_prijave = new DateTime(2023, 11, 15, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        });
                 });
 #pragma warning restore 612, 618
         }

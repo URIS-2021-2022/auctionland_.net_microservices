@@ -64,8 +64,7 @@ namespace Licitacija_agregat
                 setupAction.IncludeXmlComments(xmlCommentsPath);
             });
 
-            services.AddDbContext<LicitacijaContext>();
-           
+            services.AddDbContext<LicitacijaContext>(options => options.UseSqlServer(Configuration.GetConnectionString("LicitacijaDB")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

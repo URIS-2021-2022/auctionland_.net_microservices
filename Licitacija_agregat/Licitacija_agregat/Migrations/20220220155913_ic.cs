@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Licitacija_agregat.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class ic : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -36,6 +36,16 @@ namespace Licitacija_agregat.Migrations
                 {
                     table.PrimaryKey("PK_Licitacije", x => x.LicitacijaId);
                 });
+
+            migrationBuilder.InsertData(
+                table: "Etape",
+                columns: new[] { "EtapaId", "BrojEtape", "Dan" },
+                values: new object[] { new Guid("6a411c13-a195-48f7-8dbd-67596c3974c0"), 5, new DateTime(2023, 11, 15, 0, 0, 0, 0, DateTimeKind.Unspecified) });
+
+            migrationBuilder.InsertData(
+                table: "Licitacije",
+                columns: new[] { "LicitacijaId", "Broj", "Datum", "Godina", "Korak_cene", "Ogranicenje", "Rok_za_dostavljanje_prijave" },
+                values: new object[] { new Guid("e1f1f516-a9c4-4209-baa7-02e1583484ce"), 5, new DateTime(2023, 11, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), 2005, 5, 5, new DateTime(2023, 11, 15, 0, 0, 0, 0, DateTimeKind.Unspecified) });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

@@ -38,7 +38,7 @@ namespace Licitacija_agregat.Controllers
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [HttpGet]
         [HttpHead]
-        public ActionResult<List<Etapa>> GetEtapas(DateTime dan)
+        public ActionResult<List<EtapaDto>> GetEtapas(DateTime dan)
         {
             var etape = etapaRepository.GetEtapas(dan);
 
@@ -46,7 +46,7 @@ namespace Licitacija_agregat.Controllers
             {
                 return NoContent();
             }
-            return Ok(mapper.Map<List<Etapa>>(etape));
+            return Ok(mapper.Map<List<EtapaDto>>(etape));
         }
 
         /// <summary>
@@ -85,7 +85,7 @@ namespace Licitacija_agregat.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [Consumes("application/json")]
         [HttpPost]
-        public ActionResult<EtapaDto> CreateEtapa([FromBody] EtapaCreationDto etapa)
+        public ActionResult<EtapaConfirmationDto> CreateEtapa([FromBody] EtapaCreationDto etapa)
         {
             try
             {
@@ -101,7 +101,7 @@ namespace Licitacija_agregat.Controllers
             }
             catch (Exception)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, "An error has occurred");
+                return StatusCode(StatusCodes.Status500InternalServerError, "An error has occurred when creating an object");
             }
         }
         /// <summary>

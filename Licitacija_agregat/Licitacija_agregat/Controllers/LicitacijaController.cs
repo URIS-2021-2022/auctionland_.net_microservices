@@ -38,14 +38,14 @@ namespace Licitacija_agregat.Controllers
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [HttpGet]
         [HttpHead]
-        public ActionResult<List<Licitacija>> GetLicitacijas(DateTime datum)
+        public ActionResult<List<LicitacijaDto>> GetLicitacijas(DateTime datum)
         {
             var licitacije = licitacijaRepository.GetLicitacijas(datum);
             if (licitacije == null || licitacije.Count == 0)
             {
                 return NoContent();
             }
-            return Ok(mapper.Map<List<Licitacija>>(licitacije));
+            return Ok(mapper.Map<List<LicitacijaDto>>(licitacije));
         }
         /// <summary>
         /// Vraća licitaciju po zadatoj vrednosti id-a
@@ -63,7 +63,7 @@ namespace Licitacija_agregat.Controllers
             {
                 return NotFound();
             }
-            return Ok(mapper.Map<List<LicitacijaDto>>(licitacijaModel));
+            return Ok(mapper.Map<LicitacijaDto>(licitacijaModel));
         }
 
         /// <summary>
@@ -89,7 +89,7 @@ namespace Licitacija_agregat.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [Consumes("application/json")]
         [HttpPost]
-        public ActionResult<LicitacijaDto> CreateLicitacija([FromBody] LicitacijaCreationDto licitacija)
+        public ActionResult<LicitacijaConfirmationDto> CreateLicitacija([FromBody] LicitacijaCreationDto licitacija)
         {
             try
             {
