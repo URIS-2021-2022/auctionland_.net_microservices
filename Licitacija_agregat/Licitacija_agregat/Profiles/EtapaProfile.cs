@@ -18,6 +18,10 @@ namespace Licitacija_agregat.Profiles
 
             CreateMap<EtapaUpdateDto, Etapa>();
 
+            CreateMap<EtapaDto, Etapa>();
+
+
+
 
         }
     }

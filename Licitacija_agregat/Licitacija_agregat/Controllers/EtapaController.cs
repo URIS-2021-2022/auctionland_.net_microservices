@@ -87,8 +87,13 @@ namespace Licitacija_agregat.Controllers
         [HttpPost]
         public ActionResult<EtapaConfirmationDto> CreateEtapa([FromBody] EtapaCreationDto etapa)
         {
+
+
+
             try
             {
+
+
                 var etapaEntity = mapper.Map<Etapa>(etapa);
 
                 var confirmation = etapaRepository.CreateEtapa(etapaEntity);
@@ -96,6 +101,8 @@ namespace Licitacija_agregat.Controllers
                 etapaRepository.SaveChanges();
 
                 string location = link.GetPathByAction("GetEtapas", "Etapa", new { etapaId = confirmation.EtapaId });
+
+
                 return Created(location, mapper.Map<EtapaConfirmationDto>(confirmation));
                   
             }
@@ -145,21 +152,37 @@ namespace Licitacija_agregat.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [Consumes("application/json")]
         [HttpPut]
-        public ActionResult<EtapaConfirmationDto> UpdateEtapa(EtapaUpdateDto etapa)
+        public ActionResult<EtapaDto> UpdateEtapa(EtapaUpdateDto etapa)
         {
+
             try
             {
 
-                var confirmation = etapaRepository.GetEtapaById(etapa.EtapaId);
-                if(etapaRepository.GetEtapaById(etapa.EtapaId) == null)
-                {
-                    return NotFound();
-                }
+                /*          KATIN      var oldEtapa = etapaRepository.GetEtapaById(etapa.EtapaId);
 
-                Etapa etapaEntity = mapper.Map<Etapa>(etapa);
+                                if(oldEtapa == null)
+                                {
+                                    return NotFound();
+                                }
+
+                                Etapa etapaEntity = mapper.Map<Etapa>(etapa);
+
+                                mapper.Map(etapaEntity, oldEtapa);
+
+                                etapaRepository.SaveChanges();
+                                return Ok(mapper.Map<EtapaDto>(oldEtapa));*/
+                var oldEtapa = etapaRepository.GetEtapaById(etapa.EtapaId);
+
+                if (oldEtapa == null)
+                {
+                    return NotFound(); //Ukoliko ne postoji vratiti status 404 (NotFound).
+                }
+                Etapa etapaEntity = mapper.Map<Etapa>(oldEtapa);
+                EtapaConfirmation confirmation = mapper.Map<EtapaConfirmation>(etapaEntity);
+
+                mapper.Map(etapaEntity, oldEtapa); 
 
                 etapaRepository.SaveChanges();
-
                 return Ok(mapper.Map<EtapaConfirmationDto>(confirmation));
 
 

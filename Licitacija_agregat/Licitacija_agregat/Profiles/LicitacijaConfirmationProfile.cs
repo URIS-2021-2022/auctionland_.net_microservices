@@ -13,6 +13,8 @@ namespace Licitacija_agregat.Profiles
         public LicitacijaConfirmationProfile()
         {
             CreateMap<LicitacijaConfirmation, LicitacijaConfirmationDto>();
+
+            CreateMap<Licitacija, LicitacijaConfirmation>();
         }
     }
 }
