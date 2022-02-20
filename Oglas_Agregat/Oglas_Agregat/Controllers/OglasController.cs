@@ -158,31 +158,24 @@ namespace Oglas_Agregat.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [Consumes("application/json")]
         [HttpPut]
-        public ActionResult<OglasConfirmationDto> UpdateOglas(OglasUpdateDto oglas)
+        [HttpPut]
+        public ActionResult<OglasDto> UpdateOglas(OglasUpdateDto oglas)
         {
+
             try
             {
-                var confirmation = oglasRepository.GetOglasById(oglas.OglasId);
-                if (confirmation == null)
+                //Proveriti da li uopšte postoji oglas koju pokušavamo da ažuriramo.
+                var oldOglas = oglasRepository.GetOglasById(oglas.OglasId);
+                if (oldOglas == null)
                 {
-                    return NotFound();
+                    return NotFound(); //Ukoliko ne postoji vratiti status 404 (NotFound).
                 }
-
-                //
-                confirmation.OpisOglasa = oglasRepository.GetOglasById(oglas.OglasId).OpisOglasa;
-                confirmation.RokZaZalbu = oglasRepository.GetOglasById(oglas.OglasId).RokZaZalbu;
-                confirmation.DatumObjave = oglasRepository.GetOglasById(oglas.OglasId).DatumObjave;
-
-                oglasRepository.GetOglasById(oglas.OglasId).OpisOglasa = oglas.OpisOglasa;
-                oglasRepository.GetOglasById(oglas.OglasId).RokZaZalbu = oglas.RokZaZalbu;
-                oglasRepository.GetOglasById(oglas.OglasId).DatumObjave = oglas.DatumObjave;
-                //
-
-
                 Oglas oglasEntity = mapper.Map<Oglas>(oglas);
-                oglasRepository.SaveChanges();
-                return Ok(mapper.Map<OglasConfirmationDto>(confirmation));
 
+                mapper.Map(oglasEntity, oldOglas); //Update objekta koji treba da sačuvamo u bazi                
+
+                oglasRepository.SaveChanges(); //Perzistiramo promene
+                return Ok(mapper.Map<OglasDto>(oldOglas));
             }
             catch (Exception)
             {

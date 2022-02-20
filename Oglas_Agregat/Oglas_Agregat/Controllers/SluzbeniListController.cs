@@ -154,29 +154,20 @@ namespace Oglas_Agregat.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [Consumes("application/json")]
         [HttpPut]
-        public ActionResult<SluzbeniListConfirmationDto> UpdateSluzbeniList(SluzbeniListUpdateDto sluzbeniList)
+        public ActionResult<SluzbeniListDto> UpdateSluzbeniList(SluzbeniListUpdateDto sluzbeniList)
         {
             try
             {
-                var confirmation = sluzbeniListRepository.GetSluzbeniListById(sluzbeniList.SluzbeniListId);
-                if (sluzbeniListRepository.GetSluzbeniListById(sluzbeniList.SluzbeniListId) == null)
+                var oldSluzbeniList = sluzbeniListRepository.GetSluzbeniListById(sluzbeniList.SluzbeniListId);
+                if (oldSluzbeniList == null)
                 {
                     return NotFound();
                 }
 
-                //
-                confirmation.BrojLista = sluzbeniListRepository.GetSluzbeniListById(sluzbeniList.SluzbeniListId).BrojLista;
-                confirmation.DatumIzdanja = sluzbeniListRepository.GetSluzbeniListById(sluzbeniList.SluzbeniListId).DatumIzdanja;
-
-
-                sluzbeniListRepository.GetSluzbeniListById(sluzbeniList.SluzbeniListId).BrojLista = sluzbeniList.BrojLista;
-                sluzbeniListRepository.GetSluzbeniListById(sluzbeniList.SluzbeniListId).DatumIzdanja = sluzbeniList.DatumIzdanja;
-                //
-
-
                 SluzbeniList sluzbeniListEntity = mapper.Map<SluzbeniList>(sluzbeniList);
+                mapper.Map(sluzbeniListEntity, oldSluzbeniList);
                 sluzbeniListRepository.SaveChanges();                
-                return Ok(mapper.Map<SluzbeniListConfirmationDto>(confirmation));
+                return Ok(mapper.Map<SluzbeniListDto>(oldSluzbeniList));
 
             }
             catch (Exception)

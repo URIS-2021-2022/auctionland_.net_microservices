@@ -15,7 +15,12 @@ namespace Oglas_Agregat.MappingProfiles
             CreateMap<SluzbeniList, SluzbeniListDto>();
 
             CreateMap<SluzbeniListCreateDto, SluzbeniList>();
+
             CreateMap<SluzbeniListUpdateDto, SluzbeniList>();
+
+            CreateMap<SluzbeniListDto, SluzbeniList>();
+
+            CreateMap<SluzbeniList, SluzbeniList>();
         }
     }
 }
