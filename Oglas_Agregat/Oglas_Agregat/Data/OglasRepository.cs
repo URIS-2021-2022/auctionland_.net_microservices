@@ -10,28 +10,10 @@ namespace Oglas_Agregat.Data
 {
     public class OglasRepository : IOglasRepository
     {
-        //public static List<Oglas> Oglasi { get; set; } = new List<Oglas>();
+
         private readonly OglasContext context;
         private readonly IMapper mapper;
 
-        /*        public OglasRepository()
-                {
-                    FillData();
-                }
-
-                private void FillData()
-                {
-                    Oglasi.AddRange(new List<Oglas>
-                    {
-                        new Oglas
-                        {
-                            OglasId = Guid.Parse("00f78e6b-a2bb-43b5-b3bb-f5708d1a5129"),
-                            OpisOglasa = "fdafdafa",
-                            RokZaZalbu = DateTime.Parse("02-02-2000"),
-                            DatumObjave = DateTime.Parse("01-01-2000")
-                        }
-                    });
-                }*/
 
         public OglasRepository(OglasContext context, IMapper mapper)
         {

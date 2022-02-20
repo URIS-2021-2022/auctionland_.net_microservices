@@ -14,6 +14,13 @@ namespace Oglas_Agregat.MappingProfiles
         {
             CreateMap<OglasConfirmation, OglasConfirmationDto>();
 
+            CreateMap<Oglas, OglasConfirmation>();
+            //nzm da li sme
+
+            CreateMap<Oglas, OglasConfirmationDto>();
+            //ni ovo
+
+
         }
     }
 }

@@ -16,6 +16,11 @@ namespace Oglas_Agregat.MappingProfiles
             
             CreateMap<OglasCreateDto, Oglas>();
             CreateMap<OglasUpdateDto, Oglas>();
+            CreateMap<Oglas, OglasConfirmation>();
+
+            //mozda ne sme 
+            CreateMap<Oglas, OglasCreateDto>();
+            CreateMap<Oglas, OglasUpdateDto>();
         }
     }
 }

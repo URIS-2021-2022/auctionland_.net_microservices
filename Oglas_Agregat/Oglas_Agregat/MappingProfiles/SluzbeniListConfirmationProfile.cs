@@ -13,6 +13,13 @@ namespace Oglas_Agregat.MappingProfiles
         public SluzbeniListConfirmationProfile()
         {
             CreateMap<SluzbeniListConfirmation, SluzbeniListConfirmationDto>();
+
+            CreateMap<SluzbeniList, SluzbeniListConfirmation>();
+            //nzm da li sme 
+
+            CreateMap<SluzbeniList, SluzbeniListConfirmationDto>();
+            //ni ovoo
+
         }
     }
 }

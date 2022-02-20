@@ -164,6 +164,16 @@ namespace Oglas_Agregat.Controllers
                     return NotFound();
                 }
 
+                //
+                confirmation.BrojLista = sluzbeniListRepository.GetSluzbeniListById(sluzbeniList.SluzbeniListId).BrojLista;
+                confirmation.DatumIzdanja = sluzbeniListRepository.GetSluzbeniListById(sluzbeniList.SluzbeniListId).DatumIzdanja;
+
+
+                sluzbeniListRepository.GetSluzbeniListById(sluzbeniList.SluzbeniListId).BrojLista = sluzbeniList.BrojLista;
+                sluzbeniListRepository.GetSluzbeniListById(sluzbeniList.SluzbeniListId).DatumIzdanja = sluzbeniList.DatumIzdanja;
+                //
+
+
                 SluzbeniList sluzbeniListEntity = mapper.Map<SluzbeniList>(sluzbeniList);
                 sluzbeniListRepository.SaveChanges();                
                 return Ok(mapper.Map<SluzbeniListConfirmationDto>(confirmation));

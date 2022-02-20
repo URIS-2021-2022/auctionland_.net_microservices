@@ -11,6 +11,11 @@ namespace Oglas_Agregat.Entities
     {
         private readonly IConfiguration configuration;
 
+        public OglasContext()
+        {
+
+        }
+
         public OglasContext(DbContextOptions<OglasContext> options, IConfiguration configuration) : base(options)
         {
             this.configuration = configuration;

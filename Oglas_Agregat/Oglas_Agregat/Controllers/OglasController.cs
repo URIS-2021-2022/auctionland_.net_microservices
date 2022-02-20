@@ -163,14 +163,25 @@ namespace Oglas_Agregat.Controllers
             try
             {
                 var confirmation = oglasRepository.GetOglasById(oglas.OglasId);
-                if (oglasRepository.GetOglasById(oglas.OglasId) == null)
+                if (confirmation == null)
                 {
                     return NotFound();
                 }
 
-            Oglas oglasEntity = mapper.Map<Oglas>(oglas);
-            oglasRepository.SaveChanges();
-            return Ok(mapper.Map<OglasConfirmationDto>(confirmation));
+                //
+                confirmation.OpisOglasa = oglasRepository.GetOglasById(oglas.OglasId).OpisOglasa;
+                confirmation.RokZaZalbu = oglasRepository.GetOglasById(oglas.OglasId).RokZaZalbu;
+                confirmation.DatumObjave = oglasRepository.GetOglasById(oglas.OglasId).DatumObjave;
+
+                oglasRepository.GetOglasById(oglas.OglasId).OpisOglasa = oglas.OpisOglasa;
+                oglasRepository.GetOglasById(oglas.OglasId).RokZaZalbu = oglas.RokZaZalbu;
+                oglasRepository.GetOglasById(oglas.OglasId).DatumObjave = oglas.DatumObjave;
+                //
+
+
+                Oglas oglasEntity = mapper.Map<Oglas>(oglas);
+                oglasRepository.SaveChanges();
+                return Ok(mapper.Map<OglasConfirmationDto>(confirmation));
 
             }
             catch (Exception)
