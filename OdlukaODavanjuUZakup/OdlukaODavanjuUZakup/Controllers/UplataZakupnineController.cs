@@ -107,5 +107,26 @@ namespace OdlukaODavanjuUZakup.Controllers
             Response.Headers.Add("Allow", "GET, POST, PUT, DELETE");
             return Ok();
         }
+
+        public ActionResult<UplataZakupnineConfirmationDto> UpdateUplataZakupnine(UplataZakupnineUpdateDto uplata)
+        {
+            try
+            {
+                //Proveriti da li uopšte postoji prijava koju pokušavamo da ažuriramo.
+                if (uplataZakupnineRepository.GetUplataZakupnineById(uplata.UplataZakupnineID) == null)
+                { 
+                    return NotFound(); //Ukoliko ne postoji vratiti status 404 (NotFound).
+                }
+
+                UplataZakupnine uplata2 = mapper.Map<UplataZakupnine>(uplata);
+                UplataZakupnineConfirmation confirmation = uplataZakupnineRepository.UpdateUplataZakupnine(uplata2);
+                return Ok(mapper.Map<UplataZakupnineDto>(confirmation));
+
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Update error");
+            }
+        }
     }
 }

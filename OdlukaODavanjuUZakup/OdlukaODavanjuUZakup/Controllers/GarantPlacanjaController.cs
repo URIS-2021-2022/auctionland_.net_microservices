@@ -93,5 +93,24 @@ namespace OdlukaODavanjuUZakup.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, "Delete error");
             }
         }
+        [HttpPut]
+        public ActionResult<GarantPlacanjaConfirmationDto> UpdateGarantPlacanja(GarantPlacanjaUpdateDto garantPlacanja)
+        {
+            try
+            {
+                //Proveriti da li uopšte postoji prijava koju pokušavamo da ažuriramo.
+                if (garantPlacanjaRepository.GetGarantPlacanjaById(garantPlacanja.GarantPlacanjaID) == null)
+                {
+                    return NotFound(); //Ukoliko ne postoji vratiti status 404 (NotFound).
+                }
+                GarantPlacanja garantPlacanja2 = mapper.Map<GarantPlacanja>(garantPlacanja);
+                GarantPlacanjaConfirmation confirmation = garantPlacanjaRepository.UpdateGarantPlacanja(garantPlacanja2);
+                return Ok(mapper.Map<GarantPlacanjaDto>(confirmation));
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Update error");
+            }
+        }
     }
     }

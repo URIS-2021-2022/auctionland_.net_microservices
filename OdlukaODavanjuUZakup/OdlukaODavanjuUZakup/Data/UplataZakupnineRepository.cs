@@ -19,13 +19,13 @@ namespace OdlukaODavanjuUZakup.Data
         {
 
         }
-        public UplataZakupnineConfirmationDto CreateUplataZakupnine(UplataZakupnine uplataZakupnine)
+        public UplataZakupnineConfirmation CreateUplataZakupnine(UplataZakupnine uplataZakupnine)
         {
             uplataZakupnine.UplataZakupnineID = Guid.NewGuid();
             UplateZakupnine.Add(uplataZakupnine); 
             UplataZakupnine zakupnina = GetUplataZakupnineById(uplataZakupnine.UplataZakupnineID);
 
-            return new UplataZakupnineConfirmationDto
+            return new UplataZakupnineConfirmation
             {
                 UplataZakupnineID = zakupnina.UplataZakupnineID,
                 broj_racuna = zakupnina.broj_racuna,
@@ -51,7 +51,7 @@ namespace OdlukaODavanjuUZakup.Data
                     select e).ToList();
         }
 
-        public UplataZakupnineConfirmationDto UpdateUplataZakupnine(UplataZakupnine uplataZakupnine)
+        public UplataZakupnineConfirmation UpdateUplataZakupnine(UplataZakupnine uplataZakupnine)
         {
             UplataZakupnine zakupnina = GetUplataZakupnineById(uplataZakupnine.UplataZakupnineID);
 
@@ -64,7 +64,7 @@ namespace OdlukaODavanjuUZakup.Data
             zakupnina.javno_nadmetanje = uplataZakupnine.javno_nadmetanje;
             zakupnina.uplatilac = uplataZakupnine.uplatilac;
 
-            return new UplataZakupnineConfirmationDto
+            return new UplataZakupnineConfirmation
             {
                 UplataZakupnineID = zakupnina.UplataZakupnineID,
                 broj_racuna = zakupnina.broj_racuna,

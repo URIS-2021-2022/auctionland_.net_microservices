@@ -95,5 +95,23 @@ namespace OdlukaODavanjuUZakup.Controllers
 
             }
         }
+        public ActionResult<UgovoroZakupuConfirmationDto> UpdateUgovoroZakupu(UgovoroZakupuUpdateDto ugovor)
+        {
+            try
+            {
+                //Proveriti da li uopšte postoji prijava koju pokušavamo da ažuriramo.
+                if  (ugovoroZakupuRepository.GetUgovoriOZakupuById(ugovor.UgovoroZakupuID) == null)
+                {
+                    return NotFound(); //Ukoliko ne postoji vratiti status 404 (NotFound).
+                }
+                UgovoroZakupu ugovor2 = mapper.Map<UgovoroZakupu>(ugovor);
+                UgovoroZakupuConfirmation confirmation = ugovoroZakupuRepository.UpdateUgovorOZakupu(ugovor2);
+                return Ok(mapper.Map<UgovoroZakupuDto>(confirmation));
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Update error");
+            }
+        }
     }
 }

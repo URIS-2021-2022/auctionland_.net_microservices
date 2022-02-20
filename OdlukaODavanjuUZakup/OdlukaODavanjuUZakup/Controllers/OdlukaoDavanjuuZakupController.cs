@@ -92,5 +92,24 @@ namespace OdlukaODavanjuUZakup.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, "Delete error");
             }
         }
+        [HttpPut]
+        public ActionResult<OdlukaoDavanjuuZakupConfirmationDto> UpdateOdlukaoDavanjuuZakup(OdlukaoDavanjuuZakupUpdateDto odluka)
+        {
+            try
+            {
+                //Proveriti da li uopšte postoji prijava koju pokušavamo da ažuriramo.
+                if (odlukaoDavanjuuZakupRepository.GetOdlukaById(odluka.OdlukaoDavanjuuZakupID) == null)
+                {
+                    return NotFound(); //Ukoliko ne postoji vratiti status 404 (NotFound).
+                }
+                OdlukaoDavanjuuZakup odluka2 = mapper.Map<OdlukaoDavanjuuZakup>(odluka);
+                OdlukaoDavanjuuZakupConfirmation confirmation = odlukaoDavanjuuZakupRepository.UpdateOdluka(odluka2);
+                return Ok(mapper.Map<OdlukaoDavanjuuZakupDto>(confirmation));
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Update error");
+            }
+        }
     }
 }

@@ -13,9 +13,9 @@ namespace OdlukaODavanjuUZakup.Data
 
         UplataZakupnine GetUplataZakupnineById(Guid UplataZakupnineId);
 
-        UplataZakupnineConfirmationDto CreateUplataZakupnine(UplataZakupnine uplataZakupnine);
+        UplataZakupnineConfirmation CreateUplataZakupnine(UplataZakupnine uplataZakupnine);
 
-        UplataZakupnineConfirmationDto UpdateUplataZakupnine(UplataZakupnine uplataZakupnine);
+        UplataZakupnineConfirmation UpdateUplataZakupnine(UplataZakupnine uplataZakupnine);
 
         void DeleteUplataZakupnine(Guid UplataZakupnineId);
     }
