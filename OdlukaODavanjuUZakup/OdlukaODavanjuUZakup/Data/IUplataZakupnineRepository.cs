@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace OdlukaODavanjuUZakup.Data
 {
-    interface IUplataZakupnineRepository
+    public interface IUplataZakupnineRepository
     {
         List<UplataZakupnineModel> GetUplateZakupnine(string broj_racuna = null);
 

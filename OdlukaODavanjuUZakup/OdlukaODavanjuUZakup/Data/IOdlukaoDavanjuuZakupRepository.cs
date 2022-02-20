@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace OdlukaODavanjuUZakup.Data
 {
-    interface IOdlukaoDavanjuuZakupRepository
+    public interface IOdlukaoDavanjuuZakupRepository
     {
         List<OdlukaoDavanjuuZakupModel> GetOdluke();
 

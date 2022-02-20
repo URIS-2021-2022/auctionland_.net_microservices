@@ -14,13 +14,11 @@ namespace OdlukaODavanjuUZakup.Models
 
         public double iznos { get; set; }
 
-      
-
         public string svrha_uplate { get; set; }
 
         public DateTime datum { get; set; }
 
-       // public Javno_Nadmetanje javno_nadmetanje { get; set; }
-      //  public Kupac uplatilac { get; set; }
+        public string javno_nadmetanje { get; set; } //entitet
+        public string uplatilac { get; set; } //entitet
     }
 }

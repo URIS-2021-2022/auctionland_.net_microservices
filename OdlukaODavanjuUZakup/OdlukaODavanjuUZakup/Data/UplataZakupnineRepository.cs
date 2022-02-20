@@ -60,6 +60,8 @@ namespace OdlukaODavanjuUZakup.Data
             zakupnina.iznos = uplataZakupnine.iznos;
             zakupnina.poziv_na_broj = uplataZakupnine.poziv_na_broj;
             zakupnina.svrha_uplate = uplataZakupnine.svrha_uplate;
+            zakupnina.javno_nadmetanje = uplataZakupnine.javno_nadmetanje;
+            zakupnina.uplatilac = uplataZakupnine.uplatilac;
 
             return new UplataZakupnineConfirmation
             {

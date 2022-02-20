@@ -61,6 +61,9 @@ namespace OdlukaODavanjuUZakup.Data
             ugovor.rok_za_vracanje_zemljista = ugovoroZakupu.rok_za_vracanje_zemljista;
             ugovor.tip_garancije = ugovoroZakupu.tip_garancije;
             ugovor.zavodni_Broj = ugovoroZakupu.zavodni_Broj;
+            ugovor.Javno_Nadmetanje = ugovoroZakupu.Javno_Nadmetanje;
+            ugovor.lice = ugovoroZakupu.lice;
+            ugovor.odluka = ugovoroZakupu.odluka;
 
             return new UgovoroZakupuConfirmation
             {

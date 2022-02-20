@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace OdlukaODavanjuUZakup.Data
 {
-    interface IUgovoroZakupuRepository
+    public interface IUgovoroZakupuRepository
     {
         List<UgovoroZakupuModel> GetUgovoriOZakupu(string zavodni_broj = null);
 

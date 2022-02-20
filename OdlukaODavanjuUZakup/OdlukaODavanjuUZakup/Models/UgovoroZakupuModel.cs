@@ -8,12 +8,12 @@ namespace OdlukaODavanjuUZakup.Models
     public class UgovoroZakupuModel
     {
         public Guid UgovoroZakupuID { get; set; }
-    //    public JAVNO_NADMETANJE Javno_Nadmetanje { get; set; }
-    //    public ODLUKA odluka { get; set; }
+        public string Javno_Nadmetanje { get; set; } //entitet
+        public string  odluka { get; set; } //entitet
 
         public GarantEnum tip_garancije { get; set; }
 
-    //    public LICE lice { get; set; }
+        public string lice { get; set; } //entitet
 
         //zakomentarisane treba da preuzmem od nekog drugog kao
 

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace OdlukaODavanjuUZakup.Data
 {
-    interface IGarantPlacanjaRepository
+    public interface IGarantPlacanjaRepository
     {
         List<GarantPlacanjaModel> GetGarantiPlacanja();
 
