@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using OdlukaODavanjuUZakup.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,6 +27,10 @@ namespace OdlukaODavanjuUZakup
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddSingleton<IOdlukaoDavanjuuZakupRepository, OdlukaoDavanjuuZakupuRepository>();
+            services.AddSingleton<IGarantPlacanjaRepository, GarantPlacanjaRepository>();
+            services.AddSingleton<IUplataZakupnineRepository, UplataZakupnineRepository>();
+            services.AddSingleton<IUgovoroZakupuRepository, UgovoroZakupuRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
