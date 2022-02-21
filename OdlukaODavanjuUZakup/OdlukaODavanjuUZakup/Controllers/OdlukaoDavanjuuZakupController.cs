@@ -14,8 +14,11 @@ namespace OdlukaODavanjuUZakup.Controllers
 {
     [ApiController]
     [Route("api/Odluke")]
+
+    
     public class OdlukaoDavanjuuZakupController : ControllerBase
     {
+
         private readonly LinkGenerator linkGenerator;
         private readonly IMapper mapper;
         private readonly IOdlukaoDavanjuuZakupRepository odlukaoDavanjuuZakupRepository;
@@ -48,7 +51,7 @@ namespace OdlukaODavanjuUZakup.Controllers
             return Ok(mapper.Map<OdlukaoDavanjuuZakupDto>(odluka));
          }
         [HttpPost]
-        public ActionResult<OdlukaoDavanjuuZakupDto> createOdluka([FromBody] OdlukaoDavanjuuZakupDto odlukaoDavanjuuZakup)
+        public ActionResult<OdlukaoDavanjuuZakupDto> createOdluka([FromBody] OdlukaoDavanjuuZakupCreationDto odlukaoDavanjuuZakup)
         {
             try
             {
@@ -60,7 +63,7 @@ namespace OdlukaODavanjuUZakup.Controllers
                 }
                 var odlukaoDavanjuuZakupEntity = mapper.Map<OdlukaoDavanjuuZakup>(odlukaoDavanjuuZakup);
                 var confirmation = odlukaoDavanjuuZakupRepository.CreateOdluka(odlukaoDavanjuuZakupEntity);
-                var location = linkGenerator.GetPathByAction("GetOdluke", "OdlukaoDavanjuuZakup", new { odlukaoDavanjuuZakupID = confirmation.OdlukaoDavanjuuZakupID });
+                string location = linkGenerator.GetPathByAction("GetOdluke", "OdlukaoDavanjuuZakup", new { odlukaoDavanjuuZakupID = confirmation.OdlukaoDavanjuuZakupID });
                 return Created(location, mapper.Map<OdlukaoDavanjuuZakupConfirmationDto>(confirmation));
 
             }
@@ -69,7 +72,7 @@ namespace OdlukaODavanjuUZakup.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, "Create error");
             }
         }
-        private bool ValidateOdlukaoDavanjuuZakup(OdlukaoDavanjuuZakupDto odlukaoDavanjuuZakup)
+        private bool ValidateOdlukaoDavanjuuZakup(OdlukaoDavanjuuZakupCreationDto odlukaoDavanjuuZakup)
         {
             return true;
             // Nemam adekvatni uslov

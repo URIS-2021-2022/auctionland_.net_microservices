@@ -1,4 +1,5 @@
-﻿using OdlukaODavanjuUZakup.Entities;
+﻿using AutoMapper;
+using OdlukaODavanjuUZakup.Entities;
 using OdlukaODavanjuUZakup.Models;
 using System;
 using System.Collections.Generic;
@@ -9,15 +10,19 @@ namespace OdlukaODavanjuUZakup.Data
 {
     public class GarantPlacanjaRepository : IGarantPlacanjaRepository
     {
+        private readonly DatabaseContext context;
+        private readonly IMapper mapper;
+
         public static List<GarantPlacanja> garantiPlacanja { get; set; } = new List<GarantPlacanja>();
 
-        public GarantPlacanjaRepository()
+        public GarantPlacanjaRepository(DatabaseContext context, IMapper mapper)
         {
-            FillData();
+            this.context = context;
+            this.mapper = mapper;
         }
-        private void FillData()
+        public bool SaveChanges()
         {
-
+            return context.SaveChanges() > 0;
         }
 
         public GarantPlacanjaConfirmation CreateGarantPlacanja(GarantPlacanja garantPlacanja)
@@ -36,18 +41,17 @@ namespace OdlukaODavanjuUZakup.Data
 
         public void DeleteGarantPlacanja(Guid GarantPlacanjaId)
         {
-            garantiPlacanja.Remove(garantiPlacanja.FirstOrDefault(e => e.GarantPlacanjaID == GarantPlacanjaId));
+            context.Remove(garantiPlacanja.FirstOrDefault(e => e.GarantPlacanjaID == GarantPlacanjaId));
         }
 
         public List<GarantPlacanja> GetGarantiPlacanja()
         {
-            return (from e in garantiPlacanja
-                    select e).ToList();
+            return context.GarantPlacanja.ToList();
         }
 
         public GarantPlacanja GetGarantPlacanjaById(Guid GarantPlacanjaId)
         {
-            return garantiPlacanja.FirstOrDefault(e => e.GarantPlacanjaID == GarantPlacanjaId);
+            return context.GarantPlacanja.FirstOrDefault(e => e.GarantPlacanjaID == GarantPlacanjaId);
         }
 
         public GarantPlacanjaConfirmation UpdateGarantPlacanja(GarantPlacanja garantPlacanja)

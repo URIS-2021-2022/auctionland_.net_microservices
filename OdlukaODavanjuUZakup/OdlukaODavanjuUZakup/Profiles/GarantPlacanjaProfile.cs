@@ -10,7 +10,7 @@ namespace OdlukaODavanjuUZakup.Profiles
 {
     public class GarantPlacanjaProfile : Profile
     {
-        GarantPlacanjaProfile ()
+        public GarantPlacanjaProfile()
         {
             CreateMap<GarantPlacanja, GarantPlacanjaDto>();
 

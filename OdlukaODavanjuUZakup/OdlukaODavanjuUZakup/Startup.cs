@@ -4,11 +4,13 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using OdlukaODavanjuUZakup.Data;
+using OdlukaODavanjuUZakup.Entities;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -35,10 +37,11 @@ namespace OdlukaODavanjuUZakup
                 setup.ReturnHttpNotAcceptable = true;
             }).AddXmlDataContractSerializerFormatters();
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-            services.AddSingleton<IOdlukaoDavanjuuZakupRepository, OdlukaoDavanjuuZakupuRepository>();
-            services.AddSingleton<IGarantPlacanjaRepository, GarantPlacanjaRepository>();
-            services.AddSingleton<IUplataZakupnineRepository, UplataZakupnineRepository>();
-            services.AddSingleton<IUgovoroZakupuRepository, UgovoroZakupuRepository>();
+            services.AddScoped<IOdlukaoDavanjuuZakupRepository, OdlukaoDavanjuuZakupuRepository>();
+            services.AddScoped<IGarantPlacanjaRepository, GarantPlacanjaMockRepository>();
+            services.AddScoped<IUplataZakupnineRepository, UplataZakupnineRepository>();
+            services.AddScoped<IUgovoroZakupuRepository, UgovoroZakupuRepository>();
+            services.AddScoped<GarantPlacanjaRepository>();
 
             services.AddSwaggerGen(setupAction =>
             {
@@ -63,6 +66,10 @@ namespace OdlukaODavanjuUZakup
                 var xmlCommentsPath = Path.Combine(AppContext.BaseDirectory, xmlComments);
                 setupAction.IncludeXmlComments(xmlCommentsPath);
             });
+
+
+            services.AddDbContext<DatabaseContext>(options => options.UseSqlServer(Configuration.GetConnectionString("OdlukaDB"))); ;
+        //    services.AddDbContextPool<DatabaseContext>(options => options.UseSqlServer(Configuration.GetConnectionString("OdlukaDB")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

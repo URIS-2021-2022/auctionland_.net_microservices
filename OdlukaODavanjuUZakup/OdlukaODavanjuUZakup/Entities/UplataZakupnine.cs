@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -7,7 +8,8 @@ namespace OdlukaODavanjuUZakup.Entities
 {
     public class UplataZakupnine
     {
-        public Guid UplataZakupnineID { get; set; }
+        [Key]
+        public Guid UplataZakupnineID { get; set; } = Guid.NewGuid();
         public string broj_racuna { get; set; }
 
         public string poziv_na_broj { get; set; }

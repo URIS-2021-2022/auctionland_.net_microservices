@@ -1,6 +1,7 @@
 ﻿using OdlukaODavanjuUZakup.Models;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -8,8 +9,9 @@ namespace OdlukaODavanjuUZakup.Entities
 {
     public class GarantPlacanja
     {
-        public Guid GarantPlacanjaID { get; set; }
-        public GarantEnum Opis_garanta1 { get; set; }
-        public GarantEnum Opis_garanta2 { get; set; }
+        [Key]
+        public Guid GarantPlacanjaID { get; set; } = Guid.NewGuid();
+        public string Opis_garanta1 { get; set; }
+        public string Opis_garanta2 { get; set; }
     }
 }

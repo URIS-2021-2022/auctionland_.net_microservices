@@ -50,7 +50,7 @@ namespace OdlukaODavanjuUZakup.Controllers
             return Ok(mapper.Map<GarantPlacanjaDto>(garant));
         }
         [HttpPost]
-        public ActionResult<GarantPlacanjaConfirmationDto> createGarant([FromBody] GarantPlacanjaCreationDto garantPlacanja)
+        public ActionResult<GarantPlacanjaConfirmationDto> CreateGarantPlacanja([FromBody] GarantPlacanjaCreationDto garantPlacanja)
         {
             try
             {
@@ -62,8 +62,8 @@ namespace OdlukaODavanjuUZakup.Controllers
                 }
                 var garantPlacanjaEntity = mapper.Map<GarantPlacanja>(garantPlacanja);
                 var confirmation = garantPlacanjaRepository.CreateGarantPlacanja(garantPlacanjaEntity);
-                var location = linkGenerator.GetPathByAction("GetGaranti", "GarantPlacanja", new { garantPlacanjaID = confirmation.GarantPlacanjaID });
-                return Created(location, mapper.Map<GarantPlacanjaDto>(confirmation));
+                string location = linkGenerator.GetPathByAction("GetGaranti", "GarantPlacanja", new { GarantPlacanjaID = confirmation.GarantPlacanjaID });
+                return Created(location, mapper.Map<GarantPlacanjaConfirmationDto>(confirmation));
             }
             catch
             {

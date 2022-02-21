@@ -9,6 +9,6 @@ namespace OdlukaODavanjuUZakup.Entities
     public class GarantPlacanjaConfirmation
     {
         public Guid GarantPlacanjaID { get; set; }
-        public GarantEnum Opis_garanta1 { get; set; }
+        public string Opis_garanta1 { get; set; }
     }
 }

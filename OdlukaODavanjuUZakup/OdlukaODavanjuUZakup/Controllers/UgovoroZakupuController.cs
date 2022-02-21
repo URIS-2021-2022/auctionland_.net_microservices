@@ -47,8 +47,9 @@ namespace OdlukaODavanjuUZakup.Controllers
             }
             return Ok(mapper.Map<UgovoroZakupuDto>(ugovor));
         }
+   //     [Consumes("application/json")]
         [HttpPost]
-        public ActionResult<UgovoroZakupuConfirmationDto> createUgovoroZakupu ([FromBody] UgovoroZakupuConfirmationDto ugovoroZakupu)
+        public ActionResult<UgovoroZakupuConfirmationDto> CreateUgovorOZakupu([FromBody] UgovoroZakupuCreationDto ugovoroZakupu)
         {
             try
             {
@@ -58,17 +59,17 @@ namespace OdlukaODavanjuUZakup.Controllers
                 {
                     return BadRequest("Datum za rok nije validan");
                 }
-                var ugovoroZakupuEntity = mapper.Map<UgovoroZakupu> (ugovoroZakupu);
+                var ugovoroZakupuEntity = mapper.Map<UgovoroZakupu>(ugovoroZakupu);
                 var confirmation = ugovoroZakupuRepository.CreateUgovorOZakupu(ugovoroZakupuEntity);
-                var location = linkGenerator.GetPathByAction("getUgovori", "UgovoroZakupu", new { UgovoroZakupuID = confirmation.UgovoroZakupuID });
-                return Created(location, confirmation);
+                string location = linkGenerator.GetPathByAction("getUgovori", "UgovorOZakupu", new { UgovoroZakupuID = confirmation.UgovoroZakupuID });
+                return Created(location, mapper.Map<UgovoroZakupuConfirmationDto>(confirmation));
             }
             catch 
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, "Create error");
             }
         }
-        private bool ValidateUgovoroZakupu(UgovoroZakupuConfirmationDto ugovoroZakupu)
+        private bool ValidateUgovoroZakupu(UgovoroZakupuCreationDto ugovoroZakupu)
         {
             return true;
         }

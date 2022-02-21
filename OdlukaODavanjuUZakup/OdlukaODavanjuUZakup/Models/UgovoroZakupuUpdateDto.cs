@@ -11,7 +11,7 @@ namespace OdlukaODavanjuUZakup.Models
         public string Javno_Nadmetanje { get; set; } //entitet
         public string odluka { get; set; } //entitet
 
-        public GarantEnum tip_garancije { get; set; }
+        public string tip_garancije { get; set; }
 
         public string lice { get; set; } //entitet
 
