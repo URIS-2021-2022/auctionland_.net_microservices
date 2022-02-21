@@ -81,6 +81,7 @@ namespace Oglas_Agregat.Controllers
         ///     "DatumObjave" : "2021-05-16T05:50:06",
         ///     "RokZaZalbu" : "2021-06-16T05:50:06",
         ///     "OpisOglasa" : "opis1"
+        ///     "ObjavljenUListu" : "00f78e6b-a2bb-43b5-b3bb-f5708d1a5129"
         /// }
         /// </remarks>
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -150,7 +151,8 @@ namespace Oglas_Agregat.Controllers
         ///     "OglasId": "00f78e6b-a2bb-43b5-b3bb-f5708d1a5129",
         ///     "DatumObjave" : "2021-05-16T05:50:06",
         ///     "RokZaZalbu" : "2021-06-16T05:50:06",
-        ///     "OpisOglasa" : "izmena"
+        ///     "OpisOglasa" : "izmena",
+        ///     "ObjavljenUListu" : "00f78e6b-a2bb-43b5-b3bb-f5708d1a5129"
         /// }
         /// </remarks>
         [ProducesResponseType(StatusCodes.Status404NotFound)]

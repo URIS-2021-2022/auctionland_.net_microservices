@@ -11,5 +11,6 @@ namespace Oglas_Agregat.Entities
         public DateTime DatumObjave { get; set; }
         public DateTime RokZaZalbu { get; set; }
         public string OpisOglasa { get; set; }
+        public Guid ObjavljenUListuId { get; set; }
     }
 }

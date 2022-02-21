@@ -26,14 +26,6 @@ namespace Oglas_Agregat.Entities
 
         protected override void OnModelCreating(ModelBuilder builder) //nakon sto mi pokrenemo izvrsavanje programa
         {
-            builder.Entity<Oglas>()
-                .HasData(new
-                {
-                    OglasId = Guid.Parse("00f78e6b-a2bb-43b5-b3bb-f5708d1a5129"),
-                    OpisOglasa = "fdafdafa",
-                    RokZaZalbu = DateTime.Parse("02-02-2000"),
-                    DatumObjave = DateTime.Parse("01-01-2000")
-                });
 
             builder.Entity<SluzbeniList>()
                 .HasData(new
@@ -42,6 +34,17 @@ namespace Oglas_Agregat.Entities
                     DatumIzdanja = DateTime.Parse("01-01-2001"),
                     BrojLista = 33
                 });
+
+            builder.Entity<Oglas>()
+                .HasData(new
+                {
+                    OglasId = Guid.Parse("00f78e6b-a2bb-43b5-b3bb-f5708d1a5129"),
+                    OpisOglasa = "fdafdafa",
+                    RokZaZalbu = DateTime.Parse("02-02-2000"),
+                    DatumObjave = DateTime.Parse("01-01-2000"),
+                    ObjavljenUListuId = Guid.Parse("00f78e6b-a2bb-43b5-b3bb-f5708d1a5129")
+                });
+
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

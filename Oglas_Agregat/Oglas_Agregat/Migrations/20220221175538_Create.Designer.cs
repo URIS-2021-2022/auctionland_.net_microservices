@@ -10,8 +10,8 @@ using Oglas_Agregat.Entities;
 namespace Oglas_Agregat.Migrations
 {
     [DbContext(typeof(OglasContext))]
-    [Migration("20220220195514_ic")]
-    partial class ic
+    [Migration("20220221175538_Create")]
+    partial class Create
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -30,6 +30,9 @@ namespace Oglas_Agregat.Migrations
                     b.Property<DateTime>("DatumObjave")
                         .HasColumnType("datetime2");
 
+                    b.Property<Guid>("ObjavljenUListuId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<string>("OpisOglasa")
                         .HasColumnType("nvarchar(max)");
 
@@ -45,6 +48,7 @@ namespace Oglas_Agregat.Migrations
                         {
                             OglasId = new Guid("00f78e6b-a2bb-43b5-b3bb-f5708d1a5129"),
                             DatumObjave = new DateTime(2000, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ObjavljenUListuId = new Guid("00f78e6b-a2bb-43b5-b3bb-f5708d1a5129"),
                             OpisOglasa = "fdafdafa",
                             RokZaZalbu = new DateTime(2000, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         });

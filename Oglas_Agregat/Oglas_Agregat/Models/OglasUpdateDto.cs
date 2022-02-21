@@ -34,6 +34,11 @@ namespace Oglas_Agregat.Models
         public DateTime RokZaZalbu { get; set; }
 
         /// <summary>
+        /// Id službenog lista u kom je objavljen oglas
+        /// </summary>
+        public Guid ObjavljenUListuId { get; set; }
+
+        /// <summary>
         /// Validacija da uneti datum objave oglasa nije veći od današnjeg datuma
         /// </summary>
         /// <param name="validationContext"></param>

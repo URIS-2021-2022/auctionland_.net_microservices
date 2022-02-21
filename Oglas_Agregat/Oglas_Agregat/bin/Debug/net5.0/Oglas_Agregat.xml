@@ -35,6 +35,7 @@
                 "DatumObjave" : "2021-05-16T05:50:06",
                 "RokZaZalbu" : "2021-06-16T05:50:06",
                 "OpisOglasa" : "opis1"
+                "ObjavljenUListu" : "00f78e6b-a2bb-43b5-b3bb-f5708d1a5129"
             }
             </remarks>
         </member>
@@ -57,7 +58,8 @@
                 "OglasId": "00f78e6b-a2bb-43b5-b3bb-f5708d1a5129",
                 "DatumObjave" : "2021-05-16T05:50:06",
                 "RokZaZalbu" : "2021-06-16T05:50:06",
-                "OpisOglasa" : "izmena"
+                "OpisOglasa" : "izmena",
+                "ObjavljenUListu" : "00f78e6b-a2bb-43b5-b3bb-f5708d1a5129"
             }
             </remarks>
         </member>
@@ -173,6 +175,11 @@
             Rok za žalbu
             </summary>
         </member>
+        <member name="P:Oglas_Agregat.Models.OglasCreateDto.ObjavljenUListuId">
+            <summary>
+            Id službenog lista u kom je objavljen oglas
+            </summary>
+        </member>
         <member name="M:Oglas_Agregat.Models.OglasCreateDto.Validate(System.ComponentModel.DataAnnotations.ValidationContext)">
             <summary>
             Validacija da uneti datum objave oglasa nije veći od današnjeg datuma
@@ -200,6 +207,11 @@
             Opis oglasa
             </summary>
         </member>
+        <member name="P:Oglas_Agregat.Models.OglasDto.ObjavljenUListuId">
+            <summary>
+            Id službenog lista u kom je objavljen oglas
+            </summary>
+        </member>
         <member name="T:Oglas_Agregat.Models.OglasUpdateDto">
             <summary>
             Predstavlja model za modifikaciju oglasa
@@ -223,6 +235,11 @@
         <member name="P:Oglas_Agregat.Models.OglasUpdateDto.RokZaZalbu">
             <summary>
             Rok za žalbu na oglas
+            </summary>
+        </member>
+        <member name="P:Oglas_Agregat.Models.OglasUpdateDto.ObjavljenUListuId">
+            <summary>
+            Id službenog lista u kom je objavljen oglas
             </summary>
         </member>
         <member name="M:Oglas_Agregat.Models.OglasUpdateDto.Validate(System.ComponentModel.DataAnnotations.ValidationContext)">
