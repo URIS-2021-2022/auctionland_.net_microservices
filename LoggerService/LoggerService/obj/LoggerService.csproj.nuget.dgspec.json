@@ -40,9 +40,9 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "dependencies": {
-            "NLog.Extensions.Logging": {
+            "NLog": {
               "target": "Package",
-              "version": "[1.7.4, )"
+              "version": "[4.7.13, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
