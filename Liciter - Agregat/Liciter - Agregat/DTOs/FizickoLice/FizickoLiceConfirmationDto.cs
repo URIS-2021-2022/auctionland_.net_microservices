@@ -11,7 +11,7 @@ namespace Liciter___Agregat.DTOs.FizickoLice
     public class FizickoLiceConfirmationDto
     {
         /// <summary>
-        /// Ime fizickog lica
+        /// Ime fizickog  lica
         /// </summary>
         public string Ime { get; set; }
 
