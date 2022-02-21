@@ -84,18 +84,19 @@ namespace Program_Agregat.Controllers
             }
         }
 
+       
         [HttpPut]
-        public ActionResult<PredlogPlanaConfirmationDto> UpdatePredlogPlana(PredlogPlanaUpdateDto predlogPlana)
+        public ActionResult<ProgramConfirmationDto> UpdateProgram(ProgramUpdateDto program)
         {
             try
             {
-                if (predlogPlanaRepository.GetPredlogPlanaById(predlogPlana.PredlogPlanaId) == null)
+                if (programRepository.GetProgramById(program.ProgramId) == null)
                 {
                     return NotFound();
                 }
-                PredlogPlana predlogPlana2 = mapper.Map<PredlogPlana>(predlogPlana);
-                PredlogPlanaConfirmation confirmation = predlogPlanaRepository.UpdatePredlogPlana(predlogPlana2);
-                return Ok(mapper.Map<PredlogPlanaDto>(confirmation));
+                Program program2 = mapper.Map<Program>(program);
+                ProgramConfirmation confirmation = programRepository.UpdateProgram(program2);
+                return Ok(mapper.Map<ProgramDto>(confirmation));
             }
             catch (Exception)
             {
