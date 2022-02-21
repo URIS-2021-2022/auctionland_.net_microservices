@@ -1,17 +1,22 @@
 ﻿using System;
 using Komisija_Agregat.Models;
+using Komisija_Agregat.Entities;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Komisija_Agregat.Data
 {
     public interface IKomisijaRepository
     {
-        List<KomisijaModel> GetKomisije();
+        List<Komisija> GetKomisije();
 
-        KomisijaModel GetKomisijaById(Guid KomisijaId);
+        Komisija GetKomisijaById(Guid KomisijaId);
 
-        KomisijaConfirmationDto CreateKomisija(KomisijaModel komisija);
+        KomisijaConfirmation CreateKomisija(Komisija komisija);
 
-        KomisijaConfirmationDto UpdateKomisija(KomisijaModel komisija);
+        KomisijaConfirmation UpdateKomisija(Komisija komisija);
 
         void DeleteKomisija(Guid KomisijaId);
     }

@@ -5,14 +5,14 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
 using System;
 using System.Collections.Generic;
-using System.linq;
+using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using Komisija_Agregat.Entities;
 namespace Komisija_Agregat.Controllers
 {
     [Route("api/[controller]")]
-    [apiController]
+    [ApiController]
     class ClanKomisijeController : ControllerBase
     {
         private readonly IClanKomisijeRepository clanKomisijeRepository;
@@ -29,7 +29,7 @@ namespace Komisija_Agregat.Controllers
         [HttpGet]
         public ActionResult<List<ClanKomisijeDto>> GetClanovi(string ImeClana, string PrezimeClana, string EmailClana)
         {
-            List<ClanKomisijeDto> clanoviKomisije = clanKomisijeRepository.GetClanovi(string ImeClana, string PrezimeClana, string EmailClana);
+            var clanoviKomisije = clanKomisijeRepository.GetClanovi(ImeClana, PrezimeClana, EmailClana);
             if (clanoviKomisije == null || clanoviKomisije.Count == 0)
             {
                 return NoContent();
@@ -40,7 +40,7 @@ namespace Komisija_Agregat.Controllers
         [HttpGet("{clanKomisijeId}")]
         public ActionResult<ClanKomisijeDto> GetClanKomisijeById(Guid clanKomisijeId)
         {
-            ClanKomisijeDto clanKomisijeModel = clanKomisijeRepository.GetClanKomisijeById(clanKomisijeId);
+            var clanKomisijeModel = clanKomisijeRepository.GetClanKomisijeById(clanKomisijeId);
             if (clanKomisijeModel == null)
             {
                 return NotFound();
@@ -54,8 +54,8 @@ namespace Komisija_Agregat.Controllers
             try
             {
                 var clanKomisijeEntity = mapper.Map<ClanKomisije>(clanKomisije);
-                ClanKomisijeConfirmationDto confirmation = clanKomisijeRepository.CreateClanKomisije(clanKomisijeEntity);
-                string location = linkGenerator.GetPathByAction("GetClanKomisije", "ClanKomisije", new { clanKomisijeId = confirmation.ClanKomisijeId });
+                var confirmation = clanKomisijeRepository.CreateClanKomisije(clanKomisijeEntity);
+                string location = linkGenerator.GetPathByAction("GetClanKomisije", "ClanKomisije", new { clanKomisijeId = confirmation.ClanId });
                 return Created(location, mapper.Map<ClanKomisijeDto>(confirmation));
             }
             catch
@@ -69,7 +69,7 @@ namespace Komisija_Agregat.Controllers
         {
             try
             {
-                ClanKomisijeDto clanKomisijeModel = clanKomisijeRepository.GetClanKomisijeById(clanKomisijeId);
+                var clanKomisijeModel = clanKomisijeRepository.GetClanKomisijeById(clanKomisijeId);
                 if (clanKomisijeModel == null)
                 {
                     return NotFound();
@@ -80,6 +80,25 @@ namespace Komisija_Agregat.Controllers
             catch
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, "Delete Error");
+            }
+        }
+
+        [HttpPut]
+        public ActionResult<ClanKomisijeConfirmationDto> UpdateClanKomisije(ClanKomisijeUpdateDto clanKomisije)
+        {
+            try
+            {
+                if(clanKomisijeRepository.GetClanKomisijeById(clanKomisije.ClanId) == null)
+                {
+                    return NotFound();
+                }
+                ClanKomisije clanKomisije2 = mapper.Map<ClanKomisije>(clanKomisije);
+                ClanKomisijeConfirmation confirmation = clanKomisijeRepository.UpdateClanKomisije(clanKomisije2);
+                return Ok(mapper.Map<ClanKomisijeDto>(confirmation));
+            }
+            catch(Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Update error");
             }
         }
     }

@@ -1,17 +1,22 @@
 ﻿using System;
 using Komisija_Agregat.Models;
+using Komisija_Agregat.Entities;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Komisija_Agregat.Data
 {
     public interface IPredsednikRepository
     {
-        List<PredsednikModel> GetPredsednici(string ImePredsednika = null, string PrezimePredsednika = null, string EmailPredsednika = null);
+        List<Predsednik> GetPredsednici(string ImePredsednika = null, string PrezimePredsednika = null, string EmailPredsednika = null);
 
-        PredsednikModel GetPredsednikById(Guid PredsednikId);
+        Predsednik GetPredsednikById(Guid PredsednikId);
 
-        PredsednikConfirmationDto CreatePredsednik(PredsednikModel predsednik);
+        PredsednikConfirmation CreatePredsednik(Predsednik predsednik);
 
-        PredsednikConfirmationDto UpdatePredsednik(PredsednikModel predsednik);
+        PredsednikConfirmation UpdatePredsednik(Predsednik predsednik);
 
         void DeletePredsednik(Guid PredsednikId);
     }

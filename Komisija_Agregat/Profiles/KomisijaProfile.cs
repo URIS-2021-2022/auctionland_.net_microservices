@@ -13,7 +13,7 @@ namespace Komisija_Agregat.Profiles
         KomisijaProfile()
         {
             CreateMap<Komisija, KomisijaDto>();
-            CreateMap<KomisijaCretionDto, Komisija>();
+            CreateMap<KomisijaCreationDto, Komisija>();
         }
     }
 }

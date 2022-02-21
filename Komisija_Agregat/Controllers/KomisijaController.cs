@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
 using System;
 using System.Collections.Generic;
-using System.linq;
+using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using Komisija_Agregat.Entities;
@@ -13,7 +13,7 @@ using Komisija_Agregat.Entities;
 namespace Komisija_Agregat.Controllers
 {
     [Route("api/[controller]")]
-    [apiController]
+    [ApiController]
     class KomisijaController : ControllerBase
     {
         private readonly IKomisijaRepository komisijaRepository;
@@ -30,7 +30,7 @@ namespace Komisija_Agregat.Controllers
         [HttpGet]
         public ActionResult<List<KomisijaDto>> GetKomisije()
         {
-            List<KomisijaDto> komisije = komisijaRepository.GetKomisije();
+            var komisije = komisijaRepository.GetKomisije();
             if (komisije == null || komisije.Count == 0)
             {
                 return NoContent();
@@ -41,7 +41,7 @@ namespace Komisija_Agregat.Controllers
         [HttpGet("{komisijaId}")]
         public ActionResult<KomisijaDto> GetKomisijaById(Guid komisijaId)
         {
-            KomisijaDto komisijaModel = komisijaRepository.GetKomisijaById(komisijaId);
+            var komisijaModel = komisijaRepository.GetKomisijaById(komisijaId);
             if (komisijaModel == null)
             {
                 return NotFound();
@@ -55,7 +55,7 @@ namespace Komisija_Agregat.Controllers
             try
             {
                 var komisijaEntity = mapper.Map<Komisija>(komisija);
-                KomisijaConfirmationDto confirmation = komisijaRepository.CreateKomisija(komisijaEntity);
+                var confirmation = komisijaRepository.CreateKomisija(komisijaEntity);
                 string location = linkGenerator.GetPathByAction("GetKomisija", "Komisija", new { komisijaId = confirmation.KomisijaId });
                 return Created(location, mapper.Map<KomisijaDto>(confirmation));
             }
@@ -70,7 +70,7 @@ namespace Komisija_Agregat.Controllers
         {
             try
             {
-                KomisijaDto komisijaModel = komisijaRepository.GetKomisijaById(komisijaId);
+                var komisijaModel = komisijaRepository.GetKomisijaById(komisijaId);
                 if (komisijaModel == null)
                 {
                     return NotFound();
@@ -81,6 +81,25 @@ namespace Komisija_Agregat.Controllers
             catch
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, "Delete Error");
+            }
+        }
+
+        [HttpPut]
+        public ActionResult<KomisijaConfirmationDto> UpdateKomisija(KomisijaUpdateDto komisija)
+        {
+            try
+            {
+                if (komisijaRepository.GetKomisijaById(komisija.KomisijaId) == null)
+                {
+                    return NotFound();
+                }
+                Komisija komisija2 = mapper.Map<Komisija>(komisija);
+                KomisijaConfirmation confirmation = komisijaRepository.UpdateKomisija(komisija2);
+                return Ok(mapper.Map<KomisijaDto>(confirmation));
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Update error");
             }
         }
     }

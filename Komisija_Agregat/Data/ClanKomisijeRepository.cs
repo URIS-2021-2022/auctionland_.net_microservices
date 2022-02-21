@@ -1,4 +1,10 @@
 ﻿using Komisija_Agregat.Models;
+using Komisija_Agregat.Entities;
+using Komisija_Agregat.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using System;
 
 namespace Komisija_Agregat.Data
@@ -6,7 +12,7 @@ namespace Komisija_Agregat.Data
 
     public class ClanKomisijeRepository : IClanKomisijeRepository
     {
-        public static List<ClanKomisijeModel> ClanoviKomisije { get; set; } = new List<ClanKomisijeModel>();
+        public static List<ClanKomisije> ClanoviKomisije { get; set; } = new List<ClanKomisije>();
 
         public ClanKomisijeRepository()
         {
@@ -15,26 +21,10 @@ namespace Komisija_Agregat.Data
 
         private void FillData()
         {
-            ClanoviKomisije.AddRange(new List<ClanKomisijeModel>
-            {
-                new ClanKomisijeModel
-                {
-                   ClanId = Guid.Parse("6a411c13-a195-48f7-8dbd-67596c3974c0"),
-                   ImeClana = "Aleksa",
-                   PrezimeClana = "Pivnički",
-                   EmailClana = "pivna@mail.com"
-                },
-                new ClanKomisijeModel
-                {
-                   ClanId = Guid.Parse("1c7ea607-8ddb-493a-87fa-4bf5893e965b"),
-                   ImeClana = "Konstantin",
-                   PrezimeClana = "Jekić",
-                   EmailClana = "jekavac@mail.com"
-                }
-            });
+          
         }
 
-        public List<ClanKomisijeModel> GetClanovi(string ImeClana = null, string PrezimeClana = null, string EmailClana = null)
+        public List<ClanKomisije> GetClanovi(string ImeClana = null, string PrezimeClana = null, string EmailClana = null)
         {
 
             return (from e in ClanoviKomisije
@@ -44,20 +34,20 @@ namespace Komisija_Agregat.Data
                     select e).ToList();
         }
 
-        public ClanKomisijeModel GetClanKomisijeById(Guid ClanId)
+        public ClanKomisije GetClanKomisijeById(Guid ClanId)
         {
 
             return ClanoviKomisije.FirstOrDefault(e => e.ClanId == ClanId);
 
         }
 
-        public ClanKomisijeConfirmationDto CreateClanKomisije(ClanKomisijeModel clanKomisije)
+        public ClanKomisijeConfirmation CreateClanKomisije(ClanKomisije clanKomisije)
         {
             clanKomisije.ClanId = Guid.NewGuid();
             ClanoviKomisije.Add(clanKomisije);
-            ClanKomisijeModel clan = GetClanKomisijeById(clanKomisije.ClanId);
+            ClanKomisije clan = GetClanKomisijeById(clanKomisije.ClanId);
 
-            return new ClanKomisijeConfirmationDto
+            return new ClanKomisijeConfirmation
             {
                 ClanId = clan.ClanId,
 
@@ -70,16 +60,16 @@ namespace Komisija_Agregat.Data
             };
         }
 
-        public ClanKomisijeConfirmationDto UpdateClanKomisije(ClanKomisijeModel clanKomisije)
+        public ClanKomisijeConfirmation UpdateClanKomisije(ClanKomisije clanKomisije)
         {
-            ClanKomisijeModel clan = GetClanKomisijeById(clanKomisije.ClanId);
+            ClanKomisije clan = GetClanKomisijeById(clanKomisije.ClanId);
 
             clan.ClanId = clanKomisije.ClanId;
             clan.ImeClana = clanKomisije.ImeClana;
             clan.PrezimeClana = clanKomisije.PrezimeClana;
             clan.EmailClana = clanKomisije.EmailClana;
 
-            return new ClanKomisijeConfirmationDto
+            return new ClanKomisijeConfirmation
             {
                 ClanId = clan.ClanId,
                 ImeClana = clan.ImeClana,
