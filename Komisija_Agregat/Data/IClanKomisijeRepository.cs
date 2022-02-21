@@ -1,17 +1,22 @@
 ﻿using System;
 using Komisija_Agregat.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Komisija_Agregat.Entities;
 
 namespace Komisija_Agregat.Data
 {
     public interface IClanKomisijeRepository
     {
-        List<ClanKomisijeModel> GetClanovi(string ImeClana = null, string PrezimeClana = null, string EmailClana = null);
+        List<ClanKomisije> GetClanovi(string ImeClana = null, string PrezimeClana = null, string EmailClana = null);
 
-        ClanKomisijeModel GetClanKomisijeById(Guid ClanId);
+        ClanKomisije GetClanKomisijeById(Guid ClanId);
 
-        ClanKomisijeConfirmation CreateClanKomisije(ClanKomisijeModel clanKomisije);
+        ClanKomisijeConfirmation CreateClanKomisije(ClanKomisije clanKomisije);
 
-        ClanKomisijeConfirmation UpdateClanKomisije(ClanKomisijeModel clanKomisije);
+        ClanKomisijeConfirmation UpdateClanKomisije(ClanKomisije clanKomisije);
 
         void DeleteClanKomisije(Guid ClanId);
     }

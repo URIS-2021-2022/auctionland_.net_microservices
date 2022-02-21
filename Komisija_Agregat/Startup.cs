@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
@@ -29,10 +30,11 @@ namespace Komisija_Agregat
         {
 
             services.AddControllers();
-            services.AddSwaggerGen(c =>
+            services.AddControllers(setup =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Komisija_Agregat", Version = "v1" });
-            });
+                setup.ReturnHttpNotAcceptable = true;
+            }).AddXmlDataContractSerializerFormatters();
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddSingleton<IKomisijaRepository, KomisijaRepository>();
             services.AddSingleton<IClanKomisijeRepository, ClanKomisijeRepository>();
             services.AddSingleton<IPredsednikRepository, PredsednikRepository>();
@@ -44,8 +46,17 @@ namespace Komisija_Agregat
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Komisija_Agregat v1"));
+            }
+            else
+            {
+                app.UseExceptionHandler(appBuilder =>
+                {
+                    appBuilder.Run(async context =>
+                    {
+                        context.Response.StatusCode = 500;
+                        await context.Response.WriteAsync("Doslo je do neocekivane greske. Molimo pokusajte kasnije");
+                    });
+                });
             }
 
             app.UseHttpsRedirection();

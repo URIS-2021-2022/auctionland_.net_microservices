@@ -51,13 +51,13 @@ namespace Komisija_Agregat.Data
 
         }
 
-        public ClanKomisijeConfirmation CreateClanKomisije(ClanKomisijeModel clanKomisije)
+        public ClanKomisijeConfirmationDto CreateClanKomisije(ClanKomisijeModel clanKomisije)
         {
             clanKomisije.ClanId = Guid.NewGuid();
             ClanoviKomisije.Add(clanKomisije);
             ClanKomisijeModel clan = GetClanKomisijeById(clanKomisije.ClanId);
 
-            return new ClanKomisijeConfirmation
+            return new ClanKomisijeConfirmationDto
             {
                 ClanId = clan.ClanId,
 
@@ -70,7 +70,7 @@ namespace Komisija_Agregat.Data
             };
         }
 
-        public ClanKomisijeConfirmation UpdateClanKomisije(ClanKomisijeModel clanKomisije)
+        public ClanKomisijeConfirmationDto UpdateClanKomisije(ClanKomisijeModel clanKomisije)
         {
             ClanKomisijeModel clan = GetClanKomisijeById(clanKomisije.ClanId);
 
@@ -79,7 +79,7 @@ namespace Komisija_Agregat.Data
             clan.PrezimeClana = clanKomisije.PrezimeClana;
             clan.EmailClana = clanKomisije.EmailClana;
 
-            return new ClanKomisijeConfirmation
+            return new ClanKomisijeConfirmationDto
             {
                 ClanId = clan.ClanId,
                 ImeClana = clan.ImeClana,

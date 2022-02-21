@@ -9,9 +9,9 @@ namespace Komisija_Agregat.Data
 
         KomisijaModel GetKomisijaById(Guid KomisijaId);
 
-        KomisijaConfirmation CreateKomisija(KomisijaModel komisija);
+        KomisijaConfirmationDto CreateKomisija(KomisijaModel komisija);
 
-        KomisijaConfirmation UpdateKomisija(KomisijaModel komisija);
+        KomisijaConfirmationDto UpdateKomisija(KomisijaModel komisija);
 
         void DeleteKomisija(Guid KomisijaId);
     }

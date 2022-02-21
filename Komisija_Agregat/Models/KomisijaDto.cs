@@ -6,7 +6,7 @@ namespace Komisija_Agregat.Models
     {
         public Guid KomisijaId { get; set; }
         public PredsednikModel Predsednik { get; set; }
-        public List<ClanKomisijeModel> Clanovi { get; set; }
+        public List<ClanKomisijeDto> Clanovi { get; set; }
 
     }
 }

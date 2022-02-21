@@ -7,6 +7,8 @@ using System;
 using System.Collections.Generic;
 using System.linq;
 using System.Threading.Tasks;
+using AutoMapper;
+using Komisija_Agregat.Entities;
 
 namespace Komisija_Agregat.Controllers
 {
@@ -16,43 +18,46 @@ namespace Komisija_Agregat.Controllers
     {
         private readonly IPredsednikRepository predsednikRepository;
         private readonly LinkGenerator linkGenerator;
+        private readonly IMapper mapper;
 
-        public PredsednikController(IPredsednikRepository predsednikRepository, LinkGenerator linkGenerator)
+        public PredsednikController(IPredsednikRepository predsednikRepository, LinkGenerator linkGenerator, IMapper mapper)
         {
             this.predsednikRepository = predsednikRepository;
             this.linkGenerator = linkGenerator;
+            this.mapper = mapper;
         }
 
         [HttpGet]
-        public ActionResult<List<PredsednikModel>> GetPredsednici(string ImePredsednika, string PrezimePredsednika, string EmailPredsednika)
+        public ActionResult<List<PredsednikDto>> GetPredsednici(string ImePredsednika, string PrezimePredsednika, string EmailPredsednika)
         {
-            List<PredsednikModel> predsednici = predsednikRepository.GetPredsednici(string ImePredsednika, string PrezimePredsednika, string EmailPredsednika);
+            List<PredsednikDto> predsednici = predsednikRepository.GetPredsednici(string ImePredsednika, string PrezimePredsednika, string EmailPredsednika);
             if (predsednici == null || predsednici.Count == 0)
             {
                 return NoContent();
             }
-            return Ok(predsednici)
+            return Ok(mapper.Map<List<PredsednikDto>>(predsednici));
         }
 
         [HttpGet("{predsednikId}")]
-        public ActionResult<PredsednikModel> GetPredsednikById(Guid predsednikId)
+        public ActionResult<PredsednikDto> GetPredsednikById(Guid predsednikId)
         {
-            PredsednikModel predsednikModel = predsednikRepository.GetPredsednikById(predsednikId);
+            PredsednikDto predsednikModel = predsednikRepository.GetPredsednikById(predsednikId);
             if (predsednikModel == null)
             {
                 return NotFound();
             }
-            return Ok(predsednikModel)
+            return Ok(mapper.Map<PredsednikDto>(predsednikModel));
         }
 
         [HttpPost]
-        public ActionResult<PredsednikConfirmation> CreatePredsednik([FromBody] PredsednikModel predsednik)
+        public ActionResult<PredsednikConfirmationDto> CreatePredsednik([FromBody] PredsednikDto predsednik)
         {
             try
             {
-                PredsednikConfirmation confirmation = predsednikRepository.CreatePredsednik(predsednik);
+                var predsednikEntity = mapper.Map<Predsednik>(predsednik);
+                PredsednikConfirmationDto confirmation = predsednikRepository.CreatePredsednik(predsednikEntity);
                 string location = linkGenerator.GetPathByAction("GetPredsednik", "Predsednik", new { predsednikId = confirmation.PredsednikId });
-                return Created(location, confirmation);
+                return Created(location, mapper.Map<PredsednikDto>(confirmation));
             }
             catch
             {
@@ -65,7 +70,7 @@ namespace Komisija_Agregat.Controllers
         {
             try
             {
-                PredsednikModel predsednikModel = predsednikRepository.GetPredsednikById(predsednikId);
+                PredsednikDto predsednikModel = predsednikRepository.GetPredsednikById(predsednikId);
                 if (predsednikModel == null)
                 {
                     return NotFound();

@@ -1,4 +1,9 @@
 ﻿using System;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Komisija_Agregat.Entities;
 using Komisija_Agregat.Models;
 
 namespace Komisija_Agregat.Data
@@ -6,7 +11,7 @@ namespace Komisija_Agregat.Data
 
     public class PredsednikRepository : IPredsednikRepository
     {
-        public static List<PredsednikModel> Predsednici { get; set; } = new List<PredsednikModel>();
+        public static List<Predsednik> Predsednici { get; set; } = new List<Predsednik>();
 
         public PredsednikRepository()
         {
@@ -15,26 +20,10 @@ namespace Komisija_Agregat.Data
 
         private void FillData()
         {
-            Predsednici.AddRange(new List<PredsednikModel>
-            {
-                new PredsednikModel
-                {
-                   PredsednikId = Guid.Parse("6a411c13-a195-48f7-8dbd-67596c3974c0"),
-                   ImePredsednika = "Petar",
-                   PrezimePredsednika = "Marković",
-                   EmailPredsednika = "markuza@mail.com"
-                },
-                new PredsednikModel
-                {
-                   PredsednikId = Guid.Parse("1c7ea607-8ddb-493a-87fa-4bf5893e965b"),
-                   ImePredsednika = "Nenad",
-                   PrezimePredsednika = "Jecković",
-                   EmailPredsednika = "jecko@mail.com"
-                }
-            });
+            
         }
 
-        public List<PredsednikModel> GetPredsednici(string ImePredsednika = null, string PrezimePredsednika = null, string EmailPredsednika = null)
+        public List<Predsednik> GetPredsednici(string ImePredsednika = null, string PrezimePredsednika = null, string EmailPredsednika = null)
         {
 
             return (from e in Predsednici
@@ -44,18 +33,18 @@ namespace Komisija_Agregat.Data
                     select e).ToList();
         }
 
-        public PredsednikModel GetPredsednikById(Guid PredsednikId)
+        public Predsednik GetPredsednikById(Guid PredsednikId)
         {
 
             return Predsednici.FirstOrDefault(e => e.PredsednikId == PredsednikId);
 
         }
 
-        public PredsednikConfirmation CreatePredsednik(PredsednikModel predsednik)
+        public PredsednikConfirmation CreatePredsednik(Predsednik predsednik)
         {
             predsednik.PredsednikId = Guid.NewGuid();
             Predsednici.Add(predsednik);
-            PredsednikModel pred = GetPredsednikById(predsednik.PredsednikId);
+            Predsednik pred = GetPredsednikById(predsednik.PredsednikId);
 
             return new PredsednikConfirmation
             {
@@ -70,9 +59,9 @@ namespace Komisija_Agregat.Data
             };
         }
 
-        public PredsednikConfirmation UpdatePredsednik(PredsednikModel predsednik)
+        public PredsednikConfirmation UpdatePredsednik(Predsednik predsednik)
         {
-            PredsednikModel pred = GetPredsednikById(predsednik.PredsednikId);
+            Predsednik pred = GetPredsednikById(predsednik.PredsednikId);
 
             pred.PredsednikId = predsednik.PredsednikId;
             pred.ImePredsednika = predsednik.ImePredsednika;

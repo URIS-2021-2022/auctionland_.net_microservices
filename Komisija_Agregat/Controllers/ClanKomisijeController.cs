@@ -7,7 +7,8 @@ using System;
 using System.Collections.Generic;
 using System.linq;
 using System.Threading.Tasks;
-
+using AutoMapper;
+using Komisija_Agregat.Entities;
 namespace Komisija_Agregat.Controllers
 {
     [Route("api/[controller]")]
@@ -16,43 +17,46 @@ namespace Komisija_Agregat.Controllers
     {
         private readonly IClanKomisijeRepository clanKomisijeRepository;
         private readonly LinkGenerator linkGenerator;
+        private readonly IMapper mapper;
 
-        public ClanKomisijeController(IClanKomisijeRepository clanKomisijeRepository, LinkGenerator linkGenerator)
+        public ClanKomisijeController(IClanKomisijeRepository clanKomisijeRepository, LinkGenerator linkGenerator, IMapper mapper)
         {
             this.clanKomisijeRepository = clanKomisijeRepository;
             this.linkGenerator = linkGenerator;
+            this.mapper = mapper;   
         }
 
         [HttpGet]
-        public ActionResult<List<ClanKomisijeModel>> GetClanovi(string ImeClana, string PrezimeClana, string EmailClana)
+        public ActionResult<List<ClanKomisijeDto>> GetClanovi(string ImeClana, string PrezimeClana, string EmailClana)
         {
-            List<ClanKomisijeModel> clanoviKomisije = clanKomisijeRepository.GetClanovi(string ImeClana, string PrezimeClana, string EmailClana);
+            List<ClanKomisijeDto> clanoviKomisije = clanKomisijeRepository.GetClanovi(string ImeClana, string PrezimeClana, string EmailClana);
             if (clanoviKomisije == null || clanoviKomisije.Count == 0)
             {
                 return NoContent();
             }
-            return Ok(clanoviKomisije)
+            return Ok(mapper.Map<List<ClanKomisijeDto>>(clanoviKomisije));
         }
 
         [HttpGet("{clanKomisijeId}")]
-        public ActionResult<ClanKomisijeModel> GetClanKomisijeById(Guid clanKomisijeId)
+        public ActionResult<ClanKomisijeDto> GetClanKomisijeById(Guid clanKomisijeId)
         {
-            ClanKomisijeModel clanKomisijeModel = clanKomisijeRepository.GetClanKomisijeById(clanKomisijeId);
+            ClanKomisijeDto clanKomisijeModel = clanKomisijeRepository.GetClanKomisijeById(clanKomisijeId);
             if (clanKomisijeModel == null)
             {
                 return NotFound();
             }
-            return Ok(clanKomisijeModel)
+            return Ok(mapper.Map<ClanKomisijeDto>(clanKomisijeModel));
         }
 
         [HttpPost]
-        public ActionResult<ClanKomisijeConfirmation> CreateClanKomisije([FromBody] ClanKomisijeModel clanKomisije)
+        public ActionResult<ClanKomisijeConfirmationDto> CreateClanKomisije([FromBody] ClanKomisijeDto clanKomisije)
         {
             try
             {
-                ClanKomisijeConfirmation confirmation = clanKomisijeRepository.CreateClanKomisije(clanKomisije);
+                var clanKomisijeEntity = mapper.Map<ClanKomisije>(clanKomisije);
+                ClanKomisijeConfirmationDto confirmation = clanKomisijeRepository.CreateClanKomisije(clanKomisijeEntity);
                 string location = linkGenerator.GetPathByAction("GetClanKomisije", "ClanKomisije", new { clanKomisijeId = confirmation.ClanKomisijeId });
-                return Created(location, confirmation);
+                return Created(location, mapper.Map<ClanKomisijeDto>(confirmation));
             }
             catch
             {
@@ -65,7 +69,7 @@ namespace Komisija_Agregat.Controllers
         {
             try
             {
-                ClanKomisijeModel clanKomisijeModel = clanKomisijeRepository.GetClanKomisijeById(clanKomisijeId);
+                ClanKomisijeDto clanKomisijeModel = clanKomisijeRepository.GetClanKomisijeById(clanKomisijeId);
                 if (clanKomisijeModel == null)
                 {
                     return NotFound();

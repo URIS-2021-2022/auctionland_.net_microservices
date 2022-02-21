@@ -9,9 +9,9 @@ namespace Komisija_Agregat.Data
 
         PredsednikModel GetPredsednikById(Guid PredsednikId);
 
-        PredsednikConfirmation CreatePredsednik(PredsednikModel predsednik);
+        PredsednikConfirmationDto CreatePredsednik(PredsednikModel predsednik);
 
-        PredsednikConfirmation UpdatePredsednik(PredsednikModel predsednik);
+        PredsednikConfirmationDto UpdatePredsednik(PredsednikModel predsednik);
 
         void DeletePredsednik(Guid PredsednikId);
     }
