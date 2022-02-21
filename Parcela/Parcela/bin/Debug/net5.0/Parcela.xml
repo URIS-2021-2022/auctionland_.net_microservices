@@ -1,0 +1,1243 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Parcela</name>
+    </assembly>
+    <members>
+        <member name="T:Parcela.Controllers.DeoParceleController">
+            <summary>
+            Kontroler za delove parcele
+            </summary>
+        </member>
+        <member name="M:Parcela.Controllers.DeoParceleController.#ctor(Parcela.Data.IDeoParceleRepository,Microsoft.AspNetCore.Routing.LinkGenerator,AutoMapper.IMapper)">
+            <summary>
+            Konstruktor kontrolera za delove parcele
+            </summary>
+        </member>
+        <member name="M:Parcela.Controllers.DeoParceleController.GetExamRegistrations">
+            <summary>
+            Vraca sve delove parcele.
+            </summary>
+            <returns>Lista delova parcele</returns>
+            <response code="200">Vraca listu delova parcele</response>
+            <response code="404">Nije pronadjen ni jedna deo parcele</response>
+        </member>
+        <member name="M:Parcela.Controllers.DeoParceleController.GetDeoParcele(System.Guid)">
+            <summary>
+            Vraća jedan deo parcele osnovu ID-ja.
+            </summary>
+            <param name="deoParceleId">ID dela parcele</param>
+            <returns></returns>
+            <response code="200">Vraća trazeni deo parcele</response>
+        </member>
+        <member name="M:Parcela.Controllers.DeoParceleController.CreateDeoParcele(Parcela.Models.DeoParceleCreationDto)">
+             <summary>
+             Kreira novi deo parcele.
+             </summary>
+             <param name="deoParcele">Model dela parcele</param>
+             <returns>Potvrdu o kreiranoj prijavi.</returns>
+             <remarks>
+             Primer zahteva za kreiranje novog dela parcele \
+             POST /api/deoParcele \
+             {     \
+                 DeoParceleId = Guid.Parse("21ad52f8-0281-4241-98b0-481566d25e5f"), \
+                 ParcelaId = Guid.Parse("6a411c13-a195-48f7-8dbd-67596c3974c0"), \
+                 PovrsinaDelaParcele = "1000ha", \
+                 RbrDelaParcele = 1 \
+            }
+             </remarks>
+             <response code="200">Vraca kreirani deo parcele</response>
+             <response code="500">Doslo je do greske na serveru</response>
+        </member>
+        <member name="M:Parcela.Controllers.DeoParceleController.UpdateDeoParcele(Parcela.Models.DeoParceleUpdateDto)">
+            <summary>
+            Azurira jedan deo parcele.
+            </summary>
+            <param name="deoParcele">Model parcele koji se azurira</param>
+            <returns>Potvrdu o modifikovanom delu parcele.</returns>
+            <response code="200">Vraca azurirani deo parcele</response>
+            <response code="400">Deo parcele koji se azurira nije pronadjen</response>
+            <response code="500">Doslo je do greske na serveru prilikom azuriranja dela parcele</response>
+        </member>
+        <member name="M:Parcela.Controllers.DeoParceleController.DeleteDeoParcele(System.Guid)">
+            <summary>
+            Vrsi brisanje jednog dela parcele na osnovu ID-ja.
+            </summary>
+            <param name="deoParceleId">ID dela parcele</param>
+            <returns>Status 204 (NoContent)</returns>
+            <response code="204">Deo parcele uspesno obrisan</response>
+            <response code="404">Nije pronadjen deo parcele za brisanje</response>
+            <response code="500">Doslo je do greske na serveru prilikom brisanja dela parcele</response>
+        </member>
+        <member name="M:Parcela.Controllers.DeoParceleController.GetExamRegistrationOptions">
+            <summary>
+            Vraca opcije za rad sa delovima parcele
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Parcela.Controllers.OpstinaController">
+            <summary>
+            Kontroler za opstine
+            </summary>
+        </member>
+        <member name="M:Parcela.Controllers.OpstinaController.#ctor(Parcela.Data.IOpstinaRepository,Microsoft.AspNetCore.Routing.LinkGenerator,AutoMapper.IMapper)">
+            <summary>
+            Konstruktor kontrolera za opstine
+            </summary>
+        </member>
+        <member name="M:Parcela.Controllers.OpstinaController.GetExamRegistrations">
+            <summary>
+            Vraca sve opstine.
+            </summary>
+            <returns>Lista opstina</returns>
+            <response code="200">Vraca listu opstina</response>
+            <response code="404">Nije pronadjen ni jedna opstina</response>
+        </member>
+        <member name="M:Parcela.Controllers.OpstinaController.GetOpstina(System.Guid)">
+            <summary>
+            Vraća jedan opstina osnovu ID-ja.
+            </summary>
+            <param name="opstinaId">ID dela parcele</param>
+            <returns></returns>
+            <response code="200">Vraća trazeni opstina</response>
+        </member>
+        <member name="M:Parcela.Controllers.OpstinaController.CreateOpstina(Parcela.Models.OpstinaCreationDto)">
+             <summary>
+             Kreira novi opstina.
+             </summary>
+             <param name="opstina">Model dela parcele</param>
+             <returns>Potvrdu o kreiranoj prijavi.</returns>
+             <remarks>
+             Primer zahteva za kreiranje novog dela parcele \
+             POST /api/opstina \
+             {     \
+                 OpstinaId = Guid.Parse("21ad52f8-0281-4241-98b0-481566d25e4f"), \
+                 NazivOpstine = "Bikovo" \
+            }
+             </remarks>
+             <response code="200">Vraca kreirani opstina</response>
+             <response code="500">Doslo je do greske na serveru</response>
+        </member>
+        <member name="M:Parcela.Controllers.OpstinaController.UpdateOpstina(Parcela.Models.OpstinaUpdateDto)">
+            <summary>
+            Azurira jedan opstina.
+            </summary>
+            <param name="opstina">Model parcele koji se azurira</param>
+            <returns>Potvrdu o modifikovanom delu parcele.</returns>
+            <response code="200">Vraca azurirani opstina</response>
+            <response code="400">Deo parcele koji se azurira nije pronadjen</response>
+            <response code="500">Doslo je do greske na serveru prilikom azuriranja dela parcele</response>
+        </member>
+        <member name="M:Parcela.Controllers.OpstinaController.DeleteOpstina(System.Guid)">
+            <summary>
+            Vrsi brisanje jednog dela parcele na osnovu ID-ja.
+            </summary>
+            <param name="opstinaId">ID dela parcele</param>
+            <returns>Status 204 (NoContent)</returns>
+            <response code="204">Deo parcele uspesno obrisan</response>
+            <response code="404">Nije pronadjen opstina za brisanje</response>
+            <response code="500">Doslo je do greske na serveru prilikom brisanja dela parcele</response>
+        </member>
+        <member name="M:Parcela.Controllers.OpstinaController.GetExamRegistrationOptions">
+            <summary>
+            Vraca opcije za rad sa delovima parcele
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Parcela.Controllers.ParcelaController">
+            <summary>
+            Kontroler za parcele
+            </summary>
+        </member>
+        <member name="M:Parcela.Controllers.ParcelaController.#ctor(Parcela.Data.IParcelaRepository,Microsoft.AspNetCore.Routing.LinkGenerator,AutoMapper.IMapper)">
+            <summary>
+            Konstruktor kontrolera za parcele
+            </summary>
+        </member>
+        <member name="M:Parcela.Controllers.ParcelaController.GetParcele(System.String)">
+            <summary>
+            Vraća sve parcele za zadate filtere.
+            </summary>
+            <param name="kultura">Broj resenja (npr. Vrtovi)</param>
+            <returns>Lista parceli</returns>
+            <response code="200">Vraća listu parceli</response>
+            <response code="404">Nije pronađena ni jedna parcela</response>
+        </member>
+        <member name="M:Parcela.Controllers.ParcelaController.GetParcela(System.Guid)">
+            <summary>
+            Vraca jednu parcelu na osnovu ID-ja parcele.
+            </summary>
+            <param name="parcelaId">ID parcele</param>
+            <returns></returns>
+            <response code="200">Vraca trazenu parcelu</response>
+        </member>
+        <member name="M:Parcela.Controllers.ParcelaController.CreateParcela(Parcela.Models.ParcelaCreationDto)">
+             <summary>
+             Kreira novu prijavu parcelu.
+             </summary>
+             <param name="parcela">Model parcele</param>
+             <returns>Potvrdu o kreiranoj parceli.</returns>
+             <remarks>
+             Primer zahteva za kreiranje nove parcele \
+             POST /api/parcela \
+             {     \
+                 ParcelaId = Guid.Parse("1c7ea607-8ddb-493a-87fa-4bf5893e965b"), \
+                 Površina = "3000ha", \
+                 KorisnikParcele = Guid.Parse(""), \
+                 BrojParcele = "15a", \
+                 KatastarskaOpstina = Guid.Parse("21ad52f8-0281-4241-98b0-481566d25e4f"), \
+                 BrojListaNepokretnosti = "12345435", \
+                 Kultura = "Njive", \
+                 Klasa = "II", \
+                 Obradivost = "Obradivo", \
+                 ZasticenaZona = "3", \
+                 OblikSvojine = "Privatna svojina", \
+                 Odvodnjavanje = "ostalo", \
+                 KulturaStvarnoStanje = "Njive", \
+                 KlasaStvarnoStanje = "II", \
+                 ObradivostStvarnoStanje = "Ostalo", \
+                 ZasticenaZonaStvarnoStanje = "4", \
+                 OdvodnjavanjeStvarnoStanje = "ostalo" \
+            }
+             </remarks>
+             <response code="200">Vraca kreiranu parcelu</response>
+             <response code="500">Doslo je do greske na serveru</response>
+        </member>
+        <member name="M:Parcela.Controllers.ParcelaController.UpdateParcela(Parcela.Models.ParcelaUpdateDto)">
+            <summary>
+            Azurira jednu parcelu.
+            </summary>
+            <param name="parcela">Model parcele koja se ažurira</param>
+            <returns>Potvrdu o modifikovanoj parceli.</returns>
+            <response code="200">Vraca azuriranu parcelu</response>
+            <response code="400">Parcela koja se azurira nije pronadjena</response>
+            <response code="500">Doslo je do greske na serveru prilikom azuriranja parcele</response>
+        </member>
+        <member name="M:Parcela.Controllers.ParcelaController.DeleteParcela(System.Guid)">
+            <summary>
+            Vrsi brisanje jedne parcele na osnovu ID-ja parcele.
+            </summary>
+            <param name="parcelaId">ID parcele</param>
+            <returns>Status 204 (NoContent)</returns>
+            <response code="204">Parcela uspesno obrisana</response>
+            <response code="404">Nije pronadjena parcela za brisanje</response>
+            <response code="500">Doslo je do greske na serveru prilikom brisanja parcele</response>
+        </member>
+        <member name="M:Parcela.Controllers.ParcelaController.GetExamRegistrationOptions">
+            <summary>
+            Vraca opcije za rad sa parcelama
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Parcela.Data.DeoParceleRepository">
+            <summary>
+            Repozitorijum delova parcele
+            </summary>
+        </member>
+        <member name="M:Parcela.Data.DeoParceleRepository.#ctor(Parcela.Entities.DeoParceleContext,AutoMapper.IMapper)">
+            <summary>
+            Konstruktor za repozitorijum parceli
+            </summary>
+        </member>
+        <member name="M:Parcela.Data.DeoParceleRepository.SaveChanges">
+            <summary>
+            Metoda koja cuva izmene
+            </summary>
+        </member>
+        <member name="M:Parcela.Data.DeoParceleRepository.GetDeloveParcele">
+            <summary>
+            Metoda koja pribavlja podatke
+            </summary>
+        </member>
+        <member name="M:Parcela.Data.DeoParceleRepository.GetDeoParceleById(System.Guid)">
+            <summary>
+            Metoda koja pribavlja podatke po ID-u
+            </summary>
+        </member>
+        <member name="M:Parcela.Data.DeoParceleRepository.CreateDeoParcele(Parcela.Entities.DeoParcele)">
+            <summary>
+            Metoda koja upisuje podatke
+            </summary>
+        </member>
+        <member name="M:Parcela.Data.DeoParceleRepository.UpdateDeoParcele(Parcela.Entities.DeoParcele)">
+            <summary>
+            Metoda koja azurira podatke
+            </summary>
+        </member>
+        <member name="M:Parcela.Data.DeoParceleRepository.DeleteDeoParcele(System.Guid)">
+            <summary>
+            Metoda koja brise podatke
+            </summary>
+        </member>
+        <member name="T:Parcela.Data.IDeoParceleRepository">
+            <summary>
+            Interfejs za ParcelaRepository
+            </summary>
+        </member>
+        <member name="M:Parcela.Data.IDeoParceleRepository.GetDeloveParcele">
+            <summary>
+            Metoda koja pribavlja podatke
+            </summary>
+        </member>
+        <member name="M:Parcela.Data.IDeoParceleRepository.GetDeoParceleById(System.Guid)">
+            <summary>
+            Metoda koja pribavlja podatke po ID-u
+            </summary>
+        </member>
+        <member name="M:Parcela.Data.IDeoParceleRepository.CreateDeoParcele(Parcela.Entities.DeoParcele)">
+            <summary>
+            Metoda koja upisuje podatke
+            </summary>
+        </member>
+        <member name="M:Parcela.Data.IDeoParceleRepository.UpdateDeoParcele(Parcela.Entities.DeoParcele)">
+            <summary>
+            Metoda koja azurira podatke
+            </summary>
+        </member>
+        <member name="M:Parcela.Data.IDeoParceleRepository.DeleteDeoParcele(System.Guid)">
+            <summary>
+            Metoda koja brise podatke
+            </summary>
+        </member>
+        <member name="M:Parcela.Data.IDeoParceleRepository.SaveChanges">
+            <summary>
+            Metoda koja cuva izmene
+            </summary>
+        </member>
+        <member name="T:Parcela.Data.IOpstinaRepository">
+            <summary>
+            Interfejs za OpstinaRepository
+            </summary>
+        </member>
+        <member name="M:Parcela.Data.IOpstinaRepository.GetOpstine">
+            <summary>
+            Metoda koja pribavlja podatke
+            </summary>
+        </member>
+        <member name="M:Parcela.Data.IOpstinaRepository.GetOpstinaById(System.Guid)">
+            <summary>
+            Metoda koja pribavlja podatke po ID-u
+            </summary>
+        </member>
+        <member name="M:Parcela.Data.IOpstinaRepository.CreateOpstina(Parcela.Entities.Opstina)">
+            <summary>
+            Metoda koja upisuje podatke
+            </summary>
+        </member>
+        <member name="M:Parcela.Data.IOpstinaRepository.UpdateOpstina(Parcela.Entities.Opstina)">
+            <summary>
+            Metoda koja azurira podatke
+            </summary>
+        </member>
+        <member name="M:Parcela.Data.IOpstinaRepository.DeleteOpstina(System.Guid)">
+            <summary>
+            Metoda koja brise podatke
+            </summary>
+        </member>
+        <member name="M:Parcela.Data.IOpstinaRepository.SaveChanges">
+            <summary>
+            Metoda koja cuva izmene
+            </summary>
+        </member>
+        <member name="T:Parcela.Data.IParcelaRepository">
+            <summary>
+            Interfejs za ParcelaRepository
+            </summary>
+        </member>
+        <member name="M:Parcela.Data.IParcelaRepository.GetParcele(System.String)">
+            <summary>
+            Metoda koja pribavlja podatke
+            </summary>
+        </member>
+        <member name="M:Parcela.Data.IParcelaRepository.GetParcelaById(System.Guid)">
+            <summary>
+            Metoda koja pribavlja podatke po ID-u
+            </summary>
+        </member>
+        <member name="M:Parcela.Data.IParcelaRepository.CreateParcela(Parcela.Entities.ParcelaM)">
+            <summary>
+            Metoda koja upisuje podatke
+            </summary>
+        </member>
+        <member name="M:Parcela.Data.IParcelaRepository.UpdateParcela(Parcela.Entities.ParcelaM)">
+            <summary>
+            Metoda koja azurira podatke
+            </summary>
+        </member>
+        <member name="M:Parcela.Data.IParcelaRepository.DeleteParcela(System.Guid)">
+            <summary>
+            Metoda koja brise podatke
+            </summary>
+        </member>
+        <member name="M:Parcela.Data.IParcelaRepository.SaveChanges">
+            <summary>
+            Metoda koja cuva izmene
+            </summary>
+        </member>
+        <member name="T:Parcela.Data.OpstinaRepository">
+            <summary>
+            Repozitorijum opstina
+            </summary>
+        </member>
+        <member name="M:Parcela.Data.OpstinaRepository.#ctor(Parcela.Entities.OpstinaContext,AutoMapper.IMapper)">
+            <summary>
+            Konstruktor za repozitorijum opstina
+            </summary>
+        </member>
+        <member name="M:Parcela.Data.OpstinaRepository.SaveChanges">
+            <summary>
+            Metoda koja cuva izmene
+            </summary>
+        </member>
+        <member name="M:Parcela.Data.OpstinaRepository.GetOpstine">
+            <summary>
+            Metoda koja pribavlja podatke
+            </summary>
+        </member>
+        <member name="M:Parcela.Data.OpstinaRepository.GetOpstinaById(System.Guid)">
+            <summary>
+            Metoda koja pribavlja podatke po ID-u
+            </summary>
+        </member>
+        <member name="M:Parcela.Data.OpstinaRepository.CreateOpstina(Parcela.Entities.Opstina)">
+            <summary>
+            Metoda koja upisuje podatke
+            </summary>
+        </member>
+        <member name="M:Parcela.Data.OpstinaRepository.UpdateOpstina(Parcela.Entities.Opstina)">
+            <summary>
+            Metoda koja azurira podatke
+            </summary>
+        </member>
+        <member name="M:Parcela.Data.OpstinaRepository.DeleteOpstina(System.Guid)">
+            <summary>
+            Metoda koja brise podatke
+            </summary>
+        </member>
+        <member name="T:Parcela.Data.ParcelaRepository">
+            <summary>
+            Repozitorijum delova parcele
+            </summary>
+        </member>
+        <member name="M:Parcela.Data.ParcelaRepository.#ctor(Parcela.Entities.ParcelaContext,AutoMapper.IMapper)">
+            <summary>
+            Konstruktor za repozitorijum delova parcele
+            </summary>
+        </member>
+        <member name="M:Parcela.Data.ParcelaRepository.SaveChanges">
+            <summary>
+            Metoda koja cuva izmene
+            </summary>
+        </member>
+        <member name="M:Parcela.Data.ParcelaRepository.GetParcele(System.String)">
+            <summary>
+            Metoda koja pribavlja podatke
+            </summary>
+        </member>
+        <member name="M:Parcela.Data.ParcelaRepository.GetParcelaById(System.Guid)">
+            <summary>
+            Metoda koja pribavlja podatke po ID-u
+            </summary>
+        </member>
+        <member name="M:Parcela.Data.ParcelaRepository.CreateParcela(Parcela.Entities.ParcelaM)">
+            <summary>
+            Metoda koja upisuje podatke
+            </summary>
+        </member>
+        <member name="M:Parcela.Data.ParcelaRepository.UpdateParcela(Parcela.Entities.ParcelaM)">
+            <summary>
+            Metoda koja azurira podatke
+            </summary>
+        </member>
+        <member name="M:Parcela.Data.ParcelaRepository.DeleteParcela(System.Guid)">
+            <summary>
+            Metoda koja brise podatke
+            </summary>
+        </member>
+        <member name="T:Parcela.Entities.DeoParcele">
+            <summary>
+            Entitet deo parcele
+            </summary>
+        </member>
+        <member name="P:Parcela.Entities.DeoParcele.DeoParceleId">
+            <summary>
+            Id dela parcele
+            </summary>
+        </member>
+        <member name="P:Parcela.Entities.DeoParcele.ParcelaId">
+            <summary>
+            Id parcele
+            </summary>
+        </member>
+        <member name="P:Parcela.Entities.DeoParcele.PovrsinaDelaParcele">
+            <summary>
+            Povrsina dela parcele
+            </summary>
+        </member>
+        <member name="P:Parcela.Entities.DeoParcele.RbrDelaParcele">
+            <summary>
+            Redni broj parcele
+            </summary>
+        </member>
+        <member name="T:Parcela.Entities.DeoParceleConfirmation">
+            <summary>
+            Potvrda za delove parcele
+            </summary>
+        </member>
+        <member name="P:Parcela.Entities.DeoParceleConfirmation.DeoParceleId">
+            <summary>
+            ID dela parcele
+            </summary>
+        </member>
+        <member name="P:Parcela.Entities.DeoParceleConfirmation.DeoParcele">
+            <summary>
+            Osnovni podaci o delu parcele
+            </summary>
+        </member>
+        <member name="T:Parcela.Entities.DeoParceleContext">
+            <summary>
+            Kontekst za deo parcele
+            </summary>
+        </member>
+        <member name="M:Parcela.Entities.DeoParceleContext.#ctor(Microsoft.EntityFrameworkCore.DbContextOptions{Parcela.Entities.DeoParceleContext},Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Konstruktor konteksta za deo parcele
+            </summary>
+        </member>
+        <member name="P:Parcela.Entities.DeoParceleContext.DeloviParcele">
+            <summary>
+            Deklaracija eniteta za smestanje u bazu
+            </summary>
+        </member>
+        <member name="M:Parcela.Entities.DeoParceleContext.OnConfiguring(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder)">
+            <summary>
+            Metoda OnConfiguring
+            </summary>
+        </member>
+        <member name="M:Parcela.Entities.DeoParceleContext.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <summary>
+            Popunjava bazu sa nekim inicijalnim podacima
+            </summary>
+        </member>
+        <member name="T:Parcela.Entities.Opstina">
+            <summary>
+            Entitet opstina
+            </summary>
+        </member>
+        <member name="P:Parcela.Entities.Opstina.OpstinaId">
+            <summary>
+            Id opstine
+            </summary>
+        </member>
+        <member name="P:Parcela.Entities.Opstina.NazivOpstine">
+            <summary>
+            Naziv opstine
+            </summary>
+        </member>
+        <member name="P:Parcela.Entities.Opstina.Parcele">
+            <summary>
+            Lista parcela
+            </summary>
+        </member>
+        <member name="T:Parcela.Entities.OpstinaConfirmation">
+            <summary>
+            Potvrda za opstine
+            </summary>
+        </member>
+        <member name="P:Parcela.Entities.OpstinaConfirmation.OpstinaId">
+            <summary>
+            Id opstine
+            </summary>
+        </member>
+        <member name="P:Parcela.Entities.OpstinaConfirmation.NazivOpstine">
+            <summary>
+            Naziv opstine
+            </summary>
+        </member>
+        <member name="T:Parcela.Entities.OpstinaContext">
+            <summary>
+            Kontekst za opstine
+            </summary>
+        </member>
+        <member name="M:Parcela.Entities.OpstinaContext.#ctor(Microsoft.EntityFrameworkCore.DbContextOptions{Parcela.Entities.OpstinaContext},Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Konstruktor konteksta za opstine
+            </summary>
+        </member>
+        <member name="P:Parcela.Entities.OpstinaContext.Opstine">
+            <summary>
+            Deklaracija eniteta za smestanje u bazu
+            </summary>
+        </member>
+        <member name="M:Parcela.Entities.OpstinaContext.OnConfiguring(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder)">
+            <summary>
+            Metoda OnConfiguring
+            </summary>
+        </member>
+        <member name="M:Parcela.Entities.OpstinaContext.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <summary>
+            Popunjava bazu sa nekim inicijalnim podacima
+            </summary>
+        </member>
+        <member name="T:Parcela.Entities.ParcelaConfirmation">
+            <summary>
+            Potvrda za parcele
+            </summary>
+        </member>
+        <member name="P:Parcela.Entities.ParcelaConfirmation.ParcelaId">
+            <summary>
+            ID parcele
+            </summary>
+        </member>
+        <member name="P:Parcela.Entities.ParcelaConfirmation.Parcela">
+            <summary>
+            Osnovni podaci o parceli
+            </summary>
+        </member>
+        <member name="T:Parcela.Entities.ParcelaContext">
+            <summary>
+            Kontekst za parcele
+            </summary>
+        </member>
+        <member name="M:Parcela.Entities.ParcelaContext.#ctor(Microsoft.EntityFrameworkCore.DbContextOptions{Parcela.Entities.ParcelaContext},Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Konstruktor konteksta za parcele
+            </summary>
+        </member>
+        <member name="P:Parcela.Entities.ParcelaContext.Parcele">
+            <summary>
+            Deklaracija eniteta za smestanje u bazu
+            </summary>
+        </member>
+        <member name="M:Parcela.Entities.ParcelaContext.OnConfiguring(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder)">
+            <summary>
+            Metoda OnConfiguring
+            </summary>
+        </member>
+        <member name="M:Parcela.Entities.ParcelaContext.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <summary>
+            Popunjava bazu sa nekim inicijalnim podacima
+            </summary>
+        </member>
+        <member name="T:Parcela.Entities.ParcelaM">
+            <summary>
+            Enitet parcela
+            </summary>
+        </member>
+        <member name="P:Parcela.Entities.ParcelaM.ParcelaId">
+            <summary>
+            ID parcele
+            </summary>
+        </member>
+        <member name="P:Parcela.Entities.ParcelaM.Povrsina">
+            <summary>
+            Povrsina parcele
+            </summary>
+        </member>
+        <member name="P:Parcela.Entities.ParcelaM.BrojParcele">
+            <summary>
+            Broj parcele
+            </summary>
+        </member>
+        <member name="P:Parcela.Entities.ParcelaM.KatastarskaOpstina">
+            <summary>
+            ID katastarske opstine
+            </summary>
+        </member>
+        <member name="P:Parcela.Entities.ParcelaM.BrojListaNepokretnosti">
+            <summary>
+            Broj lista nepokretnosti parcele
+            </summary>
+        </member>
+        <member name="P:Parcela.Entities.ParcelaM.Kultura">
+            <summary>
+            Kultura parcele
+            </summary>
+        </member>
+        <member name="P:Parcela.Entities.ParcelaM.Klasa">
+            <summary>
+            Klasa parcele
+            </summary>
+        </member>
+        <member name="P:Parcela.Entities.ParcelaM.Obradivost">
+            <summary>
+            Obradivost parcele
+            </summary>
+        </member>
+        <member name="P:Parcela.Entities.ParcelaM.ZasticenaZona">
+            <summary>
+            Zasticena zona parcele
+            </summary>
+        </member>
+        <member name="P:Parcela.Entities.ParcelaM.OblikSvojine">
+            <summary>
+            Oblik svojine parcele
+            </summary>
+        </member>
+        <member name="P:Parcela.Entities.ParcelaM.Odvodnjavanje">
+            <summary>
+            Odvodnjavanje parcele
+            </summary>
+        </member>
+        <member name="P:Parcela.Entities.ParcelaM.KulturaStvarnoStanje">
+            <summary>
+            Stvarno stanje kulture parcele
+            </summary>
+        </member>
+        <member name="P:Parcela.Entities.ParcelaM.KlasaStvarnoStanje">
+            <summary>
+            Stvarno stanje klase parcele
+            </summary>
+        </member>
+        <member name="P:Parcela.Entities.ParcelaM.ObradivostStvarnoStanje">
+            <summary>
+            Stvarno stanje obradivosti parcele
+            </summary>
+        </member>
+        <member name="P:Parcela.Entities.ParcelaM.ZasticenaZonaStvarnoStanje">
+            <summary>
+            Stvarno stanje zasticene zone parcele
+            </summary>
+        </member>
+        <member name="P:Parcela.Entities.ParcelaM.OdvodnjavanjeStvarnoStanje">
+            <summary>
+            Stvarno stanje odvodanjavanja parcele
+            </summary>
+        </member>
+        <member name="P:Parcela.Entities.ParcelaM.DeloviParcele">
+            <summary>
+            Lista delova parcele
+            </summary>
+        </member>
+        <member name="T:Parcela.Models.DeoParceleConfirmationDto">
+            <summary>
+            Potvrda za delove parcele
+            </summary>
+        </member>
+        <member name="P:Parcela.Models.DeoParceleConfirmationDto.DeoParceleId">
+            <summary>
+            Id dela parcele
+            </summary>
+        </member>
+        <member name="P:Parcela.Models.DeoParceleConfirmationDto.ParcelaId">
+            <summary>
+            Id parcele
+            </summary>
+        </member>
+        <member name="P:Parcela.Models.DeoParceleConfirmationDto.PovrsinaDelaParcele">
+            <summary>
+            Naziv dela parcele
+            </summary>
+        </member>
+        <member name="P:Parcela.Models.DeoParceleConfirmationDto.RbrDelaParcele">
+            <summary>
+            Lista parceli
+            </summary>
+        </member>
+        <member name="T:Parcela.Models.DeoParceleCreationDto">
+            <summary>
+            DTO za kreiranje delova parcele
+            </summary>
+        </member>
+        <member name="P:Parcela.Models.DeoParceleCreationDto.ParcelaId">
+            <summary>
+            Id parcele
+            </summary>
+        </member>
+        <member name="P:Parcela.Models.DeoParceleCreationDto.PovrsinaDelaParcele">
+            <summary>
+            Naziv dela parcele
+            </summary>
+        </member>
+        <member name="P:Parcela.Models.DeoParceleCreationDto.RbrDelaParcele">
+            <summary>
+            Lista parceli
+            </summary>
+        </member>
+        <member name="T:Parcela.Models.DeoParceleCreationValidator">
+            <summary>
+            Validator za kreiranje delova parcele
+            </summary>
+        </member>
+        <member name="M:Parcela.Models.DeoParceleCreationValidator.#ctor">
+            <summary>
+            Konstruktor validatora kreiranje za delova parcele
+            </summary>
+        </member>
+        <member name="T:Parcela.Models.DeoParceleDto">
+            <summary>
+            DTO za delove parcele
+            </summary>
+        </member>
+        <member name="P:Parcela.Models.DeoParceleDto.ParcelaId">
+            <summary>
+            Id parcele
+            </summary>
+        </member>
+        <member name="P:Parcela.Models.DeoParceleDto.PovrsinaDelaParcele">
+            <summary>
+            Naziv dela parcele
+            </summary>
+        </member>
+        <member name="P:Parcela.Models.DeoParceleDto.RbrDelaParcele">
+            <summary>
+            Lista parceli
+            </summary>
+        </member>
+        <member name="T:Parcela.Models.DeoParceleUpdateDto">
+            <summary>
+            DTO za azuriranje delova parcele
+            </summary>
+        </member>
+        <member name="P:Parcela.Models.DeoParceleUpdateDto.DeoParceleId">
+            <summary>
+            Id dela parcele
+            </summary>
+        </member>
+        <member name="P:Parcela.Models.DeoParceleUpdateDto.ParcelaId">
+            <summary>
+            Id parcele
+            </summary>
+        </member>
+        <member name="P:Parcela.Models.DeoParceleUpdateDto.PovrsinaDelaParcele">
+            <summary>
+            Naziv dela parcele
+            </summary>
+        </member>
+        <member name="P:Parcela.Models.DeoParceleUpdateDto.RbrDelaParcele">
+            <summary>
+            Lista parceli
+            </summary>
+        </member>
+        <member name="T:Parcela.Models.DeoParceleUpdateValidator">
+            <summary>
+            Validator za azuriranje delove parcele
+            </summary>
+        </member>
+        <member name="M:Parcela.Models.DeoParceleUpdateValidator.#ctor">
+            <summary>
+            Konstruktor validatora za azuriranje delova parcele
+            </summary>
+        </member>
+        <member name="T:Parcela.Models.OpstinaConfirmationDto">
+            <summary>
+            Potvrda za opstine
+            </summary>
+        </member>
+        <member name="P:Parcela.Models.OpstinaConfirmationDto.OpstinaId">
+            <summary>
+            Id opstine
+            </summary>
+        </member>
+        <member name="P:Parcela.Models.OpstinaConfirmationDto.NazivOpstine">
+            <summary>
+            Naziv opstine
+            </summary>
+        </member>
+        <member name="T:Parcela.Models.OpstinaCreationDto">
+            <summary>
+            DTO za kreiranje opstina
+            </summary>
+        </member>
+        <member name="P:Parcela.Models.OpstinaCreationDto.NazivOpstine">
+            <summary>
+            Naziv opstine
+            </summary>
+        </member>
+        <member name="T:Parcela.Models.OpstinaCreationValidator">
+            <summary>
+            Validator za kreiranje opstina
+            </summary>
+        </member>
+        <member name="M:Parcela.Models.OpstinaCreationValidator.#ctor">
+            <summary>
+            Konstruktor validatora kreiranje za opstine
+            </summary>
+        </member>
+        <member name="T:Parcela.Models.OpstinaDto">
+            <summary>
+            Entitet opstina
+            </summary>
+        </member>
+        <member name="P:Parcela.Models.OpstinaDto.NazivOpstine">
+            <summary>
+            Naziv opstine
+            </summary>
+        </member>
+        <member name="T:Parcela.Models.OpstinaUpdateDto">
+            <summary>
+            DTO za azuriranje opstina
+            </summary>
+        </member>
+        <member name="P:Parcela.Models.OpstinaUpdateDto.OpstinaId">
+            <summary>
+            Id opstine
+            </summary>
+        </member>
+        <member name="P:Parcela.Models.OpstinaUpdateDto.NazivOpstine">
+            <summary>
+            Naziv opstine
+            </summary>
+        </member>
+        <member name="T:Parcela.Models.OpstinaUpdateValidator">
+            <summary>
+            Validator za azuriranje opstina
+            </summary>
+        </member>
+        <member name="M:Parcela.Models.OpstinaUpdateValidator.#ctor">
+            <summary>
+            Konstruktor validatora za azuriranje opstina
+            </summary>
+        </member>
+        <member name="T:Parcela.Models.ParcelaConfirmationDto">
+            <summary>
+            Potvrda za parcele parceli
+            </summary>
+        </member>
+        <member name="P:Parcela.Models.ParcelaConfirmationDto.ParcelaId">
+            <summary>
+            ID parcele
+            </summary>
+        </member>
+        <member name="P:Parcela.Models.ParcelaConfirmationDto.Parcela">
+            <summary>
+            Osnovni podaci o parceli
+            </summary>
+        </member>
+        <member name="T:Parcela.Models.ParcelaCreationDto">
+            <summary>
+            DTO za kreiranje parceli
+            </summary>
+        </member>
+        <member name="P:Parcela.Models.ParcelaCreationDto.Povrsina">
+            <summary>
+            Povrsina parcele
+            </summary>
+        </member>
+        <member name="P:Parcela.Models.ParcelaCreationDto.BrojParcele">
+            <summary>
+            Broj parcele
+            </summary>
+        </member>
+        <member name="P:Parcela.Models.ParcelaCreationDto.KatastarskaOpstina">
+            <summary>
+            ID katastarske opstine
+            </summary>
+        </member>
+        <member name="P:Parcela.Models.ParcelaCreationDto.BrojListaNepokretnosti">
+            <summary>
+            Broj lista nepokretnosti parcele
+            </summary>
+        </member>
+        <member name="P:Parcela.Models.ParcelaCreationDto.Kultura">
+            <summary>
+            Kultura parcele
+            </summary>
+        </member>
+        <member name="P:Parcela.Models.ParcelaCreationDto.Klasa">
+            <summary>
+            Klasa parcele
+            </summary>
+        </member>
+        <member name="P:Parcela.Models.ParcelaCreationDto.Obradivost">
+            <summary>
+            Obradivost parcele
+            </summary>
+        </member>
+        <member name="P:Parcela.Models.ParcelaCreationDto.ZasticenaZona">
+            <summary>
+            Zasticena zona parcele
+            </summary>
+        </member>
+        <member name="P:Parcela.Models.ParcelaCreationDto.OblikSvojine">
+            <summary>
+            Oblik svojine parcele
+            </summary>
+        </member>
+        <member name="P:Parcela.Models.ParcelaCreationDto.Odvodnjavanje">
+            <summary>
+            Odvodnjavanje parcele
+            </summary>
+        </member>
+        <member name="P:Parcela.Models.ParcelaCreationDto.KulturaStvarnoStanje">
+            <summary>
+            Stvarno stanje kulture parcele
+            </summary>
+        </member>
+        <member name="P:Parcela.Models.ParcelaCreationDto.KlasaStvarnoStanje">
+            <summary>
+            Stvarno stanje klase parcele
+            </summary>
+        </member>
+        <member name="P:Parcela.Models.ParcelaCreationDto.ObradivostStvarnoStanje">
+            <summary>
+            Stvarno stanje obradivosti parcele
+            </summary>
+        </member>
+        <member name="P:Parcela.Models.ParcelaCreationDto.ZasticenaZonaStvarnoStanje">
+            <summary>
+            Stvarno stanje zasticene zone parcele
+            </summary>
+        </member>
+        <member name="P:Parcela.Models.ParcelaCreationDto.OdvodnjavanjeStvarnoStanje">
+            <summary>
+            Stvarno stanje odvodanjavanja parcele
+            </summary>
+        </member>
+        <member name="T:Parcela.Models.ParcelaCreationValidator">
+            <summary>
+            Validator za kreiranje parceli
+            </summary>
+        </member>
+        <member name="M:Parcela.Models.ParcelaCreationValidator.#ctor">
+            <summary>
+            Konstruktor validatora za kreiranje parceli
+            </summary>
+        </member>
+        <member name="T:Parcela.Models.ParcelaDto">
+            <summary>
+            DTO za parcele
+            </summary>
+        </member>
+        <member name="P:Parcela.Models.ParcelaDto.TipId">
+            <summary>
+            ID dela parcele
+            </summary>
+        </member>
+        <member name="P:Parcela.Models.ParcelaDto.DatumPodnosenjaParcele">
+            <summary>
+            Datum podnosenja parcele
+            </summary>
+        </member>
+        <member name="P:Parcela.Models.ParcelaDto.RazlogParcele">
+            <summary>
+            Razlog parcele parcele
+            </summary>
+        </member>
+        <member name="P:Parcela.Models.ParcelaDto.Obrazlozenje">
+            <summary>
+            Obrazlozenje parcele
+            </summary>
+        </member>
+        <member name="P:Parcela.Models.ParcelaDto.DatumResenja">
+            <summary>
+            Datum resenja parcele
+            </summary>
+        </member>
+        <member name="P:Parcela.Models.ParcelaDto.BrojResenja">
+            <summary>
+            Broj resenja parcele
+            </summary>
+        </member>
+        <member name="P:Parcela.Models.ParcelaDto.StatusParcele">
+            <summary>
+            Status parcele
+            </summary>
+        </member>
+        <member name="P:Parcela.Models.ParcelaDto.BrojOdluke">
+            <summary>
+            Broj odluke parcele
+            </summary>
+        </member>
+        <member name="P:Parcela.Models.ParcelaDto.RadnjaNaOsnovuParcele">
+            <summary>
+            Radnja na osnovu parcele
+            </summary>
+        </member>
+        <member name="T:Parcela.Models.ParcelaUpdateDto">
+            <summary>
+            DTO za azuriranje parcela
+            </summary>
+        </member>
+        <member name="P:Parcela.Models.ParcelaUpdateDto.ParcelaId">
+            <summary>
+            ID parcele
+            </summary>
+        </member>
+        <member name="P:Parcela.Models.ParcelaUpdateDto.Povrsina">
+            <summary>
+            Povrsina parcele
+            </summary>
+        </member>
+        <member name="P:Parcela.Models.ParcelaUpdateDto.BrojParcele">
+            <summary>
+            Broj parcele
+            </summary>
+        </member>
+        <member name="P:Parcela.Models.ParcelaUpdateDto.KatastarskaOpstina">
+            <summary>
+            ID katastarske opstine
+            </summary>
+        </member>
+        <member name="P:Parcela.Models.ParcelaUpdateDto.BrojListaNepokretnosti">
+            <summary>
+            Broj lista nepokretnosti parcele
+            </summary>
+        </member>
+        <member name="P:Parcela.Models.ParcelaUpdateDto.Kultura">
+            <summary>
+            Kultura parcele
+            </summary>
+        </member>
+        <member name="P:Parcela.Models.ParcelaUpdateDto.Klasa">
+            <summary>
+            Klasa parcele
+            </summary>
+        </member>
+        <member name="P:Parcela.Models.ParcelaUpdateDto.Obradivost">
+            <summary>
+            Obradivost parcele
+            </summary>
+        </member>
+        <member name="P:Parcela.Models.ParcelaUpdateDto.ZasticenaZona">
+            <summary>
+            Zasticena zona parcele
+            </summary>
+        </member>
+        <member name="P:Parcela.Models.ParcelaUpdateDto.OblikSvojine">
+            <summary>
+            Oblik svojine parcele
+            </summary>
+        </member>
+        <member name="P:Parcela.Models.ParcelaUpdateDto.Odvodnjavanje">
+            <summary>
+            Odvodnjavanje parcele
+            </summary>
+        </member>
+        <member name="P:Parcela.Models.ParcelaUpdateDto.KulturaStvarnoStanje">
+            <summary>
+            Stvarno stanje kulture parcele
+            </summary>
+        </member>
+        <member name="P:Parcela.Models.ParcelaUpdateDto.KlasaStvarnoStanje">
+            <summary>
+            Stvarno stanje klase parcele
+            </summary>
+        </member>
+        <member name="P:Parcela.Models.ParcelaUpdateDto.ObradivostStvarnoStanje">
+            <summary>
+            Stvarno stanje obradivosti parcele
+            </summary>
+        </member>
+        <member name="P:Parcela.Models.ParcelaUpdateDto.ZasticenaZonaStvarnoStanje">
+            <summary>
+            Stvarno stanje zasticene zone parcele
+            </summary>
+        </member>
+        <member name="P:Parcela.Models.ParcelaUpdateDto.OdvodnjavanjeStvarnoStanje">
+            <summary>
+            Stvarno stanje odvodanjavanja parcele
+            </summary>
+        </member>
+        <member name="T:Parcela.Models.ParcelaUpdateValidator">
+            <summary>
+            Validator za azuriranje parceli
+            </summary>
+        </member>
+        <member name="M:Parcela.Models.ParcelaUpdateValidator.#ctor">
+            <summary>
+            Konstruktor validatora za azuriranje parceli
+            </summary>
+        </member>
+        <member name="T:Parcela.Profiles.DeoParceleConfirmationProfile">
+            <summary>
+            Profil za potvrdu delova parcele
+            </summary>
+        </member>
+        <member name="M:Parcela.Profiles.DeoParceleConfirmationProfile.#ctor">
+            <summary>
+            Konstruktor profila za potvrdu delova parcele
+            </summary>
+        </member>
+        <member name="T:Parcela.Profiles.DeoParceleProfile">
+            <summary>
+            Profil za delove parcele
+            </summary>
+        </member>
+        <member name="M:Parcela.Profiles.DeoParceleProfile.#ctor">
+            <summary>
+            Konstruktor rofila za delove parcele
+            </summary>
+        </member>
+        <member name="T:Parcela.Profiles.OpstinaConfirmationProfile">
+            <summary>
+            Profil za potvrdu opstina
+            </summary>
+        </member>
+        <member name="M:Parcela.Profiles.OpstinaConfirmationProfile.#ctor">
+            <summary>
+            Konstruktor profila za potvrdu opstina
+            </summary>
+        </member>
+        <member name="T:Parcela.Profiles.OpstinaProfile">
+            <summary>
+            Profil za opstine
+            </summary>
+        </member>
+        <member name="M:Parcela.Profiles.OpstinaProfile.#ctor">
+            <summary>
+            Konstruktor profila za opstine
+            </summary>
+        </member>
+        <member name="T:Parcela.Profiles.ParcelaConfirmationProfile">
+            <summary>
+            Profil za potvrdu parcela
+            </summary>
+        </member>
+        <member name="M:Parcela.Profiles.ParcelaConfirmationProfile.#ctor">
+            <summary>
+            Konstruktor profila za potvrdu parcela
+            </summary>
+        </member>
+        <member name="T:Parcela.Profiles.ParcelaMProfile">
+            <summary>
+            Profil za parcele
+            </summary>
+        </member>
+        <member name="M:Parcela.Profiles.ParcelaMProfile.#ctor">
+            <summary>
+            Konstruktor profila za parcele
+            </summary>
+        </member>
+        <member name="T:Parcela.Program">
+            <summary>
+            Osnovni program
+            </summary>
+        </member>
+        <member name="M:Parcela.Program.Main(System.String[])">
+            <summary>
+            Pocetna metoda
+            </summary>
+        </member>
+        <member name="M:Parcela.Program.CreateHostBuilder(System.String[])">
+            <summary>
+            Kreiranje host-a
+            </summary>
+        </member>
+        <member name="T:Parcela.Startup">
+            <summary>
+            Startup klasa
+            </summary>
+        </member>
+        <member name="M:Parcela.Startup.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Konstruktor startup klase
+            </summary>
+        </member>
+        <member name="P:Parcela.Startup.Configuration">
+            <summary>
+            Deklaracija Configuration-a
+            </summary>
+        </member>
+        <member name="M:Parcela.Startup.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            ConfigureServices metoda
+            </summary>
+        </member>
+        <member name="M:Parcela.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IWebHostEnvironment)">
+            <summary>
+            Configure metoda
+            </summary>
+        </member>
+    </members>
+</doc>
