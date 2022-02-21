@@ -1,3 +1,4 @@
+using LoggerService.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -20,7 +21,7 @@ namespace LoggerService
     {
         public Startup(IConfiguration configuration)
         {
-            LogManager.LoadConfiguration(String.Concat(Directory.GetCurrentDirectory(), "/nlog.config"));
+            LogManager.LoadConfiguration(String.Concat(Directory.GetCurrentDirectory(), "/nlog.config.xml"));
             Configuration = configuration;
         }
 
@@ -30,6 +31,7 @@ namespace LoggerService
         public void ConfigureServices(IServiceCollection services)
         {
 
+            services.AddScoped<ILoggerManager, LoggerManager>();
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
