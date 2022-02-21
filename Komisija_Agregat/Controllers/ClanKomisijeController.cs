@@ -13,6 +13,7 @@ namespace Komisija_Agregat.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    
     class ClanKomisijeController : ControllerBase
     {
         private readonly IClanKomisijeRepository clanKomisijeRepository;

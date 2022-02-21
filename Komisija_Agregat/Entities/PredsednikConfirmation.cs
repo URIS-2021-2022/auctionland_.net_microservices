@@ -8,7 +8,7 @@ namespace Komisija_Agregat.Entities
 {
     public class PredsednikConfirmation
     {
-        public Guid PredsednikId { get; set; }
+        public Guid PredsednikId { get; set; } = Guid.NewGuid();
         public string ImePredsednika { get; set; }
         public string PrezimePredsednika { get; set; }
         public string EmailPredsednika { get; set; }

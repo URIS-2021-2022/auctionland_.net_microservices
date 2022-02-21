@@ -8,7 +8,7 @@ namespace Komisija_Agregat.Entities
 {
     public class ClanKomisije
     {
-        public Guid ClanId { get; set; }
+        public Guid ClanId { get; set; } = Guid.NewGuid();
         public string ImeClana { get; set; }
         public string PrezimeClana { get; set; }
         public string EmailClana { get; set; }

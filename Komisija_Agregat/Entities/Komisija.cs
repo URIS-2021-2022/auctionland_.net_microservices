@@ -8,7 +8,7 @@ namespace Komisija_Agregat.Entities
 {
     public class Komisija
     {
-        public Guid KomisijaId { get; set; }
+        public Guid KomisijaId { get; set; }   = Guid.NewGuid();
         public PredsednikDto Predsednik { get; set; }
         public List<ClanKomisijeDto> Clanovi { get; set; }
     }
