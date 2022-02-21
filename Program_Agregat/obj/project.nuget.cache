@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "PwRa+6gy661Zgvp06+iqvRy3Aa36Y86HDFgeclnX7p9WVTLiIX0MjMLIuhMzwiRgMWrgi+V5ySrFuc+hs5CZfQ==",
+  "dgSpecHash": "w/i2MX4RpDZ3pniPw5QVQKyCWOvyXbN40bp2tBSpWMsTst9ZriBa4JFk2BS4eQ78fzE1osrioZeK7XmvxcCbIA==",
   "success": true,
   "projectFilePath": "C:\\Users\\ASUS ROG\\source\\repos\\tim-6---auctionland-tim-6-nopcommerce\\Program_Agregat\\Program_Agregat.fsproj",
   "expectedPackageFiles": [
@@ -8,9 +8,15 @@
     "C:\\Users\\ASUS ROG\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\11.0.0\\automapper.extensions.microsoft.dependencyinjection.11.0.0.nupkg.sha512",
     "C:\\Users\\ASUS ROG\\.nuget\\packages\\fsharp.core\\6.0.1\\fsharp.core.6.0.1.nupkg.sha512",
     "C:\\Users\\ASUS ROG\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
+    "C:\\Users\\ASUS ROG\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
     "C:\\Users\\ASUS ROG\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\6.0.0\\microsoft.extensions.dependencyinjection.abstractions.6.0.0.nupkg.sha512",
     "C:\\Users\\ASUS ROG\\.nuget\\packages\\microsoft.extensions.options\\6.0.0\\microsoft.extensions.options.6.0.0.nupkg.sha512",
     "C:\\Users\\ASUS ROG\\.nuget\\packages\\microsoft.extensions.primitives\\6.0.0\\microsoft.extensions.primitives.6.0.0.nupkg.sha512",
+    "C:\\Users\\ASUS ROG\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\ASUS ROG\\.nuget\\packages\\swashbuckle.aspnetcore\\6.2.3\\swashbuckle.aspnetcore.6.2.3.nupkg.sha512",
+    "C:\\Users\\ASUS ROG\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.2.3\\swashbuckle.aspnetcore.swagger.6.2.3.nupkg.sha512",
+    "C:\\Users\\ASUS ROG\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.2.3\\swashbuckle.aspnetcore.swaggergen.6.2.3.nupkg.sha512",
+    "C:\\Users\\ASUS ROG\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.2.3\\swashbuckle.aspnetcore.swaggerui.6.2.3.nupkg.sha512",
     "C:\\Users\\ASUS ROG\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512"
   ],
   "logs": []

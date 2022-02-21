@@ -58,7 +58,7 @@ namespace Program_Agregat.Data
 
             predlog.PredlogPlanaId = predlogPlana.PredlogPlanaId;
             predlog.BrojDokumenta = predlogPlana.BrojDokumenta;
-            predlog.MisljenjeKomisije = predlogPlana.MIsljenjeKomisije;
+            predlog.MisljenjeKomisije = predlogPlana.MisljenjeKomisije;
             predlog.Usvojen = predlogPlana.Usvojen;
             predlog.DatumDokumenta = predlogPlana.DatumDokumenta;
 

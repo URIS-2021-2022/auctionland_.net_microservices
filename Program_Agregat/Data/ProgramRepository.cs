@@ -22,11 +22,10 @@ namespace Program_Agregat.Data
 
         }
 
-        public List<Program> GetProgrami(string MaksimalnoOgranicenje = null)
+        public List<Program> GetProgrami()
         {
 
-            return (from e in Programi
-                    where string.IsNullOrEmpty(MaksimalnoOgranicenje) || e.MaksimalnoOgranicenje == MaksimalnoOgranicenje
+            return (from e in Programi                  
                     select e).ToList();
         }
 

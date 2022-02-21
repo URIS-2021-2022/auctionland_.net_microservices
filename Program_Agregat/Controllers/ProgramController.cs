@@ -6,14 +6,14 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
 using System;
 using System.Collections.Generic;
-using System.linq;
+using System.Linq;
 using System.Threading.Tasks;
 using Program_Agregat.Entities;
 
 namespace Program_Agregat.Controllers
 {
     [Route("api/[controller]")]
-    [apiController]
+    [ApiController]
     class ProgramController : ControllerBase
     {
         private readonly IProgramRepository programRepository;
@@ -28,9 +28,9 @@ namespace Program_Agregat.Controllers
         }
 
         [HttpGet]
-        public ActionResult<List<ProgramDto>> GetProgrami(int MaksimalnoOgranicenje)
+        public ActionResult<List<ProgramDto>> GetProgrami(string MaksimalnoOgranicenje)
         {
-            List<ProgramModel> programi = programRepository.GetProgrami(MaksimalnoOgranicenje);
+            var programi = programRepository.GetProgrami(MaksimalnoOgranicenje);
             if(programi == null || programi.Count == 0)
             {
                 return NoContent();
@@ -41,7 +41,7 @@ namespace Program_Agregat.Controllers
         [HttpGet("{programId}")]
         public ActionResult<ProgramDto> GetProgramById(Guid programId)
         {
-            ProgramModel programModel = programRepository.GetProgramById(programId);
+            var programModel = programRepository.GetProgramById(programId);
             if (programModel == null)
             {
                 return NotFound();
@@ -70,7 +70,7 @@ namespace Program_Agregat.Controllers
         {
             try 
             {
-                ProgramModel programModel = programRepository.GetProgramById(programId);
+                var programModel = programRepository.GetProgramById(programId);
                 if(programModel == null)
                 {
                     return NotFound();
@@ -81,6 +81,25 @@ namespace Program_Agregat.Controllers
             catch
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, "Delete Error");
+            }
+        }
+
+        [HttpPut]
+        public ActionResult<PredlogPlanaConfirmationDto> UpdatePredlogPlana(PredlogPlanaUpdateDto predlogPlana)
+        {
+            try
+            {
+                if (predlogPlanaRepository.GetPredlogPlanaById(predlogPlana.PredlogPlanaId) == null)
+                {
+                    return NotFound();
+                }
+                PredlogPlana predlogPlana2 = mapper.Map<PredlogPlana>(predlogPlana);
+                PredlogPlanaConfirmation confirmation = predlogPlanaRepository.UpdatePredlogPlana(predlogPlana2);
+                return Ok(mapper.Map<PredlogPlanaDto>(confirmation));
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Update error");
             }
         }
     }

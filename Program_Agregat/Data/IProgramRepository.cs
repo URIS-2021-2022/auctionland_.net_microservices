@@ -9,7 +9,7 @@ namespace Program_Agregat.Data
 {
     public interface IProgramRepository
     {
-        List<Program> GetProgrami(string MaksimalnoOgranicenje = null);
+        List<Program> GetProgrami();
 
         Program GetProgramById(Guid ProgramId);
 

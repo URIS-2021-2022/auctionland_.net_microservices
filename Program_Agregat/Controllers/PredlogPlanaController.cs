@@ -7,13 +7,13 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
 using System;
 using System.Collections.Generic;
-using System.linq;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Program_Agregat.Controllers
 {
     [Route("api/[controller]")]
-    [apiController]
+    [ApiController]
     class PredlogPlanaController : ControllerBase
     {
         private readonly IPredlogPlanaRepository predlogPlanaRepository;
@@ -28,9 +28,9 @@ namespace Program_Agregat.Controllers
         }
 
         [HttpGet]
-        public ActionResult<List<PredlogPlanaDto>> GetPredloziPlana(int BrojDokumenta)
+        public ActionResult<List<PredlogPlanaDto>> GetPredloziPlana(string BrojDokumenta)
         {
-            List<PredlogPlanaModel> predloziPlana = predlogPlanaRepository.GetPredloziPlana(BrojDokumenta);
+            var predloziPlana = predlogPlanaRepository.GetPredloziPlana(BrojDokumenta);
             if (predloziPlana == null || predloziPlana.Count == 0)
             {
                 return NoContent();
@@ -41,7 +41,7 @@ namespace Program_Agregat.Controllers
         [HttpGet("{predlogPlanaId}")]
         public ActionResult<PredlogPlanaDto> GetPredlogPlanaById(Guid predlogPlanaId)
         {
-            PredlogPlanaModel predlogPlanaModel = predlogPlanaRepository.GetPredlogPlanaById(predlogPlanaId);
+            var predlogPlanaModel = predlogPlanaRepository.GetPredlogPlanaById(predlogPlanaId);
             if (predlogPlanaModel == null)
             {
                 return NotFound();
@@ -55,7 +55,7 @@ namespace Program_Agregat.Controllers
             try
             {
                 var predlogPlanaEntity = mapper.Map<PredlogPlana>(predlogPlana);
-                PredlogPlanaConfirmation confirmation = predlogPlanaRepository.CreatePredlogPlana(predlogPlanaEntity);
+                var confirmation = predlogPlanaRepository.CreatePredlogPlana(predlogPlanaEntity);
                 string location = linkGenerator.GetPathByAction("GetPredlogPlana", "PredlogPlana", new { predlogPlanaId = confirmation.PredlogPlanaId });
                 return Created(location, mapper.Map<PredlogPlanaDto>(confirmation));
             }
@@ -70,7 +70,7 @@ namespace Program_Agregat.Controllers
         {
             try
             {
-                PredlogPlanaModel predlogPlanaModel = predlogPlanaRepository.GetPredlogPlanaById(predlogPlanaId);
+                var predlogPlanaModel = predlogPlanaRepository.GetPredlogPlanaById(predlogPlanaId);
                 if (predlogPlanaModel == null)
                 {
                     return NotFound();
@@ -81,6 +81,25 @@ namespace Program_Agregat.Controllers
             catch
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, "Delete Error");
+            }
+        }
+
+        [HttpPut]
+        public ActionResult<ProgramConfirmationDto> UpdateProgram(ProgramUpdateDto program)
+        {
+            try
+            {
+                if (programRepository.GetProgramById(program.ProgramId) == null)
+                {
+                    return NotFound();
+                }
+                Program program2 = mapper.Map<Program>(program);
+                ProgramConfirmation confirmation = programRepository.UpdateProgram(program2);
+                return Ok(mapper.Map<ProgramDto>(confirmation));
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Update error");
             }
         }
     }
