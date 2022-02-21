@@ -88,8 +88,6 @@ namespace Licitacija_agregat.Controllers
         public ActionResult<EtapaConfirmationDto> CreateEtapa([FromBody] EtapaCreationDto etapa)
         {
 
-
-
             try
             {
 

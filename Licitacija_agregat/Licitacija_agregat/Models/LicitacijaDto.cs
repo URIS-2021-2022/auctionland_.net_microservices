@@ -47,6 +47,8 @@ namespace Licitacija_agregat.Models
         /// </summary>
         public DateTime Rok_za_dostavljanje_prijave { get; set; }
 
+        public List<EtapaDto> ListaEtapa { get; set; }
+
 
     }
 }
