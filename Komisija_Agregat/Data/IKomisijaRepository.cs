@@ -19,5 +19,7 @@ namespace Komisija_Agregat.Data
         KomisijaConfirmation UpdateKomisija(Komisija komisija);
 
         void DeleteKomisija(Guid KomisijaId);
+
+        bool SaveChanges();
     }
 }

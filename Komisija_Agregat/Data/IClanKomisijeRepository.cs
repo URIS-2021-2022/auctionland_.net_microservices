@@ -19,5 +19,7 @@ namespace Komisija_Agregat.Data
         ClanKomisijeConfirmation UpdateClanKomisije(ClanKomisije clanKomisije);
 
         void DeleteClanKomisije(Guid ClanId);
+
+        bool SaveChanges();
     }
 }

@@ -6,58 +6,48 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System;
+using AutoMapper;
 
 namespace Komisija_Agregat.Data
 {
 
     public class ClanKomisijeRepository : IClanKomisijeRepository
     {
-        public static List<ClanKomisije> ClanoviKomisije { get; set; } = new List<ClanKomisije>();
 
-        public ClanKomisijeRepository()
+        private readonly KomisijaContext context;
+        private readonly IMapper mapper;
+
+        public ClanKomisijeRepository(KomisijaContext context, IMapper mapper)
         {
-            FillData();
+            
+            this.context = context;
+            this.mapper = mapper;
         }
 
-        private void FillData()
+        public bool SaveChanges()
         {
-          
+            return context.SaveChanges() > 0;
         }
 
         public List<ClanKomisije> GetClanovi(string ImeClana = null, string PrezimeClana = null, string EmailClana = null)
         {
 
-            return (from e in ClanoviKomisije
-                    where string.IsNullOrEmpty(ImeClana) || e.ImeClana == ImeClana &&
+            return context.ClanoviKomisije.Where( e=> string.IsNullOrEmpty(ImeClana) || e.ImeClana == ImeClana &&
                           string.IsNullOrEmpty(PrezimeClana) || e.PrezimeClana == PrezimeClana &&
-                          string.IsNullOrEmpty(EmailClana) || e.EmailClana == EmailClana
-                    select e).ToList();
+                          string.IsNullOrEmpty(EmailClana) || e.EmailClana == EmailClana).ToList();
         }
 
         public ClanKomisije GetClanKomisijeById(Guid ClanId)
         {
 
-            return ClanoviKomisije.FirstOrDefault(e => e.ClanId == ClanId);
+            return context.ClanoviKomisije.FirstOrDefault(e => e.ClanId == ClanId);
 
         }
 
         public ClanKomisijeConfirmation CreateClanKomisije(ClanKomisije clanKomisije)
         {
-            clanKomisije.ClanId = Guid.NewGuid();
-            ClanoviKomisije.Add(clanKomisije);
-            ClanKomisije clan = GetClanKomisijeById(clanKomisije.ClanId);
-
-            return new ClanKomisijeConfirmation
-            {
-                ClanId = clan.ClanId,
-
-                ImeClana = clan.ImeClana,
-
-                PrezimeClana = clan.PrezimeClana,
-
-                EmailClana = clan.EmailClana
-
-            };
+            var createdEntity = context.Add(clanKomisije);
+            return mapper.Map<ClanKomisijeConfirmation>(createdEntity.Entity);
         }
 
         public ClanKomisijeConfirmation UpdateClanKomisije(ClanKomisije clanKomisije)
@@ -75,12 +65,12 @@ namespace Komisija_Agregat.Data
                 ImeClana = clan.ImeClana,
                 PrezimeClana = clan.PrezimeClana,
                 EmailClana = clan.EmailClana
-            };
+            }; 
         }
 
         public void DeleteClanKomisije(Guid ClanId)
         {
-            ClanoviKomisije.Remove(ClanoviKomisije.FirstOrDefault(e => e.ClanId == ClanId));
+            context.Remove(GetClanKomisijeById(ClanId));
         }
 
     }

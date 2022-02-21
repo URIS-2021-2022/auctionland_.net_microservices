@@ -19,5 +19,8 @@ namespace Komisija_Agregat.Data
         PredsednikConfirmation UpdatePredsednik(Predsednik predsednik);
 
         void DeletePredsednik(Guid PredsednikId);
+
+        bool SaveChanges();
+    
     }
 }

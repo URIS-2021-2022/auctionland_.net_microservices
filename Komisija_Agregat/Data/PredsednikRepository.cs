@@ -5,58 +5,47 @@ using System.Linq;
 using System.Threading.Tasks;
 using Komisija_Agregat.Entities;
 using Komisija_Agregat.Models;
+using AutoMapper;
 
 namespace Komisija_Agregat.Data
 {
 
     public class PredsednikRepository : IPredsednikRepository
     {
-        public static List<Predsednik> Predsednici { get; set; } = new List<Predsednik>();
+        private readonly KomisijaContext context;
+        private readonly IMapper mapper;
 
-        public PredsednikRepository()
+        public PredsednikRepository(KomisijaContext context, IMapper mapper)
         {
-            FillData();
+            this.context = context;
+            this.mapper = mapper;
         }
 
-        private void FillData()
+        public bool SaveChanges()
         {
-            
+            return context.SaveChanges()>0;
         }
 
         public List<Predsednik> GetPredsednici(string ImePredsednika = null, string PrezimePredsednika = null, string EmailPredsednika = null)
         {
 
-            return (from e in Predsednici
-                    where string.IsNullOrEmpty(ImePredsednika) || e.ImePredsednika == ImePredsednika &&
+            return context.Predsednici.Where(e => string.IsNullOrEmpty(ImePredsednika) || e.ImePredsednika == ImePredsednika &&
                           string.IsNullOrEmpty(PrezimePredsednika) || e.PrezimePredsednika == PrezimePredsednika &&
-                          string.IsNullOrEmpty(EmailPredsednika) || e.EmailPredsednika == EmailPredsednika
-                    select e).ToList();
+                          string.IsNullOrEmpty(EmailPredsednika) || e.EmailPredsednika == EmailPredsednika).ToList();
         }
 
         public Predsednik GetPredsednikById(Guid PredsednikId)
         {
 
-            return Predsednici.FirstOrDefault(e => e.PredsednikId == PredsednikId);
+            return context.Predsednici.FirstOrDefault(e => e.PredsednikId == PredsednikId);
 
         }
 
         public PredsednikConfirmation CreatePredsednik(Predsednik predsednik)
         {
-            predsednik.PredsednikId = Guid.NewGuid();
-            Predsednici.Add(predsednik);
-            Predsednik pred = GetPredsednikById(predsednik.PredsednikId);
+            var createdEntity = context.Add(predsednik);
+            return mapper.Map<PredsednikConfirmation>(createdEntity.Entity);
 
-            return new PredsednikConfirmation
-            {
-                PredsednikId = pred.PredsednikId,
-
-                ImePredsednika = pred.ImePredsednika,
-
-                PrezimePredsednika = pred.PrezimePredsednika,
-
-                EmailPredsednika = pred.EmailPredsednika,
-
-            };
         }
 
         public PredsednikConfirmation UpdatePredsednik(Predsednik predsednik)
@@ -74,12 +63,12 @@ namespace Komisija_Agregat.Data
                 ImePredsednika = pred.ImePredsednika,
                 PrezimePredsednika = pred.PrezimePredsednika,
                 EmailPredsednika = pred.EmailPredsednika
-            };
+            }; 
         }
 
         public void DeletePredsednik(Guid PredsednikId)
         {
-            Predsednici.Remove(Predsednici.FirstOrDefault(e => e.PredsednikId == PredsednikId));
+            context.Remove(GetPredsednikById(PredsednikId));
         }
 
     }

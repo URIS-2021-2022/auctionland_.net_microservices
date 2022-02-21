@@ -17,6 +17,8 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using Komisija_Agregat.Data;
+using Komisija_Agregat.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace Komisija_Agregat
 {
@@ -33,7 +35,7 @@ namespace Komisija_Agregat
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddControllers();
+            
             services.AddControllers(setup =>
             {
                 setup.ReturnHttpNotAcceptable = true;
@@ -77,9 +79,9 @@ namespace Komisija_Agregat
             });
 
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-            services.AddSingleton<IKomisijaRepository, KomisijaRepository>();
-            services.AddSingleton<IClanKomisijeRepository, ClanKomisijeRepository>();
-            services.AddSingleton<IPredsednikRepository, PredsednikRepository>();
+            services.AddScoped<IKomisijaRepository, KomisijaRepository>();
+            services.AddScoped<IClanKomisijeRepository, ClanKomisijeRepository>();
+            services.AddScoped<IPredsednikRepository, PredsednikRepository>();
 
             services.AddSwaggerGen(c =>
             {
@@ -104,6 +106,8 @@ namespace Komisija_Agregat
 
                 c.IncludeXmlComments(xmlCommentsPath);
             });
+
+            services.AddDbContext<KomisijaContext>(); 
         }
 
         

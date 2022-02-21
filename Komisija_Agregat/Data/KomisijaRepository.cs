@@ -5,54 +5,50 @@ using System.Linq;
 using System.Threading.Tasks;
 using Komisija_Agregat.Entities;
 using Komisija_Agregat.Models;
+using AutoMapper;
 
 namespace Komisija_Agregat.Data
 {
 
     public class KomisijaRepository : IKomisijaRepository
     {
-        public static List<Komisija> Komisije { get; set; } = new List<Komisija>();
-
-        public KomisijaRepository()
+        private readonly KomisijaContext context;
+        private readonly IMapper mapper;
+        
+        public KomisijaRepository(KomisijaContext context, IMapper mapper)
         {
-            FillData();
+            this.context = context;
+            this.mapper = mapper;
         }
 
-        private void FillData()
+        public bool SaveChanges()
         {
-            
+            return context.SaveChanges() > 0;
         }
 
         public List<Komisija> GetKomisije()
         {
 
-            return (from e in Komisije
-                    select e).ToList();
+            return context.Komisije.ToList();
         }
 
         public Komisija GetKomisijaById(Guid KomisijaId)
         {
 
-            return Komisije.FirstOrDefault(e => e.KomisijaId == KomisijaId);
+            return context.Komisije.FirstOrDefault(e => e.KomisijaId == KomisijaId);
 
         }
 
         public KomisijaConfirmation CreateKomisija(Komisija komisija)
         {
-            komisija.KomisijaId = Guid.NewGuid();
-            Komisije.Add(komisija);
-            Komisija kom = GetKomisijaById(komisija.KomisijaId);
-
-            return new KomisijaConfirmation
-            {
-                KomisijaId = kom.KomisijaId,
-                Predsednik = kom.Predsednik
-            };
+            var createdEntity = context.Add(komisija);
+            return mapper.Map<KomisijaConfirmation>(createdEntity.Entity);
+            
         }
 
         public KomisijaConfirmation UpdateKomisija(Komisija komisija)
         {
-            Komisija kom = GetKomisijaById(komisija.KomisijaId);
+           Komisija kom = GetKomisijaById(komisija.KomisijaId);
 
             kom.KomisijaId = komisija.KomisijaId;
             kom.Predsednik = komisija.Predsednik;
@@ -62,12 +58,12 @@ namespace Komisija_Agregat.Data
             {
                 KomisijaId = kom.KomisijaId,
                 Predsednik = kom.Predsednik,              
-            };
+            }; 
         }
 
         public void DeleteKomisija(Guid KomisijaId)
         {
-            Komisije.Remove(Komisije.FirstOrDefault(e => e.KomisijaId == KomisijaId));
+            context.Remove(GetKomisijaById(KomisijaId));
         }
 
     }
