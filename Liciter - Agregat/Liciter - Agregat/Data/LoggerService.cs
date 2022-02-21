@@ -40,12 +40,16 @@ namespace Liciter___Agregat.Data
 
                     HttpResponseMessage response = httpClient.PostAsync(url, content).Result;
 
+                    
+
                     return await Task.FromResult(response.IsSuccessStatusCode);
+
                 }
             }
 
-            catch(Exception)
+            catch(Exception ex)
             {
+                string greska =ex.Message;
                 return false;
             }
         }

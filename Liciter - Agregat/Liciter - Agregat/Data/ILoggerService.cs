@@ -8,6 +8,6 @@ namespace Liciter___Agregat.Data
 {
     public interface ILoggerService
     {
-        public bool Log(LogLevel level, string method, string message, Exception error = null) ;
+        public Task<bool> Log(LogLevel level, string method, string message, Exception error = null) ;
     }
 }
