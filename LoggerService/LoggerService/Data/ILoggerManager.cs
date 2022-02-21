@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace LoggerService
 {
-    interface ILoggerManager
+    public interface ILoggerManager
     {
         void LogInfo(string message);
         void LogWarn(string message);
