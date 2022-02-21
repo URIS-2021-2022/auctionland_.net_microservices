@@ -4,12 +4,192 @@
         <name>Liciter - Agregat</name>
     </assembly>
     <members>
+        <member name="M:Liciter___Agregat.Controllers.FizickoLiceController.GetFizickaLicas(System.String)">
+            <summary>
+            Vraća sva fizička lica iz liste
+            </summary>
+            <param name="JMBG"></param>
+            <returns></returns>
+        </member>
         <member name="M:Liciter___Agregat.Controllers.FizickoLiceController.GetFizickoLicebyId(System.Guid)">
             <summary>
             Vraća fizičko lice na osnovu id-a
             </summary>
             <param name="fizickoLiceId"></param>
             <returns></returns>
+             [ProducesResponseType(StatusCodes.Status404NotFound)]
+        </member>
+        <member name="M:Liciter___Agregat.Controllers.FizickoLiceController.CreateFizickoLice(Liciter___Agregat.DTOs.FizickoLice.FizickoLiceCreationDto)">
+            <summary>
+            Dodaje novo fizičko lice u listu
+            </summary>
+            <param name="fizickoLice"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Liciter___Agregat.Controllers.FizickoLiceController.DeleteFizickoLice(System.Guid)">
+            <summary>
+            Briše fizičko lice sa prosledjenim id-em iz liste
+            </summary>
+            <param name="fizickoLiceId"></param>
+            <returns>Potvrdu o modifikovanom fizickom licu</returns>
+             <response code="200">Vraća ažurirano fizičko lice</response>
+            <response code="400">Fizičko lice koje se ažurira nije pronađena</response>
+            <response code="500">Došlo je do greške na serveru prilikom ažuriranja fizičkog lica</response>
+        </member>
+        <member name="M:Liciter___Agregat.Controllers.FizickoLiceController.UpdateFizickoLice(Liciter___Agregat.DTOs.FizickoLice.FizickoLiceUpdateDto)">
+            <summary>
+            Vrši izmenu nad fizičkim licem koji se prosledio u body-u
+            </summary>
+            <param name="fizickoLice"></param>
+            <returns>Status 204 (NoContent)</returns>
+            <response code="204">Fizičko lice uspešno obrisano</response>
+            <response code="404">Nije pronađeno fizičko lice za brisanje</response>
+            <response code="500">Došlo je do greške na serveru prilikom brisanja fizičkog lica</response>
+        </member>
+        <member name="T:Liciter___Agregat.DTOs.FizickoLice.FizickoLiceConfirmationDto">
+            <summary>
+            DTO za potvrdu fizickog lica
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.FizickoLice.FizickoLiceConfirmationDto.Ime">
+            <summary>
+            Ime fizickog lica
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.FizickoLice.FizickoLiceConfirmationDto.Prezime">
+            <summary>
+            Prezime fizickog lica
+            </summary>
+        </member>
+        <member name="T:Liciter___Agregat.DTOs.FizickoLice.FizickoLiceCreationDto">
+            <summary>
+            Model za kreiranje fizickog lica
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.FizickoLice.FizickoLiceCreationDto.Ime">
+            <summary>
+            Ime fizickog lica
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.FizickoLice.FizickoLiceCreationDto.Prezime">
+            <summary>
+            Prezime fizickog lica
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.FizickoLice.FizickoLiceCreationDto.JMBG">
+            <summary>
+            JMBG fizickog lica
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.FizickoLice.FizickoLiceCreationDto.Adresa">
+            <summary>
+            Adresa fizickog lica
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.FizickoLice.FizickoLiceCreationDto.BrojTelefona1">
+            <summary>
+            Prvi broj telefona fizickog lica
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.FizickoLice.FizickoLiceCreationDto.BrojTelefona2">
+            <summary>
+            Drugi broj telefona fizickog lica
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.FizickoLice.FizickoLiceCreationDto.Email">
+            <summary>
+            Email fizickog lica
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.FizickoLice.FizickoLiceCreationDto.BrojRacuna">
+            <summary>
+            Broj racuna fizickog lica
+            </summary>
+        </member>
+        <member name="T:Liciter___Agregat.DTOs.FizickoLice.FizickoLiceDto">
+            <summary>
+            DTO za fizicko lica
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.FizickoLice.FizickoLiceDto.Ime_Prezime">
+            <summary>
+            Ime i prezime fizickog lica
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.FizickoLice.FizickoLiceDto.JMBG">
+            <summary>
+            JMBG fizickog lica
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.FizickoLice.FizickoLiceDto.Adresa">
+            <summary>
+            Adresa fizickog lica
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.FizickoLice.FizickoLiceDto.BrojeviTelefona">
+            <summary>
+            Brojevi telefona fizickog lica
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.FizickoLice.FizickoLiceDto.Email">
+            <summary>
+            Email fizickog lica
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.FizickoLice.FizickoLiceDto.BrojRacuna">
+            <summary>
+            Broj racuna fizickog lica
+            </summary>
+        </member>
+        <member name="T:Liciter___Agregat.DTOs.FizickoLice.FizickoLiceUpdateDto">
+            <summary>
+            DTO za azuriranje fizickog lica
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.FizickoLice.FizickoLiceUpdateDto.FizickoLiceId">
+            <summary>
+            ID fizickog lica
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.FizickoLice.FizickoLiceUpdateDto.Ime">
+            <summary>
+            Ime fizickog lica
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.FizickoLice.FizickoLiceUpdateDto.Prezime">
+            <summary>
+            Prezime fizickog lica
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.FizickoLice.FizickoLiceUpdateDto.JMBG">
+            <summary>
+            JMBG fizickog lica
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.FizickoLice.FizickoLiceUpdateDto.Adresa">
+            <summary>
+            Adresa fizickog lica
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.FizickoLice.FizickoLiceUpdateDto.BrojTelefona1">
+            <summary>
+            Prvi broj telefona fizickog lica
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.FizickoLice.FizickoLiceUpdateDto.BrojTelefona2">
+            <summary>
+            Drugi broj telefona fizickog lica
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.FizickoLice.FizickoLiceUpdateDto.Email">
+            <summary>
+            Email fizickog lica
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.FizickoLice.FizickoLiceUpdateDto.BrojRacuna">
+            <summary>
+            Broj racuna fizickog lica
+            </summary>
         </member>
     </members>
 </doc>
