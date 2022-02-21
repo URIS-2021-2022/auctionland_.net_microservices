@@ -1,17 +1,21 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Program_Agregat.Models;
+using Program_Agregat.Entities;
 
 namespace Program_Agregat.Data
 {
     public interface IProgramRepository
     {
-        List<ProgramModel> GetProgrami(string MaksimalnoOgranicenje = null);
+        List<Program> GetProgrami(string MaksimalnoOgranicenje = null);
 
-        ProgramModel GetProgramById(Guid ProgramId);
+        Program GetProgramById(Guid ProgramId);
 
-        ProgramConfirmation CreateProgram(ProgramModel program);
+        ProgramConfirmation CreateProgram(Program program);
 
-        ProgramConfirmation UpdateProgram(ProgramModel program);
+        ProgramConfirmation UpdateProgram(Program program);
 
         void DeleteProgram(Guid ProgramId);
     }

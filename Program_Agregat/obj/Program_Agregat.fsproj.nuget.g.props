@@ -14,5 +14,6 @@
   </ItemGroup>
   <PropertyGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
     <PkgFSharp_Core Condition=" '$(PkgFSharp_Core)' == '' ">C:\Users\ASUS ROG\.nuget\packages\fsharp.core\6.0.1</PkgFSharp_Core>
+    <PkgAutoMapper_Extensions_Microsoft_DependencyInjection Condition=" '$(PkgAutoMapper_Extensions_Microsoft_DependencyInjection)' == '' ">C:\Users\ASUS ROG\.nuget\packages\automapper.extensions.microsoft.dependencyinjection\11.0.0</PkgAutoMapper_Extensions_Microsoft_DependencyInjection>
   </PropertyGroup>
 </Project>

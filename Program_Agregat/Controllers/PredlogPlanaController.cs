@@ -1,5 +1,7 @@
 using Program_Agregat.Data;
+using Program_Agregat.Entities;
 using Program_Agregat.Models;
+using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
@@ -16,43 +18,46 @@ namespace Program_Agregat.Controllers
     {
         private readonly IPredlogPlanaRepository predlogPlanaRepository;
         private readonly LinkGenerator linkGenerator;
+        private readonly IMapper mapper;
 
-        public PredlogPlanaController(IPredlogPlanaRepository predlogPlanaRepository, LinkGenerator linkGenerator)
+        public PredlogPlanaController(IPredlogPlanaRepository predlogPlanaRepository, LinkGenerator linkGenerator, IMapper mapper)
         {
             this.predlogPlanaRepository = predlogPlanaRepository;
             this.linkGenerator = linkGenerator;
+            this.mapper = mapper;   
         }
 
         [HttpGet]
-        public ActionResult<List<PredlogPlanaModel>> GetPredloziPlana(int BrojDokumenta)
+        public ActionResult<List<PredlogPlanaDto>> GetPredloziPlana(int BrojDokumenta)
         {
             List<PredlogPlanaModel> predloziPlana = predlogPlanaRepository.GetPredloziPlana(BrojDokumenta);
             if (predloziPlana == null || predloziPlana.Count == 0)
             {
                 return NoContent();
             }
-            return Ok(predloziPlana)
+            return Ok(mapper.Map<List<PredlogPlanaDto>>(predloziPlana));
         }
 
         [HttpGet("{predlogPlanaId}")]
-        public ActionResult<PredlogPlanaModel> GetPredlogPlanaById(Guid predlogPlanaId)
+        public ActionResult<PredlogPlanaDto> GetPredlogPlanaById(Guid predlogPlanaId)
         {
             PredlogPlanaModel predlogPlanaModel = predlogPlanaRepository.GetPredlogPlanaById(predlogPlanaId);
             if (predlogPlanaModel == null)
             {
                 return NotFound();
             }
-            return Ok(predlogPlanaModel)
+            return Ok(mapper.Map<PredlogPlanaDto>(predlogPlanaModel));
         }
 
         [HttpPost]
-        public ActionResult<PredlogPlanaConfirmation> CreatePredlogPlana([FromBody] PredlogPlanaModel predlogPlana)
+        public ActionResult<PredlogPlanaConfirmationDto> CreatePredlogPlana([FromBody] PredlogPlanaCreationDto predlogPlana)
         {
             try
             {
-                PredlogPlanaConfirmation confirmation = predlogPlanaRepository.CreatePredlogPlana(predlogPlana);
+                var predlogPlanaEntity = mapper.Map<PredlogPlana>(predlogPlana);
+                PredlogPlanaConfirmation confirmation = predlogPlanaRepository.CreatePredlogPlana(predlogPlanaEntity);
                 string location = linkGenerator.GetPathByAction("GetPredlogPlana", "PredlogPlana", new { predlogPlanaId = confirmation.PredlogPlanaId });
-                return Created(location, confirmation);
+                return Created(location, mapper.Map<PredlogPlanaDto>(confirmation));
             }
             catch
             {

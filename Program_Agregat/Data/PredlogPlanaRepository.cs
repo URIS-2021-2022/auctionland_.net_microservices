@@ -1,12 +1,16 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Program_Agregat.Models;
+using Program_Agregat.Entities;
 
 namespace Program_Agregat.Data
 {
 
     public class PredlogPlanaRepository : IPredlogPlanaRepository
     {
-        public static List<PredlogPlanaModel> PredloziPlana { get; set; } = new List<PredlogPlanaModel>();
+        public static List<PredlogPlana> PredloziPlana { get; set; } = new List<PredlogPlana>();
 
         public PredlogPlanaRepository()
         {
@@ -18,26 +22,26 @@ namespace Program_Agregat.Data
             
         }
 
-        public List<PredlogPlanaModel> GetPredloziPlana(int BrojDokumenta = null)
+        public List<PredlogPlana> GetPredloziPlana(string BrojDokumenta = null)
         {
 
             return (from e in PredloziPlana
-                    where BrojDokumenta = null || e.BrojDokumenta == BrojDokumenta                        
+                    where string.IsNullOrEmpty(BrojDokumenta) || e.BrojDokumenta == BrojDokumenta                        
                     select e).ToList();
         }
 
-        public PredlogPlanaModel GetPredlogPlanaById(Guid PredlogPlanaId)
+        public PredlogPlana GetPredlogPlanaById(Guid PredlogPlanaId)
         {
 
             return PredloziPlana.FirstOrDefault(e => e.PredlogPlanaId == PredlogPlanaId);
 
         }
 
-        public PredlogPlanaConfirmation CreatePredlogPlana(PredlogPlanaModel predlogPlana)
+        public PredlogPlanaConfirmation CreatePredlogPlana(PredlogPlana predlogPlana)
         {
             predlogPlana.PredlogPlanaId = Guid.NewGuid();
             PredloziPlana.Add(predlogPlana);
-            PredlogPlanaModel predlog = GetPredlogPlanaById(predlogPlana.PredlogPlanaId);
+            PredlogPlana predlog = GetPredlogPlanaById(predlogPlana.PredlogPlanaId);
 
             return new PredlogPlanaConfirmation
             {
@@ -48,9 +52,9 @@ namespace Program_Agregat.Data
             };
         }
 
-        public PredlogPlanaConfirmation UpdatePredlogPlana(PredlogPlanaModel predlogPlana)
+        public PredlogPlanaConfirmation UpdatePredlogPlana(PredlogPlana predlogPlana)
         {
-            PredlogPlanaModel predlog = GetPredlogPlanaById(predlogPlana.PredlogPlanaId);
+            PredlogPlana predlog = GetPredlogPlanaById(predlogPlana.PredlogPlanaId);
 
             predlog.PredlogPlanaId = predlogPlana.PredlogPlanaId;
             predlog.BrojDokumenta = predlogPlana.BrojDokumenta;

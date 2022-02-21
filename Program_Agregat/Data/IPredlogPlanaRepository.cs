@@ -1,17 +1,21 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Program_Agregat.Models;
+using Program_Agregat.Entities;
 
 namespace Program_Agregat.Data
 {
     public interface IPredlogPlanaRepository
     {
-        List<PredlogPlanaModel> GetPredloziPlana(int BrojDokumenta = null);
+        List<PredlogPlana> GetPredloziPlana(string BrojDokumenta = null);
 
-        PredlogPlanaModel GetPredlogPlanaById(Guid PredlogPlanaId);
+        PredlogPlana GetPredlogPlanaById(Guid PredlogPlanaId);
 
-        PredlogPlanaConfirmation CreatePredlogPlana(PredlogPlanaModel predlogPlana);
+        PredlogPlanaConfirmation CreatePredlogPlana(PredlogPlana predlogPlana);
 
-        PredlogPlanaConfirmation UpdatePredlogPlana(PredlogPlanaModel predlogPlana);
+        PredlogPlanaConfirmation UpdatePredlogPlana(PredlogPlana predlogPlana);
 
         void DeletePredlogPlana(Guid PredlogPlanaId);
     }

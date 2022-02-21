@@ -1,12 +1,16 @@
 using System;
 using Program_Agregat.Models;
+using Program_Agregat.Entities;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Program_Agregat.Data
 {
 
     public class ProgramRepository : IProgramRepository
     {
-        public static List<ProgramModel> Programi { get; set; } = new List<ProgramModel>();
+        public static List<Program> Programi { get; set; } = new List<Program>();
 
         public ProgramRepository()
         {
@@ -18,26 +22,26 @@ namespace Program_Agregat.Data
 
         }
 
-        public List<ProgramModel> GetProgrami(string MaksimalnoOgranicenje = null)
+        public List<Program> GetProgrami(string MaksimalnoOgranicenje = null)
         {
 
             return (from e in Programi
-                    string.IsNullOrEmpty(MaksimalnoOgranicenje) || e.MaksimalnoOgranicenje == MaksimalnoOgranicenje
+                    where string.IsNullOrEmpty(MaksimalnoOgranicenje) || e.MaksimalnoOgranicenje == MaksimalnoOgranicenje
                     select e).ToList();
         }
 
-        public ProgramModel GetProgramById(Guid ProgramId)
+        public Program GetProgramById(Guid ProgramId)
         {
 
             return Programi.FirstOrDefault(e => e.ProgramId == ProgramId);
 
         }
 
-        public ProgramConfirmation CreateProgram(ProgramModel program)
+        public ProgramConfirmation CreateProgram(Program program)
         {
             program.ProgramId = Guid.NewGuid();
             Programi.Add(program);
-            ProgramModel prog = GetProgramById(program.ProgramId);
+            Program prog = GetProgramById(program.ProgramId);
 
             return new ProgramConfirmation
             {
@@ -48,9 +52,9 @@ namespace Program_Agregat.Data
             };
         }
 
-        public ProgramConfirmation UpdateProgram(ProgramModel program)
+        public ProgramConfirmation UpdateProgram(Program program)
         {
-            ProgramModel prog = GetProgramById(program.ProgramId);
+            Program prog = GetProgramById(program.ProgramId);
 
             prog.ProgramId = program.ProgramId;
             prog.MaksimalnoOgranicenje = program.MaksimalnoOgranicenje;

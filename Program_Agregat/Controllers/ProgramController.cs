@@ -1,12 +1,14 @@
 using Program_Agregat.Data;
 using Program_Agregat.Models;
 using Microsoft.AspNetCore.Http;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
 using System;
 using System.Collections.Generic;
 using System.linq;
 using System.Threading.Tasks;
+using Program_Agregat.Entities;
 
 namespace Program_Agregat.Controllers
 {
@@ -16,43 +18,46 @@ namespace Program_Agregat.Controllers
     {
         private readonly IProgramRepository programRepository;
         private readonly LinkGenerator linkGenerator;
+        private readonly IMapper mapper;
 
-        public ProgramController(IProgramRepository programRepository, LinkGenerator linkGenerator)
+        public ProgramController(IProgramRepository programRepository, LinkGenerator linkGenerator, IMapper mapper)
         {
             this.programRepository = programRepository;
             this.linkGenerator = linkGenerator;
+            this.mapper = mapper;
         }
 
         [HttpGet]
-        public ActionResult<List<ProgramModel>> GetProgrami(int MaksimalnoOgranicenje)
+        public ActionResult<List<ProgramDto>> GetProgrami(int MaksimalnoOgranicenje)
         {
             List<ProgramModel> programi = programRepository.GetProgrami(MaksimalnoOgranicenje);
             if(programi == null || programi.Count == 0)
             {
                 return NoContent();
             }
-            return Ok(programi)
+            return Ok(mapper.Map<List<ProgramDto>>(programi));
         }
 
         [HttpGet("{programId}")]
-        public ActionResult<ProgramModel> GetProgramById(Guid programId)
+        public ActionResult<ProgramDto> GetProgramById(Guid programId)
         {
             ProgramModel programModel = programRepository.GetProgramById(programId);
             if (programModel == null)
             {
                 return NotFound();
             }
-            return Ok(programModel)
+            return Ok(mapper.Map<ProgramDto>(programModel));
         }
 
         [HttpPost]
-        public ActionResult<ProgramConfirmation> CreateProgram([FromBody] ProgramModel program)
+        public ActionResult<ProgramConfirmationDto> CreateProgram([FromBody] ProgramCreationDto program)
         {
             try
             {
-                ProgramConfirmation confirmation = programRepository.CreateProgram(program);
+                var programEntity = mapper.Map<Program>(program);
+                var confirmation = programRepository.CreateProgram(programEntity);
                 string location = linkGenerator.GetPathByAction("GetProgram", "Program", new { programId = confirmation.ProgramId });
-                return Created(location, confirmation);
+                return Created(location, mapper.Map<ProgramDto>(confirmation));
             }
             catch
             {
