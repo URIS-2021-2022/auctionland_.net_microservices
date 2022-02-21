@@ -13,6 +13,7 @@ namespace OdlukaODavanjuUZakup.Profiles
         public GarantPlacanjaConfirmationProfile()
         {
             CreateMap<GarantPlacanjaConfirmation, GarantPlacanjaConfirmationDto>();
+            CreateMap<GarantPlacanja, GarantPlacanjaConfirmation>();
         }
     }
 }

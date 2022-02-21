@@ -13,6 +13,8 @@ namespace OdlukaODavanjuUZakup.Profiles
         public UplataZakupnineConfirmationProfile()
         {
             CreateMap<UplataZakupnineConfirmation, UplataZakupnineConfirmationDto>();
+
+            CreateMap<UplataZakupnine, UplataZakupnineConfirmation>();
         }
     }
 }

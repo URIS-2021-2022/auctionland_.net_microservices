@@ -15,6 +15,8 @@ namespace OdlukaODavanjuUZakup.Profiles
             CreateMap<OdlukaoDavanjuuZakup, OdlukaoDavanjuuZakupDto>();
 
             CreateMap<OdlukaoDavanjuuZakupCreationDto, OdlukaoDavanjuuZakup>();
+
+            CreateMap<OdlukaoDavanjuuZakupUpdateDto, OdlukaoDavanjuuZakup>();
         }
     }
 }

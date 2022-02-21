@@ -1,4 +1,5 @@
-﻿using OdlukaODavanjuUZakup.Entities;
+﻿using AutoMapper;
+using OdlukaODavanjuUZakup.Entities;
 using OdlukaODavanjuUZakup.Models;
 using System;
 using System.Collections.Generic;
@@ -7,40 +8,45 @@ using System.Threading.Tasks;
 
 namespace OdlukaODavanjuUZakup.Data
 {
-    public class OdlukaoDavanjuuZakupuRepository :IOdlukaoDavanjuuZakupRepository
+    public class OdlukaoDavanjuuZakupRepository :IOdlukaoDavanjuuZakupRepository
     {
-        public static List<OdlukaoDavanjuuZakup> odlukeoDavanjuuZakup { get; set; } = new List<OdlukaoDavanjuuZakup>();
+        //    public static List<OdlukaoDavanjuuZakup> odlukeoDavanjuuZakup { get; set; } = new List<OdlukaoDavanjuuZakup>();
 
-        public OdlukaoDavanjuuZakupuRepository()
+        private readonly DatabaseContext context;
+        private readonly IMapper mapper;
+
+        public OdlukaoDavanjuuZakupRepository(DatabaseContext context, IMapper mapper)
         {
-            FillData();
+            this.context = context;
+            this.mapper = mapper;
         }
-        private void FillData()
+        public bool SaveChanges()
         {
-
+            return context.SaveChanges() > 0;
         }
         public List<OdlukaoDavanjuuZakup> GetOdluke()
         {
-            return (from e in odlukeoDavanjuuZakup
-                    select e).ToList();
+            return context.OdlukaoDavanjuuZakup.ToList();
         }
 
         public OdlukaoDavanjuuZakup GetOdlukaById(Guid OdlukaoDavanjuuZakupId)
         {
-            return odlukeoDavanjuuZakup.FirstOrDefault(e => e.OdlukaoDavanjuuZakupID == OdlukaoDavanjuuZakupId);
+            return context.OdlukaoDavanjuuZakup.FirstOrDefault(e => e.OdlukaoDavanjuuZakupID == OdlukaoDavanjuuZakupId);
         }
 
         public OdlukaoDavanjuuZakupConfirmation CreateOdluka(OdlukaoDavanjuuZakup OdlukaoDavanjuuZakup)
-        { 
-            OdlukaoDavanjuuZakup.OdlukaoDavanjuuZakupID = Guid.NewGuid();
-            odlukeoDavanjuuZakup.Add(OdlukaoDavanjuuZakup);
-            OdlukaoDavanjuuZakup odluka = GetOdlukaById(OdlukaoDavanjuuZakup.OdlukaoDavanjuuZakupID);
+        {
+            /*    OdlukaoDavanjuuZakup.OdlukaoDavanjuuZakupID = Guid.NewGuid();
+                odlukeoDavanjuuZakup.Add(OdlukaoDavanjuuZakup);
+                OdlukaoDavanjuuZakup odluka = GetOdlukaById(OdlukaoDavanjuuZakup.OdlukaoDavanjuuZakupID);
 
-            return new OdlukaoDavanjuuZakupConfirmation
-            {
-                OdlukaoDavanjuuZakupID = odluka.OdlukaoDavanjuuZakupID,
-                validnost = odluka.validnost
-            };
+                return new OdlukaoDavanjuuZakupConfirmation
+                {
+                    OdlukaoDavanjuuZakupID = odluka.OdlukaoDavanjuuZakupID,
+                    validnost = odluka.validnost
+                }; */
+            var createdEntity = context.Add(OdlukaoDavanjuuZakup);
+            return mapper.Map<OdlukaoDavanjuuZakupConfirmation>(createdEntity.Entity);
         }
 
         public OdlukaoDavanjuuZakupConfirmation UpdateOdluka(OdlukaoDavanjuuZakup OdlukaoDavanjuuZakup)
@@ -59,9 +65,9 @@ namespace OdlukaODavanjuUZakup.Data
 
         public void DeleteOdluka(Guid OdlukaoDavanjuuZakupId)
         {
-            odlukeoDavanjuuZakup.Remove(odlukeoDavanjuuZakup.FirstOrDefault(e => e.OdlukaoDavanjuuZakupID == OdlukaoDavanjuuZakupId));
+            var odluka = GetOdlukaById(OdlukaoDavanjuuZakupId);
+            context.Remove(odluka);
+        //    odlukeoDavanjuuZakup.Remove(odlukeoDavanjuuZakup.FirstOrDefault(e => e.OdlukaoDavanjuuZakupID == OdlukaoDavanjuuZakupId));
         }
-
-       
     }
 }

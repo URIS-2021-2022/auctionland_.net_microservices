@@ -9,6 +9,7 @@ namespace OdlukaODavanjuUZakup.Data
 {
     public interface IOdlukaoDavanjuuZakupRepository
     {
+        public bool SaveChanges();
         List<OdlukaoDavanjuuZakup> GetOdluke();
 
         OdlukaoDavanjuuZakup GetOdlukaById(Guid OdlukaoDavanjuuZakupId);

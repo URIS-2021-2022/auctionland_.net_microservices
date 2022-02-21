@@ -11,6 +11,7 @@ namespace OdlukaODavanjuUZakup.Data
     {
         public static List<GarantPlacanja> garantiPlacanja { get; set; } = new List<GarantPlacanja>();
 
+        
         public GarantPlacanjaMockRepository()
         {
             FillData();
@@ -64,6 +65,11 @@ namespace OdlukaODavanjuUZakup.Data
                 Opis_garanta1 = garant.Opis_garanta1
 
             };
+        }
+
+        public bool SaveChanges()
+        {
+            throw new NotImplementedException();
         }
     }
 }

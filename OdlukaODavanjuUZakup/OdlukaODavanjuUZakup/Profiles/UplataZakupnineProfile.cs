@@ -15,6 +15,8 @@ namespace OdlukaODavanjuUZakup.Profiles
             CreateMap<UplataZakupnine, UplataZakupnineDto>();
 
             CreateMap<UplataZakupnineCreationDto, UplataZakupnine>();
+
+            CreateMap<UplataZakupnineUpdateDto, UplataZakupnine>();
         }
     }
 }

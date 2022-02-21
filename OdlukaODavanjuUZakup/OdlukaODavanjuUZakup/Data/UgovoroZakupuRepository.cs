@@ -1,4 +1,5 @@
-﻿using OdlukaODavanjuUZakup.Entities;
+﻿using AutoMapper;
+using OdlukaODavanjuUZakup.Entities;
 using OdlukaODavanjuUZakup.Models;
 using System;
 using System.Collections.Generic;
@@ -9,45 +10,51 @@ namespace OdlukaODavanjuUZakup.Data
 {
     public class UgovoroZakupuRepository : IUgovoroZakupuRepository
     {
-        public static List<UgovoroZakupu> UgovorioZakupu { get; set; } = new List<UgovoroZakupu>();
+        private readonly DatabaseContext context;
+        private readonly IMapper mapper;
+        //    public static List<UgovoroZakupu> UgovorioZakupu { get; set; } = new List<UgovoroZakupu>();
 
-        public UgovoroZakupuRepository ()
+        public UgovoroZakupuRepository(DatabaseContext context, IMapper mapper)
         {
-            FillData();
+            this.context = context;
+            this.mapper = mapper;
         }
-        private void FillData()
+        public bool SaveChanges()
         {
-
+            return context.SaveChanges() > 0;
         }
         public UgovoroZakupuConfirmation CreateUgovorOZakupu(UgovoroZakupu ugovoroZakupu)
         {
-            ugovoroZakupu.UgovoroZakupuID = Guid.NewGuid();
-            UgovorioZakupu.Add(ugovoroZakupu);
-            UgovoroZakupu ugovor = GetUgovoriOZakupuById(ugovoroZakupu.UgovoroZakupuID);
+            /*  ugovoroZakupu.UgovoroZakupuID = Guid.NewGuid();
+              UgovorioZakupu.Add(ugovoroZakupu);
+              UgovoroZakupu ugovor = GetUgovoriOZakupuById(ugovoroZakupu.UgovoroZakupuID);
 
-            return new UgovoroZakupuConfirmation
-            {
-                UgovoroZakupuID = ugovor.UgovoroZakupuID,
-                datum_potpisa = ugovor.datum_potpisa,
-                zavodni_Broj = ugovor.zavodni_Broj
-            };
+              return new UgovoroZakupuConfirmation
+              {
+                  UgovoroZakupuID = ugovor.UgovoroZakupuID,
+                  datum_potpisa = ugovor.datum_potpisa,
+                  zavodni_Broj = ugovor.zavodni_Broj
+              }; */
+            var createdEntity = context.Add(ugovoroZakupu);
+            return mapper.Map<UgovoroZakupuConfirmation>(createdEntity.Entity);
+
         }
 
         public void DeleteUgovorOZakupu(Guid UgovoroZakupuId)
         {
-            UgovorioZakupu.Remove(UgovorioZakupu.FirstOrDefault(e => e.UgovoroZakupuID == UgovoroZakupuId));
+            var ugovor = GetUgovoriOZakupuById(UgovoroZakupuId);
+            context.Remove(ugovor);
+            //    context.Remove(UgovoroZakupu.FirstOrDefault(e => e.UgovoroZakupuID == UgovoroZakupuId));
         }
 
         public List<UgovoroZakupu> GetUgovoriOZakupu(string zavodni_broj = null)
         {
-            return (from e in UgovorioZakupu
-                    where string.IsNullOrEmpty(zavodni_broj) || e.zavodni_Broj == zavodni_broj
-                    select e).ToList();
+            return context.UgovoroZakupu.Where(e => zavodni_broj == null || e.zavodni_Broj == zavodni_broj).ToList();
         }
 
         public UgovoroZakupu GetUgovoriOZakupuById(Guid UgovoroZakupuId)
         {
-            return UgovorioZakupu.FirstOrDefault(e => e.UgovoroZakupuID == UgovoroZakupuId);
+            return context.UgovoroZakupu.FirstOrDefault(e => e.UgovoroZakupuID == UgovoroZakupuId);
         }
 
         public UgovoroZakupuConfirmation UpdateUgovorOZakupu(UgovoroZakupu ugovoroZakupu)
@@ -73,5 +80,6 @@ namespace OdlukaODavanjuUZakup.Data
                 zavodni_Broj = ugovor.zavodni_Broj
             };
         }
+
     }
 }

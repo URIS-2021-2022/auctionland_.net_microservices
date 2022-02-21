@@ -37,11 +37,11 @@ namespace OdlukaODavanjuUZakup
                 setup.ReturnHttpNotAcceptable = true;
             }).AddXmlDataContractSerializerFormatters();
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-            services.AddScoped<IOdlukaoDavanjuuZakupRepository, OdlukaoDavanjuuZakupuRepository>();
-            services.AddScoped<IGarantPlacanjaRepository, GarantPlacanjaMockRepository>();
+            services.AddScoped<IOdlukaoDavanjuuZakupRepository, OdlukaoDavanjuuZakupRepository>();
+            services.AddScoped<IGarantPlacanjaRepository, GarantPlacanjaRepository>();
             services.AddScoped<IUplataZakupnineRepository, UplataZakupnineRepository>();
             services.AddScoped<IUgovoroZakupuRepository, UgovoroZakupuRepository>();
-            services.AddScoped<GarantPlacanjaRepository>();
+      //      services.AddScoped<GarantPlacanjaMockRepository>();
 
             services.AddSwaggerGen(setupAction =>
             {

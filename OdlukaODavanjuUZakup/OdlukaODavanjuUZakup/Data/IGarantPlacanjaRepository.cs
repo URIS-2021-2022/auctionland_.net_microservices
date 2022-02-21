@@ -9,6 +9,7 @@ namespace OdlukaODavanjuUZakup.Data
 {
     public interface IGarantPlacanjaRepository
     {
+        public bool SaveChanges();
         List<GarantPlacanja> GetGarantiPlacanja();
 
         GarantPlacanja GetGarantPlacanjaById(Guid GarantPlacanjaId);

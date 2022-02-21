@@ -13,7 +13,7 @@ namespace OdlukaODavanjuUZakup.Data
         private readonly DatabaseContext context;
         private readonly IMapper mapper;
 
-        public static List<GarantPlacanja> garantiPlacanja { get; set; } = new List<GarantPlacanja>();
+    //    public static List<GarantPlacanja> garantiPlacanja { get; set; } = new List<GarantPlacanja>();
 
         public GarantPlacanjaRepository(DatabaseContext context, IMapper mapper)
         {
@@ -27,21 +27,24 @@ namespace OdlukaODavanjuUZakup.Data
 
         public GarantPlacanjaConfirmation CreateGarantPlacanja(GarantPlacanja garantPlacanja)
         {
-            garantPlacanja.GarantPlacanjaID = Guid.NewGuid();
-            garantiPlacanja.Add(garantPlacanja);
-            GarantPlacanja garant = GetGarantPlacanjaById(garantPlacanja.GarantPlacanjaID);
+             /*       garantPlacanja.GarantPlacanjaID = Guid.NewGuid();
+                    garantiPlacanja.Add(garantPlacanja);
+                    GarantPlacanja garant = GetGarantPlacanjaById(garantPlacanja.GarantPlacanjaID);
 
-            return new GarantPlacanjaConfirmation
-            {
-                GarantPlacanjaID = garant.GarantPlacanjaID,
-                Opis_garanta1 = garant.Opis_garanta1
-
-            };
+                    return new GarantPlacanjaConfirmation
+                    {
+                        GarantPlacanjaID = garant.GarantPlacanjaID,
+                        Opis_garanta1 = garant.Opis_garanta1
+                    };  */
+            var createdEntity = context.Add(garantPlacanja);
+            return mapper.Map<GarantPlacanjaConfirmation>(createdEntity.Entity);
         }
 
         public void DeleteGarantPlacanja(Guid GarantPlacanjaId)
         {
-            context.Remove(garantiPlacanja.FirstOrDefault(e => e.GarantPlacanjaID == GarantPlacanjaId));
+            var garantPlacanja = GetGarantPlacanjaById(GarantPlacanjaId);
+            context.Remove(garantPlacanja);
+          //  context.Remove(garantiPlacanja.FirstOrDefault(e => e.GarantPlacanjaID == GarantPlacanjaId));
         }
 
         public List<GarantPlacanja> GetGarantiPlacanja()

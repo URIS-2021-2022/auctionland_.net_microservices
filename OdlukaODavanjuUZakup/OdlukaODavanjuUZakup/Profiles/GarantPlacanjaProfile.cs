@@ -15,6 +15,8 @@ namespace OdlukaODavanjuUZakup.Profiles
             CreateMap<GarantPlacanja, GarantPlacanjaDto>();
 
             CreateMap<GarantPlacanjaCreationDto, GarantPlacanja>();
+
+            CreateMap<GarantPlacanjaUpdateDto, GarantPlacanja>();
         }
     }
 }

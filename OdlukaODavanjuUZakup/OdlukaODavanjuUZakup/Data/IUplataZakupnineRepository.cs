@@ -9,6 +9,7 @@ namespace OdlukaODavanjuUZakup.Data
 {
     public interface IUplataZakupnineRepository
     {
+        public bool SaveChanges();
         List<UplataZakupnine> GetUplateZakupnine(string broj_racuna = null);
 
         UplataZakupnine GetUplataZakupnineById(Guid UplataZakupnineId);

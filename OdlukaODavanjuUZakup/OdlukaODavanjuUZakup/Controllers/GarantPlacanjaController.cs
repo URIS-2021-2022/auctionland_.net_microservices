@@ -39,7 +39,7 @@ namespace OdlukaODavanjuUZakup.Controllers
             
 
         }
-        [HttpGet("GarantPlacanjaID")]
+        [HttpGet("{GarantPlacanjaID}")]
         public ActionResult<GarantPlacanjaDto> getGarant(Guid garantPlacanjaID)
         {
             var garant = garantPlacanjaRepository.GetGarantPlacanjaById(garantPlacanjaID);
@@ -54,14 +54,10 @@ namespace OdlukaODavanjuUZakup.Controllers
         {
             try
             {
-                bool modelValid = ValidateGarantPlacanja(garantPlacanja);
+                GarantPlacanja garantPlacanjaEntity = mapper.Map<GarantPlacanja>(garantPlacanja);
+                GarantPlacanjaConfirmation confirmation = garantPlacanjaRepository.CreateGarantPlacanja(garantPlacanjaEntity);
 
-                if (!modelValid)
-                {
-                    return BadRequest("Ne valja");
-                }
-                var garantPlacanjaEntity = mapper.Map<GarantPlacanja>(garantPlacanja);
-                var confirmation = garantPlacanjaRepository.CreateGarantPlacanja(garantPlacanjaEntity);
+                garantPlacanjaRepository.SaveChanges();
                 string location = linkGenerator.GetPathByAction("GetGaranti", "GarantPlacanja", new { GarantPlacanjaID = confirmation.GarantPlacanjaID });
                 return Created(location, mapper.Map<GarantPlacanjaConfirmationDto>(confirmation));
             }
@@ -70,12 +66,7 @@ namespace OdlukaODavanjuUZakup.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, "Create error");
             }
         }
-        private bool ValidateGarantPlacanja(GarantPlacanjaCreationDto garantPlacanja)
-        {
-            return true;
-            // Nemam adekvatni uslov
-        }
-        [HttpDelete("GarantPlacanjaID")]
+        [HttpDelete("{GarantPlacanjaID}")]
         public IActionResult deleteGarant(Guid garantPlacanjaID)
         {
             try
@@ -86,6 +77,7 @@ namespace OdlukaODavanjuUZakup.Controllers
                     return NotFound();
                 }
                 garantPlacanjaRepository.DeleteGarantPlacanja(garantPlacanjaID);
+                garantPlacanjaRepository.SaveChanges();
                 return NoContent();
             }
             catch (Exception)
@@ -105,6 +97,7 @@ namespace OdlukaODavanjuUZakup.Controllers
                 }
                 GarantPlacanja garantPlacanja2 = mapper.Map<GarantPlacanja>(garantPlacanja);
                 GarantPlacanjaConfirmation confirmation = garantPlacanjaRepository.UpdateGarantPlacanja(garantPlacanja2);
+                garantPlacanjaRepository.SaveChanges();
                 return Ok(mapper.Map<GarantPlacanjaDto>(confirmation));
             }
             catch (Exception)

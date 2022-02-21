@@ -37,7 +37,7 @@ namespace OdlukaODavanjuUZakup.Controllers
             }
             return Ok(mapper.Map<List<UgovoroZakupuDto>>(ugovori));
         }
-        [HttpGet("UgovoroZakupuID)")]
+        [HttpGet("{UgovoroZakupuID}")]
         public ActionResult<UgovoroZakupuDto> getUgovor(Guid UgovoroZakupuID)
         {
             var ugovor = ugovoroZakupuRepository.GetUgovoriOZakupuById(UgovoroZakupuID);
@@ -61,6 +61,7 @@ namespace OdlukaODavanjuUZakup.Controllers
                 }
                 var ugovoroZakupuEntity = mapper.Map<UgovoroZakupu>(ugovoroZakupu);
                 var confirmation = ugovoroZakupuRepository.CreateUgovorOZakupu(ugovoroZakupuEntity);
+                ugovoroZakupuRepository.SaveChanges();
                 string location = linkGenerator.GetPathByAction("getUgovori", "UgovorOZakupu", new { UgovoroZakupuID = confirmation.UgovoroZakupuID });
                 return Created(location, mapper.Map<UgovoroZakupuConfirmationDto>(confirmation));
             }
@@ -73,7 +74,7 @@ namespace OdlukaODavanjuUZakup.Controllers
         {
             return true;
         }
-        [HttpDelete]
+        [HttpDelete("{UgovoroZakupuID}")]
         public IActionResult deleteUgovoroZakupu (Guid UgovoroZakupuID)
         {
             {
@@ -87,6 +88,7 @@ namespace OdlukaODavanjuUZakup.Controllers
 
                     }
                     ugovoroZakupuRepository.DeleteUgovorOZakupu(UgovoroZakupuID);
+                    ugovoroZakupuRepository.SaveChanges();
                     return NoContent();
                 }
                 catch (Exception)

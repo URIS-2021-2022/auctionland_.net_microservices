@@ -40,7 +40,7 @@ namespace OdlukaODavanjuUZakup.Controllers
             }
             return Ok(mapper.Map<List<OdlukaoDavanjuuZakupDto>>(odluke));
         }
-        [HttpGet("OdlukaoDavanjuuZakupID")]
+        [HttpGet("{OdlukaoDavanjuuZakupID}")]
         public ActionResult<OdlukaoDavanjuuZakupDto> getOdluka (Guid odlukaoDavanjuuZakupID)
         {
             var odluka = odlukaoDavanjuuZakupRepository.GetOdlukaById(odlukaoDavanjuuZakupID);
@@ -63,6 +63,7 @@ namespace OdlukaODavanjuUZakup.Controllers
                 }
                 var odlukaoDavanjuuZakupEntity = mapper.Map<OdlukaoDavanjuuZakup>(odlukaoDavanjuuZakup);
                 var confirmation = odlukaoDavanjuuZakupRepository.CreateOdluka(odlukaoDavanjuuZakupEntity);
+                odlukaoDavanjuuZakupRepository.SaveChanges();
                 string location = linkGenerator.GetPathByAction("GetOdluke", "OdlukaoDavanjuuZakup", new { odlukaoDavanjuuZakupID = confirmation.OdlukaoDavanjuuZakupID });
                 return Created(location, mapper.Map<OdlukaoDavanjuuZakupConfirmationDto>(confirmation));
 
@@ -77,7 +78,7 @@ namespace OdlukaODavanjuUZakup.Controllers
             return true;
             // Nemam adekvatni uslov
         }
-        [HttpDelete]
+        [HttpDelete("{OdlukaoDavanjuuZakupID}")]
         public IActionResult deleteOdluka(Guid odlukaoDavanjuuZakupID)
         {
             try
@@ -88,6 +89,7 @@ namespace OdlukaODavanjuUZakup.Controllers
                     return NotFound();
                 }
                 odlukaoDavanjuuZakupRepository.DeleteOdluka(odlukaoDavanjuuZakupID);
+                odlukaoDavanjuuZakupRepository.SaveChanges();
                 return NoContent();
             }
             catch (Exception)

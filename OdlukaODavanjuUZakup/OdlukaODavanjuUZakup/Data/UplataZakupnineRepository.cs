@@ -1,4 +1,5 @@
-﻿ using OdlukaODavanjuUZakup.Entities;
+﻿using AutoMapper;
+using OdlukaODavanjuUZakup.Entities;
 using OdlukaODavanjuUZakup.Models;
 using System;
 using System.Collections.Generic;
@@ -9,46 +10,52 @@ namespace OdlukaODavanjuUZakup.Data
 {
     public class UplataZakupnineRepository : IUplataZakupnineRepository
     {
-        public static List<UplataZakupnine> UplateZakupnine { get; set; } = new List<UplataZakupnine>();
+        private readonly DatabaseContext context;
+        private readonly IMapper mapper;
+  //      public static List<UplataZakupnine> UplateZakupnine { get; set; } = new List<UplataZakupnine>();
 
-        public UplataZakupnineRepository ()
+        public UplataZakupnineRepository (DatabaseContext context, IMapper mapper)
         {
-            FillData();
+            this.context = context;
+            this.mapper = mapper;
         }
-        private void FillData()
+        public bool SaveChanges()
         {
-
+            return context.SaveChanges() > 0;
         }
+        
         public UplataZakupnineConfirmation CreateUplataZakupnine(UplataZakupnine uplataZakupnine)
         {
-            uplataZakupnine.UplataZakupnineID = Guid.NewGuid();
-            UplateZakupnine.Add(uplataZakupnine); 
-            UplataZakupnine zakupnina = GetUplataZakupnineById(uplataZakupnine.UplataZakupnineID);
+        /*     uplataZakupnine.UplataZakupnineID = Guid.NewGuid();
+             UplateZakupnine.Add(uplataZakupnine); 
+             UplataZakupnine zakupnina = GetUplataZakupnineById(uplataZakupnine.UplataZakupnineID);
 
-            return new UplataZakupnineConfirmation
-            {
-                UplataZakupnineID = zakupnina.UplataZakupnineID,
-                broj_racuna = zakupnina.broj_racuna,
-                datum = zakupnina.datum
-            };
+             return new UplataZakupnineConfirmation
+             {
+                 UplataZakupnineID = zakupnina.UplataZakupnineID,
+                 broj_racuna = zakupnina.broj_racuna,
+                 datum = zakupnina.datum
+             }; */
+        var createdEntity = context.Add(uplataZakupnine);
+        return mapper.Map<UplataZakupnineConfirmation>(createdEntity.Entity);
 
-        }
+    }
 
-        public void DeleteUplataZakupnine(Guid UplataZakupnineId)
+        public void DeleteUplataZakupnine(Guid uplataZakupnineId)
         {
-            UplateZakupnine.Remove(UplateZakupnine.FirstOrDefault(e => e.UplataZakupnineID == UplataZakupnineId));
+            var uplata = GetUplataZakupnineById(uplataZakupnineId);
+            context.Remove(uplata);
+       //     context.Remove(UplataZakupnine.FirstOrDefault(e => e.UplataZakupnineID == UplataZakupnineId));
         }
 
         public UplataZakupnine GetUplataZakupnineById(Guid UplataZakupnineId)
         {
-            return UplateZakupnine.FirstOrDefault(e => e.UplataZakupnineID == UplataZakupnineId);
+            return context.UplataZakupnine.FirstOrDefault(e => e.UplataZakupnineID == UplataZakupnineId);
         }
 
         public List<UplataZakupnine> GetUplateZakupnine(string broj_racuna = null)
         {
-            return (from e in UplateZakupnine
-                    where string.IsNullOrEmpty(broj_racuna) || e.broj_racuna == broj_racuna
-                    select e).ToList();
+            return context.UplataZakupnine.Where(e => broj_racuna == null || broj_racuna == e.broj_racuna).ToList();
         }
 
         public UplataZakupnineConfirmation UpdateUplataZakupnine(UplataZakupnine uplataZakupnine)

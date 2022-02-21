@@ -9,6 +9,7 @@ namespace OdlukaODavanjuUZakup.Data
 {
     public interface IUgovoroZakupuRepository
     {
+        public bool SaveChanges();
         List<UgovoroZakupu> GetUgovoriOZakupu(string zavodni_broj = null);
 
         UgovoroZakupu GetUgovoriOZakupuById(Guid UgovoroZakupuId);

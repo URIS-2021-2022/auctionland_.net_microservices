@@ -84,6 +84,7 @@ namespace OdlukaODavanjuUZakup.Controllers
 
                 var uplataZakupnineEntity = mapper.Map<UplataZakupnine>(uplataZakupnine); 
                 var confirmation = uplataZakupnineRepository.CreateUplataZakupnine(uplataZakupnineEntity);
+                uplataZakupnineRepository.SaveChanges();
                 string location = linkGenerator.GetPathByAction("GetUplate", "UplataZakupnine", new { uplataZakupnineID = confirmation.UplataZakupnineID });
                 return Created(location, mapper.Map<UplataZakupnineConfirmationDto>(confirmation));
             }
@@ -113,6 +114,7 @@ namespace OdlukaODavanjuUZakup.Controllers
 
                 }
                 uplataZakupnineRepository.DeleteUplataZakupnine(uplataZakupnineID);
+                uplataZakupnineRepository.SaveChanges();
                 return NoContent();
             }
             catch (Exception)
