@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>OdlukaODavanjuUZakup</name>
+    </assembly>
+    <members>
+        <member name="M:OdlukaODavanjuUZakup.Controllers.UplataZakupnineController.getUplate(System.String)">
+            <summary>
+            Vraća sve uplate zakupnina na osnovu broja računa
+            </summary>
+            <param name="broj_racuna">Broj računa na koji se uplata vrši</param>
+            <returns>Listu uplata zakupnina</returns>
+        </member>
+        <member name="M:OdlukaODavanjuUZakup.Controllers.UplataZakupnineController.CreateUplataZakupnine(OdlukaODavanjuUZakup.Models.UplataZakupnineCreationDto)">
+            <summary>
+            
+            <remarks>
+            Ovde dodam body kao i onda korisnik vidi primer sta moze da posalje
+            </remarks>
+            </summary>
+            <param name="uplataZakupnine"></param>
+            <returns></returns>
+        </member>
+        <member name="T:OdlukaODavanjuUZakup.Models.GarantPlacanjaDto">
+            <summary>
+            Model garancije placanja
+            </summary>
+        </member>
+        <member name="P:OdlukaODavanjuUZakup.Models.GarantPlacanjaDto.GarantPlacanjaID">
+            <summary>
+            ID Garanta
+            </summary>
+        </member>
+        <member name="P:OdlukaODavanjuUZakup.Models.GarantPlacanjaDto.Opis_garanta1">
+            <summary>
+            Opis garanta ima 4 izbora
+            </summary>
+        </member>
+        <member name="P:OdlukaODavanjuUZakup.Models.GarantPlacanjaDto.Opis_garanta2">
+            <summary> 
+            Sekundarni opis garanta
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -95,6 +95,7 @@ namespace OdlukaODavanjuUZakup.Controllers
 
             }
         }
+        [HttpPut]
         public ActionResult<UgovoroZakupuConfirmationDto> UpdateUgovoroZakupu(UgovoroZakupuUpdateDto ugovor)
         {
             try

@@ -13,6 +13,7 @@ namespace OdlukaODavanjuUZakup.Controllers
 {
     [ApiController]
     [Route("api/zakupnine")]
+    [Produces("application/json", "application/xml")]
     public class UplataZakupnineController : ControllerBase
     {
         private readonly LinkGenerator linkGenerator;
@@ -26,6 +27,13 @@ namespace OdlukaODavanjuUZakup.Controllers
             this.mapper = mapper;
             this.uplataZakupnineRepository = uplataZakupnineRepository;
         }
+        /// <summary>
+        /// Vraća sve uplate zakupnina na osnovu broja računa
+        /// </summary>
+        /// <param name="broj_racuna">Broj računa na koji se uplata vrši</param>
+        /// <returns>Listu uplata zakupnina</returns>
+
+        [HttpHead]
         [HttpGet]
         public ActionResult<List<UplataZakupnineDto>> getUplate(string broj_racuna)
         {
@@ -38,6 +46,8 @@ namespace OdlukaODavanjuUZakup.Controllers
             return Ok(mapper.Map<List<UplataZakupnineDto>>(uplate));
         }
 
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         [HttpGet("{UplataZakupnineID}")]
         public ActionResult<UplataZakupnineDto> getUplata(Guid uplataZakupnineID)
         {
@@ -49,6 +59,16 @@ namespace OdlukaODavanjuUZakup.Controllers
             }
             return Ok(mapper.Map<UplataZakupnineDto>(uplata));
         }
+        /// <summary>
+        /// 
+        /// <remarks>
+        /// Ovde dodam body kao i onda korisnik vidi primer sta moze da posalje
+        /// </remarks>
+        /// </summary>
+        /// <param name="uplataZakupnine"></param>
+        /// <returns></returns>
+       
+        [Consumes("application/json")]
         [HttpPost]
         public ActionResult<UplataZakupnineConfirmationDto> CreateUplataZakupnine([FromBody] UplataZakupnineCreationDto uplataZakupnine)
         {
@@ -108,6 +128,7 @@ namespace OdlukaODavanjuUZakup.Controllers
             return Ok();
         }
 
+        [HttpPut]
         public ActionResult<UplataZakupnineConfirmationDto> UpdateUplataZakupnine(UplataZakupnineUpdateDto uplata)
         {
             try

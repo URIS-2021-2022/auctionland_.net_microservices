@@ -39,7 +39,7 @@ namespace OdlukaODavanjuUZakup.Controllers
             
 
         }
-        [HttpGet("GarantiPlacanjaID")]
+        [HttpGet("GarantPlacanjaID")]
         public ActionResult<GarantPlacanjaDto> getGarant(Guid garantPlacanjaID)
         {
             var garant = garantPlacanjaRepository.GetGarantPlacanjaById(garantPlacanjaID);
