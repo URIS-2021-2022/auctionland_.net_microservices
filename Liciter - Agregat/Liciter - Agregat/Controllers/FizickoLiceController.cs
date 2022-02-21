@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,12 +22,14 @@ namespace Liciter___Agregat.Controllers
         public readonly IFizickoLiceRepository fizickoLiceRepository;
         private readonly LinkGenerator linkGenerator;
         private readonly IMapper mapper;
+        private readonly ILoggerService loggerService;
         
-        public FizickoLiceController(IFizickoLiceRepository fizickoLiceRepository, LinkGenerator linkGenerator, IMapper mapper)
+        public FizickoLiceController(IFizickoLiceRepository fizickoLiceRepository, LinkGenerator linkGenerator, IMapper mapper,ILoggerService loggerService)
         {
             this.fizickoLiceRepository = fizickoLiceRepository;
             this.linkGenerator = linkGenerator;
             this.mapper = mapper;
+            this.loggerService = loggerService;
         }
 
         /// <summary>
@@ -43,8 +46,11 @@ namespace Liciter___Agregat.Controllers
             List<FizickoLiceModel> lica = fizickoLiceRepository.GetFizickaLicas(JMBG);
             if (lica == null || lica.Count == 0)
             {
+                loggerService.Log(LogLevel.Warning, "GetAllStatus", "Lista fizickih lica je prazna ili null");
                 return NoContent();
             }
+
+            loggerService.Log(LogLevel.Information, "GetAllStatus", "Lista fizickih lica je uspesno vracena!");
             return Ok(mapper.Map<List<FizickoLiceDto>>(lica));
         }
 

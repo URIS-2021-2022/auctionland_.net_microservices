@@ -129,6 +129,7 @@ namespace Liciter___Agregat
             services.AddScoped<IOvlascenoLiceRepository, OvlascenoLiceRepository>();
             services.AddScoped<IKupacRepository, KupacRepository>();
             services.AddScoped<ILiciterRepository, LiciterRepository>();
+            services.AddScoped<ILoggerService, LoggerService>();
 
             services.AddDbContext<DataBaseContext>();
         }
