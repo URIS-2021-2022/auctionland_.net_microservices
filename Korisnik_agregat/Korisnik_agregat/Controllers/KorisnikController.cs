@@ -98,10 +98,13 @@ namespace Korisnik_agregat.Controllers
                 Korisnik korisnik = mapper.Map<Korisnik>(korisnikDto);
                 var confirmation = korisnikRepository.CreateKorisnik(korisnik);
                 korisnikRepository.SaveChanges();
-                string location = linkGenerator.GetPathByAction("GetKorisniks", "Korisnik", new { korisnikId = confirmation.KorisnikId});
+                
+                string location = linkGenerator.GetPathByAction("GetKorisnikList", "Korisnik", new { korisnikId = confirmation.KorisnikId});
 
                 loggerService.Log(LogLevel.Information, "PostStatus", "Korisnik je uspešno kreiran!");
                 return Created(location, mapper.Map<KorisnikConfirmationDto>(confirmation));
+                throw new Exception();
+
             }
             catch (Exception ex)
             {

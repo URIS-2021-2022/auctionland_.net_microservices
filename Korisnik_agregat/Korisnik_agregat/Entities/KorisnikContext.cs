@@ -95,7 +95,7 @@ namespace Korisnik_agregat.Entities
                         Prezime = "Cetkovic",
                         KorisnickoIme = "Vlado",
                         Lozinka = korisnik.Item1,
-                        TipKorisnikaID = Guid.Parse("577a8f2b-1a55-4e91-a3ea-3d5cf16814a6"),
+                        TipKorisnikaId = Guid.Parse("577a8f2b-1a55-4e91-a3ea-3d5cf16814a6"),
                         Salt = korisnik.Item2
                     }
                 );

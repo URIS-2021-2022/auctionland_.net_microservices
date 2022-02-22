@@ -81,7 +81,7 @@ namespace Korisnik_agregat.Data
                 throw new EntryPointNotFoundException();
             }
 
-            k.TipKorisnikaID = korisnikModel.TipKorisnikaID;
+            k.TipKorisnikaId = korisnikModel.TipKorisnikaId;
             k.Ime = korisnikModel.Ime;
             k.Prezime = korisnikModel.Prezime;
             k.KorisnickoIme = korisnikModel.KorisnickoIme;

@@ -34,5 +34,6 @@ namespace Korisnik_agregat.Models
         /// Id tipa korisnika
         /// </summary>
         public Guid? TipKorisnikaId { get; set; }
+
     }
 }

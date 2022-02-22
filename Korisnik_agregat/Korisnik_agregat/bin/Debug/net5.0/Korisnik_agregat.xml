@@ -85,6 +85,16 @@
             </summary>
             <returns>Listu mogućih zahteva</returns>
         </member>
+        <member name="P:Korisnik_agregat.Models.EtapaDto.Dan">
+            <summary>
+            Dan etape
+            </summary>
+        </member>
+        <member name="P:Korisnik_agregat.Models.EtapaDto.BrojEtape">
+            <summary>
+            Broj etape
+            </summary>
+        </member>
         <member name="T:Korisnik_agregat.Models.KorisnikConfirmationDto">
             <summary>
             Predstavlja model potvrde korisnika
@@ -110,11 +120,6 @@
             Predstavlja model kreiranja korisnika
             </summary>
         </member>
-        <member name="P:Korisnik_agregat.Models.KorisnikCreationDto.TipKorisnikaId">
-            <summary>
-            Id tipa korisnika
-            </summary>
-        </member>
         <member name="P:Korisnik_agregat.Models.KorisnikCreationDto.Ime">
             <summary>
             Ime korisnika
@@ -133,6 +138,11 @@
         <member name="P:Korisnik_agregat.Models.KorisnikCreationDto.Lozinka">
             <summary>
             Lozinka korisnika
+            </summary>
+        </member>
+        <member name="P:Korisnik_agregat.Models.KorisnikCreationDto.TipKorisnikaId">
+            <summary>
+            Id tipa korisnika
             </summary>
         </member>
         <member name="T:Korisnik_agregat.Models.KorisnikDto">
@@ -170,47 +180,57 @@
             Id tipa korisnika
             </summary>
         </member>
-        <member name="P:Korisnik_agregat.Models.KorisnikovaLicitacijaDto.Broj">
+        <member name="T:Korisnik_agregat.Models.KorisnikovaLicitacijaDto.LicitacijaDto">
+            <summary>
+            Predstavlja model licitacije
+            </summary>
+        </member>
+        <member name="P:Korisnik_agregat.Models.KorisnikovaLicitacijaDto.LicitacijaDto.Broj">
             <summary>
             Broj licitacije
             </summary>
         </member>
-        <member name="P:Korisnik_agregat.Models.KorisnikovaLicitacijaDto.Godina">
+        <member name="P:Korisnik_agregat.Models.KorisnikovaLicitacijaDto.LicitacijaDto.Godina">
             <summary>
             Godina licitacije
             </summary>
         </member>
-        <member name="P:Korisnik_agregat.Models.KorisnikovaLicitacijaDto.Datum">
+        <member name="P:Korisnik_agregat.Models.KorisnikovaLicitacijaDto.LicitacijaDto.Datum">
             <summary>
             Datum licitacije
             </summary>
         </member>
-        <member name="P:Korisnik_agregat.Models.KorisnikovaLicitacijaDto.Ogranicenje">
+        <member name="P:Korisnik_agregat.Models.KorisnikovaLicitacijaDto.LicitacijaDto.Ogranicenje">
             <summary>
             Ograničenje licitacije
             </summary>
         </member>
-        <member name="P:Korisnik_agregat.Models.KorisnikovaLicitacijaDto.Korak_cene">
+        <member name="P:Korisnik_agregat.Models.KorisnikovaLicitacijaDto.LicitacijaDto.Korak_cene">
             <summary>
             Korak uvećanja cene licitacije
             </summary>
         </member>
-        <member name="P:Korisnik_agregat.Models.KorisnikovaLicitacijaDto.Lista_dokumentacije_fizicka_lica">
+        <member name="P:Korisnik_agregat.Models.KorisnikovaLicitacijaDto.LicitacijaDto.Lista_dokumentacije_fizicka_lica">
             <summary>
             Lista koja sadrži dokumentaciju za fizička lica
             </summary>
         </member>
-        <member name="P:Korisnik_agregat.Models.KorisnikovaLicitacijaDto.Lista_dokumentacije_pravna_lica">
+        <member name="P:Korisnik_agregat.Models.KorisnikovaLicitacijaDto.LicitacijaDto.Lista_dokumentacije_pravna_lica">
             <summary>
             Lista koja sadrži dokumentaciju za pravna lica
             </summary>
         </member>
-        <member name="P:Korisnik_agregat.Models.KorisnikovaLicitacijaDto.JavnoNadmetanje">
+        <member name="P:Korisnik_agregat.Models.KorisnikovaLicitacijaDto.LicitacijaDto.JavnoNadmetanje">
             <summary>
             Lista javnih nadmetanja
             </summary>
         </member>
-        <member name="P:Korisnik_agregat.Models.KorisnikovaLicitacijaDto.Rok_za_dostavljanje_prijave">
+        <member name="P:Korisnik_agregat.Models.KorisnikovaLicitacijaDto.LicitacijaDto.ListaEtapa">
+            <summary>
+            Lista etapa određene licitacije
+            </summary>
+        </member>
+        <member name="P:Korisnik_agregat.Models.KorisnikovaLicitacijaDto.LicitacijaDto.Rok_za_dostavljanje_prijave">
             <summary>
             Datum koji predstavlja rok za dostavljanje prijave
             </summary>
@@ -223,11 +243,6 @@
         <member name="P:Korisnik_agregat.Models.KorisnikUpdateDto.KorisnikId">
             <summary>
             Id korisnika
-            </summary>
-        </member>
-        <member name="P:Korisnik_agregat.Models.KorisnikUpdateDto.TipKorisnikaId">
-            <summary>
-            Id tipa korisnika
             </summary>
         </member>
         <member name="P:Korisnik_agregat.Models.KorisnikUpdateDto.Ime">
@@ -248,6 +263,11 @@
         <member name="P:Korisnik_agregat.Models.KorisnikUpdateDto.Lozinka">
             <summary>
             Lozinka
+            </summary>
+        </member>
+        <member name="P:Korisnik_agregat.Models.KorisnikUpdateDto.TipKorisnikaId">
+            <summary>
+            Id tipa korisnika
             </summary>
         </member>
         <member name="T:Korisnik_agregat.Models.Principal">
@@ -278,6 +298,11 @@
         <member name="P:Korisnik_agregat.Models.TipKorisnikaDto.NazivTipa">
             <summary>
              Naziv tipa korisnika
+            </summary>
+        </member>
+        <member name="P:Korisnik_agregat.Models.TipKorisnikaDto.ListaKorisnika">
+            <summary>
+            Lista korisnika datog tipa korisnika
             </summary>
         </member>
     </members>

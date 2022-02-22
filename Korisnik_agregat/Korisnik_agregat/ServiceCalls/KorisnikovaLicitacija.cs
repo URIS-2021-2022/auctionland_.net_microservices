@@ -22,6 +22,7 @@ namespace Korisnik_agregat.ServiceCalls
             throw new NotImplementedException();
         }
 
+
         /*public bool GetKorisnikoveLicitacije(List<KorisnikovaLicitacijaDto> licitacije)
         {
             using (HttpClient client = new HttpClient())

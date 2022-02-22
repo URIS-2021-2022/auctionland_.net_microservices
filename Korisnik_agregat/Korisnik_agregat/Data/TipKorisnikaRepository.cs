@@ -1,4 +1,5 @@
 ﻿using Korisnik_agregat.Entities;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,12 +18,12 @@ namespace Korisnik_agregat.Data
 
         public List<TipKorisnika> GetTipKorisnikaList()
         {
-            return context.TipoviKorisnika.ToList();
+            return context.TipoviKorisnika.Include(d => d.ListaKorisnika).ToList();
         }
 
         public TipKorisnika GetTipKorisnikaById(Guid tipKorisnikaId)
         {
-            return context.TipoviKorisnika.FirstOrDefault(e => e.TipKorisnikaId == tipKorisnikaId);
+            return context.TipoviKorisnika.Include(d => d.ListaKorisnika).FirstOrDefault(e => e.TipKorisnikaId == tipKorisnikaId);
         }
 
         public bool SaveChanges()

@@ -13,6 +13,8 @@ namespace Korisnik_agregat.Profiles
         public KorisnikCreateProfile()
         {
             CreateMap<KorisnikCreationDto, Korisnik>();
+
+
         }
     }
 }

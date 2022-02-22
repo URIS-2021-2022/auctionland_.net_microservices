@@ -11,11 +11,7 @@ namespace Korisnik_agregat.Models
     /// </summary>
     public class KorisnikCreationDto
     {
-        /// <summary>
-        /// Id tipa korisnika
-        /// </summary>
-        [Required]
-        public Guid TipKorisnikaId { get; set; }
+
         /// <summary>
         /// Ime korisnika
         /// </summary>
@@ -34,5 +30,9 @@ namespace Korisnik_agregat.Models
         /// </summary>
         [Required]
         public string Lozinka { get; set; }
+        /// <summary>
+        /// Id tipa korisnika
+        /// </summary>
+        public Guid? TipKorisnikaId { get; set; }
     }
 }

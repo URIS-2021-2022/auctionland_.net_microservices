@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace Korisnik_agregat.Entities
@@ -13,6 +15,8 @@ namespace Korisnik_agregat.Entities
         public string KorisnickoIme { get; set; }
         public string Lozinka { get; set; }
         public string Salt { get; set; }
-        public Guid? TipKorisnikaID { get; set; }
+        public Guid? TipKorisnikaId { get; set; }
+        [JsonIgnore]
+        public TipKorisnika TipKorisnika { get; set; }
     }
 }
