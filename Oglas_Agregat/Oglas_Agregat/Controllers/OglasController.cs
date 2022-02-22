@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
+using Microsoft.Extensions.Logging;
 using Oglas_Agregat.Data;
 using Oglas_Agregat.Entities;
 using Oglas_Agregat.Models;
@@ -23,12 +24,16 @@ namespace Oglas_Agregat.Controllers
         private readonly IOglasRepository oglasRepository;
         private readonly LinkGenerator link;
         private readonly IMapper mapper;
+        private readonly ILoggerService loggerService;
 
-        public OglasController(IOglasRepository oglasRepository, LinkGenerator link, IMapper mapper) //kad se kreira objekat kontrolera mora da se prosledi nesto sto implementira ovaj interfejs, kod mene oglasConfirmation
+
+        public OglasController(IOglasRepository oglasRepository, LinkGenerator link, IMapper mapper, ILoggerService loggerService) //kad se kreira objekat kontrolera mora da se prosledi nesto sto implementira ovaj interfejs, kod mene oglasConfirmation
         {
             this.oglasRepository = oglasRepository;
             this.link = link;
             this.mapper = mapper;
+            this.loggerService = loggerService;
+
         }
 
         /// <summary>
@@ -46,8 +51,10 @@ namespace Oglas_Agregat.Controllers
             var oglasi = oglasRepository.GetOglasi(DatumObjave);
             if (oglasi == null || oglasi.Count == 0)
             {
+                loggerService.Log(LogLevel.Warning, "GetAllStatus", "Lista oglasa je prazna ili null.");
                 return NoContent();
             }
+            loggerService.Log(LogLevel.Information, "GetAllStatus", "Lista oglasa je uspesno vracena!");
             return Ok(mapper.Map<List<OglasDto>>(oglasi));
         }
 
@@ -65,8 +72,10 @@ namespace Oglas_Agregat.Controllers
 
             if (oglas == null)
             {
+                loggerService.Log(LogLevel.Warning, "GetByIdStatus", "Oglas sa datim id-em nije pronadjeo.");
                 return NotFound();
             }
+            loggerService.Log(LogLevel.Information, "GetByIdStatus", "Oglas sa datim id-em je uspesno vracen!");
             return Ok(mapper.Map<OglasDto>(oglas));
         }
 
@@ -100,10 +109,12 @@ namespace Oglas_Agregat.Controllers
                 oglasRepository.SaveChanges();
 
                 string location = link.GetPathByAction("GetOglasi", "Oglas", new { oglasId = confirmation.OglasId });
+                loggerService.Log(LogLevel.Information, "PostStatus", "Oglas je uspesno napravljen!");
                 return Created(location, mapper.Map<OglasConfirmationDto>(confirmation));
 
             }
             catch (Exception) {
+                loggerService.Log(LogLevel.Warning, "PostStatus", "Oglas nije kreiran, doslo je do greske.");
                 return StatusCode(StatusCodes.Status500InternalServerError, "An error has occurred while creating the object.");
 
             }
@@ -126,16 +137,19 @@ namespace Oglas_Agregat.Controllers
 
                 if (oglas == null)
                 {
+                    loggerService.Log(LogLevel.Warning, "DeleteStatus", "Oglas sa datim id-em nije pronadjen.");
                     return NotFound();
                 }
 
                 oglasRepository.DeleteOglas(oglasId);
                 oglasRepository.SaveChanges();
+                loggerService.Log(LogLevel.Information, "DeleteStatus", "Oglas je uspesno obrisan!");
                 return NoContent(); //e sve je okej proslo ali ja ne vracam nikakav sadrzaj - 200
 
             }
             catch (Exception)
             {
+                loggerService.Log(LogLevel.Warning, "DeleteStatus", "Oglas nije obrisan, doslo je do greske.");
                 return StatusCode(StatusCodes.Status500InternalServerError, "An error has occurred while deleting the object.");
             }
         }
@@ -170,6 +184,7 @@ namespace Oglas_Agregat.Controllers
                 var oldOglas = oglasRepository.GetOglasById(oglas.OglasId);
                 if (oldOglas == null)
                 {
+                    loggerService.Log(LogLevel.Warning, "PutStatus", "Oglas sa datim id-em nije pronadjen.");
                     return NotFound(); //Ukoliko ne postoji vratiti status 404 (NotFound).
                 }
                 Oglas oglasEntity = mapper.Map<Oglas>(oglas);
@@ -177,11 +192,12 @@ namespace Oglas_Agregat.Controllers
                 mapper.Map(oglasEntity, oldOglas); //Update objekta koji treba da sačuvamo u bazi                
 
                 oglasRepository.SaveChanges(); //Perzistiramo promene
+                loggerService.Log(LogLevel.Information, "PutStatus", "Oglas je uspesno izmenjen!");
                 return Ok(mapper.Map<OglasDto>(oldOglas));
             }
             catch (Exception)
             {
-
+                loggerService.Log(LogLevel.Warning, "PutStatus", "Oglas nije izmenjen, doslo je do greske.");
                 return StatusCode(StatusCodes.Status500InternalServerError, "An error has occurred while updating the object.");
             }
         }

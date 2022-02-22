@@ -41,6 +41,7 @@ namespace Oglas_Agregat
 
             services.AddScoped<IOglasRepository, OglasRepository>(); //kada sretnes da se trazi prvo prosledi drugo tj napravi instancu drugog i koristi je, singleton je zivotni ciklus drugog
             services.AddScoped<ISluzbeniListRepository, SluzbeniListRepository>();
+            services.AddScoped<ILoggerService, LoggerService>();
 
             services.AddSwaggerGen(setupAction =>
             {

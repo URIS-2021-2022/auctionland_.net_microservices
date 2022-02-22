@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
+using Microsoft.Extensions.Logging;
 using Oglas_Agregat.Data;
 using Oglas_Agregat.Entities;
 using Oglas_Agregat.Models;
@@ -22,12 +23,14 @@ namespace Oglas_Agregat.Controllers
         private readonly ISluzbeniListRepository sluzbeniListRepository;
         private readonly LinkGenerator link;
         private readonly IMapper mapper;
+        private readonly ILoggerService loggerService;
 
-        public SluzbeniListController(ISluzbeniListRepository sluzbeniListRepository, LinkGenerator link, IMapper mapper)
+        public SluzbeniListController(ISluzbeniListRepository sluzbeniListRepository, LinkGenerator link, IMapper mapper, ILoggerService loggerService)
         {
             this.sluzbeniListRepository = sluzbeniListRepository;
             this.link = link;
             this.mapper = mapper;
+            this.loggerService = loggerService;
         }
 
         /// <summary>
@@ -44,8 +47,10 @@ namespace Oglas_Agregat.Controllers
             var sluzbeniListovi = sluzbeniListRepository.GetSluzbeniListovi(BrojLista);
             if (sluzbeniListovi == null || sluzbeniListovi.Count == 0)
             {
+                loggerService.Log(LogLevel.Warning, "GetAllStatus", "Lista sluzbenih listova je prazna ili null.");
                 return NoContent();
             }
+            loggerService.Log(LogLevel.Information, "GetAllStatus", "Lista sluzbenih listova je uspesno vracena!");
             return Ok(mapper.Map<List<SluzbeniListDto>>(sluzbeniListovi));
         }
 
@@ -63,8 +68,10 @@ namespace Oglas_Agregat.Controllers
 
             if (sluzbeniList == null)
             {
+                loggerService.Log(LogLevel.Warning, "GetByIdStatus", "Sluzbeni list sa datim id-em nije pronadjeo.");
                 return NotFound();
             }
+            loggerService.Log(LogLevel.Information, "GetByIdStatus", "Sluzbeni list sa datim id-em je uspesno vracen!");
             return Ok(mapper.Map<SluzbeniListDto>(sluzbeniList));
         }
 
@@ -96,11 +103,13 @@ namespace Oglas_Agregat.Controllers
                 sluzbeniListRepository.SaveChanges();
 
                 string location = link.GetPathByAction("GetSluzbeniListovi", "SluzbeniList", new { sluzbeniListId = confirmation.SluzbeniListId });
+                loggerService.Log(LogLevel.Information, "PostStatus", "Sluzbeni list je uspesno napravljen!");
                 return Created(location, mapper.Map<SluzbeniListConfirmationDto>(confirmation));
 
             }
             catch (Exception)
             {
+                loggerService.Log(LogLevel.Warning, "PostStatus", "Sluzbeni list nije kreiran, doslo je do greske.");
                 return StatusCode(StatusCodes.Status500InternalServerError, "An error has occurred while creating an object.");
             }
         }
@@ -122,6 +131,7 @@ namespace Oglas_Agregat.Controllers
 
                 if (sluzbeniList == null)
                 {
+                    loggerService.Log(LogLevel.Warning, "DeleteStatus", "Sluzbeni list sa datim id-em nije pronadjen.");
                     return NotFound();
                 }
 
@@ -132,6 +142,7 @@ namespace Oglas_Agregat.Controllers
             }
             catch (Exception)
             {
+                loggerService.Log(LogLevel.Warning, "DeleteStatus", "Sluzbeni list nije obrisan, doslo je do greske.");
                 return StatusCode(StatusCodes.Status500InternalServerError, "An error has occurred while deleting the object.");
             }
         }
@@ -161,18 +172,20 @@ namespace Oglas_Agregat.Controllers
                 var oldSluzbeniList = sluzbeniListRepository.GetSluzbeniListById(sluzbeniList.SluzbeniListId);
                 if (oldSluzbeniList == null)
                 {
+                    loggerService.Log(LogLevel.Warning, "PutStatus", "Sluzbeni list sa datim id-em nije pronadjen.");
                     return NotFound();
                 }
 
                 SluzbeniList sluzbeniListEntity = mapper.Map<SluzbeniList>(sluzbeniList);
                 mapper.Map(sluzbeniListEntity, oldSluzbeniList);
-                sluzbeniListRepository.SaveChanges();                
+                sluzbeniListRepository.SaveChanges();
+                loggerService.Log(LogLevel.Information, "PutStatus", "Sluzbeni list je uspesno izmenjen!");
                 return Ok(mapper.Map<SluzbeniListDto>(oldSluzbeniList));
 
             }
             catch (Exception)
             {
-
+                loggerService.Log(LogLevel.Warning, "PutStatus", "Sluzbeni list nije izmenjen, doslo je do greske.");
                 return StatusCode(StatusCodes.Status500InternalServerError, "An error has occurred while updating the object.");
             }
         }
