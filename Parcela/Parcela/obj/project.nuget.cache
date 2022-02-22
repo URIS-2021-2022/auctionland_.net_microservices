@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "t9hTJ6fozXphZRIFIY30DE71td0Tn3PjwT5JwLNoO1C4gtOPQ5+ir4yG4Dnu1fpu9JS/gLxY8b1SEQ/1UOhwGQ==",
+  "dgSpecHash": "Ax6We2AE/My038sS18YxyDETfpjrhANd+f5t0YNQCAzcSzym5sBffSX3hjLmJiem0au4TSi6oE4Qy0U1xiPt0w==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Korisnik\\source\\repos\\Parcela\\Parcela\\Parcela.csproj",
+  "projectFilePath": "C:\\Users\\Korisnik\\source\\repos\\tim-6---auctionland-tim-6-nopcommerceParcela\\Parcela\\Parcela\\Parcela.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Korisnik\\.nuget\\packages\\automapper\\11.0.0\\automapper.11.0.0.nupkg.sha512",
     "C:\\Users\\Korisnik\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\11.0.0\\automapper.extensions.microsoft.dependencyinjection.11.0.0.nupkg.sha512",

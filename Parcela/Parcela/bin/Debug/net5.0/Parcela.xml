@@ -234,7 +234,7 @@
             Repozitorijum delova parcele
             </summary>
         </member>
-        <member name="M:Parcela.Data.DeoParceleRepository.#ctor(Parcela.Entities.DeoParceleContext,AutoMapper.IMapper)">
+        <member name="M:Parcela.Data.DeoParceleRepository.#ctor(Parcela.Entities.ParcelaContext,AutoMapper.IMapper)">
             <summary>
             Konstruktor za repozitorijum parceli
             </summary>
@@ -379,7 +379,7 @@
             Repozitorijum opstina
             </summary>
         </member>
-        <member name="M:Parcela.Data.OpstinaRepository.#ctor(Parcela.Entities.OpstinaContext,AutoMapper.IMapper)">
+        <member name="M:Parcela.Data.OpstinaRepository.#ctor(Parcela.Entities.ParcelaContext,AutoMapper.IMapper)">
             <summary>
             Konstruktor za repozitorijum opstina
             </summary>
@@ -494,31 +494,6 @@
             Osnovni podaci o delu parcele
             </summary>
         </member>
-        <member name="T:Parcela.Entities.DeoParceleContext">
-            <summary>
-            Kontekst za deo parcele
-            </summary>
-        </member>
-        <member name="M:Parcela.Entities.DeoParceleContext.#ctor(Microsoft.EntityFrameworkCore.DbContextOptions{Parcela.Entities.DeoParceleContext},Microsoft.Extensions.Configuration.IConfiguration)">
-            <summary>
-            Konstruktor konteksta za deo parcele
-            </summary>
-        </member>
-        <member name="P:Parcela.Entities.DeoParceleContext.DeloviParcele">
-            <summary>
-            Deklaracija eniteta za smestanje u bazu
-            </summary>
-        </member>
-        <member name="M:Parcela.Entities.DeoParceleContext.OnConfiguring(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder)">
-            <summary>
-            Metoda OnConfiguring
-            </summary>
-        </member>
-        <member name="M:Parcela.Entities.DeoParceleContext.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)">
-            <summary>
-            Popunjava bazu sa nekim inicijalnim podacima
-            </summary>
-        </member>
         <member name="T:Parcela.Entities.Opstina">
             <summary>
             Entitet opstina
@@ -554,31 +529,6 @@
             Naziv opstine
             </summary>
         </member>
-        <member name="T:Parcela.Entities.OpstinaContext">
-            <summary>
-            Kontekst za opstine
-            </summary>
-        </member>
-        <member name="M:Parcela.Entities.OpstinaContext.#ctor(Microsoft.EntityFrameworkCore.DbContextOptions{Parcela.Entities.OpstinaContext},Microsoft.Extensions.Configuration.IConfiguration)">
-            <summary>
-            Konstruktor konteksta za opstine
-            </summary>
-        </member>
-        <member name="P:Parcela.Entities.OpstinaContext.Opstine">
-            <summary>
-            Deklaracija eniteta za smestanje u bazu
-            </summary>
-        </member>
-        <member name="M:Parcela.Entities.OpstinaContext.OnConfiguring(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder)">
-            <summary>
-            Metoda OnConfiguring
-            </summary>
-        </member>
-        <member name="M:Parcela.Entities.OpstinaContext.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)">
-            <summary>
-            Popunjava bazu sa nekim inicijalnim podacima
-            </summary>
-        </member>
         <member name="T:Parcela.Entities.ParcelaConfirmation">
             <summary>
             Potvrda za parcele
@@ -605,6 +555,16 @@
             </summary>
         </member>
         <member name="P:Parcela.Entities.ParcelaContext.Parcele">
+            <summary>
+            Deklaracija eniteta za smestanje u bazu
+            </summary>
+        </member>
+        <member name="P:Parcela.Entities.ParcelaContext.Opstine">
+            <summary>
+            Deklaracija eniteta za smestanje u bazu
+            </summary>
+        </member>
+        <member name="P:Parcela.Entities.ParcelaContext.DeloviParcele">
             <summary>
             Deklaracija eniteta za smestanje u bazu
             </summary>

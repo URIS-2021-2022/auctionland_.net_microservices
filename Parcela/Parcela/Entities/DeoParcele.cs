@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Parcela.Entities
@@ -12,6 +13,7 @@ namespace Parcela.Entities
         /// <summary>
         /// Id dela parcele
         /// </summary>
+        [Key]
         public Guid DeoParceleId { get; set; }
         /// <summary>
         /// Id parcele
@@ -21,7 +23,7 @@ namespace Parcela.Entities
         /// <summary>
         /// Povrsina dela parcele
         /// </summary>
-        public string PovrsinaDelaParcele { get; set; }
+        public int PovrsinaDelaParcele { get; set; }
         /// <summary>
         /// Redni broj parcele
         /// </summary>

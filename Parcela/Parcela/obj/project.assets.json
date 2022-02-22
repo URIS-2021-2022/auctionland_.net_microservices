@@ -5757,11 +5757,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Korisnik\\source\\repos\\Parcela\\Parcela\\Parcela.csproj",
+      "projectUniqueName": "C:\\Users\\Korisnik\\source\\repos\\tim-6---auctionland-tim-6-nopcommerceParcela\\Parcela\\Parcela\\Parcela.csproj",
       "projectName": "Parcela",
-      "projectPath": "C:\\Users\\Korisnik\\source\\repos\\Parcela\\Parcela\\Parcela.csproj",
+      "projectPath": "C:\\Users\\Korisnik\\source\\repos\\tim-6---auctionland-tim-6-nopcommerceParcela\\Parcela\\Parcela\\Parcela.csproj",
       "packagesPath": "C:\\Users\\Korisnik\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Korisnik\\source\\repos\\Parcela\\Parcela\\obj\\",
+      "outputPath": "C:\\Users\\Korisnik\\source\\repos\\tim-6---auctionland-tim-6-nopcommerceParcela\\Parcela\\Parcela\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

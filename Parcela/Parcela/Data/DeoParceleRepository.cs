@@ -11,13 +11,13 @@ namespace Parcela.Data
     /// </summary>
     public class DeoParceleRepository : IDeoParceleRepository
     {
-        private readonly DeoParceleContext context;
+        private readonly ParcelaContext context;
         private readonly IMapper mapper;
 
         /// <summary>
         /// Konstruktor za repozitorijum parceli
         /// </summary>
-        public DeoParceleRepository(DeoParceleContext context, IMapper mapper)
+        public DeoParceleRepository(ParcelaContext context, IMapper mapper)
         {
             this.context = context;
             this.mapper = mapper;

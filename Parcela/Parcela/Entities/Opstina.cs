@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Parcela.Entities
@@ -12,6 +13,7 @@ namespace Parcela.Entities
         /// <summary>
         /// Id opstine
         /// </summary>
+        [Key]
         public Guid OpstinaId { get; set; }
         /// <summary>
         /// Naziv opstine

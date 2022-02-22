@@ -11,13 +11,13 @@ namespace Parcela.Data
     /// </summary>
     public class OpstinaRepository : IOpstinaRepository
     {
-        private readonly OpstinaContext context;
+        private readonly ParcelaContext context;
         private readonly IMapper mapper;
 
         /// <summary>
         /// Konstruktor za repozitorijum opstina
         /// </summary>
-        public OpstinaRepository(OpstinaContext context, IMapper mapper)
+        public OpstinaRepository(ParcelaContext context, IMapper mapper)
         {
             this.context = context;
             this.mapper = mapper;

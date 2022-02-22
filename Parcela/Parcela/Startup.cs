@@ -94,13 +94,15 @@ namespace Parcela
             services.AddScoped<IParcelaRepository, ParcelaRepository>();
             services.AddScoped<IOpstinaRepository, OpstinaRepository>();
 
-            services.AddDbContextPool<ParcelaContext>(options => options.UseSqlServer(Configuration.GetConnectionString("ParceleDB")));
-            services.AddDbContextPool<DeoParceleContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DeloviParceleDB")));
-            services.AddDbContextPool<OpstinaContext>(options => options.UseSqlServer(Configuration.GetConnectionString("OpstineDB")));
+            //services.AddDbContextPool<ParcelaContext>(options => options.UseSqlServer(Configuration.GetConnectionString("ParceleDB")));
+            //services.AddDbContextPool<DeoParceleContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DeloviParceleDB")));
+            //services.AddDbContextPool<OpstinaContext>(options => options.UseSqlServer(Configuration.GetConnectionString("OpstineDB")));
 
             //services.AddDbContext<ParcelaContext>(options => options.UseSqlServer(Configuration.GetConnectionString(nameof(ParcelaContext))));
             //services.AddDbContext<DeoParceleContext>(options => options.UseSqlServer(Configuration.GetConnectionString(nameof(DeoParceleContext))));
             //services.AddDbContext<OpstinaContext>(options => options.UseSqlServer(Configuration.GetConnectionString(nameof(OpstineContext))));
+
+            services.AddDbContext<ParcelaContext>();
 
             services.AddMvc().AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<ParcelaCreationValidator>());
             services.AddMvc().AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<ParcelaUpdateValidator>());
