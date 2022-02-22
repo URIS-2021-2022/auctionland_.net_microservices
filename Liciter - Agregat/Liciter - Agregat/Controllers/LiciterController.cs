@@ -89,16 +89,16 @@ namespace Liciter___Agregat.Controllers
 
                 LiciterModel liciter2 = mapper.Map<LiciterModel>(liciter);
                 LiciterConfirmation confirmation = liciterRepository.CreateLiciter(liciter2);
-                //liciterRepository.SaveChanges();
+                liciterRepository.SaveChanges();
                 // Dobar API treba da vrati lokator gde se taj resurs nalazi
-                string location = linkGenerator.GetPathByAction("GetLiciter", "Liciter", new { liciterId = confirmation.LiciterId });
+                string location = linkGenerator.GetPathByAction("GetLiciteri", "Liciter", new { liciterId = confirmation.LiciterId });
                 loggerService.Log(LogLevel.Information, "PostStatus", "Liciter je uspesno napravljen!");
                 return Created(location, mapper.Map<LiciterConfirmationDto>(confirmation));
             }
-            catch
+            catch (Exception ex)
             {
                 loggerService.Log(LogLevel.Warning, "PostStatus", "Liciter nije kreiran, doslo je do greske!");
-                return StatusCode(StatusCodes.Status500InternalServerError, "Create Error");
+                return StatusCode(StatusCodes.Status500InternalServerError, "Create Error " + ex.Message);
             }
 
         }
@@ -123,7 +123,7 @@ namespace Liciter___Agregat.Controllers
                     return NotFound();
                 }
                 liciterRepository.DeleteLiciter(liciterId);
-                //liciterRepository.SaveChanges();
+                liciterRepository.SaveChanges();
                 // Status iz familije 2xx koji se koristi kada se ne vraca nikakav objekat, ali naglasava da je sve u redu
                 loggerService.Log(LogLevel.Information, "DeleteStatus", "Liciter je uspesno obrisan!");
                 return NoContent();
@@ -156,7 +156,7 @@ namespace Liciter___Agregat.Controllers
                 }
                 LiciterModel liciterModel = mapper.Map<LiciterModel>(liciter);
                 LiciterConfirmation confirmation = liciterRepository.UpdateLiciter(liciterModel);
-                //liciterRepository.SaveChanges();
+                liciterRepository.SaveChanges();
                 loggerService.Log(LogLevel.Information, "PutStatus", "Liciter je uspesno izmenjen!");
                 return Ok(mapper.Map<LiciterConfirmationDto>(confirmation));
             }

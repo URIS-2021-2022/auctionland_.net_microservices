@@ -66,24 +66,16 @@ namespace Liciter___Agregat.Data
             kupac2.JavnoNadmetanjeId = kupac.JavnoNadmetanjeId;
             
 
-            if (kupac2.PravnoLice == null)
-            {
+            
                 return new KupacConfirmation
                 {
-                    KupacId = kupac2.KupacId,
-                    Ime_Naziv = kupac2.FizickoLice.Ime + " " + kupac2.FizickoLice.Prezime
+                    Prioritet = kupac2.Prioritet,
+                    OstvarenaPovrsina = kupac2.OstvarenaPovrsina,
+                    ImaZabranu = kupac2.ImaZabranu
 
                 };
-            }
-            else
-            {
-                return new KupacConfirmation
-                {
-                    KupacId = kupac2.KupacId,
-                    Ime_Naziv = kupac2.PravnoLice.Naziv
-
-                };
+          
             }
         }
     }
-}
+
