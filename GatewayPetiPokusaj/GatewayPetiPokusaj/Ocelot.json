@@ -1,6 +1,8 @@
 {
   "ReRoutes": [
     {
+      ///OdlukaODavanjuUZakup
+
       "DownstreamPathTemplate": "/api/odluke",
       "DownstreamPathScheme": "https",
       "DownstreamHostAndPorts": [
@@ -10,8 +12,100 @@
         }
       ],
       "UpstreamPathTemplate": "/odluke",
-      "Key": "swagger"
+      "UpstreamHttpMethod": [ "Get", "Post", "Put" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/odluke/{id}",
+      "DownstreamPathScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "44334"
+        }
+      ],
+      "UpstreamPathTemplate": "/odluke/{id}",
+      "UpstreamHttpMethod": [ "Get", "Delete" ]
+    },
+
+    {
+      /// Garant placanja
+
+      "DownstreamPathTemplate": "/api/garantPlacanja",
+      "DownstreamPathScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "44334"
+        }
+      ],
+      "UpstreamPathTemplate": "/garant",
+      "UpstreamHttpMethod": [ "Get", "Post", "Put" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/garantPlacanja/{id}",
+      "DownstreamPathScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "44334"
+        }
+      ],
+      "UpstreamPathTemplate": "/garantPlacanja/{id}",
+      "UpstreamHttpMethod": [ "Get", "Delete" ]
+    },
+    {
+      /// Ugovor o zakupu
+
+      "DownstreamPathTemplate": "/api/UgovorOZakupu",
+      "DownstreamPathScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "44334"
+        }
+      ],
+      "UpstreamPathTemplate": "/Zakup",
+      "UpstreamHttpMethod": [ "Get", "Post", "Put" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/UgovorOZakupu/{id}",
+      "DownstreamPathScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "44334"
+        }
+      ],
+      "UpstreamPathTemplate": "/Zakup/{id}",
+      "UpstreamHttpMethod": [ "Get", "Delete" ]
+    },
+    {
+      /// Uplata Zakupnine
+
+      "DownstreamPathTemplate": "/api/zakupnine",
+      "DownstreamPathScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "44334"
+        }
+      ],
+      "UpstreamPathTemplate": "/zakupnine",
+      "UpstreamHttpMethod": [ "Get", "Post", "Put" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/zakupnine/{id}",
+      "DownstreamPathScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "44334"
+        }
+      ],
+      "UpstreamPathTemplate": "/zakupnine/{id}",
+      "UpstreamHttpMethod": [ "Get", "Delete" ]
     }
+
   ],
   "GlobalConfiguration": {
     "BaseUrl": "https://localhost:9492"
