@@ -94,6 +94,8 @@ namespace Parcela
             services.AddScoped<IParcelaRepository, ParcelaRepository>();
             services.AddScoped<IOpstinaRepository, OpstinaRepository>();
 
+            services.AddScoped<ILoggerService, LoggerService>();
+
             //services.AddDbContextPool<ParcelaContext>(options => options.UseSqlServer(Configuration.GetConnectionString("ParceleDB")));
             //services.AddDbContextPool<DeoParceleContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DeloviParceleDB")));
             //services.AddDbContextPool<OpstinaContext>(options => options.UseSqlServer(Configuration.GetConnectionString("OpstineDB")));

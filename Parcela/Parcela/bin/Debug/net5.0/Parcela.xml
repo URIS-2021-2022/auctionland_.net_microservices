@@ -9,7 +9,7 @@
             Kontroler za delove parcele
             </summary>
         </member>
-        <member name="M:Parcela.Controllers.DeoParceleController.#ctor(Parcela.Data.IDeoParceleRepository,Microsoft.AspNetCore.Routing.LinkGenerator,AutoMapper.IMapper)">
+        <member name="M:Parcela.Controllers.DeoParceleController.#ctor(Parcela.Data.IDeoParceleRepository,Microsoft.AspNetCore.Routing.LinkGenerator,AutoMapper.IMapper,Parcela.Data.ILoggerService)">
             <summary>
             Konstruktor kontrolera za delove parcele
             </summary>
@@ -80,7 +80,7 @@
             Kontroler za opstine
             </summary>
         </member>
-        <member name="M:Parcela.Controllers.OpstinaController.#ctor(Parcela.Data.IOpstinaRepository,Microsoft.AspNetCore.Routing.LinkGenerator,AutoMapper.IMapper)">
+        <member name="M:Parcela.Controllers.OpstinaController.#ctor(Parcela.Data.IOpstinaRepository,Microsoft.AspNetCore.Routing.LinkGenerator,AutoMapper.IMapper,Parcela.Data.ILoggerService)">
             <summary>
             Konstruktor kontrolera za opstine
             </summary>
@@ -149,7 +149,7 @@
             Kontroler za parcele
             </summary>
         </member>
-        <member name="M:Parcela.Controllers.ParcelaController.#ctor(Parcela.Data.IParcelaRepository,Microsoft.AspNetCore.Routing.LinkGenerator,AutoMapper.IMapper)">
+        <member name="M:Parcela.Controllers.ParcelaController.#ctor(Parcela.Data.IParcelaRepository,Microsoft.AspNetCore.Routing.LinkGenerator,AutoMapper.IMapper,Parcela.Data.ILoggerService)">
             <summary>
             Konstruktor kontrolera za parcele
             </summary>

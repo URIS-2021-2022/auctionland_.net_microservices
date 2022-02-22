@@ -5,6 +5,7 @@ using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
+using Microsoft.Extensions.Logging;
 using Parcela.Data;
 using Parcela.Entities;
 using Parcela.Models;
@@ -23,15 +24,17 @@ namespace Parcela.Controllers
         private readonly IOpstinaRepository opstinaRepository;
         private readonly LinkGenerator linkGenerator;
         private readonly IMapper mapper;
+        private readonly ILoggerService loggerService;
 
         /// <summary>
         /// Konstruktor kontrolera za opstine
         /// </summary>
-        public OpstinaController(IOpstinaRepository opstinaRepository, LinkGenerator linkGenerator, IMapper mapper)
+        public OpstinaController(IOpstinaRepository opstinaRepository, LinkGenerator linkGenerator, IMapper mapper, ILoggerService loggerService)
         {
             this.opstinaRepository = opstinaRepository;
             this.linkGenerator = linkGenerator;
             this.mapper = mapper;
+            this.loggerService = loggerService;
         }
 
         /// <summary>
@@ -50,9 +53,11 @@ namespace Parcela.Controllers
 
             if (opstine == null || opstine.Count == 0)
             {
+                loggerService.Log(LogLevel.Warning, "GetAllStatus", "Lista opstina je prazna ili null");
                 return NoContent();
             }
 
+            loggerService.Log(LogLevel.Information, "GetAllStatus", "Lista opstina je uspesno vracena!");
             return Ok(mapper.Map<List<OpstinaDto>>(opstine));
         }
 
@@ -71,8 +76,11 @@ namespace Parcela.Controllers
 
             if (opstina == null)
             {
+                loggerService.Log(LogLevel.Warning, "GetByIdStatus", "Opstina sa tim id-em nije pronadjena");
                 return NotFound();
             }
+
+            loggerService.Log(LogLevel.Information, "GetByIdStatus", "Opstina sa zadatim id-em je uspesno vracena!");
             return Ok(mapper.Map<OpstinaDto>(opstina));
         }
 
@@ -113,10 +121,12 @@ namespace Parcela.Controllers
 
                 string location = linkGenerator.GetPathByAction("GetOpstina", "Opstina", new { opstinaId = confirmation.OpstinaId });
 
+                loggerService.Log(LogLevel.Information, "PostStatus", "Opstina je uspesno napravljena!");
                 return Created(location, mapper.Map<OpstinaConfirmationDto>(confirmation));
             }
             catch (Exception ex)
             {
+                loggerService.Log(LogLevel.Warning, "PostStatus", "Opstina nije kreirana, doslo je do greske!");
                 return StatusCode(StatusCodes.Status500InternalServerError, "Create error");
             }
         }
@@ -141,6 +151,7 @@ namespace Parcela.Controllers
                 var oldOpstina = opstinaRepository.GetOpstinaById(opstina.OpstinaId);
                 if (oldOpstina == null)
                 {
+                    loggerService.Log(LogLevel.Warning, "PutStatus", "Opstina sa tim id-em nije pronadjena");
                     return NotFound();
                 }
                 Opstina opstinaEntity = mapper.Map<Opstina>(opstina);
@@ -155,10 +166,12 @@ namespace Parcela.Controllers
 
 
                 opstinaRepository.SaveChanges();
+                loggerService.Log(LogLevel.Information, "PutStatus", "Opstina je uspesno izmenjena!");
                 return Ok(mapper.Map<OpstinaDto>(oldOpstina));
             }
             catch (Exception)
             {
+                loggerService.Log(LogLevel.Warning, "PutStatus", "Doslo je do greske prilikom izmene opstine");
                 return StatusCode(StatusCodes.Status500InternalServerError, "Update error");
             }
         }
@@ -183,11 +196,13 @@ namespace Parcela.Controllers
 
                 if (opstina == null)
                 {
+                    loggerService.Log(LogLevel.Warning, "DeleteStatus", "Opstina sa tim id-em nije pronadjena");
                     return NotFound();
                 }
 
                 opstinaRepository.DeleteOpstina(opstinaId);
                 opstinaRepository.SaveChanges();
+                loggerService.Log(LogLevel.Information, "DeleteStatus", "Opstina je uspesno obrisana!");
                 return NoContent();
             }
             catch (Exception)

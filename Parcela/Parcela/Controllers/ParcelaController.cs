@@ -5,6 +5,7 @@ using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
+using Microsoft.Extensions.Logging;
 using Parcela.Data;
 using Parcela.Entities;
 using Parcela.Models;
@@ -23,15 +24,17 @@ namespace Parcela.Controllers
         private readonly IParcelaRepository parcelaRepository;
         private readonly LinkGenerator linkGenerator;
         private readonly IMapper mapper;
+        private readonly ILoggerService loggerService;
 
         /// <summary>
         /// Konstruktor kontrolera za parcele
         /// </summary>
-        public ParcelaController(IParcelaRepository parcelaRepository, LinkGenerator linkGenerator, IMapper mapper)
+        public ParcelaController(IParcelaRepository parcelaRepository, LinkGenerator linkGenerator, IMapper mapper, ILoggerService loggerService)
         {
             this.parcelaRepository = parcelaRepository;
             this.linkGenerator = linkGenerator;
             this.mapper = mapper;
+            this.loggerService = loggerService;
         }
 
         /// <summary>
@@ -51,9 +54,11 @@ namespace Parcela.Controllers
 
             if (parcele == null || parcele.Count == 0)
             {
+                loggerService.Log(LogLevel.Warning, "GetAllStatus", "Lista parcela je prazna ili null");
                 return NoContent();
             }
 
+            loggerService.Log(LogLevel.Information, "GetAllStatus", "Lista parcela je uspesno vracena!");
             return Ok(mapper.Map<List<ParcelaDto>>(parcele));
         }
 
@@ -72,8 +77,11 @@ namespace Parcela.Controllers
 
             if (parcela == null)
             {
+                loggerService.Log(LogLevel.Warning, "GetByIdStatus", "Parcela sa tim id-em nije pronadjena");
                 return NotFound();
             }
+
+            loggerService.Log(LogLevel.Information, "GetByIdStatus", "Parcela sa zadatim id-em je uspesno vracena!");
             return Ok(mapper.Map<ParcelaDto>(parcela));
         }
 
@@ -129,10 +137,12 @@ namespace Parcela.Controllers
 
                 string location = linkGenerator.GetPathByAction("GetParcela", "Parcela", new { parcelaId = confirmation.ParcelaId });
 
+                loggerService.Log(LogLevel.Information, "PostStatus", "Parcela je uspesno napravljena!");
                 return Created(location, mapper.Map<ParcelaConfirmationDto>(confirmation));
             }
             catch (Exception ex)
             {
+                loggerService.Log(LogLevel.Warning, "PostStatus", "Parcela nije kreirana, doslo je do greske!");
                 return StatusCode(StatusCodes.Status500InternalServerError, "Create error");
             }
         }
@@ -157,6 +167,7 @@ namespace Parcela.Controllers
                 var oldParcela = parcelaRepository.GetParcelaById(parcela.ParcelaId);
                 if (oldParcela == null)
                 {
+                    loggerService.Log(LogLevel.Warning, "PutStatus", "Parcela sa tim id-em nije pronadjena");
                     return NotFound();
                 }
                 ParcelaM parcelaEntity = mapper.Map<ParcelaM>(parcela);
@@ -169,10 +180,12 @@ namespace Parcela.Controllers
                 results.AddToModelState(ModelState, null);
 
                 parcelaRepository.SaveChanges();
+                loggerService.Log(LogLevel.Information, "PutStatus", "Parcela je uspesno izmenjena!");
                 return Ok(mapper.Map<ParcelaDto>(oldParcela));
             }
             catch (Exception)
             {
+                loggerService.Log(LogLevel.Warning, "PutStatus", "Doslo je do greske prilikom izmene parcele");
                 return StatusCode(StatusCodes.Status500InternalServerError, "Update error");
             }
         }
@@ -197,11 +210,13 @@ namespace Parcela.Controllers
 
                 if (parcela == null)
                 {
+                    loggerService.Log(LogLevel.Warning, "DeleteStatus", "Parcela sa tim id-em nije pronadjena");
                     return NotFound();
                 }
 
                 parcelaRepository.DeleteParcela(parcelaId);
                 parcelaRepository.SaveChanges();
+                loggerService.Log(LogLevel.Information, "DeleteStatus", "Parcela je uspesno obrisana!");
                 return NoContent();
             }
             catch (Exception)

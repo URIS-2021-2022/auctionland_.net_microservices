@@ -5,6 +5,7 @@ using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
+using Microsoft.Extensions.Logging;
 using Parcela.Data;
 using Parcela.Entities;
 using Parcela.Models;
@@ -23,15 +24,17 @@ namespace Parcela.Controllers
         private readonly IDeoParceleRepository deoParceleRepository;
         private readonly LinkGenerator linkGenerator;
         private readonly IMapper mapper;
+        private readonly ILoggerService loggerService;
 
         /// <summary>
         /// Konstruktor kontrolera za delove parcele
         /// </summary>
-        public DeoParceleController(IDeoParceleRepository deoParceleRepository, LinkGenerator linkGenerator, IMapper mapper)
+        public DeoParceleController(IDeoParceleRepository deoParceleRepository, LinkGenerator linkGenerator, IMapper mapper, ILoggerService loggerService)
         {
             this.deoParceleRepository = deoParceleRepository;
             this.linkGenerator = linkGenerator;
             this.mapper = mapper;
+            this.loggerService = loggerService;
         }
 
         /// <summary>
@@ -50,9 +53,11 @@ namespace Parcela.Controllers
 
             if (deloviParcele == null || deloviParcele.Count == 0)
             {
+                loggerService.Log(LogLevel.Warning, "GetAllStatus", "Lista delova parcele je prazna ili null");
                 return NoContent();
             }
 
+            loggerService.Log(LogLevel.Information, "GetAllStatus", "Lista delova parcele je uspesno vracena!");
             return Ok(mapper.Map<List<DeoParceleDto>>(deloviParcele));
         }
 
@@ -71,8 +76,11 @@ namespace Parcela.Controllers
 
             if (deoParcele == null)
             {
+                loggerService.Log(LogLevel.Warning, "GetByIdStatus", "Deo parcele sa tim id-em nije pronadjen");
                 return NotFound();
             }
+
+            loggerService.Log(LogLevel.Information, "GetByIdStatus", "Deo parcele sa zadatim id-em je uspesno vracen!");
             return Ok(mapper.Map<DeoParceleDto>(deoParcele));
         }
 
@@ -115,10 +123,12 @@ namespace Parcela.Controllers
 
                 string location = linkGenerator.GetPathByAction("GetDeoParcele", "DeoParcele", new { deoParceleId = confirmation.DeoParceleId });
 
+                loggerService.Log(LogLevel.Information, "PostStatus", "Deo parcele je uspesno napravljen!");
                 return Created(location, mapper.Map<DeoParceleConfirmationDto>(confirmation));
             }
             catch (Exception ex)
             {
+                loggerService.Log(LogLevel.Warning, "PostStatus", "Deo parcele nije kreiran, doslo je do greske!");
                 return StatusCode(StatusCodes.Status500InternalServerError, "Create error");
             }
         }
@@ -143,6 +153,7 @@ namespace Parcela.Controllers
                 var oldDeoParcele = deoParceleRepository.GetDeoParceleById(deoParcele.DeoParceleId);
                 if (oldDeoParcele == null)
                 {
+                    loggerService.Log(LogLevel.Warning, "PutStatus", "Deo parcele sa tim id-em nije pronadjen");
                     return NotFound();
                 }
                 DeoParcele deoParceleEntity = mapper.Map<DeoParcele>(deoParcele);
@@ -157,10 +168,12 @@ namespace Parcela.Controllers
 
 
                 deoParceleRepository.SaveChanges();
+                loggerService.Log(LogLevel.Information, "PutStatus", "Deo parcele je uspesno izmenjen!");
                 return Ok(mapper.Map<DeoParceleDto>(oldDeoParcele));
             }
             catch (Exception)
             {
+                loggerService.Log(LogLevel.Warning, "PutStatus", "Doslo je do greske prilikom izmene dela parcele");
                 return StatusCode(StatusCodes.Status500InternalServerError, "Update error");
             }
         }
@@ -185,11 +198,13 @@ namespace Parcela.Controllers
 
                 if (deoParcele == null)
                 {
+                    loggerService.Log(LogLevel.Warning, "DeleteStatus", "Deo parcele sa tim id-em nije pronadjen");
                     return NotFound();
                 }
 
                 deoParceleRepository.DeleteDeoParcele(deoParceleId);
                 deoParceleRepository.SaveChanges();
+                loggerService.Log(LogLevel.Information, "DeleteStatus", "Deo parcele je uspesno obrisan!");
                 return NoContent();
             }
             catch (Exception)
