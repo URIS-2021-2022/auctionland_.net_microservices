@@ -2,7 +2,7 @@
   "version": 3,
   "targets": {
     ".NETCoreApp,Version=v3.1": {
-      "AutoMapper/11.0.0": {
+      "AutoMapper/11.0.1": {
         "type": "package",
         "dependencies": {
           "Microsoft.CSharp": "4.7.0"
@@ -1662,15 +1662,15 @@
     }
   },
   "libraries": {
-    "AutoMapper/11.0.0": {
-      "sha512": "+596AnKykYCk9RxXCEF4GYuapSebQtFVvIA1oVG1rrRkCLAC7AkWehJ0brCfYUbdDW3v1H/p0W3hob7JoXGjMw==",
+    "AutoMapper/11.0.1": {
+      "sha512": "WIadGC1pIwbnyTubvI577p3F++Bsj9q2Q3OaAc1I0QS+JhupN1xkdrPBhI9bPIeg63zM81tZplUNYkqU1HE5jQ==",
       "type": "package",
-      "path": "automapper/11.0.0",
+      "path": "automapper/11.0.1",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "README.md",
-        "automapper.11.0.0.nupkg.sha512",
+        "automapper.11.0.1.nupkg.sha512",
         "automapper.nuspec",
         "icon.png",
         "lib/netstandard2.1/AutoMapper.dll",
@@ -6165,6 +6165,7 @@
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
+      "AutoMapper >= 11.0.1",
       "AutoMapper.Extensions.Microsoft.DependencyInjection >= 11.0.0",
       "DocumentFormat.OpenXml >= 2.15.0",
       "Microsoft.EntityFrameworkCore >= 5.0.13",
@@ -6175,19 +6176,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Radonja\\.nuget\\packages\\": {}
+    "C:\\Users\\ADMIN\\.nuget\\packages\\": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Radonja\\Documents\\GitHub\\tim-6---auctionland-tim-6-nopcommerce\\OdlukaODavanjuUZakup\\OdlukaODavanjuUZakup\\OdlukaODavanjuUZakup.csproj",
+      "projectUniqueName": "C:\\Users\\ADMIN\\Documents\\FAKULTET\\tim-6---auctionland-tim-6-nopcommerce\\OdlukaODavanjuUZakup\\OdlukaODavanjuUZakup\\OdlukaODavanjuUZakup.csproj",
       "projectName": "OdlukaODavanjuUZakup",
-      "projectPath": "C:\\Users\\Radonja\\Documents\\GitHub\\tim-6---auctionland-tim-6-nopcommerce\\OdlukaODavanjuUZakup\\OdlukaODavanjuUZakup\\OdlukaODavanjuUZakup.csproj",
-      "packagesPath": "C:\\Users\\Radonja\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Radonja\\Documents\\GitHub\\tim-6---auctionland-tim-6-nopcommerce\\OdlukaODavanjuUZakup\\OdlukaODavanjuUZakup\\obj\\",
+      "projectPath": "C:\\Users\\ADMIN\\Documents\\FAKULTET\\tim-6---auctionland-tim-6-nopcommerce\\OdlukaODavanjuUZakup\\OdlukaODavanjuUZakup\\OdlukaODavanjuUZakup.csproj",
+      "packagesPath": "C:\\Users\\ADMIN\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\ADMIN\\Documents\\FAKULTET\\tim-6---auctionland-tim-6-nopcommerce\\OdlukaODavanjuUZakup\\OdlukaODavanjuUZakup\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+      ],
       "configFilePaths": [
-        "C:\\Users\\Radonja\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\ADMIN\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -6213,6 +6218,10 @@
       "netcoreapp3.1": {
         "targetAlias": "netcoreapp3.1",
         "dependencies": {
+          "AutoMapper": {
+            "target": "Package",
+            "version": "[11.0.1, )"
+          },
           "AutoMapper.Extensions.Microsoft.DependencyInjection": {
             "target": "Package",
             "version": "[11.0.0, )"
@@ -6256,6 +6265,12 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.NETCore.App.Host.win-x64",
+            "version": "[3.1.12, 3.1.12]"
+          }
+        ],
         "frameworkReferences": {
           "Microsoft.AspNetCore.App": {
             "privateAssets": "none"
@@ -6264,7 +6279,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.405\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.103\\RuntimeIdentifierGraph.json"
       }
     }
   }

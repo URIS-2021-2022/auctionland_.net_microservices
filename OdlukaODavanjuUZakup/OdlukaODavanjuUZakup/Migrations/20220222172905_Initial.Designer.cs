@@ -10,8 +10,8 @@ using OdlukaODavanjuUZakup.Entities;
 namespace OdlukaODavanjuUZakup.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20220221143913_Initial 33")]
-    partial class Initial33
+    [Migration("20220222172905_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
