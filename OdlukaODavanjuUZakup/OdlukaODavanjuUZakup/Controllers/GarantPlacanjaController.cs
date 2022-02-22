@@ -23,17 +23,21 @@ namespace OdlukaODavanjuUZakup.Controllers
         private readonly LinkGenerator linkGenerator;
         private readonly IGarantPlacanjaRepository garantPlacanjaRepository;
         private readonly IMapper mapper;
+        private readonly LoggerService loggerService;
+
         /// <summary>
         /// Konstruktor 
         /// </summary>
         /// <param name="garantPlacanjaRepository"></param>
         /// <param name="linkGenerator"></param>
         /// <param name="mapper"></param>
-        public GarantPlacanjaController(IGarantPlacanjaRepository garantPlacanjaRepository, LinkGenerator linkGenerator, IMapper mapper) 
+        /// <param name="loggerService"></param>
+        public GarantPlacanjaController(IGarantPlacanjaRepository garantPlacanjaRepository, LinkGenerator linkGenerator, IMapper mapper, LoggerService loggerService) 
         {
             this.linkGenerator = linkGenerator;
             this.garantPlacanjaRepository = garantPlacanjaRepository;
             this.mapper = mapper;
+            this.loggerService = loggerService;
         }
         /// <summary>
         /// Vraca listu svih garanta placanja

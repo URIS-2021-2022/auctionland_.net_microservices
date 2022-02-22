@@ -19,6 +19,7 @@ namespace OdlukaODavanjuUZakup.Controllers
     [Produces("application/json", "application/xml")]
     public class UplataZakupnineController : ControllerBase
     {
+        private readonly LoggerService loggerService;
         private readonly LinkGenerator linkGenerator;
         private readonly IMapper mapper;
         private readonly IUplataZakupnineRepository uplataZakupnineRepository;
@@ -29,9 +30,11 @@ namespace OdlukaODavanjuUZakup.Controllers
         /// <param name="uplataZakupnineRepository"></param>
         /// <param name="linkGenerator"></param>
         /// <param name="mapper"></param>
-        public UplataZakupnineController(IUplataZakupnineRepository uplataZakupnineRepository, LinkGenerator linkGenerator, IMapper mapper)
+        /// <param name="loggerService"></param>
+        public UplataZakupnineController(IUplataZakupnineRepository uplataZakupnineRepository, LinkGenerator linkGenerator, IMapper mapper, LoggerService loggerService)
 
         {
+            this.loggerService = loggerService;
             this.linkGenerator = linkGenerator;
             this.mapper = mapper;
             this.uplataZakupnineRepository = uplataZakupnineRepository;

@@ -24,6 +24,8 @@ namespace OdlukaODavanjuUZakup.Controllers
         private readonly IUgovoroZakupuRepository ugovoroZakupuRepository;
         private readonly LinkGenerator linkGenerator;
         private readonly IMapper mapper;
+        private readonly LoggerService loggerService;
+
         /// <summary>
         /// 
         /// Konstruktor
@@ -31,11 +33,13 @@ namespace OdlukaODavanjuUZakup.Controllers
         /// <param name="ugovoroZakupuRepository"></param>
         /// <param name="linkGenerator"></param>
         /// <param name="mapper"></param>
-        public UgovoroZakupuController(IUgovoroZakupuRepository ugovoroZakupuRepository, LinkGenerator linkGenerator, IMapper mapper)
+        /// <param name="loggerService"></param>
+        public UgovoroZakupuController(IUgovoroZakupuRepository ugovoroZakupuRepository, LinkGenerator linkGenerator, IMapper mapper, LoggerService loggerService)
         {
             this.ugovoroZakupuRepository = ugovoroZakupuRepository;
             this.linkGenerator = linkGenerator;
             this.mapper = mapper;
+            this.loggerService = loggerService;
         }
         /// <summary>
         /// Vraca listu svih ugovora o zakupu
