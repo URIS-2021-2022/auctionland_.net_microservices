@@ -5,6 +5,7 @@ using Korisnik_agregat.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,11 +21,13 @@ namespace Korisnik_agregat.Controllers
     {
         private readonly ITipKorisnikaRepository tipKorisnikaRepository;
         private readonly IMapper mapper;
+        private readonly ILoggerService loggerService;
 
-        public TipKorisnikaController(ITipKorisnikaRepository tipKorisnikaRepository, IMapper mapper)
+        public TipKorisnikaController(ITipKorisnikaRepository tipKorisnikaRepository, IMapper mapper, ILoggerService loggerService)
         {
             this.tipKorisnikaRepository = tipKorisnikaRepository;
             this.mapper = mapper;
+            this.loggerService = loggerService;
         }
 
         /// <summary>
@@ -40,9 +43,11 @@ namespace Korisnik_agregat.Controllers
 
             if (tipKorisnikaList == null || tipKorisnikaList.Count == 0)
             {
+                loggerService.Log(LogLevel.Warning, "GetAllStatus", "Lista tipova korisnika je prazna ili null.");
                 return NoContent();
             }
 
+            loggerService.Log(LogLevel.Information, "GetAllStatus", "Lista tipova korisnika je uspešno vraćena!");
             return Ok(mapper.Map<List<TipKorisnikaDto>>(tipKorisnikaList));
         }
 
@@ -60,9 +65,11 @@ namespace Korisnik_agregat.Controllers
 
             if (tipKorisnika == null)
             {
+                loggerService.Log(LogLevel.Warning, "GetByIdStatus", "Tip korisnika sa tim id-em nije pronađen.");
                 return NotFound();
             }
 
+            loggerService.Log(LogLevel.Information, "GetByIdStatus", "Tip korisnika sa zadatim id-em je uspešno vraćen!");
             return Ok(mapper.Map<TipKorisnikaDto>(tipKorisnika));
         }
 
@@ -76,6 +83,7 @@ namespace Korisnik_agregat.Controllers
         {
             Response.Headers.Add("Allow", "GET");
 
+            loggerService.Log(LogLevel.Information, "GetStatus", "Opcije su uspešno vraćene!");
             return Ok();
         }
     }

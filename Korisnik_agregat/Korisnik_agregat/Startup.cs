@@ -40,6 +40,8 @@ namespace Korisnik_agregat
             services.AddScoped<ITipKorisnikaRepository, TipKorisnikaRepository>();
             services.AddScoped<IKorisnikRepository, KorisnikRepository>();
             services.AddScoped<IAuthHelper, AuthHelper>();
+            services.AddScoped<ILoggerService, LoggerService>();
+
 
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 

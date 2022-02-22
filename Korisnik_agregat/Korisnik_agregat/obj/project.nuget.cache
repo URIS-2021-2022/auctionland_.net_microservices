@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "fbX3Q+sBX/iXspNq7wMdLb2x0xfSL1VPkD8bT9xPWHgd0RlZIH3VumzxvJtWmqI6MIuDAT8iBfFDEzSkQ3qumA==",
+  "dgSpecHash": "ECDJHqMUdYwgmf9mDibuTX4IKugyTRbi6LrC+hl6VSVIv9WK58hpSGIpwym39U1c9eDxy2itaJAFbVTXpauwSQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\Vlado\\Documents\\GitHub\\tim-6---auctionland-tim-6-nopcommerce\\Korisnik_agregat\\Korisnik_agregat\\Korisnik_agregat.csproj",
   "expectedPackageFiles": [
@@ -39,6 +39,7 @@
     "C:\\Users\\Vlado\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
     "C:\\Users\\Vlado\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
     "C:\\Users\\Vlado\\.nuget\\packages\\microsoft.win32.systemevents\\4.7.0\\microsoft.win32.systemevents.4.7.0.nupkg.sha512",
+    "C:\\Users\\Vlado\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
     "C:\\Users\\Vlado\\.nuget\\packages\\runtime.native.system\\4.3.0\\runtime.native.system.4.3.0.nupkg.sha512",
     "C:\\Users\\Vlado\\.nuget\\packages\\swashbuckle.aspnetcore\\5.6.3\\swashbuckle.aspnetcore.5.6.3.nupkg.sha512",
     "C:\\Users\\Vlado\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\5.6.3\\swashbuckle.aspnetcore.swagger.5.6.3.nupkg.sha512",

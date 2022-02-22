@@ -133,3 +133,4 @@ C:\Users\Vlado\Documents\GitHub\tim-6---auctionland-tim-6-nopcommerce\Korisnik_a
 C:\Users\Vlado\Documents\GitHub\tim-6---auctionland-tim-6-nopcommerce\Korisnik_agregat\Korisnik_agregat\obj\Debug\net5.0\Korisnik_agregat.RazorTargetAssemblyInfo.cache
 C:\Users\Vlado\Documents\GitHub\tim-6---auctionland-tim-6-nopcommerce\Korisnik_agregat\Korisnik_agregat\obj\Debug\net5.0\Korisnik_agregat.csproj.CopyComplete
 C:\Users\Vlado\Documents\GitHub\tim-6---auctionland-tim-6-nopcommerce\Korisnik_agregat\Korisnik_agregat\obj\Debug\net5.0\Korisnik_agregat.genruntimeconfig.cache
+C:\Users\Vlado\Documents\GitHub\tim-6---auctionland-tim-6-nopcommerce\Korisnik_agregat\Korisnik_agregat\bin\Debug\net5.0\Newtonsoft.Json.dll

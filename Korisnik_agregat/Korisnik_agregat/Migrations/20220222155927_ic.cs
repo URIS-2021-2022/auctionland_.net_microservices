@@ -39,7 +39,7 @@ namespace Korisnik_agregat.Migrations
             migrationBuilder.InsertData(
                 table: "Korisnici",
                 columns: new[] { "KorisnikId", "Ime", "KorisnickoIme", "Lozinka", "Prezime", "Salt", "TipKorisnikaID" },
-                values: new object[] { new Guid("34f11383-cb12-481d-9ff7-2fd458dc7e2b"), "Vlado", "Vlado", "y/UTZuaAayo4Z1T7KvztWZGL+p2339nTGtWq8BhyRexJ3Qm3QQnEywlDIegxVBKY6DSzWuTXt23HhtVEB7LhPxLbZBBJtLcfGYoQRYYdH6LqRMBSnJejkmRI/GyBQ78EmRo/mQ49CI10w/Ly+7GoRbilzao9tvmeGEfV/ZiRMg8RqZktis/EMS20R0NmSn63q+qGBKDVUA0Bov/z+vKVqtlcwPEa34wJBDC/Z88Qsx5cOTKGHXqDBnuLCApxIrexZYiD1KiIQrQYx8HNLLZgVXOAY2op6iLnKWGUFqtgfmvKVzDuZ00oXPMZLKDZKOwF17IYvf6MT8/aX7jehkkCQQ==", "Cetkovic", "VXpoKsNW2F6A6w==", new Guid("577a8f2b-1a55-4e91-a3ea-3d5cf16814a6") });
+                values: new object[] { new Guid("34f11383-cb12-481d-9ff7-2fd458dc7e2b"), "Vlado", "Vlado", "Hp4FA+Davx87H1kjksH9KqfoQwWORWRuIIC/ORXK6bpf6L58i76CCzvr/hnhzP8cumQlxGwPdNw3T98Mi6opEdNB8YpyyQMP7I/r86lg7dw21/VWbLdBhxk8FkiQh7Zzx3ghShxochj9yvOKGcif8yiqqRcPnf8/FSNeBzyY9VierHh9SdHN4bw7kY5c5aI84yih2cJKQZXs3UHttYl/TvHDG+djhax22GZHn4joKbrxvkbi+OAZcDbekkWuK96MEziob/ROCBx7WKN8CQ+DHy50S36Zk/XZHWo+uXrUdk2xS35ii4J4Uxx5FFsof/h1KTz3ZaQpo8EHFd0H9QycrQ==", "Cetkovic", "K0mnPR8m67LE2Q==", new Guid("577a8f2b-1a55-4e91-a3ea-3d5cf16814a6") });
 
             migrationBuilder.InsertData(
                 table: "TipoviKorisnika",

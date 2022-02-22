@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,12 +22,14 @@ namespace Korisnik_agregat.Controllers
         private readonly IKorisnikRepository korisnikRepository;
         private readonly LinkGenerator linkGenerator;
         private readonly IMapper mapper;
+        private readonly ILoggerService loggerService;
 
-        public KorisnikController(IKorisnikRepository korisnikRepository, LinkGenerator linkGenerator, IMapper mapper)
+        public KorisnikController(IKorisnikRepository korisnikRepository, LinkGenerator linkGenerator, IMapper mapper, ILoggerService loggerService)
         {
             this.korisnikRepository = korisnikRepository;
             this.linkGenerator = linkGenerator;
             this.mapper = mapper;
+            this.loggerService = loggerService;
         }
 
         /// <summary>
@@ -42,9 +45,11 @@ namespace Korisnik_agregat.Controllers
 
             if (korisnikList == null || korisnikList.Count == 0)
             {
+                loggerService.Log(LogLevel.Warning, "GetAllStatus", "Lista korisnika je prazna ili null.");
                 return NoContent();
             }
 
+            loggerService.Log(LogLevel.Information, "GetAllStatus", "Lista korisnika je uspešno vraćena!");
             return Ok(mapper.Map<List<KorisnikDto>>(korisnikList));
         }
 
@@ -62,9 +67,11 @@ namespace Korisnik_agregat.Controllers
 
             if (korisnik == null)
             {
+                loggerService.Log(LogLevel.Warning, "GetByIdStatus", "Korisnik sa tim id-em nije pronađen.");
                 return NotFound();
             }
 
+            loggerService.Log(LogLevel.Information, "GetByIdStatus", "Korisnik sa zadatim id-em je uspešno vraćen!");
             return Ok(mapper.Map<KorisnikDto>(korisnik));
         }
 
@@ -93,11 +100,12 @@ namespace Korisnik_agregat.Controllers
                 korisnikRepository.SaveChanges();
                 string location = linkGenerator.GetPathByAction("GetKorisniks", "Korisnik", new { korisnikId = confirmation.KorisnikId});
 
-
+                loggerService.Log(LogLevel.Information, "PostStatus", "Korisnik je uspešno kreiran!");
                 return Created(location, mapper.Map<KorisnikConfirmationDto>(confirmation));
             }
             catch (Exception ex)
             {
+                loggerService.Log(LogLevel.Warning, "PostStatus", "Korisnik nije kreiran, došlo je do greške!");
                 return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
             }
         }
@@ -128,6 +136,7 @@ namespace Korisnik_agregat.Controllers
                 var oldKorisnik = korisnikRepository.GetKorisnikById(korisnikDto.KorisnikId);
                 if (oldKorisnik == null)
                 {
+                    loggerService.Log(LogLevel.Warning, "PutStatus", "Korisnik sa zadatim id-em nije pronađen!");
                     return NotFound(); //Ukoliko ne postoji vratiti status 404 (NotFound).
                 }
                 Korisnik korisnikEntity = mapper.Map<Korisnik>(korisnikDto);
@@ -135,10 +144,12 @@ namespace Korisnik_agregat.Controllers
                 mapper.Map(korisnikEntity, oldKorisnik); //Update objekta koji treba da sačuvamo u bazi                
 
                 korisnikRepository.SaveChanges(); //Perzistiramo promene
+                loggerService.Log(LogLevel.Information, "PutStatus", "Korisnik je uspešno izmenjen!");
                 return Ok(mapper.Map<KorisnikDto>(oldKorisnik));
             }
             catch (Exception)
             {
+                loggerService.Log(LogLevel.Warning, "PutStatus", "Korisnik nije izmenjen, došlo je do greške!");
                 return StatusCode(StatusCodes.Status500InternalServerError, "Update error");
             }
         }
@@ -160,16 +171,19 @@ namespace Korisnik_agregat.Controllers
 
                 if (korisnik == null)
                 {
+                    loggerService.Log(LogLevel.Warning, "DeleteStatus", "Korisnik sa zadatim id-em nije pronađen!");
                     return NotFound();
                 }
 
                 korisnikRepository.DeleteKorisnik(korisnikId);
                 korisnikRepository.SaveChanges();
+                loggerService.Log(LogLevel.Information, "DeleteStatus", "Korisnik je uspešno obrisan!");
                 return NoContent();
 
             }
             catch (Exception)
             {
+                loggerService.Log(LogLevel.Warning, "DeleteStatus", "Korisnik nije obrisan, došlo je do greške!");
                 return StatusCode(StatusCodes.Status500InternalServerError, "Delete error");
             }
         }
@@ -183,7 +197,7 @@ namespace Korisnik_agregat.Controllers
         public IActionResult GetExamRegistrationOptions()
         {
             Response.Headers.Add("Allow", "GET, POST, PUT, DELETE");
-
+            loggerService.Log(LogLevel.Information, "GetStatus", "Opcije su uspešno vraćene!");
             return Ok();
         }
     }

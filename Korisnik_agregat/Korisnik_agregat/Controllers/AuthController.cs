@@ -1,7 +1,9 @@
-﻿using Korisnik_agregat.Helpers;
+﻿using Korisnik_agregat.Data;
+using Korisnik_agregat.Helpers;
 using Korisnik_agregat.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,10 +17,12 @@ namespace Korisnik_agregat.Controllers
     public class AuthController : ControllerBase
     {
         private readonly IAuthHelper authHelper;
+        private readonly ILoggerService loggerService;
 
-        public AuthController(IAuthHelper authHelper)
+        public AuthController(IAuthHelper authHelper, ILoggerService loggerService)
         {
             this.authHelper = authHelper;
+            this.loggerService = loggerService;
         }
 
         /// <summary>
@@ -36,9 +40,12 @@ namespace Korisnik_agregat.Controllers
             {
                 var tokenString = authHelper.GenerateJwt(principal);
 
+                loggerService.Log(LogLevel.Information, "PostStatus", "Token je uspešno vraćen!");
 
                 return Ok(new { token = tokenString });
             }
+
+            loggerService.Log(LogLevel.Warning, "GetAllStatus", "Token nije vraćen, korisnik nije autorizovan!.");
 
             return Unauthorized();
         }
