@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
+using Microsoft.Extensions.Logging;
 using OdlukaODavanjuUZakup.Data;
 using OdlukaODavanjuUZakup.Entities;
 using OdlukaODavanjuUZakup.Models;
@@ -54,6 +55,7 @@ namespace OdlukaODavanjuUZakup.Controllers
             var garanti = garantPlacanjaRepository.GetGarantiPlacanja();
             if (garanti == null || garanti.Count == 0)
             {
+                loggerService.Log(LogLevel.Information, "GetAllStatus", "Lista fizickih lica je uspesno vracena!");
                 return NoContent();
             }
             return Ok(mapper.Map<List<GarantPlacanjaDto>>(garanti));
@@ -76,6 +78,7 @@ namespace OdlukaODavanjuUZakup.Controllers
             var garant = garantPlacanjaRepository.GetGarantPlacanjaById(garantPlacanjaID);
             if (garant == null)
             {
+                loggerService.Log(LogLevel.Information, "GetAllStatus", "Lista fizickih lica je uspesno vracena!");
                 return NotFound();
             }
             return Ok(mapper.Map<GarantPlacanjaDto>(garant));
@@ -99,10 +102,12 @@ namespace OdlukaODavanjuUZakup.Controllers
 
                 garantPlacanjaRepository.SaveChanges();
                 string location = linkGenerator.GetPathByAction("GetGaranti", "GarantPlacanja", new { GarantPlacanjaID = confirmation.GarantPlacanjaID });
+                loggerService.Log(LogLevel.Information, "GetAllStatus", "Lista fizickih lica je uspesno vracena!");
                 return Created(location, mapper.Map<GarantPlacanjaConfirmationDto>(confirmation));
             }
             catch
             {
+                loggerService.Log(LogLevel.Information, "GetAllStatus", "Lista fizickih lica je uspesno vracena!");
                 return StatusCode(StatusCodes.Status500InternalServerError, "Create error");
             }
         }
@@ -127,14 +132,17 @@ namespace OdlukaODavanjuUZakup.Controllers
                 var garant = garantPlacanjaRepository.GetGarantPlacanjaById(garantPlacanjaID);
                 if (garant == null)
                 {
+                    loggerService.Log(LogLevel.Information, "GetAllStatus", "Lista fizickih lica je uspesno vracena!");
                     return NotFound();
                 }
                 garantPlacanjaRepository.DeleteGarantPlacanja(garantPlacanjaID);
                 garantPlacanjaRepository.SaveChanges();
+                loggerService.Log(LogLevel.Information, "GetAllStatus", "Lista fizickih lica je uspesno vracena!");
                 return NoContent();
             }
             catch (Exception)
             {
+                loggerService.Log(LogLevel.Information, "GetAllStatus", "Lista fizickih lica je uspesno vracena!");
                 return StatusCode(StatusCodes.Status500InternalServerError, "Delete error");
             }
         }

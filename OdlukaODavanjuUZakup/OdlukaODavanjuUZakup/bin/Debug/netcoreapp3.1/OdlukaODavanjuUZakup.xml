@@ -9,13 +9,14 @@
             Predstavlja tipove garancija placanja, mogu biti : Jemstvo, bankarska garancija, garancija nekretninom, zirantska, uplata gotovinom
             </summary>
         </member>
-        <member name="M:OdlukaODavanjuUZakup.Controllers.GarantPlacanjaController.#ctor(OdlukaODavanjuUZakup.Data.IGarantPlacanjaRepository,Microsoft.AspNetCore.Routing.LinkGenerator,AutoMapper.IMapper)">
+        <member name="M:OdlukaODavanjuUZakup.Controllers.GarantPlacanjaController.#ctor(OdlukaODavanjuUZakup.Data.IGarantPlacanjaRepository,Microsoft.AspNetCore.Routing.LinkGenerator,AutoMapper.IMapper,OdlukaODavanjuUZakup.Data.LoggerService)">
             <summary>
             Konstruktor 
             </summary>
             <param name="garantPlacanjaRepository"></param>
             <param name="linkGenerator"></param>
             <param name="mapper"></param>
+            <param name="loggerService"></param>
         </member>
         <member name="M:OdlukaODavanjuUZakup.Controllers.GarantPlacanjaController.GetGaranti">
             <summary>
@@ -68,7 +69,7 @@
             Controller za entitet odluka o davanju u zakup
             </summary>
         </member>
-        <member name="M:OdlukaODavanjuUZakup.Controllers.OdlukaoDavanjuuZakupController.#ctor(OdlukaODavanjuUZakup.Data.IOdlukaoDavanjuuZakupRepository,Microsoft.AspNetCore.Routing.LinkGenerator,AutoMapper.IMapper)">
+        <member name="M:OdlukaODavanjuUZakup.Controllers.OdlukaoDavanjuuZakupController.#ctor(OdlukaODavanjuUZakup.Data.IOdlukaoDavanjuuZakupRepository,Microsoft.AspNetCore.Routing.LinkGenerator,AutoMapper.IMapper,OdlukaODavanjuUZakup.Data.LoggerService)">
             <summary>
             
             Konstruktor
@@ -76,6 +77,7 @@
             <param name="odlukaoDavanjuuZakupRepository"></param>
             <param name="linkGenerator"></param>
             <param name="mapper"></param>
+            <param name="loggerService"></param>
         </member>
         <member name="M:OdlukaODavanjuUZakup.Controllers.OdlukaoDavanjuuZakupController.GetOdluke">
             <summary>
@@ -126,7 +128,7 @@
             Controler za ugovor o zakupu entitet
             </summary>
         </member>
-        <member name="M:OdlukaODavanjuUZakup.Controllers.UgovoroZakupuController.#ctor(OdlukaODavanjuUZakup.Data.IUgovoroZakupuRepository,Microsoft.AspNetCore.Routing.LinkGenerator,AutoMapper.IMapper)">
+        <member name="M:OdlukaODavanjuUZakup.Controllers.UgovoroZakupuController.#ctor(OdlukaODavanjuUZakup.Data.IUgovoroZakupuRepository,Microsoft.AspNetCore.Routing.LinkGenerator,AutoMapper.IMapper,OdlukaODavanjuUZakup.Data.LoggerService)">
             <summary>
             
             Konstruktor
@@ -134,6 +136,7 @@
             <param name="ugovoroZakupuRepository"></param>
             <param name="linkGenerator"></param>
             <param name="mapper"></param>
+            <param name="loggerService"></param>
         </member>
         <member name="M:OdlukaODavanjuUZakup.Controllers.UgovoroZakupuController.GetUgovori(System.String)">
             <summary>
@@ -189,13 +192,14 @@
             Kontroler za uplatu zakupnine
             </summary>
         </member>
-        <member name="M:OdlukaODavanjuUZakup.Controllers.UplataZakupnineController.#ctor(OdlukaODavanjuUZakup.Data.IUplataZakupnineRepository,Microsoft.AspNetCore.Routing.LinkGenerator,AutoMapper.IMapper)">
+        <member name="M:OdlukaODavanjuUZakup.Controllers.UplataZakupnineController.#ctor(OdlukaODavanjuUZakup.Data.IUplataZakupnineRepository,Microsoft.AspNetCore.Routing.LinkGenerator,AutoMapper.IMapper,OdlukaODavanjuUZakup.Data.LoggerService)">
             <summary>
             Konstruktor
             </summary>
             <param name="uplataZakupnineRepository"></param>
             <param name="linkGenerator"></param>
             <param name="mapper"></param>
+            <param name="loggerService"></param>
         </member>
         <member name="M:OdlukaODavanjuUZakup.Controllers.UplataZakupnineController.GetUplate(System.String)">
             <summary>

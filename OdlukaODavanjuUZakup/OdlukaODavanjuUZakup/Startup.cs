@@ -32,6 +32,7 @@ namespace OdlukaODavanjuUZakup
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
             services.AddControllers(setup =>
             {
                 setup.ReturnHttpNotAcceptable = true;
@@ -41,6 +42,7 @@ namespace OdlukaODavanjuUZakup
             services.AddScoped<IGarantPlacanjaRepository, GarantPlacanjaRepository>();
             services.AddScoped<IUplataZakupnineRepository, UplataZakupnineRepository>();
             services.AddScoped<IUgovoroZakupuRepository, UgovoroZakupuRepository>();
+            services.AddScoped<ILoggerService, LoggerService>();
       //      services.AddScoped<GarantPlacanjaMockRepository>();
 
             services.AddSwaggerGen(setupAction =>

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace OdlukaODavanjuUZakup.Data
 {
-    interface ILoggerService
+    public interface ILoggerService
     {
         public Task<bool> Log(LogLevel level, string method, string message, Exception error = null);
     }
