@@ -24,6 +24,8 @@ namespace OdlukaODavanjuUZakup.Controllers
         private readonly LinkGenerator linkGenerator;
         private readonly IMapper mapper;
         private readonly IOdlukaoDavanjuuZakupRepository odlukaoDavanjuuZakupRepository;
+        private readonly LoggerService loggerService;
+
         /// <summary>
         /// 
         /// Konstruktor
@@ -31,12 +33,14 @@ namespace OdlukaODavanjuUZakup.Controllers
         /// <param name="odlukaoDavanjuuZakupRepository"></param>
         /// <param name="linkGenerator"></param>
         /// <param name="mapper"></param>
-        public OdlukaoDavanjuuZakupController(IOdlukaoDavanjuuZakupRepository odlukaoDavanjuuZakupRepository, LinkGenerator linkGenerator, IMapper mapper)
+        /// <param name="loggerService"></param>
+        public OdlukaoDavanjuuZakupController(IOdlukaoDavanjuuZakupRepository odlukaoDavanjuuZakupRepository, LinkGenerator linkGenerator, IMapper mapper, LoggerService loggerService)
 
         {
             this.linkGenerator = linkGenerator;
             this.mapper = mapper;
             this.odlukaoDavanjuuZakupRepository = odlukaoDavanjuuZakupRepository;
+            this.loggerService = loggerService;
         }
         /// <summary>
         /// Vraca listu svih odluka o davanju u zakup
