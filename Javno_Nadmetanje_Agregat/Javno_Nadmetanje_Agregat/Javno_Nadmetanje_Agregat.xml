@@ -316,7 +316,7 @@
         <member name="T:Javno_Nadmetanje_Agregat.Models.JavnoNadmetanjeUpdateDto">
             <summary>
             Predstavlja model izmene javnog nadmetanja
-            </summary>
+            </summary> 
         </member>
         <member name="P:Javno_Nadmetanje_Agregat.Models.JavnoNadmetanjeUpdateDto.JavnoNadmetanjeId">
             <summary>
@@ -382,6 +382,13 @@
             <summary>
             Krug javnog nadmetanja
             </summary>
+        </member>
+        <member name="M:Javno_Nadmetanje_Agregat.Models.JavnoNadmetanjeUpdateDto.Validate(System.ComponentModel.DataAnnotations.ValidationContext)">
+            <summary>
+            Validacija da uneto vreme pocetka javnog nadmetanja nije vece od unetog vremena kraja javnog nadmetanja
+            </summary>
+            <param name="validationContext"></param>
+            <returns></returns>
         </member>
         <member name="T:Javno_Nadmetanje_Agregat.Models.StatusJavnogNadmetanjaConfirmationDto">
             <summary>

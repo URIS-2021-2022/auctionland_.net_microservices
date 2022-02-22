@@ -5,6 +5,7 @@ using Javno_Nadmetanje_Agregat.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,12 +24,14 @@ namespace Javno_Nadmetanje_Agregat.Controllers
         private readonly ITipJavnogNadmetanjaRepository tipJavnogNadmetanjaRepository;
         private readonly LinkGenerator linkGenerator;
         private readonly IMapper mapper;
+        private readonly ILoggerService loggerService;
 
-        public TipJavnogNadmetanjaController(ITipJavnogNadmetanjaRepository tipJavnogNadmetanjaRepository, LinkGenerator linkGenerator, IMapper mapper)
+        public TipJavnogNadmetanjaController(ITipJavnogNadmetanjaRepository tipJavnogNadmetanjaRepository, LinkGenerator linkGenerator, IMapper mapper, ILoggerService loggerService)
         {
             this.tipJavnogNadmetanjaRepository = tipJavnogNadmetanjaRepository;
             this.linkGenerator = linkGenerator;
             this.mapper = mapper;
+            this.loggerService = loggerService;
         }
 
         /// <summary>
@@ -46,8 +49,11 @@ namespace Javno_Nadmetanje_Agregat.Controllers
             List<TipJavnogNadmetanja> tipovi = tipJavnogNadmetanjaRepository.GetTipJavnogNadmetanjaList();
             if (tipovi == null || tipovi.Count == 0)
             {
+                loggerService.Log(LogLevel.Warning, "GetAllStatus", "Lista tipova javnih nadmetanja je prazna ili null.");
                 return NoContent();
             }
+
+            loggerService.Log(LogLevel.Information, "GetAllStatus", "Lista tipova javnih nadmetanja je uspesno vracena!");
             return Ok(mapper.Map<List<TipJavnogNadmetanjaDto>>(tipovi));
         }
 
@@ -66,8 +72,11 @@ namespace Javno_Nadmetanje_Agregat.Controllers
             TipJavnogNadmetanja tipJavnogNadmetanja = tipJavnogNadmetanjaRepository.GetTipJavnogNadmetanjaById(tipJavnogNadmetanjaId);
             if (tipJavnogNadmetanja == null)
             {
+                loggerService.Log(LogLevel.Warning, "GetByIdStatus", "Tip javnog nadmetanja sa datim id-em nije pronadjen.");
                 return NotFound();
             }
+
+            loggerService.Log(LogLevel.Information, "GetByIdStatus", "Tip javnog nadmetanja sa datim id-em je uspesno vracen!");
             return Ok(mapper.Map<TipJavnogNadmetanjaDto>(tipJavnogNadmetanja));
         }
 
@@ -89,10 +98,12 @@ namespace Javno_Nadmetanje_Agregat.Controllers
                 TipJavnogNadmetanjaConfirmationDto confirmation = tipJavnogNadmetanjaRepository.CreateTipJavnogNadmetanja(tipJavnogNadmetanja);
                 string location = linkGenerator.GetPathByAction("GetTipJavnogNadmetanjaById", "TipJavnogNadmetanja", new { tipJavnogNadmetanjaId = confirmation.TipJavnogNadmetanjaId });
 
+                loggerService.Log(LogLevel.Information, "PostStatus", "Tip javnog nadmetanja je uspesno napravljen!");
                 return Created(location, mapper.Map<TipJavnogNadmetanjaConfirmationDto>(confirmation));
             }
             catch (Exception ex)
             {
+                loggerService.Log(LogLevel.Warning, "PostStatus", "Tip javnog nadmetanja nije kreiran, doslo je do greske.");
                 return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
             }
 
@@ -117,13 +128,17 @@ namespace Javno_Nadmetanje_Agregat.Controllers
                 TipJavnogNadmetanja tipJavnogNadmetanja = tipJavnogNadmetanjaRepository.GetTipJavnogNadmetanjaById(tipJavnogNadmetanjaId);
                 if (tipJavnogNadmetanja == null)
                 {
+                    loggerService.Log(LogLevel.Warning, "DeleteStatus", "Tip javnog nadmetanja sa datim id-em nije pronadjen.");
                     return NotFound();
                 }
                 TipJavnogNadmetanjaConfirmationDto confirmation = tipJavnogNadmetanjaRepository.DeleteTipJavnogNadmetanja(tipJavnogNadmetanjaId);
+                
+                loggerService.Log(LogLevel.Information, "DeleteStatus", "Tip javnog nadmetanja je uspesno obrisan!");
                 return Ok(mapper.Map<TipJavnogNadmetanjaConfirmationDto>(confirmation));
             }
             catch (Exception ex)
             {
+                loggerService.Log(LogLevel.Warning, "DeleteStatus", "Tip javnog nadmetanja nije obrisan, doslo je do greske.");
                 return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
             }
         }
@@ -148,6 +163,7 @@ namespace Javno_Nadmetanje_Agregat.Controllers
 
                 if (oldTjn == null)
                 {
+                    loggerService.Log(LogLevel.Warning, "PutStatus", "Tip javnog nadmetanja sa datim id-em nije pronadjen.");
                     return NotFound();
                 }
 
@@ -157,10 +173,12 @@ namespace Javno_Nadmetanje_Agregat.Controllers
 
                 TipJavnogNadmetanjaConfirmationDto confirmation = tipJavnogNadmetanjaRepository.UpdateTipJavnogNadmetanja(Tjn);
 
+                loggerService.Log(LogLevel.Information, "PutStatus", "Tip javnog nadmetanja je uspesno izmenjen!");
                 return Ok(mapper.Map<TipJavnogNadmetanjaConfirmationDto>(confirmation));
             }
             catch (Exception ex)
             {
+                loggerService.Log(LogLevel.Warning, "PutStatus", "Tip javnog nadmetanja nije izmenjen, doslo je do greske.");
                 return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
             }
         }

@@ -35,6 +35,8 @@ namespace Javno_Nadmetanje_Agregat
             services.AddScoped<IJavnoNadmetanjeRepository, JavnoNadmetanjeRepository>();
             services.AddScoped<ITipJavnogNadmetanjaRepository, TipJavnogNadmetanjaRepository>();
             services.AddScoped<IStatusJavnogNadmetanjaRepository, StatusJavnogNadmetanjaRepository>();
+            services.AddScoped<ILoggerService, LoggerService>();
+
 
             services.AddControllers();
 

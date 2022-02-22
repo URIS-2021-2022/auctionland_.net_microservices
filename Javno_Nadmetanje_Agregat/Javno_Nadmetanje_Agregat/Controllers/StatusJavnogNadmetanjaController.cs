@@ -5,6 +5,7 @@ using Javno_Nadmetanje_Agregat.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,12 +24,16 @@ namespace Javno_Nadmetanje_Agregat.Controllers
         private readonly IStatusJavnogNadmetanjaRepository statusJavnogNadmetanjaRepository;
         private readonly LinkGenerator linkGenerator;
         private readonly IMapper mapper;
+        private readonly ILoggerService loggerService;
 
-        public StatusJavnogNadmetanjaController(IStatusJavnogNadmetanjaRepository statusJavnogNadmetanjaRepository, LinkGenerator linkGenerator, IMapper mapper)
+
+        public StatusJavnogNadmetanjaController(IStatusJavnogNadmetanjaRepository statusJavnogNadmetanjaRepository, LinkGenerator linkGenerator, IMapper mapper,
+                        ILoggerService loggerService)
         {
             this.statusJavnogNadmetanjaRepository = statusJavnogNadmetanjaRepository;
             this.linkGenerator = linkGenerator;
             this.mapper = mapper;
+            this.loggerService = loggerService;
         }
 
         /// <summary>
@@ -46,8 +51,11 @@ namespace Javno_Nadmetanje_Agregat.Controllers
             List<StatusJavnogNadmetanja> statusi = statusJavnogNadmetanjaRepository.GetStatusJavnogNadmetanjaList();
             if (statusi == null || statusi.Count == 0)
             {
+                loggerService.Log(LogLevel.Warning, "GetAllStatus", "Lista statusa javnih nadmetanja je prazna ili null.");
                 return NoContent();
             }
+
+            loggerService.Log(LogLevel.Information, "GetAllStatus", "Lista statusa javnih nadmetanja je uspesno vracena!");
             return Ok(mapper.Map<List<StatusJavnogNadmetanjaDto>>(statusi));
         }
 
@@ -66,8 +74,11 @@ namespace Javno_Nadmetanje_Agregat.Controllers
             StatusJavnogNadmetanja statusJavnogNadmetanja = statusJavnogNadmetanjaRepository.GetStatusJavnogNadmetanjaById(statusJavnogNadmetanjaId);
             if (statusJavnogNadmetanja == null)
             {
+                loggerService.Log(LogLevel.Warning, "GetByIdStatus", "Status javnog nadmetanja sa datim id-em nije pronadjen.");
                 return NotFound();
             }
+
+            loggerService.Log(LogLevel.Information, "GetByIdStatus", "Status javnog nadmetanja sa datim id-em je uspesno vracen!");
             return Ok(mapper.Map<StatusJavnogNadmetanjaDto>(statusJavnogNadmetanja));
         }
 
@@ -89,10 +100,12 @@ namespace Javno_Nadmetanje_Agregat.Controllers
                 StatusJavnogNadmetanjaConfirmationDto confirmation = statusJavnogNadmetanjaRepository.CreateStatusJavnogNadmetanja(statusJavnogNadmetanja);
                 string location = linkGenerator.GetPathByAction("GetStatusJavnogNadmetanjaById", "StatusJavnogNadmetanja", new { statusJavnogNadmetanjaId = confirmation.StatusJavnogNadmetanjaId });
 
+                loggerService.Log(LogLevel.Information, "PostStatus", "Status javnog nadmetanja je uspesno napravljen!");
                 return Created(location, mapper.Map<StatusJavnogNadmetanjaConfirmationDto>(confirmation));
             }
             catch (Exception ex)
             {
+                loggerService.Log(LogLevel.Warning, "PostStatus", "Status javnog nadmetanja nije kreiran, doslo je do greske.");
                 return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
             }
 
@@ -117,13 +130,17 @@ namespace Javno_Nadmetanje_Agregat.Controllers
                 StatusJavnogNadmetanja statusJavnogNadmetanja = statusJavnogNadmetanjaRepository.GetStatusJavnogNadmetanjaById(statusJavnogNadmetanjaId);
                 if (statusJavnogNadmetanja == null)
                 {
+                    loggerService.Log(LogLevel.Warning, "DeleteStatus", "Status javnog nadmetanja sa datim id-em nije pronadjen.");
                     return NotFound();
                 }
                 StatusJavnogNadmetanjaConfirmationDto confirmation = statusJavnogNadmetanjaRepository.DeleteStatusJavnogNadmetanja(statusJavnogNadmetanjaId);
+                
+                loggerService.Log(LogLevel.Information, "DeleteStatus", "Status javnog nadmetanja je uspesno obrisan!");
                 return Ok(mapper.Map<StatusJavnogNadmetanjaConfirmationDto>(confirmation));
             }
             catch (Exception ex)
             {
+                loggerService.Log(LogLevel.Warning, "DeleteStatus", "Status javnog nadmetanja nije obrisan, doslo je do greske.");
                 return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
             }
         }
@@ -148,6 +165,7 @@ namespace Javno_Nadmetanje_Agregat.Controllers
 
                 if (oldSjn == null)
                 {
+                    loggerService.Log(LogLevel.Warning, "PutStatus", "Status javnog nadmetanja sa datim id-em nije pronadjen.");
                     return NotFound();
                 }
 
@@ -157,10 +175,12 @@ namespace Javno_Nadmetanje_Agregat.Controllers
 
                 StatusJavnogNadmetanjaConfirmationDto confirmation = statusJavnogNadmetanjaRepository.UpdateStatusJavnogNadmetanja(Sjn);
 
+                loggerService.Log(LogLevel.Information, "PutStatus", "Status javnog nadmetanja je uspesno izmenjen!");
                 return Ok(mapper.Map<StatusJavnogNadmetanjaConfirmationDto>(confirmation));
             }
             catch (Exception ex)
             {
+                loggerService.Log(LogLevel.Warning, "PutStatus", "Status javnog nadmetanja nije izmenjen, doslo je do greske.");
                 return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
             }
         }
