@@ -10,7 +10,14 @@ namespace Liciter___Agregat.DTOs.Liciter
 {
     public class LiciterDto
     {
+        /// <summary>
+        /// Kupac DTO
+        /// </summary>
         public KupacDto Kupac { get; set; }
+
+        /// <summary>
+        /// Ovlašćeno lice DTO
+        /// </summary>
         public OvlascenoLiceDto OvlascenoLice { get; set; }
     }
 }

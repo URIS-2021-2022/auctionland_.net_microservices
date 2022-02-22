@@ -349,6 +349,206 @@
             Broj racuna fizickog lica
             </summary>
         </member>
+        <member name="P:Liciter___Agregat.DTOs.Kupac.KupacConfirmationDto.Prioritet">
+            <summary>
+            Prioritet kupca
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.Kupac.KupacConfirmationDto.OstvarenaPovrsina">
+            <summary>
+            Ostvarena površina kupca
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.Kupac.KupacConfirmationDto.ImaZabranu">
+            <summary>
+            Obeležje koje govori da li kupac ima zabranu
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.Kupac.KupacCreationDto.Prioritet">
+            <summary>
+            Prioritet kupca
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.Kupac.KupacCreationDto.OstvarenaPovrsina">
+            <summary>
+            Ostvarena površina kupca
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.Kupac.KupacCreationDto.ImaZabranu">
+            <summary>
+            Obeležje koje govori da li kupac ima zabranu
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.Kupac.KupacCreationDto.DatumPocetkaZabrane">
+            <summary>
+            Datum početka zabrane
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.Kupac.KupacCreationDto.DuzinaTrajanjaZabraneGod">
+            <summary>
+            Dužina trajanje zabrane u godinama
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.Kupac.KupacCreationDto.DatumPrestankaZabrane">
+            <summary>
+            Datum prestanka zabrane
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.Kupac.KupacCreationDto.OvlascenoLiceId">
+            <summary>
+            Id ovlašćenog lica
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.Kupac.KupacCreationDto.FizickoLiceId">
+            <summary>
+            Id fizičkog lica
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.Kupac.KupacCreationDto.PravnoLiceId">
+            <summary>
+            Id pravnog lica
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.Kupac.KupacCreationDto.JavnaNadmetanja">
+            <summary>
+            Lista Id-eva javnih nadmetanja
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.Kupac.KupacDto.Prioritet">
+            <summary>
+            Prioritet kupca
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.Kupac.KupacDto.FizickoLice">
+            <summary>
+            Fizičko lice DTO
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.Kupac.KupacDto.PravnoLice">
+            <summary>
+            Pravno lice DTO
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.Kupac.KupacDto.OstvarenaPovrsina">
+            <summary>
+            Ostvarena površina kupca
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.Kupac.KupacDto.OvlascenaLica">
+            <summary>
+            Lista Ovlašćenih lica
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.Kupac.KupacDto.ImaZabranu">
+            <summary>
+            Obeležje koje govori da li kupac ima zabranu
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.Kupac.KupacDto.DatumPocetkaZabrane">
+            <summary>
+            Datum početka zabrane
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.Kupac.KupacDto.DuzinaTrajanjaZabraneGod">
+            <summary>
+            Dužina trajanje zabrane u godinama
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.Kupac.KupacDto.DatumPrestankaZabrane">
+            <summary>
+            Datum prestanka zabrane
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.Kupac.KupacDto.JavnaNadmetanja">
+            <summary>
+            Lista Id-eva javnih nadmetanja
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.Kupac.KupacUpdateDto.KupacId">
+            <summary>
+            Id kupca
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.Kupac.KupacUpdateDto.Prioritet">
+            <summary>
+            Prioritet kupca
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.Kupac.KupacUpdateDto.FizickoLiceId">
+            <summary>
+            Id fizičkog lica
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.Kupac.KupacUpdateDto.PravnoLiceId">
+            <summary>
+            Id pravnog lica
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.Kupac.KupacUpdateDto.OstvarenaPovrsina">
+            <summary>
+            Ostvarena površina kupca
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.Kupac.KupacUpdateDto.OvlascenoLiceId">
+            <summary>
+            Id ovlašćenog lica
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.Kupac.KupacUpdateDto.ImaZabranu">
+            <summary>
+            Obeležje koje govori da li kupac ima zabranu
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.Kupac.KupacUpdateDto.DatumPocetkaZabrane">
+            <summary>
+            Datum početka zabrane
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.Kupac.KupacUpdateDto.DuzinaTrajanjaZabraneGod">
+            <summary>
+            Dužina trajanja zabrane u godinama
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.Kupac.KupacUpdateDto.DatumPrestankaZabrane">
+            <summary>
+            Datum prestanka zabrane
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.Kupac.KupacUpdateDto.JavnaNadmetanja">
+            <summary>
+            Lista Id-eva javnih nadmetanja
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.Liciter.LiciterConfirmationDto.LiciterId">
+            <summary>
+            Id licitera
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.Liciter.LiciterCreationDto.KupacId">
+            <summary>
+            Id kupca
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.Liciter.LiciterCreationDto.OvlascenoLiceId">
+            <summary>
+            Id ovlašćenog lica
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.Liciter.LiciterDto.Kupac">
+            <summary>
+            Kupac DTO
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.Liciter.LiciterDto.OvlascenoLice">
+            <summary>
+            Ovlašćeno lice DTO
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.Liciter.LiciterUpdateDto.LiciterId">
+            <summary>
+            L
+            </summary>
+        </member>
         <member name="P:Liciter___Agregat.DTOs.PravnoLice.PravnoLiceConfirmationDto.Naziv">
             <summary>
             Naziv pravnog lica

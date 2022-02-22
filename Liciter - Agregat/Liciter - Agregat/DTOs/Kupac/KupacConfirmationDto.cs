@@ -8,8 +8,19 @@ namespace Liciter___Agregat.DTOs.Kupac
 {
     public class KupacConfirmationDto
     {
+        /// <summary>
+        /// Prioritet kupca
+        /// </summary>
         public PrioritetEnum Prioritet { get; set; }
+
+        /// <summary>
+        /// Ostvarena površina kupca
+        /// </summary>
         public int OstvarenaPovrsina { get; set; }
+
+        /// <summary>
+        /// Obeležje koje govori da li kupac ima zabranu
+        /// </summary>
         public bool ImaZabranu { get; set; }
     }
 }

@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace Liciter___Agregat.Controllers
 {
-    [Route("api/fizickolice")]
+    [Route("api/fizickoLice")]
     [ApiController]
     [Produces("application/json", "application/xml")]
     public class FizickoLiceController : ControllerBase
