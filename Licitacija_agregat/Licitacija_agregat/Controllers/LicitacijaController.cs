@@ -5,6 +5,7 @@ using Licitacija_agregat.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,12 +22,14 @@ namespace Licitacija_agregat.Controllers
         private readonly ILicitacijaRepository licitacijaRepository;
         private readonly LinkGenerator link;
         private readonly IMapper mapper;
+        private readonly ILoggerService loggerService;
 
-        public LicitacijaController(ILicitacijaRepository licitacijaRepository, LinkGenerator link, IMapper mapper)
+        public LicitacijaController(ILicitacijaRepository licitacijaRepository, LinkGenerator link, IMapper mapper, ILoggerService loggerService)
         {
             this.licitacijaRepository = licitacijaRepository;
             this.link = link;
             this.mapper = mapper;
+            this.loggerService = loggerService;
         }
 
         /// <summary>
@@ -43,8 +46,10 @@ namespace Licitacija_agregat.Controllers
             var licitacije = licitacijaRepository.GetLicitacijas(datum);
             if (licitacije == null || licitacije.Count == 0)
             {
+                loggerService.Log(LogLevel.Warning, "GetAllStatus", "Lista licitacija je prazna ili null.");
                 return NoContent();
             }
+            loggerService.Log(LogLevel.Information, "GetAllStatus", "Lista licitacija je uspešno vraćena!");
             return Ok(mapper.Map<List<LicitacijaDto>>(licitacije));
         }
         /// <summary>
@@ -61,8 +66,11 @@ namespace Licitacija_agregat.Controllers
 
             if(licitacijaModel == null)
             {
+                loggerService.Log(LogLevel.Warning, "GetByIdStatus", "Licitacija sa tim id-em nije pronađena.");
                 return NotFound();
             }
+
+            loggerService.Log(LogLevel.Information, "GetByIdStatus", "Licitacija sa zadatim id-em je uspešno vraćena!");
             return Ok(mapper.Map<LicitacijaDto>(licitacijaModel));
         }
 
@@ -98,10 +106,12 @@ namespace Licitacija_agregat.Controllers
                 var confirmation = licitacijaRepository.CreateLicitacija(licitacijaEntity);
                 licitacijaRepository.SaveChanges();
                 string location = link.GetPathByAction("GetLicitacijas", "Licitacija", new { licitacijaId = confirmation.LicitacijaId });
+                loggerService.Log(LogLevel.Information, "PostStatus", "Licitacija je uspešno kreirana!");
                 return Created(location, mapper.Map<LicitacijaConfirmationDto>(confirmation));
             }
             catch (Exception)
             {
+                loggerService.Log(LogLevel.Warning, "PostStatus", "Licitacija nije kreirana, došlo je do greške!");
                 return StatusCode(StatusCodes.Status500InternalServerError, "An error has occurred");
             }
         }
@@ -123,16 +133,19 @@ namespace Licitacija_agregat.Controllers
 
                 if(licitacija == null)
                 {
+                    loggerService.Log(LogLevel.Warning, "DeleteStatus", "Licitacija sa zadatim id-em nije pronađena!");
                     return NotFound();
                 }
 
                 licitacijaRepository.DeleteLicitacija(licitacijaId);
                 licitacijaRepository.SaveChanges();
+                loggerService.Log(LogLevel.Information, "DeleteStatus", "Licitacija je uspešno obrisana!");
                 return NoContent();
 
             }
             catch (Exception)
             {
+                loggerService.Log(LogLevel.Warning, "DeleteStatus", "Licitacija nije obrisana, došlo je do greške!");
                 return StatusCode(StatusCodes.Status500InternalServerError, "Delete error");
             }
         }
@@ -154,6 +167,7 @@ namespace Licitacija_agregat.Controllers
                 var oldLicitacija = licitacijaRepository.GetLicitacijaById(licitacija.LicitacijaId);
                 if (oldLicitacija == null)
                 {
+                    loggerService.Log(LogLevel.Warning, "PutStatus", "Licitacija sa zadatim id-em nije pronađena!");
                     return NotFound(); //Ukoliko ne postoji vratiti status 404 (NotFound).
                 }
                 Licitacija licitacijaEntity = mapper.Map<Licitacija>(licitacija);
@@ -161,10 +175,12 @@ namespace Licitacija_agregat.Controllers
                 mapper.Map(licitacijaEntity, oldLicitacija); //Update objekta koji treba da sačuvamo u bazi                
 
                 licitacijaRepository.SaveChanges(); //Perzistiramo promene
+                loggerService.Log(LogLevel.Information, "PutStatus", "Licitacija je uspešno izmenjena!");
                 return Ok(mapper.Map<LicitacijaDto>(oldLicitacija));
             }
             catch (Exception)
             {
+                loggerService.Log(LogLevel.Warning, "PutStatus", "Licitacija nije izmenjena, došlo je do greške!");
                 return StatusCode(StatusCodes.Status500InternalServerError, "Update error");
             }
         }
@@ -177,6 +193,7 @@ namespace Licitacija_agregat.Controllers
         public IActionResult GetExamRegistrationOptions()
         {
             Response.Headers.Add("Allow", "GET, POST, PUT, DELETE");
+            loggerService.Log(LogLevel.Information, "GetStatus", "Opcije su uspešno vraćene!");
             return Ok();
         }
 

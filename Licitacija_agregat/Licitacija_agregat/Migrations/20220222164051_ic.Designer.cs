@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Licitacija_agregat.Migrations
 {
     [DbContext(typeof(LicitacijaContext))]
-    [Migration("20220220155913_ic")]
+    [Migration("20220222164051_ic")]
     partial class ic
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

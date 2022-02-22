@@ -42,6 +42,8 @@ namespace Licitacija_agregat
 
             services.AddScoped<IEtapaRepository, EtapaRepository>();
             services.AddScoped<ILicitacijaRepository, LicitacijaRepository>();
+            services.AddScoped<ILoggerService, LoggerService>();
+
 
             services.AddSwaggerGen(setupAction =>
             {

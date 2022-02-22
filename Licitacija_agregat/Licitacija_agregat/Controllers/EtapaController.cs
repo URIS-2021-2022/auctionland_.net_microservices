@@ -5,6 +5,7 @@ using Licitacija_agregat.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,12 +21,14 @@ namespace Licitacija_agregat.Controllers
         private readonly IEtapaRepository etapaRepository;
         private readonly LinkGenerator link;
         private readonly IMapper mapper;
+        private readonly ILoggerService loggerService;
 
-        public EtapaController(IEtapaRepository etapaRepository, LinkGenerator link, IMapper mapper)
+        public EtapaController(IEtapaRepository etapaRepository, LinkGenerator link, IMapper mapper, ILoggerService loggerService)
         {
             this.etapaRepository = etapaRepository;
             this.link = link;
             this.mapper = mapper;
+            this.loggerService = loggerService;
         }
 
         /// <summary>
@@ -44,8 +47,10 @@ namespace Licitacija_agregat.Controllers
 
             if (etape == null || etape.Count == 0)
             {
+                loggerService.Log(LogLevel.Warning, "GetAllStatus", "Lista etapa je prazna ili null.");
                 return NoContent();
             }
+            loggerService.Log(LogLevel.Information, "GetAllStatus", "Lista etapa je uspešno vraćena!");
             return Ok(mapper.Map<List<EtapaDto>>(etape));
         }
 
@@ -63,8 +68,11 @@ namespace Licitacija_agregat.Controllers
 
             if(etapaModel == null)
             {
+                loggerService.Log(LogLevel.Warning, "GetByIdStatus", "Etapa sa tim id-em nije pronađena.");
                 return NotFound();
             }
+
+            loggerService.Log(LogLevel.Information, "GetByIdStatus", "Etapa sa zadatim id-em je uspešno vraćena!");
             return Ok(mapper.Map<EtapaDto>(etapaModel));
         }
 
@@ -100,12 +108,13 @@ namespace Licitacija_agregat.Controllers
 
                 string location = link.GetPathByAction("GetEtapas", "Etapa", new { etapaId = confirmation.EtapaId });
 
-
+                loggerService.Log(LogLevel.Information, "PostStatus", "Etapa je uspešno kreirana!");
                 return Created(location, mapper.Map<EtapaConfirmationDto>(confirmation));
                   
             }
             catch (Exception)
             {
+                loggerService.Log(LogLevel.Warning, "PostStatus", "Etapa nije kreirana, došlo je do greške!");
                 return StatusCode(StatusCodes.Status500InternalServerError, "An error has occurred when creating an object");
             }
         }
@@ -126,16 +135,19 @@ namespace Licitacija_agregat.Controllers
 
                 if(etapa == null)
                 {
+                    loggerService.Log(LogLevel.Warning, "DeleteStatus", "Etapa sa zadatim id-em nije pronađena!");
                     return NotFound();
                 }
 
                 etapaRepository.DeleteEtapa(etapaId);
                 etapaRepository.SaveChanges();
+                loggerService.Log(LogLevel.Information, "DeleteStatus", "Etapa je uspešno obrisana!");
                 return NoContent();
 
             }
             catch (Exception)
             {
+                loggerService.Log(LogLevel.Warning, "DeleteStatus", "Etapa nije obrisana, došlo je do greške!");
                 return StatusCode(StatusCodes.Status500InternalServerError, "Delete error");
             }
         }
@@ -159,6 +171,7 @@ namespace Licitacija_agregat.Controllers
                 var oldEtapa = etapaRepository.GetEtapaById(etapa.EtapaId);
                 if (oldEtapa == null)
                 {
+                    loggerService.Log(LogLevel.Warning, "PutStatus", "Etapa sa zadatim id-em nije pronađena!");
                     return NotFound(); //Ukoliko ne postoji vratiti status 404 (NotFound).
                 }
                 Etapa etapaEntity = mapper.Map<Etapa>(etapa);
@@ -166,10 +179,12 @@ namespace Licitacija_agregat.Controllers
                 mapper.Map(etapaEntity, oldEtapa); //Update objekta koji treba da sačuvamo u bazi                
 
                 etapaRepository.SaveChanges(); //Perzistiramo promene
+                loggerService.Log(LogLevel.Information, "PutStatus", "Etapa je uspešno izmenjena!");
                 return Ok(mapper.Map<EtapaDto>(oldEtapa));
             }
             catch (Exception)
             {
+                loggerService.Log(LogLevel.Warning, "PutStatus", "Etapa nije izmenjena, došlo je do greške!");
                 return StatusCode(StatusCodes.Status500InternalServerError, "Update error");
             }
         }
@@ -182,6 +197,7 @@ namespace Licitacija_agregat.Controllers
         public IActionResult GetEtapaOptions()
         {
             Response.Headers.Add("Allow", "GET, POST, PUT, DELETE");
+            loggerService.Log(LogLevel.Information, "GetStatus", "Opcije su uspešno vraćene!");
             return Ok();
         }
     }
