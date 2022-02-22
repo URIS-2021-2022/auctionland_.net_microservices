@@ -9,5 +9,6 @@ namespace Javno_Nadmetanje_Agregat.Entities
     {
         public Guid TipJavnogNadmetanjaId { get; set; }
         public string NazivTipaJavnogNadmetanja { get; set; }
+        public List<JavnoNadmetanje> ListaJavnihNadmetanja { get; set; }
     }
 }

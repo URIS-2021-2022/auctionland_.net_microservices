@@ -9,5 +9,6 @@ namespace Javno_Nadmetanje_Agregat.Entities
     {
         public Guid StatusJavnogNadmetanjaId { get; set; }
         public string NazivStatusaJavnogNadmetanja { get; set; }
+        public List<JavnoNadmetanje> ListaJavnihNadmetanja { get; set; }
     }
 }

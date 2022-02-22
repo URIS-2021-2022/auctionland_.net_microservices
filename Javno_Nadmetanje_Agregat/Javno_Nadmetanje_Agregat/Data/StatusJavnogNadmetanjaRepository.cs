@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Javno_Nadmetanje_Agregat.Entities;
 using Javno_Nadmetanje_Agregat.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -51,7 +52,7 @@ namespace Javno_Nadmetanje_Agregat.Data
 
         public List<StatusJavnogNadmetanja> GetStatusJavnogNadmetanjaList()
         {
-            return Context.StatusJavnogNadmetanja.ToList();
+            return Context.StatusJavnogNadmetanja.Include(d => d.ListaJavnihNadmetanja).ToList();
         }
 
         public StatusJavnogNadmetanjaConfirmationDto UpdateStatusJavnogNadmetanja(StatusJavnogNadmetanja statusJavnogNadmetanja)

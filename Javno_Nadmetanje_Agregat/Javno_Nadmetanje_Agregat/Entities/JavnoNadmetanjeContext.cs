@@ -40,6 +40,16 @@ namespace Javno_Nadmetanje_Agregat.Entities
                     {
                         TipJavnogNadmetanjaId = Guid.Parse("d7a80343-d802-43d6-b128-79ba8554acd2"),
                         NazivTipaJavnogNadmetanja = "Otvaranje zatvorenih ponuda"
+                    },
+                    new TipJavnogNadmetanja
+                    {
+                        TipJavnogNadmetanjaId = Guid.Parse("955f059b-94d9-442f-b7df-4b42538b7e07"),
+                        NazivTipaJavnogNadmetanja = "Dummy za izmenu"
+                    },
+                    new TipJavnogNadmetanja
+                    {
+                        TipJavnogNadmetanjaId = Guid.Parse("94e9fb20-1834-433c-b588-4a6e4eb32150"),
+                        NazivTipaJavnogNadmetanja = "Dummy za brisanje"
                     }
             );
 
@@ -59,6 +69,16 @@ namespace Javno_Nadmetanje_Agregat.Entities
                     {
                         StatusJavnogNadmetanjaId = Guid.Parse("cb5b3279-811c-4ca4-abaa-69016ba157b6"),
                         NazivStatusaJavnogNadmetanja = "Drugi krug sa novim uslovima"
+                    },
+                    new StatusJavnogNadmetanja
+                    {
+                        StatusJavnogNadmetanjaId = Guid.Parse("955f059b-94d9-442f-b7df-4b42538b7e07"),
+                        NazivStatusaJavnogNadmetanja = "Dummy za izmenu"
+                    },
+                    new StatusJavnogNadmetanja
+                    {
+                        StatusJavnogNadmetanjaId = Guid.Parse("94e9fb20-1834-433c-b588-4a6e4eb32150"),
+                        NazivStatusaJavnogNadmetanja = "Dummy za brisanje"
                     }
             );
 
@@ -67,6 +87,38 @@ namespace Javno_Nadmetanje_Agregat.Entities
                     new JavnoNadmetanje
                     {
                         JavnoNadmetanjeId = Guid.Parse("1ae8137b-1674-4c91-a4b5-87a133f5dd87"),
+                        TipJavnogNadmetanjaId = Guid.Parse("bc679089-e19f-43e4-946f-651ffbdb2afb"),
+                        StatusJavnogNadmetanjaId = Guid.Parse("167a01c0-2e68-46a8-b201-3a23e3a20bff"),
+                        Datum = new DateTime(2022, 2, 10),
+                        VremePocetka = new DateTime(2022, 2, 10, 9, 0, 0),
+                        VremeKraja = new DateTime(2022, 2, 10, 11, 0, 0),
+                        PocetnaCenaHektar = 5000,
+                        Izuzeto = false,
+                        IzlicitiranaCena = 8000,
+                        PeriodZakupa = 24,
+                        BrojUcesnika = 10,
+                        VisinaDopuneDepozita = 100,
+                        Krug = 1
+                    },
+                    new JavnoNadmetanje
+                    {
+                        JavnoNadmetanjeId = Guid.Parse("94e9fb20-1834-433c-b588-4a6e4eb32150"),
+                        TipJavnogNadmetanjaId = Guid.Parse("bc679089-e19f-43e4-946f-651ffbdb2afb"),
+                        StatusJavnogNadmetanjaId = Guid.Parse("167a01c0-2e68-46a8-b201-3a23e3a20bff"),
+                        Datum = new DateTime(2022, 2, 10),
+                        VremePocetka = new DateTime(2022, 2, 10, 9, 0, 0),
+                        VremeKraja = new DateTime(2022, 2, 10, 11, 0, 0),
+                        PocetnaCenaHektar = 5000,
+                        Izuzeto = false,
+                        IzlicitiranaCena = 8000,
+                        PeriodZakupa = 24,
+                        BrojUcesnika = 10,
+                        VisinaDopuneDepozita = 100,
+                        Krug = 1
+                    },
+                    new JavnoNadmetanje
+                    {
+                        JavnoNadmetanjeId = Guid.Parse("955f059b-94d9-442f-b7df-4b42538b7e07"),
                         TipJavnogNadmetanjaId = Guid.Parse("bc679089-e19f-43e4-946f-651ffbdb2afb"),
                         StatusJavnogNadmetanjaId = Guid.Parse("167a01c0-2e68-46a8-b201-3a23e3a20bff"),
                         Datum = new DateTime(2022, 2, 10),

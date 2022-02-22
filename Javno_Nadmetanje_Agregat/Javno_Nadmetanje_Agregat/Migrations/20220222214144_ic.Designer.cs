@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Javno_Nadmetanje_Agregat.Migrations
 {
     [DbContext(typeof(JavnoNadmetanjeContext))]
-    [Migration("20220221133259_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20220222214144_ic")]
+    partial class ic
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -64,6 +64,10 @@ namespace Javno_Nadmetanje_Agregat.Migrations
                         .HasColumnType("datetime2");
 
                     b.HasKey("JavnoNadmetanjeId");
+
+                    b.HasIndex("StatusJavnogNadmetanjaId");
+
+                    b.HasIndex("TipJavnogNadmetanjaId");
 
                     b.ToTable("JavnoNadmetanje");
 
@@ -141,6 +145,35 @@ namespace Javno_Nadmetanje_Agregat.Migrations
                             TipJavnogNadmetanjaId = new Guid("d7a80343-d802-43d6-b128-79ba8554acd2"),
                             NazivTipaJavnogNadmetanja = "Otvaranje zatvorenih ponuda"
                         });
+                });
+
+            modelBuilder.Entity("Javno_Nadmetanje_Agregat.Entities.JavnoNadmetanje", b =>
+                {
+                    b.HasOne("Javno_Nadmetanje_Agregat.Entities.StatusJavnogNadmetanja", "StatusJavnogNadmetanja")
+                        .WithMany("ListaJavnihNadmetanja")
+                        .HasForeignKey("StatusJavnogNadmetanjaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Javno_Nadmetanje_Agregat.Entities.TipJavnogNadmetanja", "TipJavnogNadmetanja")
+                        .WithMany("ListaJavnihNadmetanja")
+                        .HasForeignKey("TipJavnogNadmetanjaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("StatusJavnogNadmetanja");
+
+                    b.Navigation("TipJavnogNadmetanja");
+                });
+
+            modelBuilder.Entity("Javno_Nadmetanje_Agregat.Entities.StatusJavnogNadmetanja", b =>
+                {
+                    b.Navigation("ListaJavnihNadmetanja");
+                });
+
+            modelBuilder.Entity("Javno_Nadmetanje_Agregat.Entities.TipJavnogNadmetanja", b =>
+                {
+                    b.Navigation("ListaJavnihNadmetanja");
                 });
 #pragma warning restore 612, 618
         }

@@ -63,6 +63,10 @@ namespace Javno_Nadmetanje_Agregat.Migrations
 
                     b.HasKey("JavnoNadmetanjeId");
 
+                    b.HasIndex("StatusJavnogNadmetanjaId");
+
+                    b.HasIndex("TipJavnogNadmetanjaId");
+
                     b.ToTable("JavnoNadmetanje");
 
                     b.HasData(
@@ -139,6 +143,35 @@ namespace Javno_Nadmetanje_Agregat.Migrations
                             TipJavnogNadmetanjaId = new Guid("d7a80343-d802-43d6-b128-79ba8554acd2"),
                             NazivTipaJavnogNadmetanja = "Otvaranje zatvorenih ponuda"
                         });
+                });
+
+            modelBuilder.Entity("Javno_Nadmetanje_Agregat.Entities.JavnoNadmetanje", b =>
+                {
+                    b.HasOne("Javno_Nadmetanje_Agregat.Entities.StatusJavnogNadmetanja", "StatusJavnogNadmetanja")
+                        .WithMany("ListaJavnihNadmetanja")
+                        .HasForeignKey("StatusJavnogNadmetanjaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Javno_Nadmetanje_Agregat.Entities.TipJavnogNadmetanja", "TipJavnogNadmetanja")
+                        .WithMany("ListaJavnihNadmetanja")
+                        .HasForeignKey("TipJavnogNadmetanjaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("StatusJavnogNadmetanja");
+
+                    b.Navigation("TipJavnogNadmetanja");
+                });
+
+            modelBuilder.Entity("Javno_Nadmetanje_Agregat.Entities.StatusJavnogNadmetanja", b =>
+                {
+                    b.Navigation("ListaJavnihNadmetanja");
+                });
+
+            modelBuilder.Entity("Javno_Nadmetanje_Agregat.Entities.TipJavnogNadmetanja", b =>
+                {
+                    b.Navigation("ListaJavnihNadmetanja");
                 });
 #pragma warning restore 612, 618
         }

@@ -420,6 +420,11 @@
             Naziv statusa javnog nadmetanja
             </summary>
         </member>
+        <member name="P:Javno_Nadmetanje_Agregat.Models.StatusJavnogNadmetanjaCreateDto.ListaJavnihNadmetanja">
+            <summary>
+            Lista javnih nadmetanja datog statusa
+            </summary>
+        </member>
         <member name="T:Javno_Nadmetanje_Agregat.Models.StatusJavnogNadmetanjaDto">
             <summary>
             Predstavlja model statusa javnog nadmetanja
@@ -435,6 +440,11 @@
             Naziv statusa javnog nadmetanja
             </summary>
         </member>
+        <member name="P:Javno_Nadmetanje_Agregat.Models.StatusJavnogNadmetanjaDto.ListaJavnihNadmetanja">
+            <summary>
+            Lista javnih nadmetanja datog statusa
+            </summary>
+        </member>
         <member name="T:Javno_Nadmetanje_Agregat.Models.StatusJavnogNadmetanjaUpdateDto">
             <summary>
             Predstavlja model izmene statusa javnog nadmetanja
@@ -448,6 +458,11 @@
         <member name="P:Javno_Nadmetanje_Agregat.Models.StatusJavnogNadmetanjaUpdateDto.NazivStatusaJavnogNadmetanja">
             <summary>
             Naziv statusa javnog nadmetanja
+            </summary>
+        </member>
+        <member name="P:Javno_Nadmetanje_Agregat.Models.StatusJavnogNadmetanjaUpdateDto.ListaJavnihNadmetanja">
+            <summary>
+            Lista javnih nadmetanja datog statusa
             </summary>
         </member>
         <member name="T:Javno_Nadmetanje_Agregat.Models.TipJavnogNadmetanjaConfirmationDto">
@@ -480,6 +495,11 @@
             Naziv tipa javnog nadmetanja
             </summary>
         </member>
+        <member name="P:Javno_Nadmetanje_Agregat.Models.TipJavnogNadmetanjaCreateDto.ListaJavnihNadmetanja">
+            <summary>
+            Lista javnih nadmetanja datog tipa
+            </summary>
+        </member>
         <member name="T:Javno_Nadmetanje_Agregat.Models.TipJavnogNadmetanjaDto">
             <summary>
             Predstavlja model tipa javnog nadmetanja
@@ -495,6 +515,11 @@
             Naziv tipa javnog nadmetanja
             </summary>
         </member>
+        <member name="P:Javno_Nadmetanje_Agregat.Models.TipJavnogNadmetanjaDto.ListaJavnihNadmetanja">
+            <summary>
+            Lista javnih nadmetanja datog tipa
+            </summary>
+        </member>
         <member name="T:Javno_Nadmetanje_Agregat.Models.TipJavnogNadmetanjaUpdateDto">
             <summary>
             Predstavlja model izmene tipa javnog nadmetanja
@@ -508,6 +533,11 @@
         <member name="P:Javno_Nadmetanje_Agregat.Models.TipJavnogNadmetanjaUpdateDto.NazivTipaJavnogNadmetanja">
             <summary>
             Naziv tipa javnog nadmetanja
+            </summary>
+        </member>
+        <member name="P:Javno_Nadmetanje_Agregat.Models.TipJavnogNadmetanjaUpdateDto.ListaJavnihNadmetanja">
+            <summary>
+            Lista javnih nadmetanja datog tipa
             </summary>
         </member>
     </members>

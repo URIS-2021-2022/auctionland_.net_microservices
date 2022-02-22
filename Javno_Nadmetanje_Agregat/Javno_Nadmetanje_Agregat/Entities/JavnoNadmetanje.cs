@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace Javno_Nadmetanje_Agregat.Entities
@@ -11,7 +12,13 @@ namespace Javno_Nadmetanje_Agregat.Entities
 
         public Guid TipJavnogNadmetanjaId { get; set; }
 
+        [JsonIgnore]
+        public TipJavnogNadmetanja TipJavnogNadmetanja { get; set; }
+
         public Guid StatusJavnogNadmetanjaId { get; set; }
+
+        [JsonIgnore]
+        public StatusJavnogNadmetanja StatusJavnogNadmetanja { get; set; }
 
         public DateTime Datum { get; set; }
 
