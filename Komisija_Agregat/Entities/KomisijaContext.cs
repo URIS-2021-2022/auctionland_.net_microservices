@@ -13,18 +13,13 @@ namespace Komisija_Agregat.Entities
     {
         private readonly IConfiguration configuration;
 
-        
-       
-
-        public KomisijaContext(DbContextOptions options, IConfiguration configuration) : base(options)
+      
+        public KomisijaContext(DbContextOptions<KomisijaContext> options, IConfiguration configuration) : base(options)
         {
             this.configuration = configuration;
         }
 
-        public KomisijaContext()
-        {
 
-        }
 
 
         public DbSet<Komisija> Komisije { get; set; }
@@ -50,14 +45,14 @@ namespace Komisija_Agregat.Entities
             {
                 ClanId = Guid.Parse("1c7ea607-8ddb-493a-87fa-4bf5893e965b"),
                 ImeClana = "Nenad",
-                prezimeClana = "Jeckovic",
+                PrezimeClana = "Jeckovic",
                 EmailClana = "jocko@mail.com"
             });
             builder.Entity<Komisija>().HasData(new
             {
                 KomisijaId= Guid.Parse("1c7ea607-8ddb-493a-87fa-4bf5893e965b"),
-                Predsednik = "",
-                ClanoviKomisije = ""
+                Predsednik = "sd",
+                Clanovi = "sdd"
             });
         }
         

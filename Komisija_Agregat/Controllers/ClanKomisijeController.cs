@@ -11,10 +11,10 @@ using AutoMapper;
 using Komisija_Agregat.Entities;
 namespace Komisija_Agregat.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/ClanKomisije")]
     [ApiController]
     
-    class ClanKomisijeController : ControllerBase
+    public class ClanKomisijeController : ControllerBase
     {
         private readonly IClanKomisijeRepository clanKomisijeRepository;
         private readonly LinkGenerator linkGenerator;
@@ -26,7 +26,13 @@ namespace Komisija_Agregat.Controllers
             this.linkGenerator = linkGenerator;
             this.mapper = mapper;   
         }
-
+        /// <summary>
+        /// Vraca sve clanove komisije
+        /// </summary>
+        /// <param name="ImeClana"></param>
+        /// <param name="PrezimeClana"></param>
+        /// <param name="EmailClana"></param>
+        /// <returns></returns>
         [HttpGet]
         public ActionResult<List<ClanKomisijeDto>> GetClanovi(string ImeClana, string PrezimeClana, string EmailClana)
         {
@@ -38,10 +44,15 @@ namespace Komisija_Agregat.Controllers
             return Ok(mapper.Map<List<ClanKomisijeDto>>(clanoviKomisije));
         }
 
-        [HttpGet("{clanKomisijeId}")]
-        public ActionResult<ClanKomisijeDto> GetClanKomisijeById(Guid clanKomisijeId)
+        /// <summary>
+        /// Vraca clana komisije na osnovu ID-a
+        /// </summary>
+        /// <param name="clanId"></param>
+        /// <returns></returns>
+        [HttpGet("{clanId}")]
+        public ActionResult<ClanKomisijeDto> GetClanKomisijeById(Guid clanId)
         {
-            var clanKomisijeModel = clanKomisijeRepository.GetClanKomisijeById(clanKomisijeId);
+            var clanKomisijeModel = clanKomisijeRepository.GetClanKomisijeById(clanId);
             if (clanKomisijeModel == null)
             {
                 return NotFound();
@@ -49,6 +60,12 @@ namespace Komisija_Agregat.Controllers
             return Ok(mapper.Map<ClanKomisijeDto>(clanKomisijeModel));
         }
 
+
+        /// <summary>
+        /// Dodaje novog clana komisije u listu
+        /// </summary>
+        /// <param name="clanKomisije"></param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult<ClanKomisijeConfirmationDto> CreateClanKomisije([FromBody] ClanKomisijeDto clanKomisije)
         {
@@ -56,26 +73,34 @@ namespace Komisija_Agregat.Controllers
             {
                 var clanKomisijeEntity = mapper.Map<ClanKomisije>(clanKomisije);
                 var confirmation = clanKomisijeRepository.CreateClanKomisije(clanKomisijeEntity);
-                string location = linkGenerator.GetPathByAction("GetClanKomisije", "ClanKomisije", new { clanKomisijeId = confirmation.ClanId });
+                string location = linkGenerator.GetPathByAction("GetClanKomisijeById", "ClanKomisije", new { clanId = confirmation.ClanId });
                 return Created(location, mapper.Map<ClanKomisijeDto>(confirmation));
             }
-            catch
+            catch(Exception ex)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, "Create Error");
+                return StatusCode(StatusCodes.Status500InternalServerError, "Create Error"+ex.Message);
             }
         }
 
-        [HttpDelete("{clanKomisijeId}")]
-        public IActionResult DeleteClanKomisije(Guid clanKomisijeId)
+        /// <summary>
+        /// Brise clana komisije sa prosledjenim id-em iz liste
+        /// </summary>
+        /// <param name="clanId"></param>
+        /// <returns>Status 204 (NoContent)</returns>
+        /// <response code="204">Clan komisije uspesno obrisan</response>
+        /// <response code="404">Nije pronadjen clan komisije za brisanje</response>
+        /// <response code="500">Doslo je do greske na serveru prilikom brisanja clana komisije</response>
+        [HttpDelete("{clanId}")]
+        public IActionResult DeleteClanKomisije(Guid clanId)
         {
             try
             {
-                var clanKomisijeModel = clanKomisijeRepository.GetClanKomisijeById(clanKomisijeId);
+                var clanKomisijeModel = clanKomisijeRepository.GetClanKomisijeById(clanId);
                 if (clanKomisijeModel == null)
                 {
                     return NotFound();
                 }
-                clanKomisijeRepository.DeleteClanKomisije(clanKomisijeId);
+                clanKomisijeRepository.DeleteClanKomisije(clanId);
                 return NoContent();
             }
             catch
@@ -84,6 +109,14 @@ namespace Komisija_Agregat.Controllers
             }
         }
 
+        /// <summary>
+        /// Vrsi izmenu nad clanom komisije koji se prosledio u body-u
+        /// </summary>
+        /// <param name="clanKomisije"></param>
+        /// <returns>Potvrdu o modifikovanom clanu komisije</returns>
+        /// <response code="200">Vraca azuriranog clana komisije</response>
+        /// <response code="400">Clan komisije koji se azurira nije pronadjen</response>
+        /// <response code="500">Doslo je do greske na serveru prilikom azuriranja clana komisije</response>
         [HttpPut]
         public ActionResult<ClanKomisijeConfirmationDto> UpdateClanKomisije(ClanKomisijeUpdateDto clanKomisije)
         {

@@ -14,7 +14,7 @@ namespace Komisija_Agregat.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    class PredsednikController : ControllerBase
+    public class PredsednikController : ControllerBase
     {
         private readonly IPredsednikRepository predsednikRepository;
         private readonly LinkGenerator linkGenerator;
@@ -27,6 +27,13 @@ namespace Komisija_Agregat.Controllers
             this.mapper = mapper;
         }
 
+        /// <summary>
+        /// Vraca sve predsednike komisija
+        /// </summary>
+        /// <param name="ImePredsednika"></param>
+        /// <param name="PrezimePredsednika"></param>
+        /// <param name="EmailPredsednika"></param>
+        /// <returns></returns>
         [HttpGet]
         public ActionResult<List<PredsednikDto>> GetPredsednici(string ImePredsednika, string PrezimePredsednika, string EmailPredsednika)
         {
@@ -38,6 +45,11 @@ namespace Komisija_Agregat.Controllers
             return Ok(mapper.Map<List<PredsednikDto>>(predsednici));
         }
 
+        /// <summary>
+        /// Vraca predsednika na osnovu ID
+        /// </summary>
+        /// <param name="predsednikId"></param>
+        /// <returns></returns>
         [HttpGet("{predsednikId}")]
         public ActionResult<PredsednikDto> GetPredsednikById(Guid predsednikId)
         {
@@ -49,6 +61,11 @@ namespace Komisija_Agregat.Controllers
             return Ok(mapper.Map<PredsednikDto>(predsednik));
         }
 
+        /// <summary>
+        /// Dodaje novog predsednika komisije u listu
+        /// </summary>
+        /// <param name="predsednik"></param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult<PredsednikConfirmationDto> CreatePredsednik([FromBody] PredsednikDto predsednik)
         {
@@ -65,6 +82,15 @@ namespace Komisija_Agregat.Controllers
             }
         }
 
+
+        /// <summary>
+        /// Brise predsednika komisije sa prosledjenim id-em iz liste
+        /// </summary>
+        /// <param name="predsednikId"></param>
+        /// <returns>Status 204 (NoContent)</returns>
+        /// <response code="204">Predsednik uspesno obrisan</response>
+        /// <response code="404">Nije pronadjen predsednik za brisanje</response>
+        /// <response code="500">Doslo je do greske na serveru prilikom brisanja predsednika</response>
         [HttpDelete("{predsednikId}")]
         public IActionResult DeletePredsednik(Guid predsednikId)
         {
@@ -84,6 +110,14 @@ namespace Komisija_Agregat.Controllers
             }
         }
 
+        /// <summary>
+        /// Vrsi izmenu nad predsednikom komisije koji se prosledio u body-u
+        /// </summary>
+        /// <param name="predsednik"></param>
+        /// <returns>Potvrdu o modifikovanom predsedniku komisije</returns>
+        /// <response code="200">Vraca azuriranog predsednika komisije</response>
+        /// <response code="400">Predsednik komisije koji se azurira nije pronadjen</response>
+        /// <response code="500">Doslo je do greske na serveru prilikom azuriranja predsednika komisije</response>
         [HttpPut]
         public ActionResult<PredsednikConfirmationDto> UpdatePredsednik(PredsednikUpdateDto predsednik)
         {

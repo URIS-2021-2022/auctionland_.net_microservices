@@ -83,6 +83,8 @@ namespace Komisija_Agregat
             services.AddScoped<IClanKomisijeRepository, ClanKomisijeRepository>();
             services.AddScoped<IPredsednikRepository, PredsednikRepository>();
 
+            services.AddScoped<IValuesRepository, ValuesRepository>();
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("KomisijaOpenApiSpecification",
@@ -107,7 +109,8 @@ namespace Komisija_Agregat
                 c.IncludeXmlComments(xmlCommentsPath);
             });
 
-            services.AddDbContext<KomisijaContext>(); 
+            //services.AddDbContext<KomisijaContext>(options => options.UseSqlServer(Configuration.GetConnectionString("KomisijaDB")));
+            services.AddDbContext<KomisijaContext>();
         }
 
         

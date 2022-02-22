@@ -1,0 +1,349 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Komisija_Agregat</name>
+    </assembly>
+    <members>
+        <member name="M:Komisija_Agregat.Controllers.ClanKomisijeController.GetClanovi(System.String,System.String,System.String)">
+            <summary>
+            Vraca sve clanove komisije
+            </summary>
+            <param name="ImeClana"></param>
+            <param name="PrezimeClana"></param>
+            <param name="EmailClana"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Komisija_Agregat.Controllers.ClanKomisijeController.GetClanKomisijeById(System.Guid)">
+            <summary>
+            Vraca clana komisije na osnovu ID-a
+            </summary>
+            <param name="clanId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Komisija_Agregat.Controllers.ClanKomisijeController.CreateClanKomisije(Komisija_Agregat.Models.ClanKomisijeDto)">
+            <summary>
+            Dodaje novog clana komisije u listu
+            </summary>
+            <param name="clanKomisije"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Komisija_Agregat.Controllers.ClanKomisijeController.DeleteClanKomisije(System.Guid)">
+            <summary>
+            Brise clana komisije sa prosledjenim id-em iz liste
+            </summary>
+            <param name="clanId"></param>
+            <returns>Status 204 (NoContent)</returns>
+            <response code="204">Clan komisije uspesno obrisan</response>
+            <response code="404">Nije pronadjen clan komisije za brisanje</response>
+            <response code="500">Doslo je do greske na serveru prilikom brisanja clana komisije</response>
+        </member>
+        <member name="M:Komisija_Agregat.Controllers.ClanKomisijeController.UpdateClanKomisije(Komisija_Agregat.Models.ClanKomisijeUpdateDto)">
+            <summary>
+            Vrsi izmenu nad clanom komisije koji se prosledio u body-u
+            </summary>
+            <param name="clanKomisije"></param>
+            <returns>Potvrdu o modifikovanom clanu komisije</returns>
+            <response code="200">Vraca azuriranog clana komisije</response>
+            <response code="400">Clan komisije koji se azurira nije pronadjen</response>
+            <response code="500">Doslo je do greske na serveru prilikom azuriranja clana komisije</response>
+        </member>
+        <member name="M:Komisija_Agregat.Controllers.KomisijaController.GetKomisije">
+            <summary>
+            Vraca sve komisije iz liste
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Komisija_Agregat.Controllers.KomisijaController.GetKomisijaById(System.Guid)">
+            <summary>
+            Vraca komisiju na osnovu id-a
+            </summary>
+            <param name="komisijaId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Komisija_Agregat.Controllers.KomisijaController.CreateKomisija(Komisija_Agregat.Models.KomisijaDto)">
+            <summary>
+            Dodaje novu komisiju u listu
+            </summary>
+            <param name="komisija"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Komisija_Agregat.Controllers.KomisijaController.DeleteKomisija(System.Guid)">
+            <summary>
+            Brise komisije sa prosledjenim id-em iz liste
+            </summary>
+            <param name="komisijaId"></param>
+            <returns>Status 204 (NoContent)</returns>
+            <response code="204">Komisija uspesno obrisana</response>
+            <response code="404">Nije pronadjena komisija za brisanje</response>
+            <response code="500">Doslo je do greske na serveru prilikom brisanja komisije</response>
+        </member>
+        <member name="M:Komisija_Agregat.Controllers.KomisijaController.UpdateKomisija(Komisija_Agregat.Models.KomisijaUpdateDto)">
+            <summary>
+            Vrsi izmenu nad komisijom koji se prosledio u body-u
+            </summary>
+            <param name="komisija"></param>
+            <returns>Potvrdu o modifikovanoj komisiji</returns>
+            <response code="200">Vraca azuriranou komisiju</response>
+            <response code="400">Komisija koja se azurira nije pronadjena</response>
+            <response code="500">Doslo je do greske na serveru prilikom azuriranja komisije</response>
+        </member>
+        <member name="M:Komisija_Agregat.Controllers.PredsednikController.GetPredsednici(System.String,System.String,System.String)">
+            <summary>
+            Vraca sve predsednike komisija
+            </summary>
+            <param name="ImePredsednika"></param>
+            <param name="PrezimePredsednika"></param>
+            <param name="EmailPredsednika"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Komisija_Agregat.Controllers.PredsednikController.GetPredsednikById(System.Guid)">
+            <summary>
+            Vraca predsednika na osnovu ID
+            </summary>
+            <param name="predsednikId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Komisija_Agregat.Controllers.PredsednikController.CreatePredsednik(Komisija_Agregat.Models.PredsednikDto)">
+            <summary>
+            Dodaje novog predsednika komisije u listu
+            </summary>
+            <param name="predsednik"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Komisija_Agregat.Controllers.PredsednikController.DeletePredsednik(System.Guid)">
+            <summary>
+            Brise predsednika komisije sa prosledjenim id-em iz liste
+            </summary>
+            <param name="predsednikId"></param>
+            <returns>Status 204 (NoContent)</returns>
+            <response code="204">Predsednik uspesno obrisan</response>
+            <response code="404">Nije pronadjen predsednik za brisanje</response>
+            <response code="500">Doslo je do greske na serveru prilikom brisanja predsednika</response>
+        </member>
+        <member name="M:Komisija_Agregat.Controllers.PredsednikController.UpdatePredsednik(Komisija_Agregat.Models.PredsednikUpdateDto)">
+            <summary>
+            Vrsi izmenu nad predsednikom komisije koji se prosledio u body-u
+            </summary>
+            <param name="predsednik"></param>
+            <returns>Potvrdu o modifikovanom predsedniku komisije</returns>
+            <response code="200">Vraca azuriranog predsednika komisije</response>
+            <response code="400">Predsednik komisije koji se azurira nije pronadjen</response>
+            <response code="500">Doslo je do greske na serveru prilikom azuriranja predsednika komisije</response>
+        </member>
+        <member name="T:Komisija_Agregat.Models.ClanKomisijeConfirmationDto">
+            <summary>
+            DTO za potvrdu clana komisije
+            </summary>
+        </member>
+        <member name="P:Komisija_Agregat.Models.ClanKomisijeConfirmationDto.ImeClana">
+            <summary>
+            Ime clana komisije
+            </summary>
+        </member>
+        <member name="P:Komisija_Agregat.Models.ClanKomisijeConfirmationDto.PrezimeClana">
+            <summary>
+            Prezime clana komisije
+            </summary>
+        </member>
+        <member name="P:Komisija_Agregat.Models.ClanKomisijeConfirmationDto.EmailClana">
+            <summary>
+            Email adresa clana komisije
+            </summary>
+        </member>
+        <member name="T:Komisija_Agregat.Models.ClanKomisijeCreationDto">
+            <summary>
+            Model za kreiranje clana komisije
+            </summary>
+        </member>
+        <member name="P:Komisija_Agregat.Models.ClanKomisijeCreationDto.ImeClana">
+            <summary>
+            Ime clana komisije
+            </summary>
+        </member>
+        <member name="P:Komisija_Agregat.Models.ClanKomisijeCreationDto.PrezimeClana">
+            <summary>
+            Prezime clana komisije
+            </summary>
+        </member>
+        <member name="P:Komisija_Agregat.Models.ClanKomisijeCreationDto.EmailClana">
+            <summary>
+            Email adresa clana komisije
+            </summary>
+        </member>
+        <member name="T:Komisija_Agregat.Models.ClanKomisijeDto">
+            <summary>
+            DTO za clana komisije
+            </summary>
+        </member>
+        <member name="P:Komisija_Agregat.Models.ClanKomisijeDto.ImeClana">
+            <summary>
+            Ime clana komisije
+            </summary>
+        </member>
+        <member name="P:Komisija_Agregat.Models.ClanKomisijeDto.PrezimeClana">
+            <summary>
+            Prezime clana komisije
+            </summary>
+        </member>
+        <member name="P:Komisija_Agregat.Models.ClanKomisijeDto.EmailClana">
+            <summary>
+            Email adresa clana komisije
+            </summary>
+        </member>
+        <member name="T:Komisija_Agregat.Models.ClanKomisijeUpdateDto">
+            <summary>
+            DTO za azuriranje clana komisije
+            </summary>
+        </member>
+        <member name="P:Komisija_Agregat.Models.ClanKomisijeUpdateDto.ImeClana">
+            <summary>
+            Ime clana komisije
+            </summary>
+        </member>
+        <member name="P:Komisija_Agregat.Models.ClanKomisijeUpdateDto.PrezimeClana">
+            <summary>
+            Prezime clana komisije
+            </summary>
+        </member>
+        <member name="P:Komisija_Agregat.Models.ClanKomisijeUpdateDto.EmailClana">
+            <summary>
+            Email adresa clana komisije
+            </summary>
+        </member>
+        <member name="T:Komisija_Agregat.Models.KomisijaConfirmationDto">
+            <summary>
+            DTO za potvrdu komisije
+            </summary>
+        </member>
+        <member name="P:Komisija_Agregat.Models.KomisijaConfirmationDto.Predsednik">
+            <summary>
+            Predsednik komisije
+            </summary>
+        </member>
+        <member name="T:Komisija_Agregat.Models.KomisijaCreationDto">
+            <summary>
+            Model za kreiranje komisije
+            </summary>
+        </member>
+        <member name="P:Komisija_Agregat.Models.KomisijaCreationDto.Predsednik">
+            <summary>
+            Predsednik komisije
+            </summary>
+        </member>
+        <member name="P:Komisija_Agregat.Models.KomisijaCreationDto.Clanovi">
+            <summary>
+            Clanovi komisije
+            </summary>
+        </member>
+        <member name="T:Komisija_Agregat.Models.KomisijaDto">
+            <summary>
+            DTO za komisiju
+            </summary>
+        </member>
+        <member name="P:Komisija_Agregat.Models.KomisijaDto.Predsednik">
+            <summary>
+            Predsednik komisije
+            </summary>
+        </member>
+        <member name="P:Komisija_Agregat.Models.KomisijaDto.Clanovi">
+            <summary>
+            Clanovi komisije
+            </summary>
+        </member>
+        <member name="P:Komisija_Agregat.Models.KomisijaUpdateDto.KomisijaId">
+            <summary>
+            DTO za azuriranje komisije
+            </summary>
+        </member>
+        <member name="P:Komisija_Agregat.Models.KomisijaUpdateDto.Predsednik">
+            <summary>
+            Predsednik komisije
+            </summary>
+        </member>
+        <member name="P:Komisija_Agregat.Models.KomisijaUpdateDto.Clanovi">
+            <summary>
+            Clanovi komisije
+            </summary>
+        </member>
+        <member name="T:Komisija_Agregat.Models.PredsednikConfirmationDto">
+            <summary>
+            DTO za potvrdu predsednika komisije
+            </summary>
+        </member>
+        <member name="P:Komisija_Agregat.Models.PredsednikConfirmationDto.ImePredsednika">
+            <summary>
+            Ime predsednika komisije
+            </summary>
+        </member>
+        <member name="P:Komisija_Agregat.Models.PredsednikConfirmationDto.PrezimePredsednika">
+            <summary>
+            Prezime predsednika komisije
+            </summary>
+        </member>
+        <member name="P:Komisija_Agregat.Models.PredsednikConfirmationDto.EmailPredsednika">
+            <summary>
+            Email predsednika komisije
+            </summary>
+        </member>
+        <member name="T:Komisija_Agregat.Models.PredsednikCreationDto">
+            <summary>
+            Model za kreiranje predsednika
+            </summary>
+        </member>
+        <member name="P:Komisija_Agregat.Models.PredsednikCreationDto.ImePredsednika">
+            <summary>
+            Ime predsednika komisije
+            </summary>
+        </member>
+        <member name="P:Komisija_Agregat.Models.PredsednikCreationDto.PrezimePredsednika">
+            <summary>
+            Prezime predsednika komisije
+            </summary>
+        </member>
+        <member name="P:Komisija_Agregat.Models.PredsednikCreationDto.EmailPredsednika">
+            <summary>
+            Email predsednika komisije
+            </summary>
+        </member>
+        <member name="T:Komisija_Agregat.Models.PredsednikDto">
+            <summary>
+            DTO za predsednika komisije
+            </summary>
+        </member>
+        <member name="P:Komisija_Agregat.Models.PredsednikDto.ImePredsednika">
+            <summary>
+            Ime predsednika komisije
+            </summary>
+        </member>
+        <member name="P:Komisija_Agregat.Models.PredsednikDto.PrezimePredsednika">
+            <summary>
+            Prezime predsednika komisije
+            </summary>
+        </member>
+        <member name="P:Komisija_Agregat.Models.PredsednikDto.EmailPredsednika">
+            <summary>
+            Email predsednika komisije
+            </summary>
+        </member>
+        <member name="T:Komisija_Agregat.Models.PredsednikUpdateDto">
+            <summary>
+            DTO za azuriranje predsednika komisije
+            </summary>
+        </member>
+        <member name="P:Komisija_Agregat.Models.PredsednikUpdateDto.ImePredsednika">
+            <summary>
+            Ime predsednika komisije
+            </summary>
+        </member>
+        <member name="P:Komisija_Agregat.Models.PredsednikUpdateDto.PrezimePredsednika">
+            <summary>
+            Prezime predsednika komisije
+            </summary>
+        </member>
+        <member name="P:Komisija_Agregat.Models.PredsednikUpdateDto.EmailPredsednika">
+            <summary>
+            Email predsednika komisije
+            </summary>
+        </member>
+    </members>
+</doc>

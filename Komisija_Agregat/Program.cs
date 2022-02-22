@@ -1,3 +1,7 @@
+/*using Komisija_Agregat.Data;
+using Komisija_Agregat.Entities;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -23,3 +27,41 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+builder.Services.AddScoped<IKomisijaRepository, KomisijaRepository>();
+builder.Services.AddScoped<IClanKomisijeRepository, ClanKomisijeRepository>();
+builder.Services.AddScoped<IPredsednikRepository, PredsednikRepository>();
+
+builder.Services.AddDbContext<KomisijaContext>(options =>
+{
+    options.UseSqlServer(builder.Configuration.GetConnectionString("KomisijaDB"));
+});
+*/
+
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace Komisija_Agregat
+{
+    public class Program
+    {
+        public static void Main(string[] args)
+        {
+            CreateHostBuilder(args).Build().Run();
+        }
+
+        public static IHostBuilder CreateHostBuilder(string[] args) =>
+            Host.CreateDefaultBuilder(args)
+                .ConfigureWebHostDefaults(webBuilder =>
+                {
+                    webBuilder.UseStartup<Startup>();
+                });
+    }
+}
