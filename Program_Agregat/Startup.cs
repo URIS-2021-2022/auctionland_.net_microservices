@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
@@ -17,6 +17,12 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using Program_Agregat.Data;
+using Program_Agregat.Entities;
+using Program_Agregat.Models;
+using Program_Agregat.Profiles;
+using AutoMapper;
+using Microsoft.EntityFrameworkCore;
+
 
 namespace Program_Agregat
 {
@@ -33,11 +39,11 @@ namespace Program_Agregat
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddControllers();
+
             services.AddControllers(setup =>
-            {
-                setup.ReturnHttpNotAcceptable = true;
-            }).AddXmlDataContractSerializerFormatters().ConfigureApiBehaviorOptions(setupAction =>
+
+                setup.ReturnHttpNotAcceptable = true
+            ).AddXmlDataContractSerializerFormatters().ConfigureApiBehaviorOptions(setupAction =>
             {
                 setupAction.InvalidModelStateResponseFactory = context =>
                 {
@@ -75,9 +81,12 @@ namespace Program_Agregat
 
                 };
             });
+
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-            services.AddSingleton<IProgramRepository, ProgramRepository>();
-            services.AddSingleton<IPredlogPlanaRepository, PredlogPlanaRepository>();
+            services.AddScoped<IPredlogPlanaRepository, PredlogPlanaRepository>();
+            services.AddScoped<IProgramRepository, ProgramRepository>();
+            services.AddScoped<ILoggerService, LoggerService>();
+
 
             services.AddSwaggerGen(c =>
             {
@@ -102,7 +111,12 @@ namespace Program_Agregat
 
                 c.IncludeXmlComments(xmlCommentsPath);
             });
+
+            //services.AddDbContextPool<ProgramContext>(options => options.UseSqlServer(Configuration.GetConnectionString("ProgramDB")));
+            services.AddDbContext<ProgramContext>();
         }
+
+
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -111,7 +125,7 @@ namespace Program_Agregat
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Program_Agregat v1"));
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Komisija_Agregat v1"));
             }
             else
             {

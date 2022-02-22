@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -9,14 +9,16 @@ namespace Program_Agregat.Data
 {
     public interface IProgramRepository
     {
-        List<Program> GetProgrami();
+        List<ProgramEntity> GetProgrami();
 
-        Program GetProgramById(Guid ProgramId);
+        ProgramEntity GetProgramById(Guid ProgramId);
 
-        ProgramConfirmation CreateProgram(Program program);
+        ProgramConfirmation CreateProgram(ProgramEntity program);
 
-        ProgramConfirmation UpdateProgram(Program program);
+        ProgramConfirmation UpdateProgram(ProgramEntity program);
 
         void DeleteProgram(Guid ProgramId);
+
+        bool SaveChanges();
     }
 }

@@ -1,55 +1,48 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Program_Agregat.Models;
 using Program_Agregat.Entities;
+using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 
 namespace Program_Agregat.Data
 {
 
     public class PredlogPlanaRepository : IPredlogPlanaRepository
     {
-        public static List<PredlogPlana> PredloziPlana { get; set; } = new List<PredlogPlana>();
+        private readonly ProgramContext context;
+        private readonly IMapper mapper;
 
-        public PredlogPlanaRepository()
+        public PredlogPlanaRepository(ProgramContext context, IMapper mapper)
         {
-            FillData();
+            this.context = context;
+            this.mapper = mapper;
         }
 
-        private void FillData()
+        public bool SaveChanges()
         {
-            
+            return context.SaveChanges() > 0;
         }
 
         public List<PredlogPlana> GetPredloziPlana(string BrojDokumenta = null)
         {
 
-            return (from e in PredloziPlana
-                    where string.IsNullOrEmpty(BrojDokumenta) || e.BrojDokumenta == BrojDokumenta                        
-                    select e).ToList();
+            return context.PredloziPlana.Include(p=>p.ProgramPlana).Where(e => string.IsNullOrEmpty(BrojDokumenta) || e.BrojDokumenta == BrojDokumenta).ToList();
         }
 
         public PredlogPlana GetPredlogPlanaById(Guid PredlogPlanaId)
         {
 
-            return PredloziPlana.FirstOrDefault(e => e.PredlogPlanaId == PredlogPlanaId);
+            return context.PredloziPlana.Include(p => p.ProgramPlana).FirstOrDefault(e => e.PredlogPlanaId == PredlogPlanaId);
 
         }
 
         public PredlogPlanaConfirmation CreatePredlogPlana(PredlogPlana predlogPlana)
         {
-            predlogPlana.PredlogPlanaId = Guid.NewGuid();
-            PredloziPlana.Add(predlogPlana);
-            PredlogPlana predlog = GetPredlogPlanaById(predlogPlana.PredlogPlanaId);
-
-            return new PredlogPlanaConfirmation
-            {
-                PredlogPlanaId = predlog.PredlogPlanaId,
-
-                BrojDokumenta = predlog.BrojDokumenta
-
-            };
+            var createdEntity = context.Add(predlogPlana);
+            return mapper.Map<PredlogPlanaConfirmation>(createdEntity.Entity);
         }
 
         public PredlogPlanaConfirmation UpdatePredlogPlana(PredlogPlana predlogPlana)
@@ -61,6 +54,8 @@ namespace Program_Agregat.Data
             predlog.MisljenjeKomisije = predlogPlana.MisljenjeKomisije;
             predlog.Usvojen = predlogPlana.Usvojen;
             predlog.DatumDokumenta = predlogPlana.DatumDokumenta;
+            predlog.ProgramPlana = predlogPlana.ProgramPlana;
+            predlog.ProgramId = predlogPlana.ProgramId;
 
             return new PredlogPlanaConfirmation
             {
@@ -72,7 +67,7 @@ namespace Program_Agregat.Data
 
         public void DeletePredlogPlana(Guid PredlogPlanaId)
         {
-            PredloziPlana.Remove(PredloziPlana.FirstOrDefault(e => e.PredlogPlanaId == PredlogPlanaId));
+            context.Remove(GetPredlogPlanaById(PredlogPlanaId));
         }
 
     }

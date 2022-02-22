@@ -1,76 +1,68 @@
-using System;
+﻿using System;
 using Program_Agregat.Models;
 using Program_Agregat.Entities;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 
 namespace Program_Agregat.Data
 {
 
     public class ProgramRepository : IProgramRepository
     {
-        public static List<Program> Programi { get; set; } = new List<Program>();
+        private readonly ProgramContext context;
+        private readonly IMapper mapper;
 
-        public ProgramRepository()
+        public ProgramRepository(ProgramContext context, IMapper mapper)
         {
-            FillData();
+
+            this.context = context;
+            this.mapper = mapper;
         }
 
-        private void FillData()
+        public bool SaveChanges()
         {
+            return context.SaveChanges() > 0;
+        }
+
+        public List<ProgramEntity> GetProgrami()
+        {
+
+            return context.Programi.ToList();
+        }
+
+        public ProgramEntity GetProgramById(Guid ProgramId)
+        {
+
+            return context.Programi.FirstOrDefault(e => e.ProgramId == ProgramId);
 
         }
 
-        public List<Program> GetProgrami()
+        public ProgramConfirmation CreateProgram(ProgramEntity program)
         {
-
-            return (from e in Programi                  
-                    select e).ToList();
+            var createdEntity = context.Add(program);
+            return mapper.Map<ProgramConfirmation>(createdEntity.Entity);
         }
 
-        public Program GetProgramById(Guid ProgramId)
+        public ProgramConfirmation UpdateProgram(ProgramEntity program)
         {
-
-            return Programi.FirstOrDefault(e => e.ProgramId == ProgramId);
-
-        }
-
-        public ProgramConfirmation CreateProgram(Program program)
-        {
-            program.ProgramId = Guid.NewGuid();
-            Programi.Add(program);
-            Program prog = GetProgramById(program.ProgramId);
-
-            return new ProgramConfirmation
-            {
-                ProgramId = prog.ProgramId,
-
-                MaksimalnoOgranicenje = prog.MaksimalnoOgranicenje
-
-            };
-        }
-
-        public ProgramConfirmation UpdateProgram(Program program)
-        {
-            Program prog = GetProgramById(program.ProgramId);
+            ProgramEntity prog = GetProgramById(program.ProgramId);
 
             prog.ProgramId = program.ProgramId;
             prog.MaksimalnoOgranicenje = program.MaksimalnoOgranicenje;
             prog.Licitacije = program.Licitacije;
-            
+
 
             return new ProgramConfirmation
             {
-                ProgramId = program.ProgramId,
-                MaksimalnoOgranicenje = program.MaksimalnoOgranicenje
-
+                ProgramId = program.ProgramId
             };
         }
 
         public void DeleteProgram(Guid ProgramId)
         {
-            Programi.Remove(Programi.FirstOrDefault(e => e.ProgramId == ProgramId));
+            context.Remove(GetProgramById(ProgramId));
         }
 
     }

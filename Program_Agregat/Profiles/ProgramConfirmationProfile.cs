@@ -1,4 +1,4 @@
-using AutoMapper;
+﻿using AutoMapper;
 using Program_Agregat.Entities;
 using Program_Agregat.Models;
 using System;
@@ -13,7 +13,8 @@ namespace Program_Agregat.Profiles
         public ProgramConfirmationProfile()
         {
             CreateMap<ProgramConfirmation, ProgramConfirmationDto>();
- 
+            CreateMap<ProgramEntity, ProgramConfirmation>();
+
         }
     }
 }

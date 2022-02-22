@@ -14,7 +14,6 @@ namespace Program_Agregat
         public static void Main(string[] args)
         {
             CreateHostBuilder(args).Build().Run();
-            //Good night world
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>

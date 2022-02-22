@@ -1,9 +1,0 @@
-C:\Users\ASUS ROG\source\repos\tim-6---auctionland-tim-6-nopcommerce\Program_Agregat\obj\Debug\net6.0\Program_Agregat.csproj.AssemblyReference.cache
-C:\Users\ASUS ROG\source\repos\tim-6---auctionland-tim-6-nopcommerce\Program_Agregat\obj\Debug\net6.0\Program_Agregat.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\ASUS ROG\source\repos\tim-6---auctionland-tim-6-nopcommerce\Program_Agregat\obj\Debug\net6.0\Program_Agregat.AssemblyInfoInputs.cache
-C:\Users\ASUS ROG\source\repos\tim-6---auctionland-tim-6-nopcommerce\Program_Agregat\obj\Debug\net6.0\Program_Agregat.AssemblyInfo.cs
-C:\Users\ASUS ROG\source\repos\tim-6---auctionland-tim-6-nopcommerce\Program_Agregat\obj\Debug\net6.0\Program_Agregat.csproj.CoreCompileInputs.cache
-C:\Users\ASUS ROG\source\repos\tim-6---auctionland-tim-6-nopcommerce\Program_Agregat\obj\Debug\net6.0\Program_Agregat.MvcApplicationPartsAssemblyInfo.cache
-C:\Users\ASUS ROG\source\repos\tim-6---auctionland-tim-6-nopcommerce\Program_Agregat\obj\Debug\net6.0\Program_Agregat.dll
-C:\Users\ASUS ROG\source\repos\tim-6---auctionland-tim-6-nopcommerce\Program_Agregat\obj\Debug\net6.0\Program_Agregat.pdb
-C:\Users\ASUS ROG\source\repos\tim-6---auctionland-tim-6-nopcommerce\Program_Agregat\obj\Debug\net6.0\Program_Agregat.MvcApplicationPartsAssemblyInfo.cs

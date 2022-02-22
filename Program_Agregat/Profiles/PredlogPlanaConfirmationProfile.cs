@@ -1,4 +1,4 @@
-using AutoMapper;
+﻿using AutoMapper;
 using Program_Agregat.Entities;
 using Program_Agregat.Models;
 using System;
@@ -13,6 +13,7 @@ namespace Program_Agregat.Profiles
         public PredlogPlanaConfirmationProfile()
         {
             CreateMap<PredlogPlanaConfirmation, PredlogPlanaConfirmationDto>();
+            CreateMap<PredlogPlana, PredlogPlanaConfirmation>();
 
         }
     }

@@ -1,4 +1,4 @@
-using AutoMapper;
+﻿using AutoMapper;
 using Program_Agregat.Entities;
 using Program_Agregat.Models;
 using System;
@@ -10,10 +10,11 @@ namespace Program_Agregat.Profiles
 {
     public class ProgramProfile : Profile
     {
-        ProgramProfile()
+        public ProgramProfile()
         {
-            CreateMap<Program, ProgramDto>();
-            CreateMap<ProgramCreationDto, Program>();
+            CreateMap<ProgramEntity, ProgramDto>();
+            CreateMap<ProgramCreationDto, ProgramEntity>();
+            CreateMap<ProgramUpdateDto, ProgramEntity>();
         }
     }
 }
