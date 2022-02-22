@@ -31,13 +31,7 @@ namespace Licitacija_agregat.Entities
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            builder.Entity<Etapa>()
-                .HasData(new
-                {
-                    EtapaId = Guid.Parse("6a411c13-a195-48f7-8dbd-67596c3974c0"),
-                    Dan = DateTime.Parse("2023-11-15"),
-                    BrojEtape = 5
-                });
+
             builder.Entity<Licitacija>()
                 .HasData(new
                 {
@@ -49,7 +43,6 @@ namespace Licitacija_agregat.Entities
                     Ogranicenje = 5,
                     Korak_cene = 5
                 });
-
 
         }
 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Licitacija_agregat.Entities;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -43,7 +44,12 @@ namespace Licitacija_agregat.Models
         /// <summary>
         /// Lista javnih nadmetanja
         /// </summary>
-        public List<string> JavnoNadmetanje { get; set; } // tudji servis
+        public List<string> JavnoNadmetanje { get; set; }
+        /// <summary>
+        /// Lista etapa određene licitacije
+        /// </summary>
+        public List<Etapa> ListaEtapa { get; set; }
+
         /// <summary>
         /// Datum koji predstavlja rok za dostavljanje prijave
         /// </summary>

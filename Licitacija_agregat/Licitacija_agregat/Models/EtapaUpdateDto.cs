@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Licitacija_agregat.Entities;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -23,6 +24,8 @@ namespace Licitacija_agregat.Models
         /// Broj etape
         /// </summary>
         public int BrojEtape { get; set; }
+        public Guid? LicitacijaId { get; set; }
+
 
         /// <summary>
         /// Potrebno je da broj etape bude pozitivan broj i da datum bude u budućnosti

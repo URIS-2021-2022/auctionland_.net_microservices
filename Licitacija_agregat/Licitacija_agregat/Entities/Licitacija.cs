@@ -19,7 +19,9 @@ namespace Licitacija_agregat.Entities
         [NotMapped]
         public List<string> Lista_dokumentacije_pravna_lica { get; set; }
         [NotMapped]
-        public List<string> JavnoNadmetanje { get; set; } // tudji servis
+        public List<string> JavnoNadmetanje { get; set; } 
         public DateTime Rok_za_dostavljanje_prijave { get; set; }
+        public List<Etapa> ListaEtapa { get; set; }
+
     }
 }

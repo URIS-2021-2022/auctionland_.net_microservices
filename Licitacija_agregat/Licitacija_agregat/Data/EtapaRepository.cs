@@ -41,6 +41,7 @@ namespace Licitacija_agregat.Data
         public Etapa GetEtapaById(Guid EtapaId)
         {
             return context.Etape.FirstOrDefault(e => e.EtapaId == EtapaId);
+                
         }
 
         public List<Etapa> GetEtapas(DateTime dan = default)

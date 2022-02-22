@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Licitacija_agregat.Migrations
 {
     [DbContext(typeof(LicitacijaContext))]
-    [Migration("20220222164051_ic")]
+    [Migration("20220222200524_ic")]
     partial class ic
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -33,17 +33,14 @@ namespace Licitacija_agregat.Migrations
                     b.Property<DateTime>("Dan")
                         .HasColumnType("datetime2");
 
+                    b.Property<Guid?>("LicitacijaId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.HasKey("EtapaId");
 
-                    b.ToTable("Etape");
+                    b.HasIndex("LicitacijaId");
 
-                    b.HasData(
-                        new
-                        {
-                            EtapaId = new Guid("6a411c13-a195-48f7-8dbd-67596c3974c0"),
-                            BrojEtape = 5,
-                            Dan = new DateTime(2023, 11, 15, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        });
+                    b.ToTable("Etape");
                 });
 
             modelBuilder.Entity("Licitacija_agregat.Entities.Licitacija", b =>
@@ -85,6 +82,20 @@ namespace Licitacija_agregat.Migrations
                             Ogranicenje = 5,
                             Rok_za_dostavljanje_prijave = new DateTime(2023, 11, 15, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         });
+                });
+
+            modelBuilder.Entity("Licitacija_agregat.Entities.Etapa", b =>
+                {
+                    b.HasOne("Licitacija_agregat.Entities.Licitacija", "Licitacija")
+                        .WithMany("ListaEtapa")
+                        .HasForeignKey("LicitacijaId");
+
+                    b.Navigation("Licitacija");
+                });
+
+            modelBuilder.Entity("Licitacija_agregat.Entities.Licitacija", b =>
+                {
+                    b.Navigation("ListaEtapa");
                 });
 #pragma warning restore 612, 618
         }
