@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using Oglas_Agregat.Entities;
 using Oglas_Agregat.Models;
 using System;
@@ -45,23 +46,12 @@ namespace Oglas_Agregat.Data
 
         public List<SluzbeniList> GetSluzbeniListovi(int BrojLista = default)
         {
-            return context.SluzbeniListovi.Where(e => (BrojLista == default || e.BrojLista.Equals(BrojLista))).ToList();
+            return context.SluzbeniListovi.Include(d => d.ListaOglasa).Where(e => (BrojLista == default || e.BrojLista.Equals(BrojLista))).ToList();
 
         }
 
         public void UpdateSluzbeniList(SluzbeniList sluzbeniListModel)
         {
-/*            var sluzbeniList = GetSluzbeniListById(sluzbeniListModel.SluzbeniListId);
-
-            sluzbeniList.SluzbeniListId = sluzbeniListModel.SluzbeniListId;
-            sluzbeniList.DatumIzdanja = sluzbeniListModel.DatumIzdanja;
-            sluzbeniList.BrojLista = sluzbeniListModel.BrojLista;
-
-            return new SluzbeniListConfirmation()
-            {
-                SluzbeniListId = sluzbeniList.SluzbeniListId,
-                BrojLista = sluzbeniList.BrojLista
-            };*/
         }
     }
 }

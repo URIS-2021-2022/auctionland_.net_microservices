@@ -10,8 +10,8 @@ using Oglas_Agregat.Entities;
 namespace Oglas_Agregat.Migrations
 {
     [DbContext(typeof(OglasContext))]
-    [Migration("20220221175538_Create")]
-    partial class Create
+    [Migration("20220222210611_ic")]
+    partial class ic
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -40,6 +40,8 @@ namespace Oglas_Agregat.Migrations
                         .HasColumnType("datetime2");
 
                     b.HasKey("OglasId");
+
+                    b.HasIndex("ObjavljenUListuId");
 
                     b.ToTable("Oglasi");
 
@@ -77,6 +79,22 @@ namespace Oglas_Agregat.Migrations
                             BrojLista = 33,
                             DatumIzdanja = new DateTime(2001, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         });
+                });
+
+            modelBuilder.Entity("Oglas_Agregat.Entities.Oglas", b =>
+                {
+                    b.HasOne("Oglas_Agregat.Entities.SluzbeniList", "ObjavljenUListu")
+                        .WithMany("ListaOglasa")
+                        .HasForeignKey("ObjavljenUListuId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ObjavljenUListu");
+                });
+
+            modelBuilder.Entity("Oglas_Agregat.Entities.SluzbeniList", b =>
+                {
+                    b.Navigation("ListaOglasa");
                 });
 #pragma warning restore 612, 618
         }

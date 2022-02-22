@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Oglas_Agregat.Entities;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -26,6 +27,8 @@ namespace Oglas_Agregat.Models
         /// Broj lista
         /// </summary>
         public int BrojLista { get; set; }
+
+        public List<Oglas> ListaOglasa { get; set; }
 
 
         /// <summary>

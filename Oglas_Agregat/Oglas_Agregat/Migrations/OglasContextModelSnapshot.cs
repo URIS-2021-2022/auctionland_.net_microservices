@@ -39,6 +39,8 @@ namespace Oglas_Agregat.Migrations
 
                     b.HasKey("OglasId");
 
+                    b.HasIndex("ObjavljenUListuId");
+
                     b.ToTable("Oglasi");
 
                     b.HasData(
@@ -75,6 +77,22 @@ namespace Oglas_Agregat.Migrations
                             BrojLista = 33,
                             DatumIzdanja = new DateTime(2001, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         });
+                });
+
+            modelBuilder.Entity("Oglas_Agregat.Entities.Oglas", b =>
+                {
+                    b.HasOne("Oglas_Agregat.Entities.SluzbeniList", "ObjavljenUListu")
+                        .WithMany("ListaOglasa")
+                        .HasForeignKey("ObjavljenUListuId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ObjavljenUListu");
+                });
+
+            modelBuilder.Entity("Oglas_Agregat.Entities.SluzbeniList", b =>
+                {
+                    b.Navigation("ListaOglasa");
                 });
 #pragma warning restore 612, 618
         }

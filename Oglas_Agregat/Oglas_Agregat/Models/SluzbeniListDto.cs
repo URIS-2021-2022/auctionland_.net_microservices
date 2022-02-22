@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Oglas_Agregat.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -21,5 +22,10 @@ namespace Oglas_Agregat.Models
         /// Broj lista
         /// </summary>
         public int BrojLista { get; set; }
+
+        /// <summary>
+        /// Lista oglasa koji su objavljeni u službenom listu
+        /// </summary>
+        public List<Oglas> ListaOglasa { get; set; }
     }
 }

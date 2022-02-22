@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Oglas_Agregat.Entities;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -23,10 +24,16 @@ namespace Oglas_Agregat.Models
         public int BrojLista { get; set; }
 
         /// <summary>
+        /// Lista oglasa koji su objavljeni u službenom listu
+        /// </summary>
+        public List<Oglas> ListaOglasa { get; set; }
+
+        /// <summary>
         /// Validacija da uneti datum izdavanja službenog lista nije veći od današnjeg datuma
         /// </summary>
         /// <param name="validationContext"></param>
         /// <returns></returns>
+
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
 

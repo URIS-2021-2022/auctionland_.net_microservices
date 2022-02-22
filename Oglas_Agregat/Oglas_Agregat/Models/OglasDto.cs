@@ -31,5 +31,7 @@ namespace Oglas_Agregat.Models
         /// Id službenog lista u kom je objavljen oglas
         /// </summary>
         public Guid ObjavljenUListuId { get; set; }
+
+   
     }
 }

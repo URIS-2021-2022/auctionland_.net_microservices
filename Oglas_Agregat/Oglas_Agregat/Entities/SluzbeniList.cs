@@ -10,5 +10,7 @@ namespace Oglas_Agregat.Entities
         public Guid SluzbeniListId { get; set; }
         public DateTime DatumIzdanja { get; set; }
         public int BrojLista { get; set; }
+        public List<Oglas> ListaOglasa { get; set; }
+
     }
 }
