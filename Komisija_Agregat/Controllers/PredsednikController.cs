@@ -1,8 +1,9 @@
-using Komisija_Agregat.Data;
+﻿using Komisija_Agregat.Data;
 using Komisija_Agregat.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,12 +20,14 @@ namespace Komisija_Agregat.Controllers
         private readonly IPredsednikRepository predsednikRepository;
         private readonly LinkGenerator linkGenerator;
         private readonly IMapper mapper;
+        private readonly ILoggerService loggerService;
 
-        public PredsednikController(IPredsednikRepository predsednikRepository, LinkGenerator linkGenerator, IMapper mapper)
+        public PredsednikController(IPredsednikRepository predsednikRepository, LinkGenerator linkGenerator, IMapper mapper, ILoggerService loggerService)
         {
             this.predsednikRepository = predsednikRepository;
             this.linkGenerator = linkGenerator;
             this.mapper = mapper;
+            this.loggerService = loggerService;
         }
 
         /// <summary>
@@ -37,11 +40,13 @@ namespace Komisija_Agregat.Controllers
         [HttpGet]
         public ActionResult<List<PredsednikDto>> GetPredsednici(string ImePredsednika, string PrezimePredsednika, string EmailPredsednika)
         {
-            var predsednici = predsednikRepository.GetPredsednici(ImePredsednika,PrezimePredsednika,EmailPredsednika);
+            var predsednici = predsednikRepository.GetPredsednici(ImePredsednika, PrezimePredsednika, EmailPredsednika);
             if (predsednici == null || predsednici.Count == 0)
             {
+                loggerService.Log(LogLevel.Warning, "GetAllStatus", "Lista predsednika komisije je prazna ili null");
                 return NoContent();
             }
+            loggerService.Log(LogLevel.Information, "GetAllStatus", "Lista predsednika komisije je uspesno vracena!");
             return Ok(mapper.Map<List<PredsednikDto>>(predsednici));
         }
 
@@ -56,8 +61,11 @@ namespace Komisija_Agregat.Controllers
             var predsednik = predsednikRepository.GetPredsednikById(predsednikId);
             if (predsednik == null)
             {
+                loggerService.Log(LogLevel.Warning, "GetByIdStatus", "Predsednik komisije sa tim id-em nije pronadjen");
                 return NotFound();
+
             }
+            loggerService.Log(LogLevel.Information, "GetByIdStatus", "Predsednik komisije sa zadatim id-em je uspesno vracen!");
             return Ok(mapper.Map<PredsednikDto>(predsednik));
         }
 
@@ -67,17 +75,20 @@ namespace Komisija_Agregat.Controllers
         /// <param name="predsednik"></param>
         /// <returns></returns>
         [HttpPost]
-        public ActionResult<PredsednikConfirmationDto> CreatePredsednik([FromBody] PredsednikDto predsednik)
+        public ActionResult<PredsednikConfirmationDto> CreatePredsednik([FromBody] PredsednikCreationDto predsednik)
         {
             try
             {
-                var predsednikEntity = mapper.Map<Predsednik>(predsednik);
-                var confirmation = predsednikRepository.CreatePredsednik(predsednikEntity);
-                string location = linkGenerator.GetPathByAction("GetPredsednik", "Predsednik", new { predsednikId = confirmation.PredsednikId });
-                return Created(location, mapper.Map<PredsednikDto>(confirmation));
+                Predsednik predsednikEntity = mapper.Map<Predsednik>(predsednik);
+                PredsednikConfirmation confirmation = predsednikRepository.CreatePredsednik(predsednikEntity);
+                predsednikRepository.SaveChanges();
+                string location = linkGenerator.GetPathByAction("GetPredsednikById", "Predsednik", new { predsednikId = confirmation.PredsednikId });
+                loggerService.Log(LogLevel.Information, "PostStatus", "Predsednik komisije je uspesno napravljen!");
+                return Created(location, mapper.Map<PredsednikConfirmationDto>(confirmation));
             }
             catch
             {
+                loggerService.Log(LogLevel.Warning, "PostStatus", "Predsednik komisije nije kreiran, doslo je do greske!");
                 return StatusCode(StatusCodes.Status500InternalServerError, "Create Error");
             }
         }
@@ -99,13 +110,17 @@ namespace Komisija_Agregat.Controllers
                 var predsednik = predsednikRepository.GetPredsednikById(predsednikId);
                 if (predsednik == null)
                 {
+                    loggerService.Log(LogLevel.Warning, "DeleteStatus", "Predsednik komisije sa tim id-em nije pronadjen");
                     return NotFound();
                 }
                 predsednikRepository.DeletePredsednik(predsednikId);
+                predsednikRepository.SaveChanges();
+                loggerService.Log(LogLevel.Information, "DeleteStatus", "Predsednik komisije je uspesno obrisan!");
                 return NoContent();
             }
             catch
             {
+                loggerService.Log(LogLevel.Information, "DeleteStatus", "Predsednik komisije nije uspesno obrisan!");
                 return StatusCode(StatusCodes.Status500InternalServerError, "Delete Error");
             }
         }
@@ -125,14 +140,18 @@ namespace Komisija_Agregat.Controllers
             {
                 if (predsednikRepository.GetPredsednikById(predsednik.PredsednikId) == null)
                 {
+                    loggerService.Log(LogLevel.Warning, "PutStatus", "Predsednik komisije sa tim id-em nije pronadjen");
                     return NotFound();
                 }
                 Predsednik predsednik2 = mapper.Map<Predsednik>(predsednik);
                 PredsednikConfirmation confirmation = predsednikRepository.UpdatePredsednik(predsednik2);
-                return Ok(mapper.Map<PredsednikDto>(confirmation));
+                predsednikRepository.SaveChanges();
+                loggerService.Log(LogLevel.Information, "PutStatus", "Predsednik komisije je uspesno izmenjen!");
+                return Ok(mapper.Map<PredsednikConfirmationDto>(confirmation));
             }
             catch (Exception)
             {
+                loggerService.Log(LogLevel.Warning, "PutStatus", "Doslo je do greske prilikom izmene predsednika komisije");
                 return StatusCode(StatusCodes.Status500InternalServerError, "Update error");
             }
         }

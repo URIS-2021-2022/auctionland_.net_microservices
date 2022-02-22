@@ -10,10 +10,11 @@ namespace Komisija_Agregat.Profiles
 {
     public class PredsednikProfile : Profile
     {
-        PredsednikProfile()
+        public PredsednikProfile()
         {
             CreateMap<Predsednik, PredsednikDto>();
             CreateMap<PredsednikCreationDto, Predsednik>();
+            CreateMap<PredsednikUpdateDto, Predsednik>();
         }
     }
 }

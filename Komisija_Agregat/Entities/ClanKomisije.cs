@@ -10,10 +10,11 @@ namespace Komisija_Agregat.Entities
     public class ClanKomisije
     {
         [Key]
-        public Guid ClanId { get; set; } = Guid.NewGuid();
+        public Guid ClanId { get; set; }
         public string ImeClana { get; set; }
         public string PrezimeClana { get; set; }
         public string EmailClana { get; set; }
+        public Komisija Komisija { get; set; }
+        public Guid KomisijaId { get; set; }
     }
 }
-

@@ -24,6 +24,7 @@ namespace Komisija_Agregat.Models
         /// Email adresa clana komisije
         /// </summary>
         public string EmailClana { get; set; }
+
+        public Guid KomisijaId { get; set; }
     }
 }
-

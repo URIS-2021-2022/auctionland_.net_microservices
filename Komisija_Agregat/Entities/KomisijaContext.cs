@@ -13,7 +13,7 @@ namespace Komisija_Agregat.Entities
     {
         private readonly IConfiguration configuration;
 
-      
+
         public KomisijaContext(DbContextOptions<KomisijaContext> options, IConfiguration configuration) : base(options)
         {
             this.configuration = configuration;
@@ -31,14 +31,14 @@ namespace Komisija_Agregat.Entities
         {
             optionsBuilder.UseSqlServer(configuration.GetConnectionString("KomisijaDB"));
         }
-
+        /*
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.Entity<Predsednik>().HasData(new
             {
                 PredsednikId = Guid.Parse("6a411c13-a195-48f7-8dbd-67596c3974c0"),
                 ImePredsednika = "Petar",
-                PrezimePredsednika= "Markovic",
+                PrezimePredsednika = "Markovic",
                 EmailPredsednika = "markuza@mail.com"
             });
             builder.Entity<ClanKomisije>().HasData(new
@@ -50,13 +50,13 @@ namespace Komisija_Agregat.Entities
             });
             builder.Entity<Komisija>().HasData(new
             {
-                KomisijaId= Guid.Parse("1c7ea607-8ddb-493a-87fa-4bf5893e965b"),
+                KomisijaId = Guid.Parse("1c7ea607-8ddb-493a-87fa-4bf5893e965b"),
                 Predsednik = "sd",
                 Clanovi = "sdd"
-            });
+            }); 
         }
-        
-    
-       
+
+        */
+
     }
 }

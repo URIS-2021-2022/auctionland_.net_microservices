@@ -13,7 +13,8 @@ namespace Komisija_Agregat.Profiles
         public ClanKomisijeConfirmationProfile()
         {
             CreateMap<ClanKomisijeConfirmation, ClanKomisijeConfirmationDto>();
-            
+            CreateMap<ClanKomisije, ClanKomisijeConfirmation>();
+
         }
     }
 }

@@ -19,7 +19,7 @@ namespace Komisija_Agregat.Data
 
         public ClanKomisijeRepository(KomisijaContext context, IMapper mapper)
         {
-            
+
             this.context = context;
             this.mapper = mapper;
         }
@@ -32,9 +32,9 @@ namespace Komisija_Agregat.Data
         public List<ClanKomisije> GetClanovi(string ImeClana = null, string PrezimeClana = null, string EmailClana = null)
         {
 
-            return context.ClanoviKomisije.Where( e=> string.IsNullOrEmpty(ImeClana) || e.ImeClana == ImeClana &&
-                          string.IsNullOrEmpty(PrezimeClana) || e.PrezimeClana == PrezimeClana &&
-                          string.IsNullOrEmpty(EmailClana) || e.EmailClana == EmailClana).ToList();
+            return context.ClanoviKomisije.Where(e => string.IsNullOrEmpty(ImeClana) || e.ImeClana == ImeClana &&
+                         string.IsNullOrEmpty(PrezimeClana) || e.PrezimeClana == PrezimeClana &&
+                         string.IsNullOrEmpty(EmailClana) || e.EmailClana == EmailClana).ToList();
         }
 
         public ClanKomisije GetClanKomisijeById(Guid ClanId)
@@ -58,6 +58,8 @@ namespace Komisija_Agregat.Data
             clan.ImeClana = clanKomisije.ImeClana;
             clan.PrezimeClana = clanKomisije.PrezimeClana;
             clan.EmailClana = clanKomisije.EmailClana;
+            clan.Komisija = clanKomisije.Komisija;
+            clan.KomisijaId = clanKomisije.KomisijaId;
 
             return new ClanKomisijeConfirmation
             {
@@ -65,7 +67,7 @@ namespace Komisija_Agregat.Data
                 ImeClana = clan.ImeClana,
                 PrezimeClana = clan.PrezimeClana,
                 EmailClana = clan.EmailClana
-            }; 
+            };
         }
 
         public void DeleteClanKomisije(Guid ClanId)

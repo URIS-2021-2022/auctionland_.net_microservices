@@ -1,32 +1,32 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ASUS ROG\\source\\repos\\tim-6---auctionland-tim-6-nopcommerce\\Komisija_Agregat\\Komisija_Agregat.csproj": {}
+    "C:\\Users\\marko\\source\\repos\\Komisija_Agregat\\Komisija_Agregat.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ASUS ROG\\source\\repos\\tim-6---auctionland-tim-6-nopcommerce\\Komisija_Agregat\\Komisija_Agregat.csproj": {
+    "C:\\Users\\marko\\source\\repos\\Komisija_Agregat\\Komisija_Agregat.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ASUS ROG\\source\\repos\\tim-6---auctionland-tim-6-nopcommerce\\Komisija_Agregat\\Komisija_Agregat.csproj",
+        "projectUniqueName": "C:\\Users\\marko\\source\\repos\\Komisija_Agregat\\Komisija_Agregat.csproj",
         "projectName": "Komisija_Agregat",
-        "projectPath": "C:\\Users\\ASUS ROG\\source\\repos\\tim-6---auctionland-tim-6-nopcommerce\\Komisija_Agregat\\Komisija_Agregat.csproj",
-        "packagesPath": "C:\\Users\\ASUS ROG\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ASUS ROG\\source\\repos\\tim-6---auctionland-tim-6-nopcommerce\\Komisija_Agregat\\obj\\",
+        "projectPath": "C:\\Users\\marko\\source\\repos\\Komisija_Agregat\\Komisija_Agregat.csproj",
+        "packagesPath": "C:\\Users\\marko\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\marko\\source\\repos\\Komisija_Agregat\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\ASUS ROG\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\marko\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "net6.0"
+          "net5.0"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "net6.0": {
-            "targetAlias": "net6.0",
+          "net5.0": {
+            "targetAlias": "net5.0",
             "projectReferences": {}
           }
         },
@@ -37,36 +37,40 @@
         }
       },
       "frameworks": {
-        "net6.0": {
-          "targetAlias": "net6.0",
+        "net5.0": {
+          "targetAlias": "net5.0",
           "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[11.0.1, )"
+            },
             "AutoMapper.Extensions.Microsoft.DependencyInjection": {
               "target": "Package",
               "version": "[11.0.0, )"
             },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[6.0.2, )"
+              "version": "[5.0.0, )"
             },
             "Microsoft.EntityFrameworkCore.Design": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[6.0.2, )"
+              "version": "[5.0.0, )"
             },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
-              "version": "[6.0.2, )"
+              "version": "[5.0.0, )"
             },
             "Microsoft.EntityFrameworkCore.Tools": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[6.0.2, )"
+              "version": "[5.0.0, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
-              "version": "[6.2.3, )"
+              "version": "[5.6.3, )"
             }
           },
           "imports": [
@@ -87,7 +91,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.402\\RuntimeIdentifierGraph.json"
         }
       }
     }

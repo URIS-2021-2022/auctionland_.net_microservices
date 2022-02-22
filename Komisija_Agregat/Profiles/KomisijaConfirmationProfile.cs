@@ -13,6 +13,7 @@ namespace Komisija_Agregat.Profiles
         public KomisijaConfirmationProfile()
         {
             CreateMap<KomisijaConfirmation, KomisijaConfirmationDto>();
+            CreateMap<Komisija, KomisijaConfirmation>();
 
         }
     }

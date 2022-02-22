@@ -1,8 +1,9 @@
-using Komisija_Agregat.Data;
+﻿using Komisija_Agregat.Data;
 using Komisija_Agregat.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,12 +20,14 @@ namespace Komisija_Agregat.Controllers
         private readonly IKomisijaRepository komisijaRepository;
         private readonly LinkGenerator linkGenerator;
         private readonly IMapper mapper;
+        private readonly ILoggerService loggerService;
 
-        public KomisijaController(IKomisijaRepository komisijaRepository, LinkGenerator linkGenerator, IMapper mapper)
+        public KomisijaController(IKomisijaRepository komisijaRepository, LinkGenerator linkGenerator, IMapper mapper, ILoggerService loggerService)
         {
             this.komisijaRepository = komisijaRepository;
             this.linkGenerator = linkGenerator;
-            this.mapper = mapper;   
+            this.mapper = mapper;
+            this.loggerService = loggerService;
         }
 
         /// <summary>
@@ -37,8 +40,10 @@ namespace Komisija_Agregat.Controllers
             var komisije = komisijaRepository.GetKomisije();
             if (komisije == null || komisije.Count == 0)
             {
+                loggerService.Log(LogLevel.Warning, "GetAllStatus", "Lista komisija je prazna ili null");
                 return NoContent();
             }
+            loggerService.Log(LogLevel.Information, "GetAllStatus", "Lista  komisija je uspesno vracena!");
             return Ok(mapper.Map<List<KomisijaDto>>(komisije));
         }
 
@@ -53,8 +58,10 @@ namespace Komisija_Agregat.Controllers
             var komisijaModel = komisijaRepository.GetKomisijaById(komisijaId);
             if (komisijaModel == null)
             {
+                loggerService.Log(LogLevel.Warning, "GetByIdStatus", "Komisija sa tim id-em nije pronadjena");
                 return NotFound();
             }
+            loggerService.Log(LogLevel.Information, "GetByIdStatus", "Komisija sa zadatim id-em je uspesno vracena!");
             return Ok(mapper.Map<KomisijaDto>(komisijaModel));
         }
 
@@ -65,17 +72,20 @@ namespace Komisija_Agregat.Controllers
         /// <param name="komisija"></param>
         /// <returns></returns>
         [HttpPost]
-        public ActionResult<KomisijaConfirmationDto> CreateKomisija([FromBody] KomisijaDto komisija)
+        public ActionResult<KomisijaConfirmationDto> CreateKomisija([FromBody] KomisijaCreationDto komisija)
         {
             try
             {
-                var komisijaEntity = mapper.Map<Komisija>(komisija);
-                var confirmation = komisijaRepository.CreateKomisija(komisijaEntity);
-                string location = linkGenerator.GetPathByAction("GetKomisija", "Komisija", new { komisijaId = confirmation.KomisijaId });
-                return Created(location, mapper.Map<KomisijaDto>(confirmation));
+                Komisija komisijaEntity = mapper.Map<Komisija>(komisija);
+                KomisijaConfirmation confirmation = komisijaRepository.CreateKomisija(komisijaEntity);
+                komisijaRepository.SaveChanges();
+                string location = linkGenerator.GetPathByAction("GetKomisijaById", "Komisija", new { komisijaId = confirmation.KomisijaId });
+                loggerService.Log(LogLevel.Information, "PostStatus", "Komisija je uspesno napravljena!");
+                return Created(location, mapper.Map<KomisijaConfirmationDto>(confirmation));
             }
             catch
             {
+                loggerService.Log(LogLevel.Warning, "PostStatus", "Komisija nije kreirana, doslo je do greske!");
                 return StatusCode(StatusCodes.Status500InternalServerError, "Create Error");
             }
         }
@@ -96,13 +106,17 @@ namespace Komisija_Agregat.Controllers
                 var komisijaModel = komisijaRepository.GetKomisijaById(komisijaId);
                 if (komisijaModel == null)
                 {
+                    loggerService.Log(LogLevel.Warning, "DeleteStatus", "Komisija sa tim id-em nije pronadjena");
                     return NotFound();
                 }
                 komisijaRepository.DeleteKomisija(komisijaId);
+                komisijaRepository.SaveChanges();
+                loggerService.Log(LogLevel.Information, "DeleteStatus", "Komisija je uspesno obrisana!");
                 return NoContent();
             }
             catch
             {
+                loggerService.Log(LogLevel.Information, "DeleteStatus", "KOmisija nije uspesno obrisana!");
                 return StatusCode(StatusCodes.Status500InternalServerError, "Delete Error");
             }
         }
@@ -122,14 +136,18 @@ namespace Komisija_Agregat.Controllers
             {
                 if (komisijaRepository.GetKomisijaById(komisija.KomisijaId) == null)
                 {
+                    loggerService.Log(LogLevel.Warning, "PutStatus", "Komisija sa tim id-em nije pronadjena");
                     return NotFound();
                 }
                 Komisija komisija2 = mapper.Map<Komisija>(komisija);
                 KomisijaConfirmation confirmation = komisijaRepository.UpdateKomisija(komisija2);
-                return Ok(mapper.Map<KomisijaDto>(confirmation));
+                komisijaRepository.SaveChanges();
+                loggerService.Log(LogLevel.Information, "PutStatus", "Komisija je uspesno izmenjena!");
+                return Ok(mapper.Map<KomisijaConfirmationDto>(confirmation));
             }
             catch (Exception)
             {
+                loggerService.Log(LogLevel.Warning, "PutStatus", "Doslo je do greske prilikom izmene komisije");
                 return StatusCode(StatusCodes.Status500InternalServerError, "Update error");
             }
         }

@@ -11,7 +11,7 @@ namespace Komisija_Agregat.Models
     /// </summary>
     public class KomisijaConfirmationDto
     {
-        
+
         public Guid KomisijaId { get; set; }
         /// <summary>
         /// Predsednik komisije

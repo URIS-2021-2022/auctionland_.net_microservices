@@ -15,12 +15,11 @@ namespace Komisija_Agregat.Models
         /// <summary>
         /// Predsednik komisije
         /// </summary>
-        public string Predsednik { get; set; }
+        public Guid? PredsednikId { get; set; }
         /// <summary>
         /// Clanovi komisije
         /// </summary>
-        public string Clanovi { get; set; }
+        public Guid ClanoviId { get; set; }
 
     }
 }
-

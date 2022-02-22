@@ -35,7 +35,7 @@ namespace Komisija_Agregat
         public void ConfigureServices(IServiceCollection services)
         {
 
-            
+
             services.AddControllers(setup =>
             {
                 setup.ReturnHttpNotAcceptable = true;
@@ -82,8 +82,7 @@ namespace Komisija_Agregat
             services.AddScoped<IKomisijaRepository, KomisijaRepository>();
             services.AddScoped<IClanKomisijeRepository, ClanKomisijeRepository>();
             services.AddScoped<IPredsednikRepository, PredsednikRepository>();
-
-            services.AddScoped<IValuesRepository, ValuesRepository>();
+            services.AddScoped<ILoggerService, LoggerService>();
 
             services.AddSwaggerGen(c =>
             {
@@ -92,13 +91,13 @@ namespace Komisija_Agregat
                    {
                        Title = "Komisija API",
                        Version = "1",
-                       
+
                        Description = "Pomocu ovog API-ja moze da se vrsi...",
                        Contact = new Microsoft.OpenApi.Models.OpenApiContact
                        {
                            Name = "Damjan Ivetic",
                            Email = "damjanivetic@uns.ac.rs",
-                          
+
                        }
                    });
 
@@ -113,7 +112,7 @@ namespace Komisija_Agregat
             services.AddDbContext<KomisijaContext>();
         }
 
-        
+
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

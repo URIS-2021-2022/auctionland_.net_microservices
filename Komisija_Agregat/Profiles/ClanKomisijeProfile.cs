@@ -10,10 +10,11 @@ namespace Komisija_Agregat.Profiles
 {
     public class ClanKomisijeProfile : Profile
     {
-        ClanKomisijeProfile()
+        public ClanKomisijeProfile()
         {
             CreateMap<ClanKomisije, ClanKomisijeDto>();
             CreateMap<ClanKomisijeCreationDto, ClanKomisije>();
+            CreateMap<ClanKomisijeUpdateDto, ClanKomisije>();
         }
     }
 }

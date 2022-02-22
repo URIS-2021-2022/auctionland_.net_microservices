@@ -1,11 +1,11 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace Komisija_Agregat.Models
-{        
+{
     /// <summary>
     /// DTO za azuriranje clana komisije
     /// </summary>
@@ -25,5 +25,7 @@ namespace Komisija_Agregat.Models
         /// Email adresa clana komisije
         /// </summary>
         public string EmailClana { get; set; }
+
+        public Guid KomisijaId { get; set; }
     }
 }

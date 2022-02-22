@@ -27,4 +27,3 @@ namespace Komisija_Agregat.Models
 
     }
 }
-

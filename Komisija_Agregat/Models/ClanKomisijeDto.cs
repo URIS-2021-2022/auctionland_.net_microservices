@@ -11,8 +11,8 @@ namespace Komisija_Agregat.Models
     /// </summary>
     public class ClanKomisijeDto
     {
-        [Key]
-        public Guid ClanId { get; set; }
+        
+        //public Guid ClanId { get; set; }
         /// <summary>
         /// Ime clana komisije
         /// </summary>
@@ -25,5 +25,7 @@ namespace Komisija_Agregat.Models
         /// Email adresa clana komisije
         /// </summary>
         public string EmailClana { get; set; }
+
+        
     }
 }

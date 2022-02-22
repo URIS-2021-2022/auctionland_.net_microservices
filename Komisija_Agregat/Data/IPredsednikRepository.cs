@@ -21,6 +21,6 @@ namespace Komisija_Agregat.Data
         void DeletePredsednik(Guid PredsednikId);
 
         bool SaveChanges();
-    
+
     }
 }

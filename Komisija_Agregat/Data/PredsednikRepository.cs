@@ -23,7 +23,7 @@ namespace Komisija_Agregat.Data
 
         public bool SaveChanges()
         {
-            return context.SaveChanges()>0;
+            return context.SaveChanges() > 0;
         }
 
         public List<Predsednik> GetPredsednici(string ImePredsednika = null, string PrezimePredsednika = null, string EmailPredsednika = null)
@@ -63,7 +63,7 @@ namespace Komisija_Agregat.Data
                 ImePredsednika = pred.ImePredsednika,
                 PrezimePredsednika = pred.PrezimePredsednika,
                 EmailPredsednika = pred.EmailPredsednika
-            }; 
+            };
         }
 
         public void DeletePredsednik(Guid PredsednikId)

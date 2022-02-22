@@ -11,8 +11,8 @@ namespace Komisija_Agregat.Models
     /// </summary>
     public class PredsednikDto
     {
-        [Key]
-        public Guid PredsednikId { get; set; }
+        
+        //public Guid PredsednikId { get; set; }
 
         /// <summary>
         /// Ime predsednika komisije

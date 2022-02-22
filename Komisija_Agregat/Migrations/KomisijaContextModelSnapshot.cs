@@ -6,8 +6,6 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-#nullable disable
-
 namespace Komisija_Agregat.Migrations
 {
     [DbContext(typeof(KomisijaContext))]
@@ -17,10 +15,9 @@ namespace Komisija_Agregat.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.2")
-                .HasAnnotation("Relational:MaxIdentifierLength", 128);
-
-            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
+                .UseIdentityColumns()
+                .HasAnnotation("Relational:MaxIdentifierLength", 128)
+                .HasAnnotation("ProductVersion", "5.0.0");
 
             modelBuilder.Entity("Komisija_Agregat.Entities.ClanKomisije", b =>
                 {
@@ -29,29 +26,22 @@ namespace Komisija_Agregat.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("EmailClana")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ImeClana")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<Guid>("KomisijaId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<string>("PrezimeClana")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ClanId");
 
-                    b.ToTable("ClanoviKomisije");
+                    b.HasIndex("KomisijaId");
 
-                    b.HasData(
-                        new
-                        {
-                            ClanId = new Guid("1c7ea607-8ddb-493a-87fa-4bf5893e965b"),
-                            EmailClana = "jocko@mail.com",
-                            ImeClana = "Nenad",
-                            PrezimeClana = "Jeckovic"
-                        });
+                    b.ToTable("ClanoviKomisije");
                 });
 
             modelBuilder.Entity("Komisija_Agregat.Entities.Komisija", b =>
@@ -60,25 +50,14 @@ namespace Komisija_Agregat.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("Clanovi")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Predsednik")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<Guid?>("PredsednikId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("KomisijaId");
 
-                    b.ToTable("Komisije");
+                    b.HasIndex("PredsednikId");
 
-                    b.HasData(
-                        new
-                        {
-                            KomisijaId = new Guid("1c7ea607-8ddb-493a-87fa-4bf5893e965b"),
-                            Clanovi = "sdd",
-                            Predsednik = "sd"
-                        });
+                    b.ToTable("Komisije");
                 });
 
             modelBuilder.Entity("Komisija_Agregat.Entities.Predsednik", b =>
@@ -88,29 +67,42 @@ namespace Komisija_Agregat.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("EmailPredsednika")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ImePredsednika")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PrezimePredsednika")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("PredsednikId");
 
                     b.ToTable("Predsednici");
+                });
 
-                    b.HasData(
-                        new
-                        {
-                            PredsednikId = new Guid("6a411c13-a195-48f7-8dbd-67596c3974c0"),
-                            EmailPredsednika = "markuza@mail.com",
-                            ImePredsednika = "Petar",
-                            PrezimePredsednika = "Markovic"
-                        });
+            modelBuilder.Entity("Komisija_Agregat.Entities.ClanKomisije", b =>
+                {
+                    b.HasOne("Komisija_Agregat.Entities.Komisija", "Komisija")
+                        .WithMany("Clanovi")
+                        .HasForeignKey("KomisijaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Komisija");
+                });
+
+            modelBuilder.Entity("Komisija_Agregat.Entities.Komisija", b =>
+                {
+                    b.HasOne("Komisija_Agregat.Entities.Predsednik", "PredsednikKomisije")
+                        .WithMany()
+                        .HasForeignKey("PredsednikId");
+
+                    b.Navigation("PredsednikKomisije");
+                });
+
+            modelBuilder.Entity("Komisija_Agregat.Entities.Komisija", b =>
+                {
+                    b.Navigation("Clanovi");
                 });
 #pragma warning restore 612, 618
         }

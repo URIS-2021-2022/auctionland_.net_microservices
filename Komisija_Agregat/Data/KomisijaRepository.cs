@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Komisija_Agregat.Entities;
 using Komisija_Agregat.Models;
 using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 
 namespace Komisija_Agregat.Data
 {
@@ -14,7 +15,7 @@ namespace Komisija_Agregat.Data
     {
         private readonly KomisijaContext context;
         private readonly IMapper mapper;
-        
+
         public KomisijaRepository(KomisijaContext context, IMapper mapper)
         {
             this.context = context;
@@ -29,13 +30,13 @@ namespace Komisija_Agregat.Data
         public List<Komisija> GetKomisije()
         {
 
-            return context.Komisije.ToList();
+            return context.Komisije.Include(p => p.PredsednikKomisije).Include(c => c.Clanovi).ToList();
         }
 
         public Komisija GetKomisijaById(Guid KomisijaId)
         {
 
-            return context.Komisije.FirstOrDefault(e => e.KomisijaId == KomisijaId);
+            return context.Komisije.Include(p=>p.PredsednikKomisije).Include(c=>c.Clanovi).FirstOrDefault(e => e.KomisijaId == KomisijaId);
 
         }
 
@@ -43,22 +44,23 @@ namespace Komisija_Agregat.Data
         {
             var createdEntity = context.Add(komisija);
             return mapper.Map<KomisijaConfirmation>(createdEntity.Entity);
-            
+
         }
 
         public KomisijaConfirmation UpdateKomisija(Komisija komisija)
         {
-           Komisija kom = GetKomisijaById(komisija.KomisijaId);
+            Komisija kom = GetKomisijaById(komisija.KomisijaId);
 
             kom.KomisijaId = komisija.KomisijaId;
-            kom.Predsednik = komisija.Predsednik;
+            kom.PredsednikKomisije = komisija.PredsednikKomisije;
             kom.Clanovi = komisija.Clanovi;
+            kom.PredsednikId = komisija.PredsednikId;
 
             return new KomisijaConfirmation
             {
                 KomisijaId = kom.KomisijaId,
-                Predsednik = kom.Predsednik,              
-            }; 
+                PredsednikKomisije = kom.PredsednikKomisije,
+            };
         }
 
         public void DeleteKomisija(Guid KomisijaId)
