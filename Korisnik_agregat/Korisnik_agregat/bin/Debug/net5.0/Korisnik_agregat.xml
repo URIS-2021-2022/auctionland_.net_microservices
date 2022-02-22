@@ -170,6 +170,51 @@
             Id tipa korisnika
             </summary>
         </member>
+        <member name="P:Korisnik_agregat.Models.KorisnikovaLicitacijaDto.Broj">
+            <summary>
+            Broj licitacije
+            </summary>
+        </member>
+        <member name="P:Korisnik_agregat.Models.KorisnikovaLicitacijaDto.Godina">
+            <summary>
+            Godina licitacije
+            </summary>
+        </member>
+        <member name="P:Korisnik_agregat.Models.KorisnikovaLicitacijaDto.Datum">
+            <summary>
+            Datum licitacije
+            </summary>
+        </member>
+        <member name="P:Korisnik_agregat.Models.KorisnikovaLicitacijaDto.Ogranicenje">
+            <summary>
+            Ograničenje licitacije
+            </summary>
+        </member>
+        <member name="P:Korisnik_agregat.Models.KorisnikovaLicitacijaDto.Korak_cene">
+            <summary>
+            Korak uvećanja cene licitacije
+            </summary>
+        </member>
+        <member name="P:Korisnik_agregat.Models.KorisnikovaLicitacijaDto.Lista_dokumentacije_fizicka_lica">
+            <summary>
+            Lista koja sadrži dokumentaciju za fizička lica
+            </summary>
+        </member>
+        <member name="P:Korisnik_agregat.Models.KorisnikovaLicitacijaDto.Lista_dokumentacije_pravna_lica">
+            <summary>
+            Lista koja sadrži dokumentaciju za pravna lica
+            </summary>
+        </member>
+        <member name="P:Korisnik_agregat.Models.KorisnikovaLicitacijaDto.JavnoNadmetanje">
+            <summary>
+            Lista javnih nadmetanja
+            </summary>
+        </member>
+        <member name="P:Korisnik_agregat.Models.KorisnikovaLicitacijaDto.Rok_za_dostavljanje_prijave">
+            <summary>
+            Datum koji predstavlja rok za dostavljanje prijave
+            </summary>
+        </member>
         <member name="T:Korisnik_agregat.Models.KorisnikUpdateDto">
             <summary>
             Predstavlja model za modifikaciju korisnika

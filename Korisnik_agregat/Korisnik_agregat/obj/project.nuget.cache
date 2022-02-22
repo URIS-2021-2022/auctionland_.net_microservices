@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "ILF9ipC1rGE1Pas8Iw+QuKalxrktjeN4AqEX82BPr5ve0XbmzGwUyZzBvp+BIevo7lD+Y6zyhQh5rl6fS3msUQ==",
+  "dgSpecHash": "fbX3Q+sBX/iXspNq7wMdLb2x0xfSL1VPkD8bT9xPWHgd0RlZIH3VumzxvJtWmqI6MIuDAT8iBfFDEzSkQ3qumA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Vlado\\source\\repos\\Korisnik_agregat\\Korisnik_agregat\\Korisnik_agregat.csproj",
+  "projectFilePath": "C:\\Users\\Vlado\\Documents\\GitHub\\tim-6---auctionland-tim-6-nopcommerce\\Korisnik_agregat\\Korisnik_agregat\\Korisnik_agregat.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Vlado\\.nuget\\packages\\automapper\\11.0.0\\automapper.11.0.0.nupkg.sha512",
     "C:\\Users\\Vlado\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\11.0.0\\automapper.extensions.microsoft.dependencyinjection.11.0.0.nupkg.sha512",

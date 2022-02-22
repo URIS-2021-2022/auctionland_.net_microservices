@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Vlado\\source\\repos\\Korisnik_agregat\\Korisnik_agregat\\Korisnik_agregat.csproj": {}
+    "C:\\Users\\Vlado\\Documents\\GitHub\\tim-6---auctionland-tim-6-nopcommerce\\Korisnik_agregat\\Korisnik_agregat\\Korisnik_agregat.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Vlado\\source\\repos\\Korisnik_agregat\\Korisnik_agregat\\Korisnik_agregat.csproj": {
+    "C:\\Users\\Vlado\\Documents\\GitHub\\tim-6---auctionland-tim-6-nopcommerce\\Korisnik_agregat\\Korisnik_agregat\\Korisnik_agregat.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Vlado\\source\\repos\\Korisnik_agregat\\Korisnik_agregat\\Korisnik_agregat.csproj",
+        "projectUniqueName": "C:\\Users\\Vlado\\Documents\\GitHub\\tim-6---auctionland-tim-6-nopcommerce\\Korisnik_agregat\\Korisnik_agregat\\Korisnik_agregat.csproj",
         "projectName": "Korisnik_agregat",
-        "projectPath": "C:\\Users\\Vlado\\source\\repos\\Korisnik_agregat\\Korisnik_agregat\\Korisnik_agregat.csproj",
+        "projectPath": "C:\\Users\\Vlado\\Documents\\GitHub\\tim-6---auctionland-tim-6-nopcommerce\\Korisnik_agregat\\Korisnik_agregat\\Korisnik_agregat.csproj",
         "packagesPath": "C:\\Users\\Vlado\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Vlado\\source\\repos\\Korisnik_agregat\\Korisnik_agregat\\obj\\",
+        "outputPath": "C:\\Users\\Vlado\\Documents\\GitHub\\tim-6---auctionland-tim-6-nopcommerce\\Korisnik_agregat\\Korisnik_agregat\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Vlado\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -91,7 +91,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.402\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.405\\RuntimeIdentifierGraph.json"
         }
       }
     }
