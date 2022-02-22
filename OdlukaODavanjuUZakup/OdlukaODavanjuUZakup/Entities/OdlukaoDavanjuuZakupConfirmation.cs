@@ -8,6 +8,7 @@ namespace OdlukaODavanjuUZakup.Entities
     public class OdlukaoDavanjuuZakupConfirmation
     {
         public Guid OdlukaoDavanjuuZakupID { get; set; }
-        public Boolean validnost { get; set; }
+        public Boolean validnost
+            { get; set; }
     }
 }

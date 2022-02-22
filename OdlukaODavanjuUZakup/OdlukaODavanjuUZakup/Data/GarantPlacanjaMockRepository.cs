@@ -1,4 +1,4 @@
-﻿using OdlukaODavanjuUZakup.Entities;
+﻿/* using OdlukaODavanjuUZakup.Entities;
 using OdlukaODavanjuUZakup.Models;
 using System;
 using System.Collections.Generic;
@@ -73,3 +73,4 @@ namespace OdlukaODavanjuUZakup.Data
         }
     }
 }
+*/

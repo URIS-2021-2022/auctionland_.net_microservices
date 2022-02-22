@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace OdlukaODavanjuUZakup.Data
 {
+
     public class GarantPlacanjaRepository : IGarantPlacanjaRepository
     {
         private readonly DatabaseContext context;

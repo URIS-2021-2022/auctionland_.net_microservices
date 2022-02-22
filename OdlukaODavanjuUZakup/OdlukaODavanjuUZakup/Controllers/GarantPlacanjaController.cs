@@ -12,22 +12,39 @@ using System.Threading.Tasks;
 
 namespace OdlukaODavanjuUZakup.Controllers
 {
+    /// <summary>
+    /// Predstavlja tipove garancija placanja, mogu biti : Jemstvo, bankarska garancija, garancija nekretninom, zirantska, uplata gotovinom
+    /// </summary>
     [ApiController]
     [Route("api/garantPlacanja")]
+    [Produces("application/json", "application/xml")]
     public class GarantPlacanjaController : ControllerBase
     {
         private readonly LinkGenerator linkGenerator;
         private readonly IGarantPlacanjaRepository garantPlacanjaRepository;
         private readonly IMapper mapper;
-
+        /// <summary>
+        /// Konstruktor 
+        /// </summary>
+        /// <param name="garantPlacanjaRepository"></param>
+        /// <param name="linkGenerator"></param>
+        /// <param name="mapper"></param>
         public GarantPlacanjaController(IGarantPlacanjaRepository garantPlacanjaRepository, LinkGenerator linkGenerator, IMapper mapper) 
         {
             this.linkGenerator = linkGenerator;
             this.garantPlacanjaRepository = garantPlacanjaRepository;
             this.mapper = mapper;
         }
-
+        /// <summary>
+        /// Vraca listu svih garanta placanja
+        /// </summary>
+        /// <returns></returns>
+        /// <response code="200">Uspesno vraca sve</response>
+        /// <response code="404">Nema garanta placanja</response>
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
         [HttpGet]
+        [HttpHead]
         public ActionResult<List<GarantPlacanjaDto>> GetGaranti()
         {
             var garanti = garantPlacanjaRepository.GetGarantiPlacanja();
@@ -39,8 +56,18 @@ namespace OdlukaODavanjuUZakup.Controllers
             
 
         }
+        /// <summary>
+        /// Vraca garant sa trazenim ID
+        /// </summary>
+        /// <param name="garantPlacanjaID">Sifra garanta placanja</param>
+        /// <returns></returns>
+        ///     <response code="200">Uspesno vraca pronadjenog</response>
+        ///     <response code="404">Ne postoji takav u bazi</response>
         [HttpGet("{GarantPlacanjaID}")]
-        public ActionResult<GarantPlacanjaDto> getGarant(Guid garantPlacanjaID)
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public ActionResult<GarantPlacanjaDto> GetGarant(Guid garantPlacanjaID)
         {
             var garant = garantPlacanjaRepository.GetGarantPlacanjaById(garantPlacanjaID);
             if (garant == null)
@@ -49,7 +76,16 @@ namespace OdlukaODavanjuUZakup.Controllers
             }
             return Ok(mapper.Map<GarantPlacanjaDto>(garant));
         }
+        /// <summary>
+        /// Upis novog garanta placanja u bazu
+        /// </summary>
+        /// <returns></returns>
+        /// <response code="201">Vraca kreiran garant </response>
+        /// <response code="500">Doslo je do greske na serveru prilikom kreiranja</response>
         [HttpPost]
+        [Consumes("application/json")]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public ActionResult<GarantPlacanjaConfirmationDto> CreateGarantPlacanja([FromBody] GarantPlacanjaCreationDto garantPlacanja)
         {
             try
@@ -66,8 +102,21 @@ namespace OdlukaODavanjuUZakup.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, "Create error");
             }
         }
+        /// <summary>
+        /// Brisemo garant iz baze
+        /// </summary>
+        /// <param name="garantPlacanjaID">Prosledjeni ID po kom brisem</param>
+        /// <returns></returns>
+        /// <response code="200">Vraca izbrisani garant</response>
+        /// <response code="404">Garant nije pronadjeno</response>
+        /// <response code="500">Doslo je do greske na serveru prilikom brisanja</response>
+        /// <response code ="204" >Nakon uspesnog brisanja</response>
         [HttpDelete("{GarantPlacanjaID}")]
-        public IActionResult deleteGarant(Guid garantPlacanjaID)
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        public IActionResult DeleteGarant(Guid garantPlacanjaID)
         {
             try
             {
@@ -85,7 +134,19 @@ namespace OdlukaODavanjuUZakup.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, "Delete error");
             }
         }
+        /// <summary>
+        /// Azuriranje garanta
+        /// </summary>
+        /// <param name="garantPlacanja"></param>
+        /// <returns></returns>
+        /// <response code="200">Vraca azuriran garant</response>
+        /// <response code="404">Garant nije pronadjeno</response>
+        /// <response code="500">Doslo je do greske na serveru prilikom azuriranja</response>
         [HttpPut]
+        [Consumes("application/json")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public ActionResult<GarantPlacanjaConfirmationDto> UpdateGarantPlacanja(GarantPlacanjaUpdateDto garantPlacanja)
         {
             try
@@ -104,6 +165,12 @@ namespace OdlukaODavanjuUZakup.Controllers
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, "Update error");
             }
+        }
+        [HttpOptions]
+        public IActionResult GetGarantPlacanjaOptions()
+        {
+            Response.Headers.Add("Allow", "GET, POST, PUT, DELETE");
+            return Ok();
         }
     }
     }

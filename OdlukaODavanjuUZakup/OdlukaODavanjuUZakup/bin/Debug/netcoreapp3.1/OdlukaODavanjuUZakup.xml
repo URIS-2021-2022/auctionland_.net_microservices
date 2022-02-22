@@ -4,22 +4,285 @@
         <name>OdlukaODavanjuUZakup</name>
     </assembly>
     <members>
-        <member name="M:OdlukaODavanjuUZakup.Controllers.UplataZakupnineController.getUplate(System.String)">
+        <member name="T:OdlukaODavanjuUZakup.Controllers.GarantPlacanjaController">
+            <summary>
+            Predstavlja tipove garancija placanja, mogu biti : Jemstvo, bankarska garancija, garancija nekretninom, zirantska, uplata gotovinom
+            </summary>
+        </member>
+        <member name="M:OdlukaODavanjuUZakup.Controllers.GarantPlacanjaController.#ctor(OdlukaODavanjuUZakup.Data.IGarantPlacanjaRepository,Microsoft.AspNetCore.Routing.LinkGenerator,AutoMapper.IMapper)">
+            <summary>
+            Konstruktor 
+            </summary>
+            <param name="garantPlacanjaRepository"></param>
+            <param name="linkGenerator"></param>
+            <param name="mapper"></param>
+        </member>
+        <member name="M:OdlukaODavanjuUZakup.Controllers.GarantPlacanjaController.GetGaranti">
+            <summary>
+            Vraca listu svih garanta placanja
+            </summary>
+            <returns></returns>
+            <response code="200">Uspesno vraca sve</response>
+            <response code="404">Nema garanta placanja</response>
+        </member>
+        <member name="M:OdlukaODavanjuUZakup.Controllers.GarantPlacanjaController.GetGarant(System.Guid)">
+            <summary>
+            Vraca garant sa trazenim ID
+            </summary>
+            <param name="garantPlacanjaID">Sifra garanta placanja</param>
+            <returns></returns>
+                <response code="200">Uspesno vraca pronadjenog</response>
+                <response code="404">Ne postoji takav u bazi</response>
+        </member>
+        <member name="M:OdlukaODavanjuUZakup.Controllers.GarantPlacanjaController.CreateGarantPlacanja(OdlukaODavanjuUZakup.Models.GarantPlacanjaCreationDto)">
+            <summary>
+            Upis novog garanta placanja u bazu
+            </summary>
+            <returns></returns>
+            <response code="201">Vraca kreiran garant </response>
+            <response code="500">Doslo je do greske na serveru prilikom kreiranja</response>
+        </member>
+        <member name="M:OdlukaODavanjuUZakup.Controllers.GarantPlacanjaController.DeleteGarant(System.Guid)">
+            <summary>
+            Brisemo garant iz baze
+            </summary>
+            <param name="garantPlacanjaID">Prosledjeni ID po kom brisem</param>
+            <returns></returns>
+            <response code="200">Vraca izbrisani garant</response>
+            <response code="404">Garant nije pronadjeno</response>
+            <response code="500">Doslo je do greske na serveru prilikom brisanja</response>
+            <response code ="204" >Nakon uspesnog brisanja</response>
+        </member>
+        <member name="M:OdlukaODavanjuUZakup.Controllers.GarantPlacanjaController.UpdateGarantPlacanja(OdlukaODavanjuUZakup.Models.GarantPlacanjaUpdateDto)">
+            <summary>
+            Azuriranje garanta
+            </summary>
+            <param name="garantPlacanja"></param>
+            <returns></returns>
+            <response code="200">Vraca azuriran garant</response>
+            <response code="404">Garant nije pronadjeno</response>
+            <response code="500">Doslo je do greske na serveru prilikom azuriranja</response>
+        </member>
+        <member name="T:OdlukaODavanjuUZakup.Controllers.OdlukaoDavanjuuZakupController">
+            <summary>
+            Controller za entitet odluka o davanju u zakup
+            </summary>
+        </member>
+        <member name="M:OdlukaODavanjuUZakup.Controllers.OdlukaoDavanjuuZakupController.#ctor(OdlukaODavanjuUZakup.Data.IOdlukaoDavanjuuZakupRepository,Microsoft.AspNetCore.Routing.LinkGenerator,AutoMapper.IMapper)">
+            <summary>
+            
+            Konstruktor
+            </summary>
+            <param name="odlukaoDavanjuuZakupRepository"></param>
+            <param name="linkGenerator"></param>
+            <param name="mapper"></param>
+        </member>
+        <member name="M:OdlukaODavanjuUZakup.Controllers.OdlukaoDavanjuuZakupController.GetOdluke">
+            <summary>
+            Vraca listu svih odluka o davanju u zakup
+            </summary>
+            <returns></returns>
+            <response code="200">Uspesno vraca sve odluke</response>
+            <response code="404">Nema odluka u bazi</response>
+        </member>
+        <member name="M:OdlukaODavanjuUZakup.Controllers.OdlukaoDavanjuuZakupController.GetOdluka(System.Guid)">
+            <summary>
+            Vraca Odluku sa prosledjenim ID
+            </summary>
+            <param name="odlukaoDavanjuuZakupID">ID odluke koju trazimo</param>
+            <returns></returns>
+            <response code="200">Uspesno vraca pronadjenu odluku</response>
+            <response code="404">Ne postoji takva odluka u bazi</response>
+        </member>
+        <member name="M:OdlukaODavanjuUZakup.Controllers.OdlukaoDavanjuuZakupController.CreateOdluka(OdlukaODavanjuUZakup.Models.OdlukaoDavanjuuZakupCreationDto)">
+            <summary>
+            Kreira se nova odluka o davanju u zakup u bazi
+            </summary>
+            <param name="odlukaoDavanjuuZakup">Prosledjen body odluke</param>
+            <returns></returns>
+            <response code="201">Uspesno je kreirana</response>
+            <response code="500">Doslo je do greske prilikom kreiranja</response>
+        </member>
+        <member name="M:OdlukaODavanjuUZakup.Controllers.OdlukaoDavanjuuZakupController.DeleteOdluka(System.Guid)">
+            <summary>
+            Brisanje odluke sa odredjenim ID iz baze
+            </summary>
+            <param name="odlukaoDavanjuuZakupID"></param>
+            <returns></returns>
+            <response code="200">Vraca izbrisanu odluku</response>
+            <response code="404">Odluka nije pronadjena</response>
+            <response code="500">Doslo je do greske na serveru prilikom brisanja odluke</response>
+            <response code ="204" >Nakon uspesnog brisanja odluke</response>
+        </member>
+        <member name="M:OdlukaODavanjuUZakup.Controllers.OdlukaoDavanjuuZakupController.UpdateOdlukaoDavanjuuZakup(OdlukaODavanjuUZakup.Models.OdlukaoDavanjuuZakupUpdateDto)">
+            <summary>
+            Azuriranje 
+            </summary>
+            <param name="odluka"></param>
+            <returns></returns>
+        </member>
+        <member name="T:OdlukaODavanjuUZakup.Controllers.UgovoroZakupuController">
+            <summary>
+            Controler za ugovor o zakupu entitet
+            </summary>
+        </member>
+        <member name="M:OdlukaODavanjuUZakup.Controllers.UgovoroZakupuController.#ctor(OdlukaODavanjuUZakup.Data.IUgovoroZakupuRepository,Microsoft.AspNetCore.Routing.LinkGenerator,AutoMapper.IMapper)">
+            <summary>
+            
+            Konstruktor
+            </summary>
+            <param name="ugovoroZakupuRepository"></param>
+            <param name="linkGenerator"></param>
+            <param name="mapper"></param>
+        </member>
+        <member name="M:OdlukaODavanjuUZakup.Controllers.UgovoroZakupuController.GetUgovori(System.String)">
+            <summary>
+            Vraca listu svih ugovora o zakupu
+            </summary>
+            <param name="zavodni_broj">Prosledjeni parametar po kome moze da filtrira</param>
+            <returns></returns>
+            <response code="200">Uspesno vraca sve</response>
+            <response code="204">Nije pronasao nijedan</response>
+        </member>
+        <member name="M:OdlukaODavanjuUZakup.Controllers.UgovoroZakupuController.GetUgovor(System.Guid)">
+            <summary>
+            Vraca ugovor za prosledjeni ID
+            </summary>
+            <param name="UgovoroZakupuID">prosledjeni ID ugovora</param>
+            <returns></returns>
+            <response code="200">Vraca uspesno ugovor</response>
+            <response code = "404">Nije pronasao ugovor sa tim ID</response>
+        </member>
+        <member name="M:OdlukaODavanjuUZakup.Controllers.UgovoroZakupuController.CreateUgovorOZakupu(OdlukaODavanjuUZakup.Models.UgovoroZakupuCreationDto)">
+            <summary>
+            KReira se novi ugovor o zakupu u bazi
+            </summary>
+            <param name="ugovoroZakupu"></param>
+            <returns></returns>
+            <response code ="201">Uspesno je kreiran novi ugovor</response>
+            <response code = "500">Doslo je do greske prilikom kreiranja</response>
+            <response code = "400">Poslat je nevalidan zahtev za kreiranje</response>
+        </member>
+        <member name="M:OdlukaODavanjuUZakup.Controllers.UgovoroZakupuController.DeleteUgovoroZakupu(System.Guid)">
+            <summary>
+            Brise se ugovor o zakupu sa prosledjenim ID
+            </summary>
+            <param name="UgovoroZakupuID">Prosledjeni ID</param>
+            <returns></returns>
+            <response code="200">Uspesno je obrisan ugovor</response>
+            <response code ="404">Nije pronadjen ugovor sa tim ID</response>
+            <response code ="500">Doslo je do greske na serveru</response>
+            <response code ="204">Obrisan je i vraca prazan body</response>
+        </member>
+        <member name="M:OdlukaODavanjuUZakup.Controllers.UgovoroZakupuController.UpdateUgovoroZakupu(OdlukaODavanjuUZakup.Models.UgovoroZakupuUpdateDto)">
+            <summary>
+            Azuriranje ugovora
+            </summary>
+            <param name="ugovor"></param>
+            <returns></returns>
+             <response code ="201">Uspesno je azuriran novi ugovor</response>
+            <response code = "500">Doslo je do greske prilikom azuriranja</response>
+            <response code = "404">Nije pronadjen za update</response>
+        </member>
+        <member name="T:OdlukaODavanjuUZakup.Controllers.UplataZakupnineController">
+            <summary>
+            Kontroler za uplatu zakupnine
+            </summary>
+        </member>
+        <member name="M:OdlukaODavanjuUZakup.Controllers.UplataZakupnineController.#ctor(OdlukaODavanjuUZakup.Data.IUplataZakupnineRepository,Microsoft.AspNetCore.Routing.LinkGenerator,AutoMapper.IMapper)">
+            <summary>
+            Konstruktor
+            </summary>
+            <param name="uplataZakupnineRepository"></param>
+            <param name="linkGenerator"></param>
+            <param name="mapper"></param>
+        </member>
+        <member name="M:OdlukaODavanjuUZakup.Controllers.UplataZakupnineController.GetUplate(System.String)">
             <summary>
             Vraća sve uplate zakupnina na osnovu broja računa
             </summary>
             <param name="broj_racuna">Broj računa na koji se uplata vrši</param>
             <returns>Listu uplata zakupnina</returns>
+            <response code="200">Uspesno vraca sve uplate</response>
+            <response code="404">Nema uplata u bazi</response>
+        </member>
+        <member name="M:OdlukaODavanjuUZakup.Controllers.UplataZakupnineController.GetUplata(System.Guid)">
+            <summary>
+            Vraca jednu uplatu sa prosledjenim ID
+            </summary>
+            <param name="uplataZakupnineID">prosledjeni ID uplate koju trazimo</param>
+            <returns></returns>
+            <response code="200">Uspesno vraca pronadjenu uplatu</response>
+            <response code="404">Nema uplate sa tim ID u bazi</response>
         </member>
         <member name="M:OdlukaODavanjuUZakup.Controllers.UplataZakupnineController.CreateUplataZakupnine(OdlukaODavanjuUZakup.Models.UplataZakupnineCreationDto)">
             <summary>
-            
+            Kreiranje uplate zakupnine u bazi
             <remarks>
-            Ovde dodam body kao i onda korisnik vidi primer sta moze da posalje
             </remarks>
             </summary>
-            <param name="uplataZakupnine"></param>
+            <param name="uplataZakupnine">Telo uplate zakupnine koje prosledjujem</param>
             <returns></returns>
+            <response code="201">Kreirana je uplata</response>
+            <response code ="500">Doslo je do greske prilikom kreiranja</response>
+            <response code ="400">Poslat je los zahtev za kreiranje</response>
+        </member>
+        <member name="M:OdlukaODavanjuUZakup.Controllers.UplataZakupnineController.DeleteUplataZakupnine(System.Guid)">
+            <summary>
+            Brisanje uplate zakupnine
+            </summary>
+            <param name="uplataZakupnineID"></param>
+            <returns></returns>
+            <response code="200">Uspesno obrisana</response>
+            <response code="404">Uplata nije pronadjena</response>
+            <response code="500">Doslo je do greske na serveru prilikom brisanja uplate</response>
+            <response code ="204" >Nakon uspesnog brisanja uplate</response>
+        </member>
+        <member name="M:OdlukaODavanjuUZakup.Controllers.UplataZakupnineController.GetUplataZakupnineOptions">
+            <summary>
+            Trazenje mogucih opcija
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:OdlukaODavanjuUZakup.Controllers.UplataZakupnineController.UpdateUplataZakupnine(OdlukaODavanjuUZakup.Models.UplataZakupnineUpdateDto)">
+            <summary>
+            Azuriranje uplate
+            </summary>
+            <param name="uplata"></param>
+            <returns></returns>
+             <response code="201">Azurirana je uplata</response>
+            <response code ="500">Doslo je do greske prilikom azuriranja</response>
+            <response code = "404">Nije pronadjena uplata sa tim ID</response>
+        </member>
+        <member name="T:OdlukaODavanjuUZakup.Models.GarantPlacanjaConfirmationDto">
+            <summary>
+            Vraca se kao odgovor da je kreiran
+            </summary>
+        </member>
+        <member name="P:OdlukaODavanjuUZakup.Models.GarantPlacanjaConfirmationDto.GarantPlacanjaID">
+            <summary>
+            ID garanta placanja
+            </summary>
+        </member>
+        <member name="P:OdlukaODavanjuUZakup.Models.GarantPlacanjaConfirmationDto.Opis_garanta1">
+            <summary>
+            Jemstvo, bankarska garancija, garancija nekretninom, zirantska, uplata gotovinom
+            </summary>
+        </member>
+        <member name="T:OdlukaODavanjuUZakup.Models.GarantPlacanjaCreationDto">
+            <summary>
+            Koristi se prilikom kreiranja
+            </summary>
+        </member>
+        <member name="P:OdlukaODavanjuUZakup.Models.GarantPlacanjaCreationDto.Opis_garanta1">
+            <summary>
+            Jemstvo, bankarska garancija, garancija nekretninom, zirantska, uplata gotovinom
+            </summary>
+        </member>
+        <member name="P:OdlukaODavanjuUZakup.Models.GarantPlacanjaCreationDto.Opis_garanta2">
+            <summary>
+            Jemstvo, bankarska garancija, garancija nekretninom, zirantska, uplata gotovinom
+            </summary>
         </member>
         <member name="T:OdlukaODavanjuUZakup.Models.GarantPlacanjaDto">
             <summary>
@@ -33,12 +296,447 @@
         </member>
         <member name="P:OdlukaODavanjuUZakup.Models.GarantPlacanjaDto.Opis_garanta1">
             <summary>
-            Opis garanta ima 4 izbora
+            Opis garanta ima 4 izbora:Jemstvo, bankarska garancija, garancija nekretninom, zirantska, uplata gotovinom
             </summary>
         </member>
         <member name="P:OdlukaODavanjuUZakup.Models.GarantPlacanjaDto.Opis_garanta2">
             <summary> 
-            Sekundarni opis garanta
+            Sekundarni opis garanta:Jemstvo, bankarska garancija, garancija nekretninom, zirantska, uplata gotovinom
+            </summary>
+        </member>
+        <member name="T:OdlukaODavanjuUZakup.Models.GarantPlacanjaUpdateDto">
+            <summary>
+            Koristi se prilikom azuriranja
+            </summary>
+        </member>
+        <member name="P:OdlukaODavanjuUZakup.Models.GarantPlacanjaUpdateDto.GarantPlacanjaID">
+            <summary>
+            Id garanta placanja
+            </summary>
+        </member>
+        <member name="P:OdlukaODavanjuUZakup.Models.GarantPlacanjaUpdateDto.Opis_garanta1">
+            <summary>
+            Jemstvo, bankarska garancija, garancija nekretninom, zirantska, uplata gotovinom
+            </summary>
+        </member>
+        <member name="P:OdlukaODavanjuUZakup.Models.GarantPlacanjaUpdateDto.Opis_garanta2">
+            <summary>
+            Jemstvo, bankarska garancija, garancija nekretninom, zirantska, uplata gotovinom
+            </summary>
+        </member>
+        <member name="T:OdlukaODavanjuUZakup.Models.OdlukaoDavanjuuZakupConfirmationDto">
+            <summary>
+            Vraca se kao odgovor da je odluka kreirana
+            </summary>
+        </member>
+        <member name="P:OdlukaODavanjuUZakup.Models.OdlukaoDavanjuuZakupConfirmationDto.OdlukaoDavanjuuZakupID">
+            <summary>
+            ID odluke o davanju u zakupu
+            </summary>
+        </member>
+        <member name="P:OdlukaODavanjuUZakup.Models.OdlukaoDavanjuuZakupConfirmationDto.validnost">
+            <summary>
+            Da li je i dalje validna
+            </summary>
+        </member>
+        <member name="T:OdlukaODavanjuUZakup.Models.OdlukaoDavanjuuZakupCreationDto">
+            <summary>
+            Koristi se prilikom kreiranja odluke
+            </summary>
+        </member>
+        <member name="P:OdlukaODavanjuUZakup.Models.OdlukaoDavanjuuZakupCreationDto.Datum_donosenja_odluke">
+            <summary>
+            Datum donosenja odluke o zakupu
+            </summary>
+        </member>
+        <member name="P:OdlukaODavanjuUZakup.Models.OdlukaoDavanjuuZakupCreationDto.validnost">
+            <summary>
+            Da li je i dalje validna, polje je obavezno
+            </summary>
+        </member>
+        <member name="T:OdlukaODavanjuUZakup.Models.OdlukaoDavanjuuZakupDto">
+            <summary>
+            Model Odluke o davanju u zakup
+            </summary>
+        </member>
+        <member name="P:OdlukaODavanjuUZakup.Models.OdlukaoDavanjuuZakupDto.OdlukaoDavanjuuZakupID">
+            <summary>
+            Id odluke o davanju u zakup
+            </summary>
+        </member>
+        <member name="P:OdlukaODavanjuUZakup.Models.OdlukaoDavanjuuZakupDto.datum_donosenja_odluke">
+            <summary>
+            datum donosenja odluke
+            </summary>
+        </member>
+        <member name="P:OdlukaODavanjuUZakup.Models.OdlukaoDavanjuuZakupDto.validnost">
+            <summary>
+            Da li je odluka validna
+            </summary>
+        </member>
+        <member name="T:OdlukaODavanjuUZakup.Models.OdlukaoDavanjuuZakupUpdateDto">
+            <summary>
+            Koristi se prilikom azuriranja odluke o davanju u zakup
+            </summary>
+        </member>
+        <member name="P:OdlukaODavanjuUZakup.Models.OdlukaoDavanjuuZakupUpdateDto.OdlukaoDavanjuuZakupID">
+            <summary>
+            ID Odluke
+            </summary>
+        </member>
+        <member name="P:OdlukaODavanjuUZakup.Models.OdlukaoDavanjuuZakupUpdateDto.datum_donosenja_odluke">
+            <summary>
+            Datum donosenja
+            </summary>
+        </member>
+        <member name="P:OdlukaODavanjuUZakup.Models.OdlukaoDavanjuuZakupUpdateDto.validnost">
+            <summary>
+            Da li je validna, mora biti popunjeno
+            </summary>
+        </member>
+        <member name="T:OdlukaODavanjuUZakup.Models.UgovoroZakupuConfirmationDto">
+            <summary>
+            Vraca se prilikom uspesnog kreiranja ugovor
+            </summary>
+        </member>
+        <member name="P:OdlukaODavanjuUZakup.Models.UgovoroZakupuConfirmationDto.UgovoroZakupuID">
+            <summary>
+            ID ugovora o zakupu
+            </summary>
+        </member>
+        <member name="P:OdlukaODavanjuUZakup.Models.UgovoroZakupuConfirmationDto.zavodni_Broj">
+            <summary>
+            Broj ugovora pod kojim se zavodi
+            </summary>
+        </member>
+        <member name="P:OdlukaODavanjuUZakup.Models.UgovoroZakupuConfirmationDto.datum_potpisa">
+            <summary>
+            Datum kada je ugovor potpisan
+            </summary>
+        </member>
+        <member name="T:OdlukaODavanjuUZakup.Models.UgovoroZakupuCreationDto">
+            <summary>
+            Koristi se prilikom kreiranja ugovora o zakupu
+            </summary>
+        </member>
+        <member name="P:OdlukaODavanjuUZakup.Models.UgovoroZakupuCreationDto.Javno_Nadmetanje">
+            <summary>
+            Javno nadmetanje na koje se ugovor odnosi
+            </summary>
+        </member>
+        <member name="P:OdlukaODavanjuUZakup.Models.UgovoroZakupuCreationDto.odluka">
+            <summary>
+            Odluka, tip entiteta
+            </summary>
+        </member>
+        <member name="P:OdlukaODavanjuUZakup.Models.UgovoroZakupuCreationDto.tip_garancije">
+            <summary>
+            Jemstvo, bankarska garancija, garancija nekretninom, zirantska, uplata gotovinom
+            </summary>
+        </member>
+        <member name="P:OdlukaODavanjuUZakup.Models.UgovoroZakupuCreationDto.lice">
+            <summary>
+            Lice koje potpisuje ugovor, entitet, moze biti pravno i fizicko
+            </summary>
+        </member>
+        <member name="P:OdlukaODavanjuUZakup.Models.UgovoroZakupuCreationDto.rokovi_dospeca">
+            <summary>
+            Rok dospeca ugovora
+            </summary>
+        </member>
+        <member name="P:OdlukaODavanjuUZakup.Models.UgovoroZakupuCreationDto.zavodni_Broj">
+            <summary>
+            Broj pod kojim je ugovor zaveden
+            </summary>
+        </member>
+        <member name="P:OdlukaODavanjuUZakup.Models.UgovoroZakupuCreationDto.datum_zavodjenja">
+            <summary>
+            Datum kada je ugovor zaveden
+            </summary>
+        </member>
+        <member name="P:OdlukaODavanjuUZakup.Models.UgovoroZakupuCreationDto.rok_za_vracanje_zemljista">
+            <summary>
+            Krajnji rok kada se zemljiste vraca
+            </summary>
+        </member>
+        <member name="P:OdlukaODavanjuUZakup.Models.UgovoroZakupuCreationDto.mesto_potpisivanja">
+            <summary>
+            Mesto u kome je ugovor potpisan
+            </summary>
+        </member>
+        <member name="P:OdlukaODavanjuUZakup.Models.UgovoroZakupuCreationDto.datum_potpisa">
+            <summary>
+            Datum kada je ugovor potpisan
+            </summary>
+        </member>
+        <member name="T:OdlukaODavanjuUZakup.Models.UgovoroZakupuDto">
+            <summary>
+            Osnovni model ugovora o zakupu
+            </summary>
+        </member>
+        <member name="P:OdlukaODavanjuUZakup.Models.UgovoroZakupuDto.UgovoroZakupuID">
+            <summary>
+            ID ugovora o zakupu
+            </summary>
+        </member>
+        <member name="P:OdlukaODavanjuUZakup.Models.UgovoroZakupuDto.Javno_Nadmetanje">
+            <summary>
+            Javno nadmetanje na koje se ugovor odnosi
+            </summary>
+        </member>
+        <member name="P:OdlukaODavanjuUZakup.Models.UgovoroZakupuDto.odluka">
+            <summary>
+            Odluka, tip entiteta
+            </summary>
+        </member>
+        <member name="P:OdlukaODavanjuUZakup.Models.UgovoroZakupuDto.tip_garancije">
+            <summary>
+            Jemstvo, bankarska garancija, garancija nekretninom, zirantska, uplata gotovinom
+            </summary>
+        </member>
+        <member name="P:OdlukaODavanjuUZakup.Models.UgovoroZakupuDto.lice">
+            <summary>
+            Lice koje potpisuje ugovor, entitet, moze biti pravno i fizicko
+            </summary>
+        </member>
+        <member name="P:OdlukaODavanjuUZakup.Models.UgovoroZakupuDto.rokovi_dospeca">
+            <summary>
+            Rok dospeca ugovora
+            </summary>
+        </member>
+        <member name="P:OdlukaODavanjuUZakup.Models.UgovoroZakupuDto.zavodni_Broj">
+            <summary>
+            Broj pod kojim je ugovor zaveden
+            </summary>
+        </member>
+        <member name="P:OdlukaODavanjuUZakup.Models.UgovoroZakupuDto.datum_zavodjenja">
+            <summary>
+            Datum kada je ugovor zaveden
+            </summary>
+        </member>
+        <member name="P:OdlukaODavanjuUZakup.Models.UgovoroZakupuDto.rok_za_vracanje_zemljista">
+            <summary>
+            Krajnji rok kada se zemljiste vraca
+            </summary>
+        </member>
+        <member name="P:OdlukaODavanjuUZakup.Models.UgovoroZakupuDto.mesto_potpisivanja">
+            <summary>
+            Mesto u kome je ugovor potpisan
+            </summary>
+        </member>
+        <member name="P:OdlukaODavanjuUZakup.Models.UgovoroZakupuDto.datum_potpisa">
+            <summary>
+            Datum kada je ugovor potpisan
+            </summary>
+        </member>
+        <member name="T:OdlukaODavanjuUZakup.Models.UgovoroZakupuUpdateDto">
+            <summary>
+            Sluzi za azuriranje ugovora o zakupu
+            </summary>
+        </member>
+        <member name="P:OdlukaODavanjuUZakup.Models.UgovoroZakupuUpdateDto.UgovoroZakupuID">
+            <summary>
+            ID ugovora o zakupu
+            </summary>
+        </member>
+        <member name="P:OdlukaODavanjuUZakup.Models.UgovoroZakupuUpdateDto.Javno_Nadmetanje">
+            <summary>
+            Javno nadmetanje na koje se ugovor odnosi
+            </summary>
+        </member>
+        <member name="P:OdlukaODavanjuUZakup.Models.UgovoroZakupuUpdateDto.odluka">
+            <summary>
+            Odluka, tip entiteta
+            </summary>
+        </member>
+        <member name="P:OdlukaODavanjuUZakup.Models.UgovoroZakupuUpdateDto.tip_garancije">
+            <summary>
+            Jemstvo, bankarska garancija, garancija nekretninom, zirantska, uplata gotovinom
+            </summary>
+        </member>
+        <member name="P:OdlukaODavanjuUZakup.Models.UgovoroZakupuUpdateDto.lice">
+            <summary>
+            Lice koje potpisuje ugovor, entitet, moze biti pravno i fizicko
+            </summary>
+        </member>
+        <member name="P:OdlukaODavanjuUZakup.Models.UgovoroZakupuUpdateDto.rokovi_dospeca">
+            <summary>
+            Rok dospeca ugovora
+            </summary>
+        </member>
+        <member name="P:OdlukaODavanjuUZakup.Models.UgovoroZakupuUpdateDto.zavodni_Broj">
+            <summary>
+            Broj pod kojim je ugovor zaveden
+            </summary>
+        </member>
+        <member name="P:OdlukaODavanjuUZakup.Models.UgovoroZakupuUpdateDto.datum_zavodjenja">
+            <summary>
+            Datum kada je ugovor zaveden
+            </summary>
+        </member>
+        <member name="P:OdlukaODavanjuUZakup.Models.UgovoroZakupuUpdateDto.rok_za_vracanje_zemljista">
+            <summary>
+            Krajnji rok kada se zemljiste vraca
+            </summary>
+        </member>
+        <member name="P:OdlukaODavanjuUZakup.Models.UgovoroZakupuUpdateDto.mesto_potpisivanja">
+            <summary>
+            Mesto u kome je ugovor potpisan
+            </summary>
+        </member>
+        <member name="P:OdlukaODavanjuUZakup.Models.UgovoroZakupuUpdateDto.datum_potpisa">
+            <summary>
+            Datum kada je ugovor potpisan
+            </summary>
+        </member>
+        <member name="T:OdlukaODavanjuUZakup.Models.UplataZakupnineConfirmationDto">
+            <summary>
+            Vraca se prilikom uspesnog kreiranja uplate
+            </summary>
+        </member>
+        <member name="P:OdlukaODavanjuUZakup.Models.UplataZakupnineConfirmationDto.UplataZakupnineID">
+            <summary>
+            Id kreirane uplate
+            </summary>
+        </member>
+        <member name="P:OdlukaODavanjuUZakup.Models.UplataZakupnineConfirmationDto.broj_racuna">
+            <summary>
+            broj racuna na koji je uplata izvrsena
+            </summary>
+        </member>
+        <member name="P:OdlukaODavanjuUZakup.Models.UplataZakupnineConfirmationDto.datum">
+            <summary>
+            datum vrsenja uplate
+            </summary>
+        </member>
+        <member name="T:OdlukaODavanjuUZakup.Models.UplataZakupnineCreationDto">
+            <summary>
+            Koristi se prilikom kreiranja uplate
+            </summary>
+        </member>
+        <member name="P:OdlukaODavanjuUZakup.Models.UplataZakupnineCreationDto.broj_racuna">
+            <summary>
+            broj racuna na koji se vrsi uplata
+            </summary>
+        </member>
+        <member name="P:OdlukaODavanjuUZakup.Models.UplataZakupnineCreationDto.poziv_na_broj">
+            <summary>
+            Poziv na broj racuna
+            </summary>
+        </member>
+        <member name="P:OdlukaODavanjuUZakup.Models.UplataZakupnineCreationDto.iznos">
+            <summary>
+            iznos uplacene sume
+            </summary>
+        </member>
+        <member name="P:OdlukaODavanjuUZakup.Models.UplataZakupnineCreationDto.svrha_uplate">
+            <summary>
+            Svrha uplate
+            </summary>
+        </member>
+        <member name="P:OdlukaODavanjuUZakup.Models.UplataZakupnineCreationDto.datum">
+            <summary>
+            Datum uplacivanja
+            </summary>
+        </member>
+        <member name="P:OdlukaODavanjuUZakup.Models.UplataZakupnineCreationDto.javno_nadmetanje">
+            <summary>
+            Javno nadmetanje na koje se uplata odnosi, entitet
+            </summary>
+        </member>
+        <member name="P:OdlukaODavanjuUZakup.Models.UplataZakupnineCreationDto.uplatilac">
+            <summary>
+            Uplatilac koji uplacuje uplatu, entitet
+            </summary>
+        </member>
+        <member name="T:OdlukaODavanjuUZakup.Models.UplataZakupnineDto">
+            <summary>
+            Osnovni model uplate zakupnine
+            </summary>
+        </member>
+        <member name="P:OdlukaODavanjuUZakup.Models.UplataZakupnineDto.UplataZakupnineID">
+            <summary>
+            ID uplate 
+            </summary>
+        </member>
+        <member name="P:OdlukaODavanjuUZakup.Models.UplataZakupnineDto.broj_racuna">
+            <summary>
+            racun na koji se vrsi uplata
+            </summary>
+        </member>
+        <member name="P:OdlukaODavanjuUZakup.Models.UplataZakupnineDto.poziv_na_broj">
+            <summary>
+            Poziv na broj racuna
+            </summary>
+        </member>
+        <member name="P:OdlukaODavanjuUZakup.Models.UplataZakupnineDto.iznos">
+            <summary>
+            iznos uplacene sume
+            </summary>
+        </member>
+        <member name="P:OdlukaODavanjuUZakup.Models.UplataZakupnineDto.svrha_uplate">
+            <summary>
+            Svrha uplate
+            </summary>
+        </member>
+        <member name="P:OdlukaODavanjuUZakup.Models.UplataZakupnineDto.datum">
+            <summary>
+            Datum uplacivanja
+            </summary>
+        </member>
+        <member name="P:OdlukaODavanjuUZakup.Models.UplataZakupnineDto.javno_nadmetanje">
+            <summary>
+            Javno nadmetanje na koje se uplata odnosi, entitet
+            </summary>
+        </member>
+        <member name="P:OdlukaODavanjuUZakup.Models.UplataZakupnineDto.uplatilac">
+            <summary>
+            Uplatilac koji uplacuje uplatu, entitet
+            </summary>
+        </member>
+        <member name="T:OdlukaODavanjuUZakup.Models.UplataZakupnineUpdateDto">
+            <summary>
+            Koristi se prilikom azuriranja uplate
+            </summary>
+        </member>
+        <member name="P:OdlukaODavanjuUZakup.Models.UplataZakupnineUpdateDto.UplataZakupnineID">
+            <summary>
+            ID uplate koje 
+            </summary>
+        </member>
+        <member name="P:OdlukaODavanjuUZakup.Models.UplataZakupnineUpdateDto.broj_racuna">
+            <summary>
+            broj racuna na koji se uplata vrsi
+            </summary>
+        </member>
+        <member name="P:OdlukaODavanjuUZakup.Models.UplataZakupnineUpdateDto.poziv_na_broj">
+            <summary>
+            Poziv na broj racuna
+            </summary>
+        </member>
+        <member name="P:OdlukaODavanjuUZakup.Models.UplataZakupnineUpdateDto.iznos">
+            <summary>
+            iznos uplacene sume
+            </summary>
+        </member>
+        <member name="P:OdlukaODavanjuUZakup.Models.UplataZakupnineUpdateDto.svrha_uplate">
+            <summary>
+            Svrha uplate
+            </summary>
+        </member>
+        <member name="P:OdlukaODavanjuUZakup.Models.UplataZakupnineUpdateDto.datum">
+            <summary>
+            Datum uplacivanja
+            </summary>
+        </member>
+        <member name="P:OdlukaODavanjuUZakup.Models.UplataZakupnineUpdateDto.javno_nadmetanje">
+            <summary>
+            Javno nadmetanje na koje se uplata odnosi, entitet
+            </summary>
+        </member>
+        <member name="P:OdlukaODavanjuUZakup.Models.UplataZakupnineUpdateDto.uplatilac">
+            <summary>
+            Uplatilac koji uplacuje uplatu, entitet
             </summary>
         </member>
     </members>

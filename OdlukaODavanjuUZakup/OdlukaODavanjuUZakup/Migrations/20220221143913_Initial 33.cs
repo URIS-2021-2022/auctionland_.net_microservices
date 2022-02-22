@@ -26,7 +26,8 @@ namespace OdlukaODavanjuUZakup.Migrations
                 {
                     OdlukaoDavanjuuZakupID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     datum_donosenja_odluke = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    validnost = table.Column<bool>(type: "bit", nullable: false)
+                    
+                    validnost= table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {

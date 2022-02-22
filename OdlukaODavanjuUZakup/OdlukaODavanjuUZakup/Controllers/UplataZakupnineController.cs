@@ -11,6 +11,9 @@ using System.Linq;
 using System.Threading.Tasks;
 namespace OdlukaODavanjuUZakup.Controllers
 {
+    /// <summary>
+    /// Kontroler za uplatu zakupnine
+    /// </summary>
     [ApiController]
     [Route("api/zakupnine")]
     [Produces("application/json", "application/xml")]
@@ -20,6 +23,12 @@ namespace OdlukaODavanjuUZakup.Controllers
         private readonly IMapper mapper;
         private readonly IUplataZakupnineRepository uplataZakupnineRepository;
 
+        /// <summary>
+        /// Konstruktor
+        /// </summary>
+        /// <param name="uplataZakupnineRepository"></param>
+        /// <param name="linkGenerator"></param>
+        /// <param name="mapper"></param>
         public UplataZakupnineController(IUplataZakupnineRepository uplataZakupnineRepository, LinkGenerator linkGenerator, IMapper mapper)
 
         {
@@ -32,10 +41,13 @@ namespace OdlukaODavanjuUZakup.Controllers
         /// </summary>
         /// <param name="broj_racuna">Broj računa na koji se uplata vrši</param>
         /// <returns>Listu uplata zakupnina</returns>
-
+        /// <response code="200">Uspesno vraca sve uplate</response>
+        /// <response code="404">Nema uplata u bazi</response>
         [HttpHead]
         [HttpGet]
-        public ActionResult<List<UplataZakupnineDto>> getUplate(string broj_racuna)
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        public ActionResult<List<UplataZakupnineDto>> GetUplate(string broj_racuna)
         {
             var uplate = uplataZakupnineRepository.GetUplateZakupnine(broj_racuna);
 
@@ -45,11 +57,17 @@ namespace OdlukaODavanjuUZakup.Controllers
             }
             return Ok(mapper.Map<List<UplataZakupnineDto>>(uplate));
         }
-
+        /// <summary>
+        /// Vraca jednu uplatu sa prosledjenim ID
+        /// </summary>
+        /// <param name="uplataZakupnineID">prosledjeni ID uplate koju trazimo</param>
+        /// <returns></returns>
+        /// <response code="200">Uspesno vraca pronadjenu uplatu</response>
+        /// <response code="404">Nema uplate sa tim ID u bazi</response>
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [HttpGet("{UplataZakupnineID}")]
-        public ActionResult<UplataZakupnineDto> getUplata(Guid uplataZakupnineID)
+        public ActionResult<UplataZakupnineDto> GetUplata(Guid uplataZakupnineID)
         {
             var uplata = uplataZakupnineRepository.GetUplataZakupnineById(uplataZakupnineID);
 
@@ -60,15 +78,19 @@ namespace OdlukaODavanjuUZakup.Controllers
             return Ok(mapper.Map<UplataZakupnineDto>(uplata));
         }
         /// <summary>
-        /// 
+        /// Kreiranje uplate zakupnine u bazi
         /// <remarks>
-        /// Ovde dodam body kao i onda korisnik vidi primer sta moze da posalje
         /// </remarks>
         /// </summary>
-        /// <param name="uplataZakupnine"></param>
+        /// <param name="uplataZakupnine">Telo uplate zakupnine koje prosledjujem</param>
         /// <returns></returns>
-       
+        /// <response code="201">Kreirana je uplata</response>
+        /// <response code ="500">Doslo je do greske prilikom kreiranja</response>
+        /// <response code ="400">Poslat je los zahtev za kreiranje</response>
         [Consumes("application/json")]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [HttpPost]
         public ActionResult<UplataZakupnineConfirmationDto> CreateUplataZakupnine([FromBody] UplataZakupnineCreationDto uplataZakupnine)
         {
@@ -101,8 +123,21 @@ namespace OdlukaODavanjuUZakup.Controllers
             }
             return true;
         }
+        /// <summary>
+        /// Brisanje uplate zakupnine
+        /// </summary>
+        /// <param name="uplataZakupnineID"></param>
+        /// <returns></returns>
+        /// <response code="200">Uspesno obrisana</response>
+        /// <response code="404">Uplata nije pronadjena</response>
+        /// <response code="500">Doslo je do greske na serveru prilikom brisanja uplate</response>
+        /// <response code ="204" >Nakon uspesnog brisanja uplate</response>
         [HttpDelete("{UplataZakupnineID}")]
-        public IActionResult deleteUplataZakupnine(Guid uplataZakupnineID)
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        public IActionResult DeleteUplataZakupnine(Guid uplataZakupnineID)
         {
             try
             {
@@ -123,6 +158,10 @@ namespace OdlukaODavanjuUZakup.Controllers
             }
 
             }
+        /// <summary>
+        /// Trazenje mogucih opcija
+        /// </summary>
+        /// <returns></returns>
         [HttpOptions]
         public IActionResult GetUplataZakupnineOptions()
         {
@@ -130,7 +169,19 @@ namespace OdlukaODavanjuUZakup.Controllers
             return Ok();
         }
 
+        /// <summary>
+        /// Azuriranje uplate
+        /// </summary>
+        /// <param name="uplata"></param>
+        /// <returns></returns>
+        ///  <response code="201">Azurirana je uplata</response>
+        /// <response code ="500">Doslo je do greske prilikom azuriranja</response>
+        /// <response code = "404">Nije pronadjena uplata sa tim ID</response>
         [HttpPut]
+        [Consumes("application/json")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public ActionResult<UplataZakupnineConfirmationDto> UpdateUplataZakupnine(UplataZakupnineUpdateDto uplata)
         {
             try
