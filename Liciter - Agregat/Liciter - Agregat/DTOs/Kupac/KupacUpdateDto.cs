@@ -11,14 +11,14 @@ namespace Liciter___Agregat.DTOs.Kupac
     {
         public Guid KupacId { get; set; }
         public PrioritetEnum Prioritet { get; set; }
-        public FizickoLiceModel FizickoLice { get; set; }
-        public PravnoLiceModel PravnoLice { get; set; }
+        public Guid? FizickoLiceId { get; set; }
+        public Guid? PravnoLiceId { get; set; }
         public int OstvarenaPovrsina { get; set; }
-        public OvlascenoLiceModel OvlascenoLice { get; set; }
+        public Guid? OvlascenoLiceId { get; set; }
         public bool ImaZabranu { get; set; }
         public DateTime DatumPocetkaZabrane { get; set; }
         public int DuzinaTrajanjaZabraneGod { get; set; }
         public DateTime DatumPrestankaZabrane { get; set; }
-        public List<string> JavnaNadmetanja { get; set; } // iz necijeg drugog servisa
+        public List<Guid> JavnaNadmetanja { get; set; } // iz necijeg drugog servisa
     }
 }

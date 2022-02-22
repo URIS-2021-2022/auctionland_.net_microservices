@@ -8,7 +8,5 @@ namespace Liciter___Agregat.Models
     public class LiciterConfirmation
     {
         public Guid LiciterId { get; set; }
-
-        public string Naziv { get; set; }
     }
 }

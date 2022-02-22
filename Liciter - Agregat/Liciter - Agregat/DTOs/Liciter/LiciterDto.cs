@@ -1,4 +1,6 @@
-﻿using Liciter___Agregat.Models;
+﻿using Liciter___Agregat.DTOs.Kupac;
+using Liciter___Agregat.DTOs.OvlascenoLice;
+using Liciter___Agregat.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +10,7 @@ namespace Liciter___Agregat.DTOs.Liciter
 {
     public class LiciterDto
     {
-        public KupacModel Kupac { get; set; }
-        public OvlascenoLiceModel OvlascenoLice { get; set; }
+        public KupacDto Kupac { get; set; }
+        public OvlascenoLiceDto OvlascenoLice { get; set; }
     }
 }

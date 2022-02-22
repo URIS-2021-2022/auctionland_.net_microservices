@@ -9,7 +9,7 @@ namespace Liciter___Agregat.DTOs.Liciter
     public class LiciterUpdateDto
     {
         public Guid LiciterId { get; set; }
-        public KupacModel Kupac { get; set; }
-        public OvlascenoLiceModel OvlascenoLice { get; set; }
+        public Guid KupacId { get; set; }
+        public Guid OvlascenoLiceId { get; set; }
     }
 }

@@ -13,6 +13,7 @@ namespace Liciter___Agregat.Profiles
         public LiciterConfirmationProfile()
         {
             CreateMap<LiciterConfirmation, LiciterConfirmationDto>();
+            CreateMap<LiciterModel, LiciterConfirmation>();
         }
     }
 }

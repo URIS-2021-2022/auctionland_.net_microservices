@@ -13,8 +13,8 @@ namespace Liciter___Agregat.Profiles
         public LiciterProfile()
         {
             CreateMap<LiciterModel, LiciterDto>();
-            CreateMap<LiciterModel, LiciterCreationDto>();
-            CreateMap<LiciterModel, LiciterUpdateDto>();
+            CreateMap<LiciterCreationDto, LiciterModel>();
+            CreateMap<LiciterUpdateDto,LiciterModel>();
         }
     }
 }

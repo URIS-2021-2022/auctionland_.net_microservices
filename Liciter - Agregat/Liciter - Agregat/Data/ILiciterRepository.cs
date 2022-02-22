@@ -17,5 +17,7 @@ namespace Liciter___Agregat.Data
         LiciterConfirmation UpdateLiciter(LiciterModel liciter);
 
         void DeleteLiciter(Guid LiciterId);
+
+        bool SaveChanges();
     }
 }

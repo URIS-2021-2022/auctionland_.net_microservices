@@ -1,4 +1,6 @@
-﻿using Liciter___Agregat.Models;
+﻿using AutoMapper;
+using Liciter___Agregat.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,44 +11,41 @@ namespace Liciter___Agregat.Data
     public class LiciterRepository : ILiciterRepository
     {
 
-        public static List<LiciterModel> Liciteri { get; set; } = new List<LiciterModel>();
+        private readonly DataBaseContext context;
+        private readonly IMapper mapper;
 
-        public LiciterRepository()
+        public LiciterRepository(DataBaseContext context, IMapper mapper)
         {
-            FillData();
+            this.context = context;
+            this.mapper = mapper;
         }
 
-        private void FillData()
+        public bool SaveChanges()
         {
-            //napuniti podacima
+            return context.SaveChanges() > 0;
         }
 
         public LiciterConfirmation CreateLiciter(LiciterModel liciter)
         {
-            liciter.LiciterId = Guid.NewGuid();
-            Liciteri.Add(liciter);
-            LiciterModel liciter2 = GetLiciterById(liciter.LiciterId);
+            var createdEntity = context.Add(liciter);
+            return mapper.Map<LiciterConfirmation>(createdEntity.Entity);
 
-            return new LiciterConfirmation()
-            {
-                LiciterId = liciter2.LiciterId
-            }; 
-            
         }
 
         public void DeleteLiciter(Guid LiciterId)
         {
-            Liciteri.Remove(Liciteri.FirstOrDefault(e => e.LiciterId == LiciterId));
+            var liciter = GetLiciterById(LiciterId);
+            context.Remove(liciter);
         }
 
         public LiciterModel GetLiciterById(Guid LiciterId)
         {
-            return Liciteri.FirstOrDefault(e => e.LiciterId == LiciterId);
+            return context.Liciteri.Include(k=>k.Kupac).Include(o=>o.OvlascenoLice).FirstOrDefault(e => e.LiciterId == LiciterId);
         }
 
         public List<LiciterModel> GetLiciters()
         {
-            throw new NotImplementedException(); // nzm kako
+            return context.Liciteri.Include(k => k.Kupac).Include(o => o.OvlascenoLice).ToList();
         }
 
         public LiciterConfirmation UpdateLiciter(LiciterModel liciter)
