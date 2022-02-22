@@ -109,10 +109,10 @@ namespace Liciter___Agregat.Controllers
         /// Briše fizičko lice sa prosledjenim id-em iz liste
         /// </summary>
         /// <param name="fizickoLiceId"></param>
-        /// <returns>Potvrdu o modifikovanom fizickom licu</returns>
-        ///  <response code="200">Vraća ažurirano fizičko lice</response>
-        /// <response code="400">Fizičko lice koje se ažurira nije pronađena</response>
-        /// <response code="500">Došlo je do greške na serveru prilikom ažuriranja fizičkog lica</response>
+        /// <returns>Potvrdu o izbrisanom fizickom licu</returns>
+        ///  <response code="200">Vraća izbrisano fizičko lice</response>
+        /// <response code="400">Fizičko lice koje se brise nije pronađena</response>
+        /// <response code="500">Došlo je do greške na serveru prilikom brisanja fizičkog lica</response>
         [HttpDelete("{fizickoLiceId}")]
         public IActionResult DeleteFizickoLice(Guid fizickoLiceId)
         {
@@ -141,9 +141,9 @@ namespace Liciter___Agregat.Controllers
         /// </summary>
         /// <param name="fizickoLice"></param>
         /// <returns>Status 204 (NoContent)</returns>
-        /// <response code="204">Fizičko lice uspešno obrisano</response>
-        /// <response code="404">Nije pronađeno fizičko lice za brisanje</response>
-        /// <response code="500">Došlo je do greške na serveru prilikom brisanja fizičkog lica</response>
+        /// <response code="204">Fizičko lice uspešno ažurirano</response>
+        /// <response code="404">Nije pronađeno fizičko lice za ažuriranje</response>
+        /// <response code="500">Došlo je do greške na serveru prilikom ažuriranja fizičkog lica</response>
         [HttpPut]
         public ActionResult<FizickoLiceConfirmationDto> UpdateFizickoLice(FizickoLiceUpdateDto fizickoLice)
         {

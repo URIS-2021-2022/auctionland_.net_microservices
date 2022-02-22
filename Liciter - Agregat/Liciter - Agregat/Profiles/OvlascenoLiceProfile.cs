@@ -16,8 +16,8 @@ namespace Liciter___Agregat.Profiles
                 .ForMember(
                 dest => dest.Ime_Prezime,
                 opt => opt.MapFrom(src => src.Ime + " " + src.Prezime));
-            CreateMap<OvlascenoLiceModel, OvlascenoLiceUpdateDto>();
-            CreateMap<OvlascenoLiceModel, OvlascenoLiceCreationDto>();
+            CreateMap<OvlascenoLiceUpdateDto, OvlascenoLiceModel>();
+            CreateMap<OvlascenoLiceCreationDto, OvlascenoLiceModel>();
         }
     }
 }

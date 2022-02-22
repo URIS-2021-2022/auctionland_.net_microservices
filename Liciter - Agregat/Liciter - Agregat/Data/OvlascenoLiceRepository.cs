@@ -1,4 +1,5 @@
-﻿using Liciter___Agregat.Models;
+﻿using AutoMapper;
+using Liciter___Agregat.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,47 +9,40 @@ namespace Liciter___Agregat.Data
 {
     public class OvlascenoLiceRepository : IOvlascenoLiceRepository
     {
-        public List<OvlascenoLiceModel> ovlascenaLica { get; set; } = new List<OvlascenoLiceModel>();
+        private readonly DataBaseContext context;
+        private readonly IMapper mapper;
 
-        public OvlascenoLiceRepository()
+        public OvlascenoLiceRepository(DataBaseContext context, IMapper mapper)
         {
-            FillData();
+            this.context = context;
+            this.mapper = mapper;
         }
 
-        private void FillData()
+        public bool SaveChanges()
         {
-
+            return context.SaveChanges() > 0;
         }
+
         public OvlascenoLiceConfirmation CreateOvlascenoLice(OvlascenoLiceModel ovlascenoLice)
         {
-            ovlascenoLice.OvlascenoLiceId = Guid.NewGuid();
-            ovlascenaLica.Add(ovlascenoLice);
-            OvlascenoLiceModel lice = GetOvlascenoLiceById(ovlascenoLice.OvlascenoLiceId);
-
-            return new OvlascenoLiceConfirmation
-            {
-               OvlascenoLiceId = lice.OvlascenoLiceId,
-               Ime = lice.Ime,
-               Prezime = lice.Prezime
-
-            };
+            var createdEntity = context.Add(ovlascenoLice);
+            return mapper.Map<OvlascenoLiceConfirmation>(createdEntity.Entity);
         }
 
         public void DeleteOvlascenoLice(Guid OvlascenoLiceId)
         {
-            ovlascenaLica.Remove(ovlascenaLica.FirstOrDefault(e => e.OvlascenoLiceId == OvlascenoLiceId));
+            var ovlascenoLice = GetOvlascenoLiceById(OvlascenoLiceId);
+            context.Remove(ovlascenoLice);
         }
 
         public List<OvlascenoLiceModel> GetOvlascenaLicas(string JMBG_BrPasosa = null)
         {
-            return (from e in ovlascenaLica
-                    where string.IsNullOrEmpty(JMBG_BrPasosa) || e.JMBG_Br_Pasosa == JMBG_BrPasosa
-                    select e).ToList();
+            return context.OvlascenaLica.Where(e => (JMBG_BrPasosa == null || e.JMBG_Br_Pasosa == JMBG_BrPasosa)).ToList();
         }
 
         public OvlascenoLiceModel GetOvlascenoLiceById(Guid OvlascenoLiceId)
         {
-            return ovlascenaLica.FirstOrDefault(e => e.OvlascenoLiceId == OvlascenoLiceId);
+            return context.OvlascenaLica.FirstOrDefault(e => e.OvlascenoLiceId == OvlascenoLiceId);
         }
 
         public OvlascenoLiceConfirmation UpdateOvlascenoLice(OvlascenoLiceModel ovlascenoLice)
@@ -60,6 +54,8 @@ namespace Liciter___Agregat.Data
             lice.Drzava = ovlascenoLice.Drzava;
             lice.Ime = ovlascenoLice.Ime;
             lice.JMBG_Br_Pasosa = ovlascenoLice.JMBG_Br_Pasosa;
+            lice.Kupac = ovlascenoLice.Kupac;
+            lice.KupacId = ovlascenoLice.KupacId;
             lice.OvlascenoLiceId = ovlascenoLice.OvlascenoLiceId;
             lice.Prezime = ovlascenoLice.Prezime;
 

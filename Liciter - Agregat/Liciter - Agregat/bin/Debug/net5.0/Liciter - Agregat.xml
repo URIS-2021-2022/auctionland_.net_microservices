@@ -31,10 +31,10 @@
             Briše fizičko lice sa prosledjenim id-em iz liste
             </summary>
             <param name="fizickoLiceId"></param>
-            <returns>Potvrdu o modifikovanom fizickom licu</returns>
-             <response code="200">Vraća ažurirano fizičko lice</response>
-            <response code="400">Fizičko lice koje se ažurira nije pronađena</response>
-            <response code="500">Došlo je do greške na serveru prilikom ažuriranja fizičkog lica</response>
+            <returns>Potvrdu o izbrisanom fizickom licu</returns>
+             <response code="200">Vraća izbrisano fizičko lice</response>
+            <response code="400">Fizičko lice koje se brise nije pronađena</response>
+            <response code="500">Došlo je do greške na serveru prilikom brisanja fizičkog lica</response>
         </member>
         <member name="M:Liciter___Agregat.Controllers.FizickoLiceController.UpdateFizickoLice(Liciter___Agregat.DTOs.FizickoLice.FizickoLiceUpdateDto)">
             <summary>
@@ -42,9 +42,125 @@
             </summary>
             <param name="fizickoLice"></param>
             <returns>Status 204 (NoContent)</returns>
-            <response code="204">Fizičko lice uspešno obrisano</response>
-            <response code="404">Nije pronađeno fizičko lice za brisanje</response>
-            <response code="500">Došlo je do greške na serveru prilikom brisanja fizičkog lica</response>
+            <response code="204">Fizičko lice uspešno ažurirano</response>
+            <response code="404">Nije pronađeno fizičko lice za ažuriranje</response>
+            <response code="500">Došlo je do greške na serveru prilikom ažuriranja fizičkog lica</response>
+        </member>
+        <member name="M:Liciter___Agregat.Controllers.KupacController.GetKupci(System.String)">
+            <summary>
+            Vraća sve Kupce iz liste
+            </summary>
+            <param name="JMBG_MaticniBroj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Liciter___Agregat.Controllers.KupacController.GetKupacbyId(System.Guid)">
+            <summary>
+            Vraca kupca na osnovu id-a
+            </summary>
+            <param name="kupacId"></param>
+            <returns></returns>
+             [ProducesResponseType(StatusCodes.Status404NotFound)]
+        </member>
+        <member name="M:Liciter___Agregat.Controllers.KupacController.CreateKupac(Liciter___Agregat.DTOs.Kupac.KupacCreationDto)">
+            <summary>
+            Dodaje novog kupca na listu
+            </summary>
+            <param name="kupac"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Liciter___Agregat.Controllers.KupacController.DeleteKupac(System.Guid)">
+            <summary>
+            Brise kupca sa prosledjenim id-em iz liste
+            </summary>
+            <param name="kupacId"></param>
+            /// <returns>Potvrdu o izbrisanom fizickom licu</returns>
+             <response code="200">Vraća izbrisanog kupca</response>
+            <response code="400">Kupac koji se brise nije pronađena</response>
+            <response code="500">Došlo je do greške na serveru prilikom brisanja kupca</response>
+        </member>
+        <member name="M:Liciter___Agregat.Controllers.KupacController.UpdateKupac(Liciter___Agregat.DTOs.Kupac.KupacUpdateDto)">
+            <summary>
+            Vrši izmenu nad kupcem koji se prosledio u body-u
+            </summary>
+            <param name="kupac"></param>
+            <returns>Status 204 (NoContent)</returns>
+            <response code="204">Kupac uspešno ažuriran</response>
+            <response code="404">Nije pronađen kupac za ažuriranje</response>
+            <response code="500">Došlo je do greške na serveru prilikom ažuriranja kupca</response>
+        </member>
+        <member name="M:Liciter___Agregat.Controllers.LiciterController.GetLiciteri(System.String)">
+            <summary>
+            Vraca licitere iz liste
+            </summary>
+            <param name="JMBG_MaticniBroj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Liciter___Agregat.Controllers.LiciterController.GetLiciterbyId(System.Guid)">
+            <summary>
+            Vraca licitera na osnovu id-a kojeg mu prosledimo
+            </summary>
+            <param name="liciterId"></param>
+            <returns></returns>
+            
+        </member>
+        <member name="M:Liciter___Agregat.Controllers.LiciterController.CreateLiciter(Liciter___Agregat.DTOs.Liciter.LiciterCreationDto)">
+            <summary>
+            
+            </summary>
+            <param name="liciter"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Liciter___Agregat.Controllers.LiciterController.DeleteLiciter(System.Guid)">
+            <summary>
+            Briše licitera sa prosledjenim id-em iz liste
+            </summary>
+            <param name="liciterId"></param>
+            <returns>Potvrdu o izbrisanom liciteru</returns>
+             <response code="200">Vraća izbrisanog licitera</response>
+            <response code="400">Liciter koji se brise nije pronađena</response>
+            <response code="500">Došlo je do greške na serveru prilikom brisanja Licitera</response>
+        </member>
+        <member name="M:Liciter___Agregat.Controllers.OvlascenoLiceController.GetOvlascenaLicas(System.String)">
+            <summary>
+            Vraća sva ovlascena lica iz liste
+            </summary>
+            <param name="JMBG_BrPasosa"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Liciter___Agregat.Controllers.OvlascenoLiceController.GetOvlascenoLicebyId(System.Guid)">
+            <summary>
+            Vraća ovlasceno lice na osnovu id-a
+            </summary>
+            <param name="ovlascenoLiceId"></param>
+            <returns></returns>
+             [ProducesResponseType(StatusCodes.Status404NotFound)]
+        </member>
+        <member name="M:Liciter___Agregat.Controllers.OvlascenoLiceController.CreateOvlascenoLice(Liciter___Agregat.DTOs.OvlascenoLice.OvlascenoLiceCreationDto)">
+            <summary>
+            Dodaje novo ovlasceno lice u listu
+            </summary>
+            <param name="ovlascenoLice"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Liciter___Agregat.Controllers.OvlascenoLiceController.DeleteOvlascenoLice(System.Guid)">
+            <summary>
+            Briše ovlasceno lice sa prosledjenim id-em iz liste
+            </summary>
+            <param name="ovlascenoLiceId"></param>
+            <returns>Potvrdu o modifikovanom ovlascenom licu</returns>
+             <response code="200">Vraća ažurirano ovlasceno lice</response>
+            <response code="400">Ovlasceno lice koje se ažurira nije pronađena</response>
+            <response code="500">Došlo je do greške na serveru prilikom ažuriranja ovlascenog lica</response>
+        </member>
+        <member name="M:Liciter___Agregat.Controllers.OvlascenoLiceController.UpdateOvlascenoLice(Liciter___Agregat.DTOs.OvlascenoLice.OvlascenoLiceUpdateDto)">
+            <summary>
+            Vrši izmenu nad ovlascenim licem koji se prosledio u body-u
+            </summary>
+            <param name="ovlascenoLice"></param>
+            <returns>Status 204 (NoContent)</returns>
+            <response code="204">Ovlasceno lice uspešno obrisano</response>
+            <response code="404">Nije pronađeno ovlasceno lice za brisanje</response>
+            <response code="500">Došlo je do greške na serveru prilikom brisanja ovlascenog lica</response>
         </member>
         <member name="M:Liciter___Agregat.Controllers.PravnoLiceController.GetPravnaLicas(System.String)">
             <summary>

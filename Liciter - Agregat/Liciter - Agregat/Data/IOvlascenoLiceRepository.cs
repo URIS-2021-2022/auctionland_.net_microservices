@@ -17,5 +17,7 @@ namespace Liciter___Agregat.Data
         OvlascenoLiceConfirmation UpdateOvlascenoLice(OvlascenoLiceModel ovlascenoLice);
 
         void DeleteOvlascenoLice(Guid OvlascenoLiceId);
+
+        bool SaveChanges();
     }
 }

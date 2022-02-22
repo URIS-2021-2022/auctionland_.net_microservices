@@ -1,4 +1,6 @@
-﻿using Liciter___Agregat.Models;
+﻿using AutoMapper;
+using Liciter___Agregat.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,55 +10,42 @@ namespace Liciter___Agregat.Data
 {
     public class KupacRepository : IKupacRepository
     {
-        public static List<KupacModel> kupci { get; set; } = new List<KupacModel>();
+        private readonly DataBaseContext context;
+        private readonly IMapper mapper;
 
-        public KupacRepository()
+        public KupacRepository(DataBaseContext context, IMapper mapper)
         {
-            DataFill();
+            this.context = context;
+            this.mapper = mapper;
         }
 
-        private void DataFill()
+        public bool SaveChanges()
         {
-
+            return context.SaveChanges() > 0;
         }
 
         public KupacConfirmation CreateKupac(KupacModel kupac)
         {
-            kupac.KupacId = Guid.NewGuid();
-            kupci.Add(kupac);
-            KupacModel kupac2 = GetKupacById(kupac.KupacId);
-
-            if (kupac.PravnoLice == null)
-            {
-                return new KupacConfirmation
-                {
-                    KupacId = kupac2.KupacId,
-                    Ime_Naziv = kupac2.FizickoLice.Ime + " " + kupac2.FizickoLice.Prezime
-                };
-            }
-            else
-            {
-                return new KupacConfirmation
-                {
-                    KupacId = kupac2.KupacId,
-                    Ime_Naziv = kupac2.PravnoLice.Naziv
-                };
-            }
+            var createdEntity = context.Add(kupac);
+            return mapper.Map<KupacConfirmation>(createdEntity.Entity);
         }
 
         public void DeleteKupac(Guid KupacId)
         {
-            kupci.Remove(kupci.FirstOrDefault(e => e.KupacId == KupacId));
+            var kupac = GetKupacById(KupacId);
+            context.Remove(kupac);
         }
 
         public KupacModel GetKupacById(Guid KupacId)
         {
-            return kupci.FirstOrDefault(e => e.KupacId == KupacId);
+            return context.Kupci.Include(f => f.FizickoLice).Include(p => p.PravnoLice).Include(o=>o.OvlascenaLica).FirstOrDefault(e => e.KupacId == KupacId);
         }
 
         public List<KupacModel> GetKupci(string JMBG_MaticniBroj = null)
         {
-            throw new NotImplementedException(); //kako ovo uraditi?
+         
+            return context.Kupci.Include(f => f.FizickoLice).Include(p => p.PravnoLice).Include(o=>o.OvlascenaLica).Where(e => (JMBG_MaticniBroj == null))
+                .ToList();
         }
 
         public KupacConfirmation UpdateKupac(KupacModel kupac)
@@ -69,12 +58,13 @@ namespace Liciter___Agregat.Data
             kupac2.DatumPrestankaZabrane = kupac.DatumPrestankaZabrane;
             kupac2.DuzinaTrajanjaZabraneGod = kupac.DuzinaTrajanjaZabraneGod;
             kupac2.FizickoLice = kupac.FizickoLice;
-            kupac2.JavnaNadmetanja = kupac.JavnaNadmetanja;
+            kupac2.JavnaNadmetanjaId = kupac.JavnaNadmetanjaId;
             kupac2.OstvarenaPovrsina = kupac.OstvarenaPovrsina;
             kupac2.OvlascenaLica = kupac.OvlascenaLica;
             kupac2.PravnoLice = kupac.PravnoLice;
             kupac2.Prioritet = kupac.Prioritet;
-            kupac2.Uplate = kupac.Uplate;
+            kupac2.JavnoNadmetanjeId = kupac.JavnoNadmetanjeId;
+            
 
             if (kupac2.PravnoLice == null)
             {

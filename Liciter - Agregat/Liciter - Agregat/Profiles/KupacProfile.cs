@@ -13,8 +13,8 @@ namespace Liciter___Agregat.Profiles
         public KupacProfile()
         {
             CreateMap<KupacModel, KupacDto>();
-            CreateMap<KupacModel, KupacCreationDto>();
-            CreateMap<KupacModel, KupacUpdateDto>();
+            CreateMap<KupacCreationDto, KupacModel >();
+            CreateMap<KupacUpdateDto, KupacModel >();
         }
     }
 }

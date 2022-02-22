@@ -13,6 +13,7 @@ namespace Liciter___Agregat.Profiles
         public OvlascenoLiceConfirmationProfile()
         {
             CreateMap<OvlascenoLiceConfirmation, OvlascenoLiceConfirmationDto>();
+            CreateMap<OvlascenoLiceModel, OvlascenoLiceConfirmation>();
         }
     }
 }

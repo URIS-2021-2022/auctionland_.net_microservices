@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Liciter___Agregat.Migrations
 {
     [DbContext(typeof(DataBaseContext))]
-    [Migration("20220215105249_server")]
-    partial class server
+    [Migration("20220222183618_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -20,21 +20,6 @@ namespace Liciter___Agregat.Migrations
                 .UseIdentityColumns()
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.0");
-
-            modelBuilder.Entity("KupacModelOvlascenoLiceModel", b =>
-                {
-                    b.Property<Guid>("KupacId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("OvlascenaLicaOvlascenoLiceId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("KupacId", "OvlascenaLicaOvlascenoLiceId");
-
-                    b.HasIndex("OvlascenaLicaOvlascenoLiceId");
-
-                    b.ToTable("KupacModelOvlascenoLiceModel");
-                });
 
             modelBuilder.Entity("Liciter___Agregat.Models.FizickoLiceModel", b =>
                 {
@@ -71,25 +56,6 @@ namespace Liciter___Agregat.Migrations
                     b.ToTable("FizickaLica");
                 });
 
-            modelBuilder.Entity("Liciter___Agregat.Models.JavnaNadmetanja", b =>
-                {
-                    b.Property<Guid>("id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid?>("KupacModelKupacId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("javnoNadmetanje")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("id");
-
-                    b.HasIndex("KupacModelKupacId");
-
-                    b.ToTable("JavnaNadmetanja");
-                });
-
             modelBuilder.Entity("Liciter___Agregat.Models.KupacModel", b =>
                 {
                     b.Property<Guid>("KupacId")
@@ -111,10 +77,13 @@ namespace Liciter___Agregat.Migrations
                     b.Property<bool>("ImaZabranu")
                         .HasColumnType("bit");
 
+                    b.Property<Guid?>("JavnoNadmetanjeId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<int>("OstvarenaPovrsina")
                         .HasColumnType("int");
 
-                    b.Property<Guid?>("PravnoLiceId")
+                    b.Property<Guid?>("PravnoliceId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("Prioritet")
@@ -124,7 +93,7 @@ namespace Liciter___Agregat.Migrations
 
                     b.HasIndex("FizickoLiceId");
 
-                    b.HasIndex("PravnoLiceId");
+                    b.HasIndex("PravnoliceId");
 
                     b.ToTable("Kupci");
                 });
@@ -171,10 +140,15 @@ namespace Liciter___Agregat.Migrations
                     b.Property<string>("JMBG_Br_Pasosa")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<Guid>("KupacId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<string>("Prezime")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("OvlascenoLiceId");
+
+                    b.HasIndex("KupacId");
 
                     b.ToTable("OvlascenaLica");
                 });
@@ -217,47 +191,6 @@ namespace Liciter___Agregat.Migrations
                     b.ToTable("PravnaLica");
                 });
 
-            modelBuilder.Entity("Liciter___Agregat.Models.Uplata", b =>
-                {
-                    b.Property<Guid>("UplataId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid?>("KupacModelKupacId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("uplataString")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("UplataId");
-
-                    b.HasIndex("KupacModelKupacId");
-
-                    b.ToTable("Uplata");
-                });
-
-            modelBuilder.Entity("KupacModelOvlascenoLiceModel", b =>
-                {
-                    b.HasOne("Liciter___Agregat.Models.KupacModel", null)
-                        .WithMany()
-                        .HasForeignKey("KupacId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Liciter___Agregat.Models.OvlascenoLiceModel", null)
-                        .WithMany()
-                        .HasForeignKey("OvlascenaLicaOvlascenoLiceId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("Liciter___Agregat.Models.JavnaNadmetanja", b =>
-                {
-                    b.HasOne("Liciter___Agregat.Models.KupacModel", null)
-                        .WithMany("JavnaNadmetanja")
-                        .HasForeignKey("KupacModelKupacId");
-                });
-
             modelBuilder.Entity("Liciter___Agregat.Models.KupacModel", b =>
                 {
                     b.HasOne("Liciter___Agregat.Models.FizickoLiceModel", "FizickoLice")
@@ -266,7 +199,7 @@ namespace Liciter___Agregat.Migrations
 
                     b.HasOne("Liciter___Agregat.Models.PravnoLiceModel", "PravnoLice")
                         .WithMany()
-                        .HasForeignKey("PravnoLiceId");
+                        .HasForeignKey("PravnoliceId");
 
                     b.Navigation("FizickoLice");
 
@@ -288,18 +221,20 @@ namespace Liciter___Agregat.Migrations
                     b.Navigation("OvlascenoLice");
                 });
 
-            modelBuilder.Entity("Liciter___Agregat.Models.Uplata", b =>
+            modelBuilder.Entity("Liciter___Agregat.Models.OvlascenoLiceModel", b =>
                 {
-                    b.HasOne("Liciter___Agregat.Models.KupacModel", null)
-                        .WithMany("Uplate")
-                        .HasForeignKey("KupacModelKupacId");
+                    b.HasOne("Liciter___Agregat.Models.KupacModel", "Kupac")
+                        .WithMany("OvlascenaLica")
+                        .HasForeignKey("KupacId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Kupac");
                 });
 
             modelBuilder.Entity("Liciter___Agregat.Models.KupacModel", b =>
                 {
-                    b.Navigation("JavnaNadmetanja");
-
-                    b.Navigation("Uplate");
+                    b.Navigation("OvlascenaLica");
                 });
 #pragma warning restore 612, 618
         }

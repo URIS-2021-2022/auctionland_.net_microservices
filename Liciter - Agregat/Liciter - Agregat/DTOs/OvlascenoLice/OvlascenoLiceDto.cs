@@ -11,6 +11,8 @@ namespace Liciter___Agregat.DTOs.OvlascenoLice
         public string Ime_Prezime { get; set; }
         public string JMBG_Br_Pasosa { get; set; }
         public string Adresa { get; set; }
+      //  public KupacModel Kupac { get; set; }
+       // public Guid KupacId { get; set; }
         public string Drzava { get; set; }
         public List<int> BrojTable { get; set; }
     }

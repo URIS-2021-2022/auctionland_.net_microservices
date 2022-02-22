@@ -17,5 +17,7 @@ namespace Liciter___Agregat.Data
         KupacConfirmation UpdateKupac(KupacModel kupac);
 
         void DeleteKupac(Guid KupacId);
+
+        bool SaveChanges();
     }
 }

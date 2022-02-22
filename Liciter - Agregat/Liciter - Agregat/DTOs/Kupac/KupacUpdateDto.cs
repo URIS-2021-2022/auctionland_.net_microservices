@@ -14,7 +14,6 @@ namespace Liciter___Agregat.DTOs.Kupac
         public FizickoLiceModel FizickoLice { get; set; }
         public PravnoLiceModel PravnoLice { get; set; }
         public int OstvarenaPovrsina { get; set; }
-        public List<string> Uplate { get; set; } // uplate su entitet
         public OvlascenoLiceModel OvlascenoLice { get; set; }
         public bool ImaZabranu { get; set; }
         public DateTime DatumPocetkaZabrane { get; set; }
