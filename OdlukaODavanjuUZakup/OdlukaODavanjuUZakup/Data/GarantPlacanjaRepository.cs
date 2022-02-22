@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using OdlukaODavanjuUZakup.Entities;
 using OdlukaODavanjuUZakup.Models;
 using System;
@@ -50,12 +51,12 @@ namespace OdlukaODavanjuUZakup.Data
 
         public List<GarantPlacanja> GetGarantiPlacanja()
         {
-            return context.GarantPlacanja.ToList();
+            return context.GarantPlacanja.Include(g => g.ugovorOZakupu).ToList();
         }
 
         public GarantPlacanja GetGarantPlacanjaById(Guid GarantPlacanjaId)
         {
-            return context.GarantPlacanja.FirstOrDefault(e => e.GarantPlacanjaID == GarantPlacanjaId);
+            return context.GarantPlacanja.Include(g=>g.ugovorOZakupu).FirstOrDefault(e => e.GarantPlacanjaID == GarantPlacanjaId);
         }
 
         public GarantPlacanjaConfirmation UpdateGarantPlacanja(GarantPlacanja garantPlacanja)
@@ -65,6 +66,8 @@ namespace OdlukaODavanjuUZakup.Data
             garant.GarantPlacanjaID = garantPlacanja.GarantPlacanjaID;
             garant.Opis_garanta1 = garantPlacanja.Opis_garanta1;
             garant.Opis_garanta2 = garantPlacanja.Opis_garanta2;
+            garant.ugovorOZakupu = garantPlacanja.ugovorOZakupu;
+            garant.UgovorOZakupuID = garantPlacanja.UgovorOZakupuID;
 
             return new GarantPlacanjaConfirmation
             {

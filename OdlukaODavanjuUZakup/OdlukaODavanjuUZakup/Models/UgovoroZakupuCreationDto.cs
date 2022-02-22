@@ -53,5 +53,8 @@ namespace OdlukaODavanjuUZakup.Models
         /// Datum kada je ugovor potpisan
         /// </summary>
         public DateTime datum_potpisa { get; set; }
+
+        public Guid? OdlukaoDavanjuuZakupID { get; set; }
+
     }
 }

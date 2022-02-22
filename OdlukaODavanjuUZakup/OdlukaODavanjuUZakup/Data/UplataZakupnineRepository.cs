@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using OdlukaODavanjuUZakup.Entities;
 using OdlukaODavanjuUZakup.Models;
 using System;
@@ -50,12 +51,12 @@ namespace OdlukaODavanjuUZakup.Data
 
         public UplataZakupnine GetUplataZakupnineById(Guid UplataZakupnineId)
         {
-            return context.UplataZakupnine.FirstOrDefault(e => e.UplataZakupnineID == UplataZakupnineId);
+            return context.UplataZakupnine.Include(g => g.ugovorOZakupu).FirstOrDefault(e => e.UplataZakupnineID == UplataZakupnineId);
         }
 
         public List<UplataZakupnine> GetUplateZakupnine(string broj_racuna = null)
         {
-            return context.UplataZakupnine.Where(e => broj_racuna == null || broj_racuna == e.broj_racuna).ToList();
+            return context.UplataZakupnine.Include(g => g.ugovorOZakupu).Where(e => broj_racuna == null || broj_racuna == e.broj_racuna).ToList();
         }
 
         public UplataZakupnineConfirmation UpdateUplataZakupnine(UplataZakupnine uplataZakupnine)
@@ -70,6 +71,8 @@ namespace OdlukaODavanjuUZakup.Data
             zakupnina.svrha_uplate = uplataZakupnine.svrha_uplate;
             zakupnina.javno_nadmetanje = uplataZakupnine.javno_nadmetanje;
             zakupnina.uplatilac = uplataZakupnine.uplatilac;
+            zakupnina.UgovorOZakupuID = uplataZakupnine.UgovorOZakupuID;
+            zakupnina.ugovorOZakupu = uplataZakupnine.ugovorOZakupu;
 
             return new UplataZakupnineConfirmation
             {

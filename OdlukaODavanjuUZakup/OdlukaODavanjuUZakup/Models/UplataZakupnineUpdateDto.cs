@@ -42,5 +42,7 @@ namespace OdlukaODavanjuUZakup.Models
         /// Uplatilac koji uplacuje uplatu, entitet
         /// </summary>
         public string uplatilac { get; set; } //entitet
+
+        public Guid? UgovorOZakupuID { get; set; }
     }
 }

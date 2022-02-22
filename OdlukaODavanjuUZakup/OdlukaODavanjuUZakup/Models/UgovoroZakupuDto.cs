@@ -58,5 +58,8 @@ namespace OdlukaODavanjuUZakup.Models
         /// </summary>
         public DateTime datum_potpisa { get; set; }
 
+        public OdlukaoDavanjuuZakupDto odlukaoDavanjuuZakup { get; set; }
+
+
     }
 }

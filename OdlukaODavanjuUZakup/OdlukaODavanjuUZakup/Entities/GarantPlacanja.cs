@@ -13,5 +13,8 @@ namespace OdlukaODavanjuUZakup.Entities
         public Guid GarantPlacanjaID { get; set; } = Guid.NewGuid();
         public string Opis_garanta1 { get; set; }
         public string Opis_garanta2 { get; set; }
+
+        public UgovoroZakupu ugovorOZakupu { get; set; }
+        public Guid? UgovorOZakupuID { get; set; }
     }
 }

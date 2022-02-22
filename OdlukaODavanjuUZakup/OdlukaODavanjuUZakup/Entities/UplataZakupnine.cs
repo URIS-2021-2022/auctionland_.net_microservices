@@ -22,5 +22,8 @@ namespace OdlukaODavanjuUZakup.Entities
 
         public string javno_nadmetanje { get; set; } //entitet
         public string uplatilac { get; set; } //entitet
+
+        public Guid? UgovorOZakupuID { get; set; }
+        public UgovoroZakupu ugovorOZakupu { get; set; }
     }
 }

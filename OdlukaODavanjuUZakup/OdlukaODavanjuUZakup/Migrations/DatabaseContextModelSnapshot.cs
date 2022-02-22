@@ -31,7 +31,12 @@ namespace OdlukaODavanjuUZakup.Migrations
                     b.Property<string>("Opis_garanta2")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<Guid?>("UgovorOZakupuID")
+                        .HasColumnType("uniqueidentifier");
+
                     b.HasKey("GarantPlacanjaID");
+
+                    b.HasIndex("UgovorOZakupuID");
 
                     b.ToTable("GarantPlacanja");
 
@@ -78,6 +83,9 @@ namespace OdlukaODavanjuUZakup.Migrations
                     b.Property<string>("Javno_Nadmetanje")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<Guid?>("OdlukaoDavanjuuZakupID")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<DateTime>("datum_potpisa")
                         .HasColumnType("datetime2");
 
@@ -107,6 +115,8 @@ namespace OdlukaODavanjuUZakup.Migrations
 
                     b.HasKey("UgovoroZakupuID");
 
+                    b.HasIndex("OdlukaoDavanjuuZakupID");
+
                     b.ToTable("UgovoroZakupu");
 
                     b.HasData(
@@ -129,6 +139,9 @@ namespace OdlukaODavanjuUZakup.Migrations
                 {
                     b.Property<Guid>("UplataZakupnineID")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("UgovorOZakupuID")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("broj_racuna")
@@ -154,6 +167,8 @@ namespace OdlukaODavanjuUZakup.Migrations
 
                     b.HasKey("UplataZakupnineID");
 
+                    b.HasIndex("UgovorOZakupuID");
+
                     b.ToTable("UplataZakupnine");
 
                     b.HasData(
@@ -168,6 +183,33 @@ namespace OdlukaODavanjuUZakup.Migrations
                             svrha_uplate = "svrha",
                             uplatilac = "uplatilac"
                         });
+                });
+
+            modelBuilder.Entity("OdlukaODavanjuUZakup.Entities.GarantPlacanja", b =>
+                {
+                    b.HasOne("OdlukaODavanjuUZakup.Entities.UgovoroZakupu", "ugovorOZakupu")
+                        .WithMany()
+                        .HasForeignKey("UgovorOZakupuID");
+
+                    b.Navigation("ugovorOZakupu");
+                });
+
+            modelBuilder.Entity("OdlukaODavanjuUZakup.Entities.UgovoroZakupu", b =>
+                {
+                    b.HasOne("OdlukaODavanjuUZakup.Entities.OdlukaoDavanjuuZakup", "odlukaoDavanjuuZakup")
+                        .WithMany()
+                        .HasForeignKey("OdlukaoDavanjuuZakupID");
+
+                    b.Navigation("odlukaoDavanjuuZakup");
+                });
+
+            modelBuilder.Entity("OdlukaODavanjuUZakup.Entities.UplataZakupnine", b =>
+                {
+                    b.HasOne("OdlukaODavanjuUZakup.Entities.UgovoroZakupu", "ugovorOZakupu")
+                        .WithMany()
+                        .HasForeignKey("UgovorOZakupuID");
+
+                    b.Navigation("ugovorOZakupu");
                 });
 #pragma warning restore 612, 618
         }

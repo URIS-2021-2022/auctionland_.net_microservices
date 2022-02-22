@@ -23,5 +23,8 @@ namespace OdlukaODavanjuUZakup.Models
         /// Sekundarni opis garanta:Jemstvo, bankarska garancija, garancija nekretninom, zirantska, uplata gotovinom
         /// </summary>
         public string Opis_garanta2 { get; set; }
+
+        public UgovoroZakupuDto ugovoroZakupu { get; set; }
+
     }
 }

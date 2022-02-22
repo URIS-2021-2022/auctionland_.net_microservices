@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "+TdjBOG2tsvHPco/uHJHvLIwrxrUXd+V03AMQ1mOPJcIh/VkrAoLkvN7GT+jqRdMv8quLXcjvpOsY1d+aqusDw==",
+  "dgSpecHash": "efCCLmW1T/QMrrIGtyjExecXGOLqUlP9ssST22Cwi4Z08fBFzWF9EqdoeTcVUBvF2ZUSNV3v2L6vtki8Av+SdA==",
   "success": true,
   "projectFilePath": "C:\\Users\\ADMIN\\Documents\\FAKULTET\\tim-6---auctionland-tim-6-nopcommerce\\OdlukaODavanjuUZakup\\OdlukaODavanjuUZakup\\OdlukaODavanjuUZakup.csproj",
   "expectedPackageFiles": [
@@ -111,8 +111,7 @@
     "C:\\Users\\ADMIN\\.nuget\\packages\\system.xml.readerwriter\\4.3.0\\system.xml.readerwriter.4.3.0.nupkg.sha512",
     "C:\\Users\\ADMIN\\.nuget\\packages\\system.xml.xdocument\\4.3.0\\system.xml.xdocument.4.3.0.nupkg.sha512",
     "C:\\Users\\ADMIN\\.nuget\\packages\\system.xml.xmldocument\\4.3.0\\system.xml.xmldocument.4.3.0.nupkg.sha512",
-    "C:\\Users\\ADMIN\\.nuget\\packages\\system.xml.xmlserializer\\4.3.0\\system.xml.xmlserializer.4.3.0.nupkg.sha512",
-    "C:\\Users\\ADMIN\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\3.1.12\\microsoft.netcore.app.host.win-x64.3.1.12.nupkg.sha512"
+    "C:\\Users\\ADMIN\\.nuget\\packages\\system.xml.xmlserializer\\4.3.0\\system.xml.xmlserializer.4.3.0.nupkg.sha512"
   ],
   "logs": []
 }

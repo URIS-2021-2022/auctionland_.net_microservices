@@ -24,7 +24,7 @@ namespace OdlukaODavanjuUZakup.Controllers
         private readonly LinkGenerator linkGenerator;
         private readonly IMapper mapper;
         private readonly IOdlukaoDavanjuuZakupRepository odlukaoDavanjuuZakupRepository;
-        private readonly LoggerService loggerService;
+        private readonly ILoggerService loggerService;
 
         /// <summary>
         /// 
@@ -34,7 +34,7 @@ namespace OdlukaODavanjuUZakup.Controllers
         /// <param name="linkGenerator"></param>
         /// <param name="mapper"></param>
         /// <param name="loggerService"></param>
-        public OdlukaoDavanjuuZakupController(IOdlukaoDavanjuuZakupRepository odlukaoDavanjuuZakupRepository, LinkGenerator linkGenerator, IMapper mapper, LoggerService loggerService)
+        public OdlukaoDavanjuuZakupController(IOdlukaoDavanjuuZakupRepository odlukaoDavanjuuZakupRepository, LinkGenerator linkGenerator, IMapper mapper, ILoggerService loggerService)
 
         {
             this.linkGenerator = linkGenerator;

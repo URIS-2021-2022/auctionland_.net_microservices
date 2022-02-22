@@ -24,7 +24,7 @@ namespace OdlukaODavanjuUZakup.Controllers
         private readonly LinkGenerator linkGenerator;
         private readonly IGarantPlacanjaRepository garantPlacanjaRepository;
         private readonly IMapper mapper;
-        private readonly LoggerService loggerService;
+        private readonly ILoggerService loggerService;
 
         /// <summary>
         /// Konstruktor 
@@ -33,7 +33,7 @@ namespace OdlukaODavanjuUZakup.Controllers
         /// <param name="linkGenerator"></param>
         /// <param name="mapper"></param>
         /// <param name="loggerService"></param>
-        public GarantPlacanjaController(IGarantPlacanjaRepository garantPlacanjaRepository, LinkGenerator linkGenerator, IMapper mapper, LoggerService loggerService) 
+        public GarantPlacanjaController(IGarantPlacanjaRepository garantPlacanjaRepository, LinkGenerator linkGenerator, IMapper mapper, ILoggerService loggerService) 
         {
             this.linkGenerator = linkGenerator;
             this.garantPlacanjaRepository = garantPlacanjaRepository;

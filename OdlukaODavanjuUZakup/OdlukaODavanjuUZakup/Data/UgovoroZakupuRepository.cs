@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace OdlukaODavanjuUZakup.Data
 {
@@ -49,12 +50,12 @@ namespace OdlukaODavanjuUZakup.Data
 
         public List<UgovoroZakupu> GetUgovoriOZakupu(string zavodni_broj = null)
         {
-            return context.UgovoroZakupu.Where(e => zavodni_broj == null || e.zavodni_Broj == zavodni_broj).ToList();
+            return context.UgovoroZakupu.Include(g => g.odlukaoDavanjuuZakup).Where(e => zavodni_broj == null || e.zavodni_Broj == zavodni_broj).ToList();
         }
 
         public UgovoroZakupu GetUgovoriOZakupuById(Guid UgovoroZakupuId)
         {
-            return context.UgovoroZakupu.FirstOrDefault(e => e.UgovoroZakupuID == UgovoroZakupuId);
+            return context.UgovoroZakupu.Include(g => g.odlukaoDavanjuuZakup).FirstOrDefault(e => e.UgovoroZakupuID == UgovoroZakupuId);
         }
 
         public UgovoroZakupuConfirmation UpdateUgovorOZakupu(UgovoroZakupu ugovoroZakupu)

@@ -27,7 +27,10 @@ namespace OdlukaODavanjuUZakup.Entities
         public DateTime rok_za_vracanje_zemljista { get; set; }
 
         public string mesto_potpisivanja { get; set; }
-
         public DateTime datum_potpisa { get; set; }
+
+        public OdlukaoDavanjuuZakup odlukaoDavanjuuZakup { get; set; }
+        public Guid? OdlukaoDavanjuuZakupID { get; set; }
+
     }
 }
