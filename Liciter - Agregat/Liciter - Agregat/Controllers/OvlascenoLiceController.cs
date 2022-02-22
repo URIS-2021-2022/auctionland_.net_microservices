@@ -14,7 +14,7 @@ namespace Liciter___Agregat.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    class OvlascenoLiceController : ControllerBase
+   public class OvlascenoLiceController : ControllerBase
     {
         private readonly IOvlascenoLiceRepository ovlascenoLiceRepository;
         private readonly LinkGenerator linkGenerator;

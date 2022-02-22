@@ -68,8 +68,10 @@ namespace Liciter___Agregat.Controllers
             FizickoLiceModel fizickoLiceModel = fizickoLiceRepository.GetFizickoLiceById(fizickoLiceId);
             if (fizickoLiceModel == null)
             {
+                loggerService.Log(LogLevel.Warning, "GetByIdStatus", "Fizicko lice sa tim id-em nije pronadjeno");
                 return NotFound();
             }
+            loggerService.Log(LogLevel.Information, "GetByIdStatus", "Fizicko lice sa zadatim id-em je uspesno vracena!");
             return Ok(mapper.Map<FizickoLiceDto>(fizickoLiceModel));
         }
 
@@ -92,10 +94,12 @@ namespace Liciter___Agregat.Controllers
                 fizickoLiceRepository.SaveChanges();
                 // Dobar API treba da vrati lokator gde se taj resurs nalazi
                 string location = linkGenerator.GetPathByAction("GetFizickoLicebyId", "FizickoLice", new { fizickoLiceId = confirmation.FizickoLiceId });
+                loggerService.Log(LogLevel.Information, "PostStatus", "Fizicko lice je uspesno napravljeno!");
                 return Created(location, mapper.Map<FizickoLiceConfirmationDto>(confirmation));
             }
             catch (Exception ex)
             {
+                loggerService.Log(LogLevel.Warning, "PostStatus", "Fizicko lice nije kreirano, doslo je do greske!");
                 return StatusCode(StatusCodes.Status500InternalServerError, "Create Error " + ex.Message);
             }
 
@@ -117,11 +121,13 @@ namespace Liciter___Agregat.Controllers
                 FizickoLiceModel fizickoLiceModel = fizickoLiceRepository.GetFizickoLiceById(fizickoLiceId);
                 if (fizickoLiceModel == null)
                 {
+                    loggerService.Log(LogLevel.Warning, "DeleteStatus", "Fizicko lice sa tim id-em nije pronadjeno");
                     return NotFound();
                 }
                 fizickoLiceRepository.DeleteFizickoLice(fizickoLiceId);
                 fizickoLiceRepository.SaveChanges();
                 // Status iz familije 2xx koji se koristi kada se ne vraca nikakav objekat, ali naglasava da je sve u redu
+                loggerService.Log(LogLevel.Information, "DeleteStatus", "Fizicko lice je uspesno obrisano!");
                 return NoContent();
             }
             catch
@@ -146,15 +152,18 @@ namespace Liciter___Agregat.Controllers
                 //Proveriti da li uopšte postoji prijava koju pokušavamo da ažuriramo.
                 if (fizickoLiceRepository.GetFizickoLiceById(fizickoLice.FizickoLiceId) == null)
                 {
+                    loggerService.Log(LogLevel.Warning, "PutStatus", "Fizicko lice sa tim id-em nije pronadjeno");
                     return NotFound(); //Ukoliko ne postoji vratiti status 404 (NotFound).
                 }
                 FizickoLiceModel fizickoLiceModel = mapper.Map<FizickoLiceModel>(fizickoLice);
                 FizickoLiceConfirmation confirmation = fizickoLiceRepository.UpdateFizickoLice(fizickoLiceModel);
                 fizickoLiceRepository.SaveChanges();
+                loggerService.Log(LogLevel.Information, "PutStatus", "Fizicko lice je uspesno izmenjeno!");
                 return Ok(mapper.Map<FizickoLiceConfirmationDto>(confirmation));
             }
             catch (Exception)
             {
+                loggerService.Log(LogLevel.Warning, "PutStatus", "Doslo je do greske prilikom izmene fizickog lica");
                 return StatusCode(StatusCodes.Status500InternalServerError, "Update error");
             }
 

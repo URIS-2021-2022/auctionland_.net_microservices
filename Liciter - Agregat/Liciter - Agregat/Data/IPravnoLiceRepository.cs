@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Liciter___Agregat.Data
 {
-    interface IPravnoLiceRepository
+   public interface IPravnoLiceRepository
     {
         List<PravnoLiceModel> GetPravnaLicas(string MaticniBroj = null);
 
@@ -17,5 +17,7 @@ namespace Liciter___Agregat.Data
         PravnoLiceConfirmation UpdatePravnoLice(PravnoLiceModel pravnoLice);
 
         void DeletePravnoLice(Guid PravnoLiceId);
+
+        bool SaveChanges();
     }
 }

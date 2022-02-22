@@ -13,6 +13,7 @@ namespace Liciter___Agregat.Profiles
         public PravnoLiceConfirmationProfile()
         {
             CreateMap<PravnoLiceConfirmation, PravnoLiceConfirmationDto>();
+            CreateMap<PravnoLiceModel, PravnoLiceConfirmation>();
         }
     }
 }

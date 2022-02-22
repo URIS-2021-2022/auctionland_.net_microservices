@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Liciter___Agregat.Data
 {
-    interface IKupacRepository
+   public interface IKupacRepository
     {
         List<KupacModel> GetKupci(string JMBG_MaticniBroj = null);
 

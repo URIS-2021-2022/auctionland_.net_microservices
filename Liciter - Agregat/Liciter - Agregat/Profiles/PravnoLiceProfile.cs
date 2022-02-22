@@ -16,8 +16,8 @@ namespace Liciter___Agregat.Profiles
                 .ForMember(
                 dest => dest.BrojeviTelefona,
                 opt => opt.MapFrom(src => src.BrojTelefona1 + " , " + src.BrojTelefona2));
-            CreateMap<PravnoLiceModel, PravnoLiceCreationDto>();
-            CreateMap<PravnoLiceModel, PravnoLiceUpdateDto>();
+            CreateMap<PravnoLiceCreationDto, PravnoLiceModel>();
+            CreateMap<PravnoLiceUpdateDto, PravnoLiceModel>();
         }
     }
 }

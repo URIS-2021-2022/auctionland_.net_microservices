@@ -60,7 +60,6 @@ namespace Liciter___Agregat.Data
             lice.Drzava = ovlascenoLice.Drzava;
             lice.Ime = ovlascenoLice.Ime;
             lice.JMBG_Br_Pasosa = ovlascenoLice.JMBG_Br_Pasosa;
-            lice.Kupac = ovlascenoLice.Kupac;
             lice.OvlascenoLiceId = ovlascenoLice.OvlascenoLiceId;
             lice.Prezime = ovlascenoLice.Prezime;
 

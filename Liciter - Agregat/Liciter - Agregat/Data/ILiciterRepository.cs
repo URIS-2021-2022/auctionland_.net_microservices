@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Liciter___Agregat.Data
 {
-    interface ILiciterRepository
+  public  interface ILiciterRepository
     {
         List<LiciterModel> GetLiciters();
 

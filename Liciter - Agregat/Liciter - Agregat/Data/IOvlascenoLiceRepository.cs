@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Liciter___Agregat.Data
 {
-    interface IOvlascenoLiceRepository
+    public interface IOvlascenoLiceRepository
     {
         List<OvlascenoLiceModel> GetOvlascenaLicas(string JMBG_BrPasosa = null);
 

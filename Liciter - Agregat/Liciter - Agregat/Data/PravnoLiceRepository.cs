@@ -1,4 +1,5 @@
-﻿using Liciter___Agregat.Models;
+﻿using AutoMapper;
+using Liciter___Agregat.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,49 +9,40 @@ namespace Liciter___Agregat.Data
 {
     public class PravnoLiceRepository : IPravnoLiceRepository
     {
-        public static List<PravnoLiceModel> pravnaLica { get; set; } = new List<PravnoLiceModel>();
 
-        public PravnoLiceRepository ()
+        private readonly DataBaseContext context;
+        private readonly IMapper mapper;
+
+        public PravnoLiceRepository (DataBaseContext context, IMapper mapper)
         {
-            FillData();
+            this.context = context;
+            this.mapper = mapper;
         }
 
-        private void FillData()
+        public bool SaveChanges()
         {
-
+            return context.SaveChanges() > 0;
         }
         public PravnoLiceConfirmation CreatePravnoLice(PravnoLiceModel pravnoLice)
         {
-            pravnoLice.PravnoLiceId = Guid.NewGuid();
-            pravnaLica.Add(pravnoLice);
-            PravnoLiceModel lice = GetPravnoLiceById(pravnoLice.PravnoLiceId);
-
-            return new PravnoLiceConfirmation
-            {
-                PravnoLiceId = lice.PravnoLiceId,
-
-                Naziv = lice.Naziv,
-
-                MaticniBroj = lice.MaticniBroj
-
-            };
+            var createdEntity = context.Add(pravnoLice);
+            return mapper.Map<PravnoLiceConfirmation>(createdEntity.Entity);
         }
 
         public void DeletePravnoLice(Guid PravnoLiceId)
         {
-            pravnaLica.Remove(pravnaLica.FirstOrDefault(e => e.PravnoLiceId == PravnoLiceId));
+            var pravnoLice = GetPravnoLiceById(PravnoLiceId);
+            context.Remove(pravnoLice);
         }
 
         public List<PravnoLiceModel> GetPravnaLicas(string MaticniBroj = null)
         {
-            return (from e in pravnaLica
-                    where string.IsNullOrEmpty(MaticniBroj) || e.MaticniBroj == MaticniBroj
-                    select e).ToList();
+            return context.PravnaLica.Where(e => (MaticniBroj == null || e.MaticniBroj == MaticniBroj)).ToList();
         }
 
         public PravnoLiceModel GetPravnoLiceById(Guid PravnoLiceId)
         {
-            return pravnaLica.FirstOrDefault(e => e.PravnoLiceId == PravnoLiceId);
+            return context.PravnaLica.FirstOrDefault(e => e.PravnoLiceId == PravnoLiceId);
         }
 
         public PravnoLiceConfirmation UpdatePravnoLice(PravnoLiceModel pravnoLice)
