@@ -5,6 +5,7 @@ using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
+using Microsoft.Extensions.Logging;
 using Zalba.Data;
 using Zalba.Entities;
 using Zalba.Models;
@@ -23,15 +24,17 @@ namespace Zalba.Controllers
         private readonly ITipZalbeRepository tipZalbeRepository;
         private readonly LinkGenerator linkGenerator;
         private readonly IMapper mapper;
+        private readonly ILoggerService loggerService;
 
         /// <summary>
         /// Konstruktor kontrolera za tipove zalbi
         /// </summary>
-        public TipZalbeController(ITipZalbeRepository tipZalbeRepository, LinkGenerator linkGenerator, IMapper mapper)
+        public TipZalbeController(ITipZalbeRepository tipZalbeRepository, LinkGenerator linkGenerator, IMapper mapper, ILoggerService loggerService)
         {
             this.tipZalbeRepository = tipZalbeRepository;
             this.linkGenerator = linkGenerator;
             this.mapper = mapper;
+            this.loggerService = loggerService;
         }
 
         /// <summary>
@@ -50,9 +53,11 @@ namespace Zalba.Controllers
 
             if (tipoviZalbi == null || tipoviZalbi.Count == 0)
             {
+                loggerService.Log(LogLevel.Warning, "GetAllStatus", "Lista tipova zalbi je prazna ili null");
                 return NoContent();
             }
 
+            loggerService.Log(LogLevel.Information, "GetAllStatus", "Lista tipova zalbi je uspesno vracena!");
             return Ok(mapper.Map<List<TipZalbeDto>>(tipoviZalbi));
         }
 
@@ -71,8 +76,11 @@ namespace Zalba.Controllers
 
             if (tipZalbe == null)
             {
+                loggerService.Log(LogLevel.Warning, "GetByIdStatus", "Tip zalbe sa tim id-em nije pronadjeno");
                 return NotFound();
             }
+
+            loggerService.Log(LogLevel.Information, "GetByIdStatus", "Tip zalbe sa zadatim id-em je uspesno vracen!");
             return Ok(mapper.Map<TipZalbeDto>(tipZalbe));
         }
 
@@ -113,10 +121,12 @@ namespace Zalba.Controllers
 
                 string location = linkGenerator.GetPathByAction("GetTipZalbe", "TipZalbe", new { tipZalbeId = confirmation.TipZalbeId });
 
+                loggerService.Log(LogLevel.Information, "PostStatus", "Tip zalbe je uspesno napravljen!");
                 return Created(location, mapper.Map<TipZalbeConfirmationDto>(confirmation));
             }
             catch (Exception ex)
             {
+                loggerService.Log(LogLevel.Warning, "PostStatus", "Tip zalbe nije kreiran, doslo je do greske!");
                 return StatusCode(StatusCodes.Status500InternalServerError, "Create error");
             }
         }
@@ -141,6 +151,7 @@ namespace Zalba.Controllers
                 var oldTipZalbe = tipZalbeRepository.GetTipZalbeById(tipZalbe.TipZalbeId);
                 if (oldTipZalbe == null)
                 {
+                    loggerService.Log(LogLevel.Warning, "PutStatus", "Tip zalbe sa tim id-em nije pronadjen");
                     return NotFound();
                 }
                 TipZalbe tipZalbeEntity = mapper.Map<TipZalbe>(tipZalbe);
@@ -155,10 +166,13 @@ namespace Zalba.Controllers
 
 
                 tipZalbeRepository.SaveChanges();
+
+                loggerService.Log(LogLevel.Information, "PutStatus", "Tip zalbe je uspesno izmenjen!");
                 return Ok(mapper.Map<TipZalbeDto>(oldTipZalbe));
             }
             catch (Exception)
             {
+                loggerService.Log(LogLevel.Warning, "PutStatus", "Doslo je do greske prilikom izmene tipa zalbe");
                 return StatusCode(StatusCodes.Status500InternalServerError, "Update error");
             }
         }
@@ -183,11 +197,13 @@ namespace Zalba.Controllers
 
                 if (tipZalbe == null)
                 {
+                    loggerService.Log(LogLevel.Warning, "DeleteStatus", "Tip zalbe sa tim id-em nije pronadjen");
                     return NotFound();
                 }
 
                 tipZalbeRepository.DeleteTipZalbe(tipZalbeId);
                 tipZalbeRepository.SaveChanges();
+                loggerService.Log(LogLevel.Information, "DeleteStatus", "Tip zalbe je uspesno obrisan!");
                 return NoContent();
             }
             catch (Exception)

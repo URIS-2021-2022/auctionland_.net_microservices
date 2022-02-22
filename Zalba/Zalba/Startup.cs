@@ -92,6 +92,7 @@ namespace Zalba
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddScoped<ITipZalbeRepository, TipZalbeRepository>();
             services.AddScoped<IZalbaRepository, ZalbaRepository>();
+            services.AddScoped<ILoggerService, LoggerService>();
 
             //services.AddDbContextPool<ZalbaContext>(options => options.UseSqlServer(Configuration.GetConnectionString("ZalbeDB")));
             //services.AddDbContextPool<TipZalbeContext>(options => options.UseSqlServer(Configuration.GetConnectionString("TipoviZalbiDB")));

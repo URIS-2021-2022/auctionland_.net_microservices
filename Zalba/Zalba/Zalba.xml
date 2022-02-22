@@ -9,7 +9,7 @@
             Kontroler za tipove zalbi
             </summary>
         </member>
-        <member name="M:Zalba.Controllers.TipZalbeController.#ctor(Zalba.Data.ITipZalbeRepository,Microsoft.AspNetCore.Routing.LinkGenerator,AutoMapper.IMapper)">
+        <member name="M:Zalba.Controllers.TipZalbeController.#ctor(Zalba.Data.ITipZalbeRepository,Microsoft.AspNetCore.Routing.LinkGenerator,AutoMapper.IMapper,Zalba.Data.ILoggerService)">
             <summary>
             Konstruktor kontrolera za tipove zalbi
             </summary>
@@ -78,7 +78,7 @@
             Kontroler za zalbe
             </summary>
         </member>
-        <member name="M:Zalba.Controllers.ZalbaController.#ctor(Zalba.Data.IZalbaRepository,Microsoft.AspNetCore.Routing.LinkGenerator,AutoMapper.IMapper)">
+        <member name="M:Zalba.Controllers.ZalbaController.#ctor(Zalba.Data.IZalbaRepository,Microsoft.AspNetCore.Routing.LinkGenerator,AutoMapper.IMapper,Zalba.Data.ILoggerService)">
             <summary>
             Konstruktor kontrolera za zalbe
             </summary>

@@ -5,6 +5,7 @@ using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
+using Microsoft.Extensions.Logging;
 using Zalba.Data;
 using Zalba.Entities;
 using Zalba.Models;
@@ -23,15 +24,17 @@ namespace Zalba.Controllers
         private readonly IZalbaRepository zalbaRepository;
         private readonly LinkGenerator linkGenerator;
         private readonly IMapper mapper;
+        private readonly ILoggerService loggerService;
 
         /// <summary>
         /// Konstruktor kontrolera za zalbe
         /// </summary>
-        public ZalbaController(IZalbaRepository zalbaRepository, LinkGenerator linkGenerator, IMapper mapper)
+        public ZalbaController(IZalbaRepository zalbaRepository, LinkGenerator linkGenerator, IMapper mapper, ILoggerService loggerService)
         {
             this.zalbaRepository = zalbaRepository;
             this.linkGenerator = linkGenerator;
             this.mapper = mapper;
+            this.loggerService = loggerService;
         }
 
         /// <summary>
@@ -51,9 +54,11 @@ namespace Zalba.Controllers
 
             if (zalbe == null || zalbe.Count == 0)
             {
+                loggerService.Log(LogLevel.Warning, "GetAllStatus", "Lista zalbi je prazna ili null");
                 return NoContent();
             }
 
+            loggerService.Log(LogLevel.Information, "GetAllStatus", "Lista zalbi je uspesno vracena!");
             return Ok(mapper.Map<List<ZalbaDto>>(zalbe));
         }
 
@@ -72,8 +77,10 @@ namespace Zalba.Controllers
 
             if (zalba == null)
             {
+                loggerService.Log(LogLevel.Warning, "GetByIdStatus", "Zalba sa tim id-em nije pronadjena");
                 return NotFound();
             }
+            loggerService.Log(LogLevel.Information, "GetByIdStatus", "Zalba sa zadatim id-em je uspesno vracena!");
             return Ok(mapper.Map<ZalbaDto>(zalba));
         }
 
@@ -123,10 +130,13 @@ namespace Zalba.Controllers
 
                 string location = linkGenerator.GetPathByAction("GetZalba", "Zalba", new { zalbaId = confirmation.ZalbaId });
 
+
+                loggerService.Log(LogLevel.Information, "PostStatus", "Zalba je uspesno napravljena!");
                 return Created(location, mapper.Map<ZalbaConfirmationDto>(confirmation));
             }
             catch (Exception ex)
             {
+                loggerService.Log(LogLevel.Warning, "PostStatus", "Zalba nije kreirana, doslo je do greske!");
                 return StatusCode(StatusCodes.Status500InternalServerError, "Create error");
             }
         }
@@ -151,6 +161,7 @@ namespace Zalba.Controllers
                 var oldZalba = zalbaRepository.GetZalbaById(zalba.ZalbaId);
                 if (oldZalba == null)
                 {
+                    loggerService.Log(LogLevel.Warning, "PutStatus", "Zalba sa tim id-em nije pronadjena");
                     return NotFound();
                 }
                 ZalbaM zalbaEntity = mapper.Map<ZalbaM>(zalba);
@@ -163,10 +174,12 @@ namespace Zalba.Controllers
                 results.AddToModelState(ModelState, null);
 
                 zalbaRepository.SaveChanges();
+                loggerService.Log(LogLevel.Information, "PutStatus", "Zalba je uspesno izmenjena!");
                 return Ok(mapper.Map<ZalbaDto>(oldZalba));
             }
             catch (Exception)
             {
+                loggerService.Log(LogLevel.Warning, "PutStatus", "Doslo je do greske prilikom izmene zalbe");
                 return StatusCode(StatusCodes.Status500InternalServerError, "Update error");
             }
         }
@@ -191,11 +204,14 @@ namespace Zalba.Controllers
 
                 if (zalba == null)
                 {
+                    loggerService.Log(LogLevel.Warning, "DeleteStatus", "Zalba sa tim id-em nije pronadjena");
                     return NotFound();
                 }
 
                 zalbaRepository.DeleteZalba(zalbaId);
                 zalbaRepository.SaveChanges();
+
+                loggerService.Log(LogLevel.Information, "DeleteStatus", "Zalba je uspesno obrisana!");
                 return NoContent();
             }
             catch (Exception)
