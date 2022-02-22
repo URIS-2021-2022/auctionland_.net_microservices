@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "rzNeA9o//K9Z/rk4jRtUahOdavx3PRm+NAPeo8NHMlESSC0HR6XEltfDI+4chUNxPv0JXaJ35QaIwVDE+m230Q==",
+  "dgSpecHash": "gI/g9ZK0oy0+sG3CaVdprD8Ve1TC4/KtyzWILrNC8uRi7tKdgdMFABaYQkUR03sBI4zDZlKGUJSdHyjiXb9gJw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Korisnik\\source\\repos\\Zalba\\Zalba\\Zalba.csproj",
+  "projectFilePath": "C:\\Users\\Korisnik\\source\\repos\\tim-6---auctionland-tim-6-nopcommerce\\Zalba\\Zalba\\Zalba.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Korisnik\\.nuget\\packages\\automapper\\11.0.0\\automapper.11.0.0.nupkg.sha512",
     "C:\\Users\\Korisnik\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\11.0.0\\automapper.extensions.microsoft.dependencyinjection.11.0.0.nupkg.sha512",

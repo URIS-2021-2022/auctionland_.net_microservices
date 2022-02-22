@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Korisnik\\source\\repos\\Zalba\\Zalba\\Zalba.csproj": {}
+    "C:\\Users\\Korisnik\\source\\repos\\tim-6---auctionland-tim-6-nopcommerce\\Zalba\\Zalba\\Zalba.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Korisnik\\source\\repos\\Zalba\\Zalba\\Zalba.csproj": {
+    "C:\\Users\\Korisnik\\source\\repos\\tim-6---auctionland-tim-6-nopcommerce\\Zalba\\Zalba\\Zalba.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Korisnik\\source\\repos\\Zalba\\Zalba\\Zalba.csproj",
+        "projectUniqueName": "C:\\Users\\Korisnik\\source\\repos\\tim-6---auctionland-tim-6-nopcommerce\\Zalba\\Zalba\\Zalba.csproj",
         "projectName": "Zalba",
-        "projectPath": "C:\\Users\\Korisnik\\source\\repos\\Zalba\\Zalba\\Zalba.csproj",
+        "projectPath": "C:\\Users\\Korisnik\\source\\repos\\tim-6---auctionland-tim-6-nopcommerce\\Zalba\\Zalba\\Zalba.csproj",
         "packagesPath": "C:\\Users\\Korisnik\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Korisnik\\source\\repos\\Zalba\\Zalba\\obj\\",
+        "outputPath": "C:\\Users\\Korisnik\\source\\repos\\tim-6---auctionland-tim-6-nopcommerce\\Zalba\\Zalba\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

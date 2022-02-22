@@ -11,13 +11,13 @@ namespace Zalba.Data
     /// </summary>
     public class TipZalbeRepository : ITipZalbeRepository
     {
-        private readonly TipZalbeContext context;
+        private readonly ZalbaContext context;
         private readonly IMapper mapper;
 
         /// <summary>
         /// Konstruktor za repozitorijum tipova zalbi
         /// </summary>
-        public TipZalbeRepository(TipZalbeContext context, IMapper mapper)
+        public TipZalbeRepository(ZalbaContext context, IMapper mapper)
         {
             this.context = context;
             this.mapper = mapper;

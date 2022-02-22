@@ -87,7 +87,7 @@
             <summary>
             Vraća sve zalbe za zadate filtere.
             </summary>
-            <param name="brojResenja">Broj resenja (npr. S2020)</param>
+            <param name="statusZalbe">Status zalbe (npr. otvorena)</param>
             <returns>Lista zalbi</returns>
             <response code="200">Vraća listu zalbi</response>
             <response code="404">Nije pronađena ni jedna zalba</response>
@@ -227,9 +227,9 @@
             Repozitorijum tipova zalbi
             </summary>
         </member>
-        <member name="M:Zalba.Data.TipZalbeRepository.#ctor(Zalba.Entities.TipZalbeContext,AutoMapper.IMapper)">
+        <member name="M:Zalba.Data.TipZalbeRepository.#ctor(Zalba.Entities.ZalbaContext,AutoMapper.IMapper)">
             <summary>
-            Konstruktor za repozitorijum zalbi
+            Konstruktor za repozitorijum tipova zalbi
             </summary>
         </member>
         <member name="M:Zalba.Data.TipZalbeRepository.SaveChanges">
@@ -337,31 +337,6 @@
             Naziv tipa zalbe
             </summary>
         </member>
-        <member name="T:Zalba.Entities.TipZalbeContext">
-            <summary>
-            Kontekst za tip zalbe
-            </summary>
-        </member>
-        <member name="M:Zalba.Entities.TipZalbeContext.#ctor(Microsoft.EntityFrameworkCore.DbContextOptions{Zalba.Entities.TipZalbeContext})">
-            <summary>
-            Konstruktor konteksta za tip zalbe
-            </summary>
-        </member>
-        <member name="P:Zalba.Entities.TipZalbeContext.TipoviZalbi">
-            <summary>
-            Deklaracija eniteta za smestanje u bazu
-            </summary>
-        </member>
-        <member name="M:Zalba.Entities.TipZalbeContext.OnConfiguring(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder)">
-            <summary>
-            Metoda OnConfiguring
-            </summary>
-        </member>
-        <member name="M:Zalba.Entities.TipZalbeContext.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)">
-            <summary>
-            Popunjava bazu sa nekim inicijalnim podacima
-            </summary>
-        </member>
         <member name="T:Zalba.Entities.ZalbaConfirmation">
             <summary>
             Potvrda za zalbe
@@ -388,6 +363,11 @@
             </summary>
         </member>
         <member name="P:Zalba.Entities.ZalbaContext.Zalbe">
+            <summary>
+            Deklaracija eniteta za smestanje u bazu
+            </summary>
+        </member>
+        <member name="P:Zalba.Entities.ZalbaContext.TipoviZalbi">
             <summary>
             Deklaracija eniteta za smestanje u bazu
             </summary>

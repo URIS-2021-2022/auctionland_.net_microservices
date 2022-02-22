@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Zalba.Entities
@@ -11,6 +12,7 @@ namespace Zalba.Entities
         /// <summary>
         /// ID zalbe
         /// </summary>
+        [Key]
         public Guid ZalbaId { get; set; }
         /// <summary>
         /// ID tipa zalbe

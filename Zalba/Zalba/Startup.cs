@@ -93,11 +93,13 @@ namespace Zalba
             services.AddScoped<ITipZalbeRepository, TipZalbeRepository>();
             services.AddScoped<IZalbaRepository, ZalbaRepository>();
 
-            services.AddDbContextPool<ZalbaContext>(options => options.UseSqlServer(Configuration.GetConnectionString("ZalbeDB")));
-            services.AddDbContextPool<TipZalbeContext>(options => options.UseSqlServer(Configuration.GetConnectionString("TipoviZalbiDB")));
+            //services.AddDbContextPool<ZalbaContext>(options => options.UseSqlServer(Configuration.GetConnectionString("ZalbeDB")));
+            //services.AddDbContextPool<TipZalbeContext>(options => options.UseSqlServer(Configuration.GetConnectionString("TipoviZalbiDB")));
 
             //services.AddDbContext<ZalbaContext>(options => options.UseSqlServer(Configuration.GetConnectionString(nameof(ZalbaContext))));
             //services.AddDbContext<TipZalbeContext>(options => options.UseSqlServer(Configuration.GetConnectionString(nameof(TipZalbeContext))));
+
+            services.AddDbContext<ZalbaContext>();
 
             services.AddMvc().AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<ZalbaCreationValidator>());
             services.AddMvc().AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<ZalbaUpdateValidator>());
