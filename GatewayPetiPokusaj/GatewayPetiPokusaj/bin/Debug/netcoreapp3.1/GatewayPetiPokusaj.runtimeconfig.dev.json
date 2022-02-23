@@ -1,0 +1,8 @@
+{
+  "runtimeOptions": {
+    "additionalProbingPaths": [
+      "C:\\Users\\Radonja\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\Radonja\\.nuget\\packages"
+    ]
+  }
+}
