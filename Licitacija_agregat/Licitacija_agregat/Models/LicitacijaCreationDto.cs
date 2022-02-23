@@ -12,6 +12,10 @@ namespace Licitacija_agregat.Models
     /// </summary>
     public class LicitacijaCreationDto : IValidatableObject
     {
+        public Guid ProgramId { get; set; }
+        /// <summary>
+        /// Id programa
+        /// </summary>
         /// <summary>
         /// Broj licitacije
         /// </summary>

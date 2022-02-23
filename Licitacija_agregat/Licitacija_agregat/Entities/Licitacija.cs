@@ -9,6 +9,7 @@ namespace Licitacija_agregat.Entities
     public class Licitacija
     {
         public Guid LicitacijaId { get; set; }
+        public Guid? ProgramId { get; set; }
         public int Broj { get; set; }
         public int Godina { get; set; }
         public DateTime Datum { get; set; }
