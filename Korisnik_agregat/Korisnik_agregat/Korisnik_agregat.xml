@@ -1,0 +1,309 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Korisnik_agregat</name>
+    </assembly>
+    <members>
+        <member name="M:Korisnik_agregat.Controllers.AuthController.Login(Korisnik_agregat.Models.Principal)">
+            <summary>
+            Služi za autentifikaciju korisnika
+            </summary>
+            <param name="principal">Model sa podacima na osnovu kojih se vrši autentifikacija</param>
+            <returns></returns>
+        </member>
+        <member name="M:Korisnik_agregat.Controllers.KorisnikController.GetKorisnikList">
+            <summary>
+            Vraća sve korisnike
+            </summary>
+            <returns>Listu korisnika</returns>
+        </member>
+        <member name="M:Korisnik_agregat.Controllers.KorisnikController.GetKorsnikById(System.Guid)">
+            <summary>
+            Vraća korisnika po zadatoj vrednosti id-a
+            </summary>
+            <param name="korisnikId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Korisnik_agregat.Controllers.KorisnikController.CreateKorisnik(Korisnik_agregat.Models.KorisnikCreationDto)">
+             <summary>
+             Kreira novog korisnika
+             </summary>
+             <param name="korisnikDto"></param>
+             <returns>Potvrdu o kreiranom korisniku</returns>
+             <remarks>
+             Primer zahteva za kreiranje novog korisnika
+            "TipKorisnikaid" : "62D026F1-CAF7-4EAE-BF1A-261A95F7F0BB",
+             "Ime": "Vlado",
+             "Prezime": "Cetkovic",
+             "lozinka" : "vlado123"
+             </remarks>
+        </member>
+        <member name="M:Korisnik_agregat.Controllers.KorisnikController.UpdateKorisnik(Korisnik_agregat.Models.KorisnikUpdateDto)">
+             <summary>
+             Menja vrednost zadatog korisnika
+             </summary>
+             <param name="korisnikDto"></param>
+             <returns>Potvrdu o izmenjenom korisniku</returns>
+             <remarks>    
+             
+            "KorisnikId" : "E8351AD8-DEAC-45EF-B46C-ADDA996397E6",
+            "TipKorisnikaid" : "62D026F1-CAF7-4EAE-BF1A-261A95F7F0BB",
+            "Ime": "Nikolina",
+            "Prezime": "Vuković",
+            "lozinka" : "kika123"
+            </remarks>
+        </member>
+        <member name="M:Korisnik_agregat.Controllers.KorisnikController.DeleteKorisnik(System.Guid)">
+            <summary>
+            Briše korisnika po zadatoj vrednosti id-a
+            </summary>
+            <param name="korisnikId"></param>
+            <returns>Prazan payload</returns>
+        </member>
+        <member name="M:Korisnik_agregat.Controllers.KorisnikController.GetExamRegistrationOptions">
+            <summary>
+            Prikazuje sve moguće tipove zahteva 
+            </summary>
+            <returns>Listu mogućih zahteva</returns>
+        </member>
+        <member name="M:Korisnik_agregat.Controllers.TipKorisnikaController.GetTipKorisnikaList">
+            <summary>
+            Vraca sve tipove korisnika
+            </summary>
+            <returns>Listu tipova korisnika</returns>
+        </member>
+        <member name="M:Korisnik_agregat.Controllers.TipKorisnikaController.GetTipKorisnikaById(System.Guid)">
+            <summary>
+            Vraca tip korisnika za zadatu vrednost id-a
+            </summary>
+            <param name="tipKorisnikaId"></param>
+            <returns>Objekat tipa korisnika</returns>
+        </member>
+        <member name="M:Korisnik_agregat.Controllers.TipKorisnikaController.GetExamRegistrationOptions">
+            <summary>
+            Prikazuje sve moguće tipove zahteva 
+            </summary>
+            <returns>Listu mogućih zahteva</returns>
+        </member>
+        <member name="P:Korisnik_agregat.Models.EtapaDto.Dan">
+            <summary>
+            Dan etape
+            </summary>
+        </member>
+        <member name="P:Korisnik_agregat.Models.EtapaDto.BrojEtape">
+            <summary>
+            Broj etape
+            </summary>
+        </member>
+        <member name="T:Korisnik_agregat.Models.KorisnikConfirmationDto">
+            <summary>
+            Predstavlja model potvrde korisnika
+            </summary>
+        </member>
+        <member name="P:Korisnik_agregat.Models.KorisnikConfirmationDto.KorisnikId">
+            <summary>
+            Id korisnika
+            </summary>
+        </member>
+        <member name="P:Korisnik_agregat.Models.KorisnikConfirmationDto.Ime">
+            <summary>
+            Ime korisnika
+            </summary>
+        </member>
+        <member name="P:Korisnik_agregat.Models.KorisnikConfirmationDto.Prezime">
+            <summary>
+            Prezime korisnika
+            </summary>
+        </member>
+        <member name="T:Korisnik_agregat.Models.KorisnikCreationDto">
+            <summary>
+            Predstavlja model kreiranja korisnika
+            </summary>
+        </member>
+        <member name="P:Korisnik_agregat.Models.KorisnikCreationDto.Ime">
+            <summary>
+            Ime korisnika
+            </summary>
+        </member>
+        <member name="P:Korisnik_agregat.Models.KorisnikCreationDto.Prezime">
+            <summary>
+            Prezime korisnika
+            </summary>
+        </member>
+        <member name="P:Korisnik_agregat.Models.KorisnikCreationDto.KorisnickoIme">
+            <summary>
+            Korisničko ime
+            </summary>
+        </member>
+        <member name="P:Korisnik_agregat.Models.KorisnikCreationDto.Lozinka">
+            <summary>
+            Lozinka korisnika
+            </summary>
+        </member>
+        <member name="P:Korisnik_agregat.Models.KorisnikCreationDto.TipKorisnikaId">
+            <summary>
+            Id tipa korisnika
+            </summary>
+        </member>
+        <member name="T:Korisnik_agregat.Models.KorisnikDto">
+            <summary>
+            Predstavlja model korisnika
+            </summary>
+        </member>
+        <member name="P:Korisnik_agregat.Models.KorisnikDto.Ime">
+            <summary>
+            Ime korisnika
+            </summary>
+        </member>
+        <member name="P:Korisnik_agregat.Models.KorisnikDto.Prezime">
+            <summary>
+            Prezime korisnika
+            </summary>
+        </member>
+        <member name="P:Korisnik_agregat.Models.KorisnikDto.KorisnickoIme">
+            <summary>
+            Korisničko ime
+            </summary>
+        </member>
+        <member name="P:Korisnik_agregat.Models.KorisnikDto.Lozinka">
+            <summary>
+            Lozinka korisnika
+            </summary>
+        </member>
+        <member name="P:Korisnik_agregat.Models.KorisnikDto.Salt">
+            <summary>
+            Salt
+            </summary>
+        </member>
+        <member name="P:Korisnik_agregat.Models.KorisnikDto.TipKorisnikaId">
+            <summary>
+            Id tipa korisnika
+            </summary>
+        </member>
+        <member name="T:Korisnik_agregat.Models.KorisnikovaLicitacijaDto.LicitacijaDto">
+            <summary>
+            Predstavlja model licitacije
+            </summary>
+        </member>
+        <member name="P:Korisnik_agregat.Models.KorisnikovaLicitacijaDto.LicitacijaDto.Broj">
+            <summary>
+            Broj licitacije
+            </summary>
+        </member>
+        <member name="P:Korisnik_agregat.Models.KorisnikovaLicitacijaDto.LicitacijaDto.Godina">
+            <summary>
+            Godina licitacije
+            </summary>
+        </member>
+        <member name="P:Korisnik_agregat.Models.KorisnikovaLicitacijaDto.LicitacijaDto.Datum">
+            <summary>
+            Datum licitacije
+            </summary>
+        </member>
+        <member name="P:Korisnik_agregat.Models.KorisnikovaLicitacijaDto.LicitacijaDto.Ogranicenje">
+            <summary>
+            Ograničenje licitacije
+            </summary>
+        </member>
+        <member name="P:Korisnik_agregat.Models.KorisnikovaLicitacijaDto.LicitacijaDto.Korak_cene">
+            <summary>
+            Korak uvećanja cene licitacije
+            </summary>
+        </member>
+        <member name="P:Korisnik_agregat.Models.KorisnikovaLicitacijaDto.LicitacijaDto.Lista_dokumentacije_fizicka_lica">
+            <summary>
+            Lista koja sadrži dokumentaciju za fizička lica
+            </summary>
+        </member>
+        <member name="P:Korisnik_agregat.Models.KorisnikovaLicitacijaDto.LicitacijaDto.Lista_dokumentacije_pravna_lica">
+            <summary>
+            Lista koja sadrži dokumentaciju za pravna lica
+            </summary>
+        </member>
+        <member name="P:Korisnik_agregat.Models.KorisnikovaLicitacijaDto.LicitacijaDto.JavnoNadmetanje">
+            <summary>
+            Lista javnih nadmetanja
+            </summary>
+        </member>
+        <member name="P:Korisnik_agregat.Models.KorisnikovaLicitacijaDto.LicitacijaDto.ListaEtapa">
+            <summary>
+            Lista etapa određene licitacije
+            </summary>
+        </member>
+        <member name="P:Korisnik_agregat.Models.KorisnikovaLicitacijaDto.LicitacijaDto.Rok_za_dostavljanje_prijave">
+            <summary>
+            Datum koji predstavlja rok za dostavljanje prijave
+            </summary>
+        </member>
+        <member name="T:Korisnik_agregat.Models.KorisnikUpdateDto">
+            <summary>
+            Predstavlja model za modifikaciju korisnika
+            </summary>
+        </member>
+        <member name="P:Korisnik_agregat.Models.KorisnikUpdateDto.KorisnikId">
+            <summary>
+            Id korisnika
+            </summary>
+        </member>
+        <member name="P:Korisnik_agregat.Models.KorisnikUpdateDto.Ime">
+            <summary>
+            Ime korisnika
+            </summary>
+        </member>
+        <member name="P:Korisnik_agregat.Models.KorisnikUpdateDto.Prezime">
+            <summary>
+            Prezime korisnika
+            </summary>
+        </member>
+        <member name="P:Korisnik_agregat.Models.KorisnikUpdateDto.KorisnickoIme">
+            <summary>
+            Korisničko ime
+            </summary>
+        </member>
+        <member name="P:Korisnik_agregat.Models.KorisnikUpdateDto.Lozinka">
+            <summary>
+            Lozinka
+            </summary>
+        </member>
+        <member name="P:Korisnik_agregat.Models.KorisnikUpdateDto.TipKorisnikaId">
+            <summary>
+            Id tipa korisnika
+            </summary>
+        </member>
+        <member name="T:Korisnik_agregat.Models.Principal">
+            <summary>
+            Model na osnovu kojeg se vrsi autentifikacija
+            </summary>
+        </member>
+        <member name="P:Korisnik_agregat.Models.Principal.KorisnickoIme">
+            <summary>
+            Korisničko ime
+            </summary>
+        </member>
+        <member name="P:Korisnik_agregat.Models.Principal.Lozinka">
+            <summary>
+            Lozinka
+            </summary>
+        </member>
+        <member name="T:Korisnik_agregat.Models.TipKorisnikaDto">
+            <summary>
+            Prestavlja model tipa korisnika
+            </summary>
+        </member>
+        <member name="P:Korisnik_agregat.Models.TipKorisnikaDto.TipKorisnikaId">
+            <summary>
+            Id tipa korisnika
+            </summary>
+        </member>
+        <member name="P:Korisnik_agregat.Models.TipKorisnikaDto.NazivTipa">
+            <summary>
+             Naziv tipa korisnika
+            </summary>
+        </member>
+        <member name="P:Korisnik_agregat.Models.TipKorisnikaDto.ListaKorisnika">
+            <summary>
+            Lista korisnika datog tipa korisnika
+            </summary>
+        </member>
+    </members>
+</doc>
