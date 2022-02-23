@@ -10,15 +10,27 @@ using System.Threading.Tasks;
 
 namespace Parcela.Data
 {
+    /// <summary>
+    /// Klasa LoggerService
+    /// </summary>
     public class LoggerService : ILoggerService
     {
+        /// <summary>
+        /// Konfiguracija
+        /// </summary>
         public readonly IConfiguration configuration;
 
+        /// <summary>
+        /// Konfiguracija
+        /// </summary>
         public LoggerService(IConfiguration configuration)
         {
             this.configuration = configuration;
         }
 
+        /// <summary>
+        /// Metoda log
+        /// </summary>
         public async Task<bool> Log(LogLevel level, string method, string message, Exception error = null)
         {
             try
@@ -49,7 +61,8 @@ namespace Parcela.Data
 
             catch (Exception ex)
             {
-                //string greska = ex.Message;
+                string greska = ex.Message;
+                Console.WriteLine(greska);
                 return false;
             }
         }

@@ -101,14 +101,6 @@ namespace Parcela
             services.AddScoped<ILoggerService, LoggerService>();
             services.AddScoped<IAuthHelper, AuthHelper>();
 
-            //services.AddDbContextPool<ParcelaContext>(options => options.UseSqlServer(Configuration.GetConnectionString("ParceleDB")));
-            //services.AddDbContextPool<DeoParceleContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DeloviParceleDB")));
-            //services.AddDbContextPool<OpstinaContext>(options => options.UseSqlServer(Configuration.GetConnectionString("OpstineDB")));
-
-            //services.AddDbContext<ParcelaContext>(options => options.UseSqlServer(Configuration.GetConnectionString(nameof(ParcelaContext))));
-            //services.AddDbContext<DeoParceleContext>(options => options.UseSqlServer(Configuration.GetConnectionString(nameof(DeoParceleContext))));
-            //services.AddDbContext<OpstinaContext>(options => options.UseSqlServer(Configuration.GetConnectionString(nameof(OpstineContext))));
-
             services.AddDbContext<ParcelaContext>();
 
             services.AddMvc().AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<ParcelaCreationValidator>());
@@ -174,7 +166,6 @@ namespace Parcela
             app.UseSwaggerUI(setupAction =>
             {
                 setupAction.SwaggerEndpoint("/swagger/ParcelaOpenApiSpecification/swagger.json", "Parcela API");
-                //setupAction.RoutePrefix = "";
             });
 
             app.UseRouting();

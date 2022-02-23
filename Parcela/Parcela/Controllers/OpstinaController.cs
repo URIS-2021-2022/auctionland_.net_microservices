@@ -127,6 +127,8 @@ namespace Parcela.Controllers
             }
             catch (Exception ex)
             {
+                string greska = ex.Message;
+                Console.WriteLine(greska);
                 loggerService.Log(LogLevel.Warning, "PostStatus", "Opstina nije kreirana, doslo je do greske!");
                 return StatusCode(StatusCodes.Status500InternalServerError, "Create error");
             }

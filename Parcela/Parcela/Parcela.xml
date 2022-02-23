@@ -304,6 +304,16 @@
             Metoda koja cuva izmene
             </summary>
         </member>
+        <member name="T:Parcela.Data.ILoggerService">
+            <summary>
+            Interfejs za LoggerService
+            </summary>
+        </member>
+        <member name="M:Parcela.Data.ILoggerService.Log(Microsoft.Extensions.Logging.LogLevel,System.String,System.String,System.Exception)">
+            <summary>
+            Metoda za LoggerService
+            </summary>
+        </member>
         <member name="T:Parcela.Data.IOpstinaRepository">
             <summary>
             Interfejs za OpstinaRepository
@@ -372,6 +382,26 @@
         <member name="M:Parcela.Data.IParcelaRepository.SaveChanges">
             <summary>
             Metoda koja cuva izmene
+            </summary>
+        </member>
+        <member name="T:Parcela.Data.LoggerService">
+            <summary>
+            Klasa LoggerService
+            </summary>
+        </member>
+        <member name="F:Parcela.Data.LoggerService.configuration">
+            <summary>
+            Konfiguracija
+            </summary>
+        </member>
+        <member name="M:Parcela.Data.LoggerService.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Konfiguracija
+            </summary>
+        </member>
+        <member name="M:Parcela.Data.LoggerService.Log(Microsoft.Extensions.Logging.LogLevel,System.String,System.String,System.Exception)">
+            <summary>
+            Metoda log
             </summary>
         </member>
         <member name="T:Parcela.Data.OpstinaRepository">
@@ -494,6 +524,36 @@
             Osnovni podaci o delu parcele
             </summary>
         </member>
+        <member name="T:Parcela.Entities.LogModel">
+            <summary>
+            Klasa LogModel
+            </summary>
+        </member>
+        <member name="P:Parcela.Entities.LogModel.Service">
+            <summary>
+            String Service
+            </summary>
+        </member>
+        <member name="P:Parcela.Entities.LogModel.Level">
+            <summary>
+            String Level
+            </summary>
+        </member>
+        <member name="P:Parcela.Entities.LogModel.Method">
+            <summary>
+            String Method
+            </summary>
+        </member>
+        <member name="P:Parcela.Entities.LogModel.Message">
+            <summary>
+            String Message
+            </summary>
+        </member>
+        <member name="P:Parcela.Entities.LogModel.Error">
+            <summary>
+            String Error
+            </summary>
+        </member>
         <member name="T:Parcela.Entities.Opstina">
             <summary>
             Entitet opstina
@@ -592,6 +652,11 @@
         <member name="P:Parcela.Entities.ParcelaM.Povrsina">
             <summary>
             Povrsina parcele
+            </summary>
+        </member>
+        <member name="P:Parcela.Entities.ParcelaM.KorisnikParcele">
+            <summary>
+            ID korisnika parcele
             </summary>
         </member>
         <member name="P:Parcela.Entities.ParcelaM.BrojParcele">
@@ -874,6 +939,11 @@
             Povrsina parcele
             </summary>
         </member>
+        <member name="P:Parcela.Models.ParcelaCreationDto.KorisnikParcele">
+            <summary>
+            ID korisnika parcele
+            </summary>
+        </member>
         <member name="P:Parcela.Models.ParcelaCreationDto.BrojParcele">
             <summary>
             Broj parcele
@@ -969,6 +1039,11 @@
             Datum podnosenja parcele
             </summary>
         </member>
+        <member name="P:Parcela.Models.ParcelaDto.PodnosilacParcele">
+            <summary>
+            ID podnosioca parcele
+            </summary>
+        </member>
         <member name="P:Parcela.Models.ParcelaDto.RazlogParcele">
             <summary>
             Razlog parcele parcele
@@ -1017,6 +1092,11 @@
         <member name="P:Parcela.Models.ParcelaUpdateDto.Povrsina">
             <summary>
             Povrsina parcele
+            </summary>
+        </member>
+        <member name="P:Parcela.Models.ParcelaUpdateDto.KorisnikParcele">
+            <summary>
+            ID korisnika parcele
             </summary>
         </member>
         <member name="P:Parcela.Models.ParcelaUpdateDto.BrojParcele">
