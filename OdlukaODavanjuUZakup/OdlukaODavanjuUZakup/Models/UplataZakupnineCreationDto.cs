@@ -10,7 +10,6 @@ namespace OdlukaODavanjuUZakup.Models
     /// </summary>
     public class UplataZakupnineCreationDto
     {
-        // public Guid UplataZakupnineID { get; set; }
         /// <summary>
         /// broj racuna na koji se vrsi uplata
         /// </summary>

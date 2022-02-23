@@ -11,7 +11,6 @@ namespace OdlukaODavanjuUZakup.Models
     /// </summary>
     public class OdlukaoDavanjuuZakupCreationDto
     {
-      //  public Guid OdlukaoDavanjuuZakupID { get; set; }
       /// <summary>
       /// Datum donosenja odluke o zakupu
       /// </summary>

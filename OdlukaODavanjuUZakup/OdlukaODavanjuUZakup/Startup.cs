@@ -43,7 +43,6 @@ namespace OdlukaODavanjuUZakup
             services.AddScoped<IUplataZakupnineRepository, UplataZakupnineRepository>();
             services.AddScoped<IUgovoroZakupuRepository, UgovoroZakupuRepository>();
             services.AddScoped<ILoggerService, LoggerService>();
-      //      services.AddScoped<GarantPlacanjaMockRepository>();
 
             services.AddSwaggerGen(setupAction =>
             {
@@ -63,15 +62,14 @@ namespace OdlukaODavanjuUZakup
                     {
                         Name = "Ftn licenca"
                     }
-                }); ;
+                });
                 var xmlComments = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 var xmlCommentsPath = Path.Combine(AppContext.BaseDirectory, xmlComments);
                 setupAction.IncludeXmlComments(xmlCommentsPath);
             });
 
 
-            services.AddDbContext<DatabaseContext>(options => options.UseSqlServer(Configuration.GetConnectionString("OdlukaDB"))); ;
-        //    services.AddDbContextPool<DatabaseContext>(options => options.UseSqlServer(Configuration.GetConnectionString("OdlukaDB")));
+            services.AddDbContext<DatabaseContext>(options => options.UseSqlServer(Configuration.GetConnectionString("OdlukaDB"))); 
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
