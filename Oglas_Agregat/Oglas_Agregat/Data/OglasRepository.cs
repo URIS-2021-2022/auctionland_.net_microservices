@@ -26,9 +26,9 @@ namespace Oglas_Agregat.Data
             return context.SaveChanges() > 0;
         }
 
-        public OglasConfirmation CreateOglas(Oglas oglasModel)
+        public OglasConfirmation CreateOglas(Oglas oglas)
         {
-            var createdEntity = context.Add(oglasModel);
+            var createdEntity = context.Add(oglas);
             return mapper.Map<OglasConfirmation>(createdEntity.Entity);
 
         }
@@ -51,7 +51,7 @@ namespace Oglas_Agregat.Data
 
         public void UpdateOglas(Oglas oglas)
         {
-
+            //nije potrebna implementacija
         }
     }
 }

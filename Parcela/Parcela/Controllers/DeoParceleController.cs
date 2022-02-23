@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using AutoMapper;
 using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
@@ -18,7 +20,7 @@ namespace Parcela.Controllers
     [ApiController]
     [Route("api/deoParcele")]
     [Produces("application/json", "application/xml")]
-    //[Authorize]
+    [Authorize]
     public class DeoParceleController : ControllerBase
     {
         private readonly IDeoParceleRepository deoParceleRepository;
@@ -128,6 +130,8 @@ namespace Parcela.Controllers
             }
             catch (Exception ex)
             {
+                string greska = ex.Message;
+                Console.WriteLine(greska);
                 loggerService.Log(LogLevel.Warning, "PostStatus", "Deo parcele nije kreiran, doslo je do greske!");
                 return StatusCode(StatusCodes.Status500InternalServerError, "Create error");
             }

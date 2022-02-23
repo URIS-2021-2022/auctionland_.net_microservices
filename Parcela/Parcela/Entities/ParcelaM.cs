@@ -19,11 +19,10 @@ namespace Parcela.Entities
         /// Povrsina parcele
         /// </summary>
         public int Povrsina { get; set; }
-        /*/// <summary>
+        /// <summary>
         /// ID korisnika parcele
         /// </summary>
-        [ForeignKey("FK_Korisnik")]
-        public Guid KorisnikParcele { get; set; }*/
+        public Guid? KorisnikParcele { get; set; }
         /// <summary>
         /// Broj parcele
         /// </summary>

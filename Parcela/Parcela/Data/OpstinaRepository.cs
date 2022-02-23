@@ -61,7 +61,7 @@ namespace Parcela.Data
         /// </summary>
         public void UpdateOpstina(Opstina opstina)
         {
-
+            //azurira se automatski
         }
 
         /// <summary>

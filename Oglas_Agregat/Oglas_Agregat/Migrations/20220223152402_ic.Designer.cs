@@ -10,7 +10,7 @@ using Oglas_Agregat.Entities;
 namespace Oglas_Agregat.Migrations
 {
     [DbContext(typeof(OglasContext))]
-    [Migration("20220223104007_ic")]
+    [Migration("20220223152402_ic")]
     partial class ic
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

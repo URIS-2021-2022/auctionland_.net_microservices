@@ -64,3 +64,4 @@ C:\Users\Luka\Documents\GitHub\tim-6---auctionland-tim-6-nopcommerce\Liciter - A
 C:\Users\Luka\Documents\GitHub\tim-6---auctionland-tim-6-nopcommerce\Liciter - Agregat\Liciter - Agregat\obj\Debug\net5.0\Liciter - Agregat.pdb
 C:\Users\Luka\Documents\GitHub\tim-6---auctionland-tim-6-nopcommerce\Liciter - Agregat\Liciter - Agregat\obj\Debug\net5.0\Liciter - Agregat.genruntimeconfig.cache
 C:\Users\Luka\Documents\GitHub\tim-6---auctionland-tim-6-nopcommerce\Liciter - Agregat\Liciter - Agregat\bin\Debug\net5.0\Liciter - Agregat.xml
+C:\Users\Luka\Documents\GitHub\tim-6---auctionland-tim-6-nopcommerce\Liciter - Agregat\Liciter - Agregat\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
