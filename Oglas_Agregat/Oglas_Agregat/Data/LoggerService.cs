@@ -49,7 +49,7 @@ namespace Oglas_Agregat.Data
 
             catch (Exception ex)
             {
-                string greska = ex.Message;
+                Console.Write("Error occurred." + ex.Message);
                 return false;
             }
         }
