@@ -1,0 +1,684 @@
+{
+	"info": {
+		"_postman_id": "1a579bfe-d451-4a76-83ec-c207c7a92fcb",
+		"name": "KomisijaAgregat",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get",
+			"item": [
+				{
+					"name": "GetClanKomisije",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NDU2Mjk4NjAsImlzcyI6IlVSSVMudW5zLmFjLnJzIiwiYXVkIjoiVVJJUy51bnMuYWMucnMifQ.-pdDQMOxs2F1HXKIImICEHu4680-XV25jnW-CgGk8tk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44310/api/ClanKomisije/?=Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NDU2Mjk4NjAsImlzcyI6IlVSSVMudW5zLmFjLnJzIiwiYXVkIjoiVVJJUy51bnMuYWMucnMifQ.-pdDQMOxs2F1HXKIImICEHu4680-XV25jnW-CgGk8tk",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44310",
+							"path": [
+								"api",
+								"ClanKomisije",
+								""
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NDU2Mjk4NjAsImlzcyI6IlVSSVMudW5zLmFjLnJzIiwiYXVkIjoiVVJJUy51bnMuYWMucnMifQ.-pdDQMOxs2F1HXKIImICEHu4680-XV25jnW-CgGk8tk"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetKomisija",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NDU2Mjc5NDUsImlzcyI6IlVSSVMudW5zLmFjLnJzIiwiYXVkIjoiVVJJUy51bnMuYWMucnMifQ.uJ2pYwgR9namkKcsX5vFPIfEfAaLSUTBMxrE0A4PuLI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44310/api/Komisija/?=Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NDU2Mjc5NDUsImlzcyI6IlVSSVMudW5zLmFjLnJzIiwiYXVkIjoiVVJJUy51bnMuYWMucnMifQ.uJ2pYwgR9namkKcsX5vFPIfEfAaLSUTBMxrE0A4PuLI",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44310",
+							"path": [
+								"api",
+								"Komisija",
+								""
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NDU2Mjc5NDUsImlzcyI6IlVSSVMudW5zLmFjLnJzIiwiYXVkIjoiVVJJUy51bnMuYWMucnMifQ.uJ2pYwgR9namkKcsX5vFPIfEfAaLSUTBMxrE0A4PuLI"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetPredsednik",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NDU2Mjk4NjAsImlzcyI6IlVSSVMudW5zLmFjLnJzIiwiYXVkIjoiVVJJUy51bnMuYWMucnMifQ.-pdDQMOxs2F1HXKIImICEHu4680-XV25jnW-CgGk8tk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44310/api/Predsednik/?=Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NDU2Mjk4NjAsImlzcyI6IlVSSVMudW5zLmFjLnJzIiwiYXVkIjoiVVJJUy51bnMuYWMucnMifQ.-pdDQMOxs2F1HXKIImICEHu4680-XV25jnW-CgGk8tk",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44310",
+							"path": [
+								"api",
+								"Predsednik",
+								""
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NDU2Mjk4NjAsImlzcyI6IlVSSVMudW5zLmFjLnJzIiwiYXVkIjoiVVJJUy51bnMuYWMucnMifQ.-pdDQMOxs2F1HXKIImICEHu4680-XV25jnW-CgGk8tk"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "GetById",
+			"item": [
+				{
+					"name": "GetClanKomisijeById",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NDU2MzM5NTIsImlzcyI6IlVSSVMudW5zLmFjLnJzIiwiYXVkIjoiVVJJUy51bnMuYWMucnMifQ.M5Y6eO7zJ73cDIqHQr-HcMZnnn7JjzLAkR91s1VYmls",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44310/api/ClanKomisije/d63d73cb-a6ef-4aa4-57d1-08d9f62c7da5/?=Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NDU2Mjk4NjAsImlzcyI6IlVSSVMudW5zLmFjLnJzIiwiYXVkIjoiVVJJUy51bnMuYWMucnMifQ.-pdDQMOxs2F1HXKIImICEHu4680-XV25jnW-CgGk8tk",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44310",
+							"path": [
+								"api",
+								"ClanKomisije",
+								"d63d73cb-a6ef-4aa4-57d1-08d9f62c7da5",
+								""
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NDU2Mjk4NjAsImlzcyI6IlVSSVMudW5zLmFjLnJzIiwiYXVkIjoiVVJJUy51bnMuYWMucnMifQ.-pdDQMOxs2F1HXKIImICEHu4680-XV25jnW-CgGk8tk"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetKomisijaById",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NDU2MzM5NTIsImlzcyI6IlVSSVMudW5zLmFjLnJzIiwiYXVkIjoiVVJJUy51bnMuYWMucnMifQ.M5Y6eO7zJ73cDIqHQr-HcMZnnn7JjzLAkR91s1VYmls",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44310/api/Komisija/602fabd1-9afe-4b20-5f9d-08d9f62d5ee3/?=Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NDU2Mjk4NjAsImlzcyI6IlVSSVMudW5zLmFjLnJzIiwiYXVkIjoiVVJJUy51bnMuYWMucnMifQ.-pdDQMOxs2F1HXKIImICEHu4680-XV25jnW-CgGk8tk",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44310",
+							"path": [
+								"api",
+								"Komisija",
+								"602fabd1-9afe-4b20-5f9d-08d9f62d5ee3",
+								""
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NDU2Mjk4NjAsImlzcyI6IlVSSVMudW5zLmFjLnJzIiwiYXVkIjoiVVJJUy51bnMuYWMucnMifQ.-pdDQMOxs2F1HXKIImICEHu4680-XV25jnW-CgGk8tk"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetPredsednikById",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NDU2MzM5NTIsImlzcyI6IlVSSVMudW5zLmFjLnJzIiwiYXVkIjoiVVJJUy51bnMuYWMucnMifQ.M5Y6eO7zJ73cDIqHQr-HcMZnnn7JjzLAkR91s1VYmls",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44310/api/Predsednik/a16b84ac-3ff7-4dd5-708e-08d9f62defd4/?=Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NDU2Mjk4NjAsImlzcyI6IlVSSVMudW5zLmFjLnJzIiwiYXVkIjoiVVJJUy51bnMuYWMucnMifQ.-pdDQMOxs2F1HXKIImICEHu4680-XV25jnW-CgGk8tk",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44310",
+							"path": [
+								"api",
+								"Predsednik",
+								"a16b84ac-3ff7-4dd5-708e-08d9f62defd4",
+								""
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NDU2Mjk4NjAsImlzcyI6IlVSSVMudW5zLmFjLnJzIiwiYXVkIjoiVVJJUy51bnMuYWMucnMifQ.-pdDQMOxs2F1HXKIImICEHu4680-XV25jnW-CgGk8tk"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Create",
+			"item": [
+				{
+					"name": "CreateClanKomisije",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NDU2Mjk4NjAsImlzcyI6IlVSSVMudW5zLmFjLnJzIiwiYXVkIjoiVVJJUy51bnMuYWMucnMifQ.-pdDQMOxs2F1HXKIImICEHu4680-XV25jnW-CgGk8tk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\r\n        \"imeClana\": \"Nenad\",\r\n        \"prezimeClana\": \"Jeckovic\",\r\n        \"emailClana\": \"jecko@mail.com\",\r\n        \"komisijaId\": \"3012c45d-6cbb-4806-2a28-08d9f6d32318\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44310/api/ClanKomisije/?=Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NDU2Mjk4NjAsImlzcyI6IlVSSVMudW5zLmFjLnJzIiwiYXVkIjoiVVJJUy51bnMuYWMucnMifQ.-pdDQMOxs2F1HXKIImICEHu4680-XV25jnW-CgGk8tk",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44310",
+							"path": [
+								"api",
+								"ClanKomisije",
+								""
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NDU2Mjk4NjAsImlzcyI6IlVSSVMudW5zLmFjLnJzIiwiYXVkIjoiVVJJUy51bnMuYWMucnMifQ.-pdDQMOxs2F1HXKIImICEHu4680-XV25jnW-CgGk8tk"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateKomisija",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NDU2Mjk4NjAsImlzcyI6IlVSSVMudW5zLmFjLnJzIiwiYXVkIjoiVVJJUy51bnMuYWMucnMifQ.-pdDQMOxs2F1HXKIImICEHu4680-XV25jnW-CgGk8tk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\r\n        \"predsednikId\": \"f3aacee9-e730-409a-42de-08d9f6d31a88\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44310/api/Komisija/?=Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NDU2Mjk4NjAsImlzcyI6IlVSSVMudW5zLmFjLnJzIiwiYXVkIjoiVVJJUy51bnMuYWMucnMifQ.-pdDQMOxs2F1HXKIImICEHu4680-XV25jnW-CgGk8tk",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44310",
+							"path": [
+								"api",
+								"Komisija",
+								""
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NDU2Mjk4NjAsImlzcyI6IlVSSVMudW5zLmFjLnJzIiwiYXVkIjoiVVJJUy51bnMuYWMucnMifQ.-pdDQMOxs2F1HXKIImICEHu4680-XV25jnW-CgGk8tk"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreatePredsednik",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NDU2Mjk4NjAsImlzcyI6IlVSSVMudW5zLmFjLnJzIiwiYXVkIjoiVVJJUy51bnMuYWMucnMifQ.-pdDQMOxs2F1HXKIImICEHu4680-XV25jnW-CgGk8tk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"imePredsednika\": \"Petar\",\r\n        \"prezimePredsednika\": \"Markovic\",\r\n        \"emailPredsednika\": \"markuza@mail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44310/api/Predsednik/?=Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NDU2Mjk4NjAsImlzcyI6IlVSSVMudW5zLmFjLnJzIiwiYXVkIjoiVVJJUy51bnMuYWMucnMifQ.-pdDQMOxs2F1HXKIImICEHu4680-XV25jnW-CgGk8tk",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44310",
+							"path": [
+								"api",
+								"Predsednik",
+								""
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NDU2Mjk4NjAsImlzcyI6IlVSSVMudW5zLmFjLnJzIiwiYXVkIjoiVVJJUy51bnMuYWMucnMifQ.-pdDQMOxs2F1HXKIImICEHu4680-XV25jnW-CgGk8tk"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Update",
+			"item": [
+				{
+					"name": "UpdateClanKomisije",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NDU2Mjk4NjAsImlzcyI6IlVSSVMudW5zLmFjLnJzIiwiYXVkIjoiVVJJUy51bnMuYWMucnMifQ.-pdDQMOxs2F1HXKIImICEHu4680-XV25jnW-CgGk8tk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"clanId\": \"09fc226d-5f40-4b91-b13b-08d9f6d71810\",\r\n    \"imeClana\": \"Aleksa\",\r\n    \"prezimeClana\": \"Pivnicki\",\r\n    \"emailClana\": \"pikac@mail.com\",\r\n    \"komisijaId\": \"3012c45d-6cbb-4806-2a28-08d9f6d32318\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44310/api/ClanKomisije/?=Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NDU2Mjk4NjAsImlzcyI6IlVSSVMudW5zLmFjLnJzIiwiYXVkIjoiVVJJUy51bnMuYWMucnMifQ.-pdDQMOxs2F1HXKIImICEHu4680-XV25jnW-CgGk8tk",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44310",
+							"path": [
+								"api",
+								"ClanKomisije",
+								""
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NDU2Mjk4NjAsImlzcyI6IlVSSVMudW5zLmFjLnJzIiwiYXVkIjoiVVJJUy51bnMuYWMucnMifQ.-pdDQMOxs2F1HXKIImICEHu4680-XV25jnW-CgGk8tk"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateKomisija",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NDU2Mjk4NjAsImlzcyI6IlVSSVMudW5zLmFjLnJzIiwiYXVkIjoiVVJJUy51bnMuYWMucnMifQ.-pdDQMOxs2F1HXKIImICEHu4680-XV25jnW-CgGk8tk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{   \r\n    \"komisijaId\": \"3012c45d-6cbb-4806-2a28-08d9f6d32318\",\r\n    \"predsednikId\": \"f3aacee9-e730-409a-42de-08d9f6d31a88\",\r\n    \"clanoviId\": \"09fc226d-5f40-4b91-b13b-08d9f6d71810\"\r\n    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44310/api/Komisija/?=Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NDU2Mjk4NjAsImlzcyI6IlVSSVMudW5zLmFjLnJzIiwiYXVkIjoiVVJJUy51bnMuYWMucnMifQ.-pdDQMOxs2F1HXKIImICEHu4680-XV25jnW-CgGk8tk",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44310",
+							"path": [
+								"api",
+								"Komisija",
+								""
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NDU2Mjk4NjAsImlzcyI6IlVSSVMudW5zLmFjLnJzIiwiYXVkIjoiVVJJUy51bnMuYWMucnMifQ.-pdDQMOxs2F1HXKIImICEHu4680-XV25jnW-CgGk8tk"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdatePredsednik",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NDU2Mjk4NjAsImlzcyI6IlVSSVMudW5zLmFjLnJzIiwiYXVkIjoiVVJJUy51bnMuYWMucnMifQ.-pdDQMOxs2F1HXKIImICEHu4680-XV25jnW-CgGk8tk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"predsednikId\": \"f3aacee9-e730-409a-42de-08d9f6d31a88\",\r\n    \"imePredsednika\": \"Petar\",\r\n    \"prezimePredsednika\": \"Markovic\",\r\n    \"emailPredsednika\": \"petar@mail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44310/api/Predsednik/?=Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NDU2Mjk4NjAsImlzcyI6IlVSSVMudW5zLmFjLnJzIiwiYXVkIjoiVVJJUy51bnMuYWMucnMifQ.-pdDQMOxs2F1HXKIImICEHu4680-XV25jnW-CgGk8tk",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44310",
+							"path": [
+								"api",
+								"Predsednik",
+								""
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NDU2Mjk4NjAsImlzcyI6IlVSSVMudW5zLmFjLnJzIiwiYXVkIjoiVVJJUy51bnMuYWMucnMifQ.-pdDQMOxs2F1HXKIImICEHu4680-XV25jnW-CgGk8tk"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Delete",
+			"item": [
+				{
+					"name": "DeleteClanKomisije",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NDU2Mjk4NjAsImlzcyI6IlVSSVMudW5zLmFjLnJzIiwiYXVkIjoiVVJJUy51bnMuYWMucnMifQ.-pdDQMOxs2F1HXKIImICEHu4680-XV25jnW-CgGk8tk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44310/api/ClanKomisije/09fc226d-5f40-4b91-b13b-08d9f6d71810/?=Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NDU2Mjk4NjAsImlzcyI6IlVSSVMudW5zLmFjLnJzIiwiYXVkIjoiVVJJUy51bnMuYWMucnMifQ.-pdDQMOxs2F1HXKIImICEHu4680-XV25jnW-CgGk8tk",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44310",
+							"path": [
+								"api",
+								"ClanKomisije",
+								"09fc226d-5f40-4b91-b13b-08d9f6d71810",
+								""
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NDU2Mjk4NjAsImlzcyI6IlVSSVMudW5zLmFjLnJzIiwiYXVkIjoiVVJJUy51bnMuYWMucnMifQ.-pdDQMOxs2F1HXKIImICEHu4680-XV25jnW-CgGk8tk"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteKomisija",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NDU2Mjk4NjAsImlzcyI6IlVSSVMudW5zLmFjLnJzIiwiYXVkIjoiVVJJUy51bnMuYWMucnMifQ.-pdDQMOxs2F1HXKIImICEHu4680-XV25jnW-CgGk8tk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44310/api/Komisija/3012c45d-6cbb-4806-2a28-08d9f6d32318/?=Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NDU2Mjk4NjAsImlzcyI6IlVSSVMudW5zLmFjLnJzIiwiYXVkIjoiVVJJUy51bnMuYWMucnMifQ.-pdDQMOxs2F1HXKIImICEHu4680-XV25jnW-CgGk8tk",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44310",
+							"path": [
+								"api",
+								"Komisija",
+								"3012c45d-6cbb-4806-2a28-08d9f6d32318",
+								""
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NDU2Mjk4NjAsImlzcyI6IlVSSVMudW5zLmFjLnJzIiwiYXVkIjoiVVJJUy51bnMuYWMucnMifQ.-pdDQMOxs2F1HXKIImICEHu4680-XV25jnW-CgGk8tk"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeletePredsednik",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NDU2Mjk4NjAsImlzcyI6IlVSSVMudW5zLmFjLnJzIiwiYXVkIjoiVVJJUy51bnMuYWMucnMifQ.-pdDQMOxs2F1HXKIImICEHu4680-XV25jnW-CgGk8tk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44310/api/Predsednik/f3aacee9-e730-409a-42de-08d9f6d31a88/?=Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NDU2Mjk4NjAsImlzcyI6IlVSSVMudW5zLmFjLnJzIiwiYXVkIjoiVVJJUy51bnMuYWMucnMifQ.-pdDQMOxs2F1HXKIImICEHu4680-XV25jnW-CgGk8tk",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44310",
+							"path": [
+								"api",
+								"Predsednik",
+								"f3aacee9-e730-409a-42de-08d9f6d31a88",
+								""
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NDU2Mjk4NjAsImlzcyI6IlVSSVMudW5zLmFjLnJzIiwiYXVkIjoiVVJJUy51bnMuYWMucnMifQ.-pdDQMOxs2F1HXKIImICEHu4680-XV25jnW-CgGk8tk"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "https://localhost:44310/api/Auth/login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\r\n        \"korisnickoime\": \"vlado\",\r\n        \"lozinka\": \"adresa123\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44310/api/Auth/login",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44310",
+							"path": [
+								"api",
+								"Auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
