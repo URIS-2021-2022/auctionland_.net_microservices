@@ -117,7 +117,7 @@ namespace Zalba
                     {
                         Title = "Zalba service API",
                         Version = "1",
-                        Description = "Pomocu ovog API-ja moze da se vrsi pregled, prisanje, dodavenje i modifikacija zalbi i tipova zalbi.",
+                        Description = "Pomocu ovog API-ja moze da se vrsi pregled, brisanje, dodavanje i modifikacija zalbi i tipova zalbi.",
                     });
                 var xmlComments = $"{ Assembly.GetExecutingAssembly().GetName().Name }.xml";
                 var xmlCommentsPath = Path.Combine(AppContext.BaseDirectory, xmlComments);

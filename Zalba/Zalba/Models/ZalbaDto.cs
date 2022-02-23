@@ -18,9 +18,13 @@ namespace Zalba.Models
         /// <summary>
         /// ID podnosioca zalbe
         /// </summary>
-        public Guid? PodnosilacZalbe { get; set; }
+        public Guid PodnosilacZalbe { get; set; }
         /// <summary>
-        /// Razlog zalbe zalbe
+        /// Dto fizicko lice
+        /// </summary>
+        public FizickoLiceDto PodnosilacZalbeDto { get; set; }
+        /// <summary>
+        /// Razlog parcele parcele
         /// </summary>
         public string RazlogZalbe { get; set; }
         /// <summary>

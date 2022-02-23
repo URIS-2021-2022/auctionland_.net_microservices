@@ -4,6 +4,13 @@
         <name>Zalba</name>
     </assembly>
     <members>
+        <member name="M:Zalba.Controllers.AuthController.Login(Zalba.Models.Principal)">
+            <summary>
+            Služi za autentifikaciju korisnika
+            </summary>
+            <param name="principal">Model sa podacima na osnovu kojih se vrši autentifikacija</param>
+            <returns></returns>
+        </member>
         <member name="T:Zalba.Controllers.TipZalbeController">
             <summary>
             Kontroler za tipove zalbi
@@ -78,7 +85,7 @@
             Kontroler za zalbe
             </summary>
         </member>
-        <member name="M:Zalba.Controllers.ZalbaController.#ctor(Zalba.Data.IZalbaRepository,Microsoft.AspNetCore.Routing.LinkGenerator,AutoMapper.IMapper,Zalba.Data.ILoggerService)">
+        <member name="M:Zalba.Controllers.ZalbaController.#ctor(Zalba.Data.IZalbaRepository,Microsoft.AspNetCore.Routing.LinkGenerator,AutoMapper.IMapper,Zalba.Data.ILoggerService,Zalba.ServiceCalls.IFizickoLiceRepository,Zalba.ServiceCalls.IPravnoLiceRepository)">
             <summary>
             Konstruktor kontrolera za zalbe
             </summary>
@@ -502,6 +509,86 @@
             Radnja na osnovu zalbe
             </summary>
         </member>
+        <member name="P:Zalba.Models.FizickoLiceDto.FizickoLiceId">
+            <summary>
+            Id fizickog lica
+            </summary>
+        </member>
+        <member name="P:Zalba.Models.FizickoLiceDto.Ime_Prezime">
+            <summary>
+            Ime i prezime fizickog lica
+            </summary>
+        </member>
+        <member name="P:Zalba.Models.FizickoLiceDto.JMBG">
+            <summary>
+            JMBG fizickog lica
+            </summary>
+        </member>
+        <member name="P:Zalba.Models.FizickoLiceDto.Adresa">
+            <summary>
+            Adresa fizickog lica
+            </summary>
+        </member>
+        <member name="P:Zalba.Models.FizickoLiceDto.BrojeviTelefona">
+            <summary>
+            Brojevi telefona fizickog lica
+            </summary>
+        </member>
+        <member name="P:Zalba.Models.FizickoLiceDto.Email">
+            <summary>
+            Email fizickog lica
+            </summary>
+        </member>
+        <member name="P:Zalba.Models.FizickoLiceDto.BrojRacuna">
+            <summary>
+            Broj racuna fizickog lica
+            </summary>
+        </member>
+        <member name="P:Zalba.Models.PravnoLiceDto.PravnoLiceId">
+            <summary>
+            Id fizickog lica
+            </summary>
+        </member>
+        <member name="P:Zalba.Models.PravnoLiceDto.Naziv">
+            <summary>
+            Naziv pravnog lica
+            </summary>
+        </member>
+        <member name="P:Zalba.Models.PravnoLiceDto.MaticniBroj">
+            <summary>
+            Maticni broj pravnog lica
+            </summary>
+        </member>
+        <member name="P:Zalba.Models.PravnoLiceDto.KontaktOsoba">
+            <summary>
+            Kontakt osoba pravnog lica
+            </summary>
+        </member>
+        <member name="P:Zalba.Models.PravnoLiceDto.Adresa">
+            <summary>
+            Adresa pravnog lica
+            </summary>
+        </member>
+        <member name="P:Zalba.Models.PravnoLiceDto.BrojeviTelefona">
+            <summary>
+            Brojevi telefona pravnog lica
+            </summary>
+        </member>
+        <member name="P:Zalba.Models.PravnoLiceDto.Faks">
+            <summary>
+            Faks pravnog lica
+            </summary>
+        </member>
+        <member name="P:Zalba.Models.PravnoLiceDto.Email">
+            <summary>
+            Email pravnog lica
+            </summary>
+        </member>
+        <member name="P:Zalba.Models.PravnoLiceDto.BrojRacuna">
+            <summary>
+            Broj racuna pravnog lica
+            </summary>
+        </member>
         <member name="T:Zalba.Models.Principal">
             <summary>
             Model na osnovu kojeg se vrsi autentifikacija
@@ -687,9 +774,14 @@
             ID podnosioca zalbe
             </summary>
         </member>
+        <member name="P:Zalba.Models.ZalbaDto.PodnosilacZalbeDto">
+            <summary>
+            Dto fizicko lice
+            </summary>
+        </member>
         <member name="P:Zalba.Models.ZalbaDto.RazlogZalbe">
             <summary>
-            Razlog zalbe zalbe
+            Razlog parcele parcele
             </summary>
         </member>
         <member name="P:Zalba.Models.ZalbaDto.Obrazlozenje">

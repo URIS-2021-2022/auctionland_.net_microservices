@@ -10,6 +10,7 @@ using Microsoft.Extensions.Logging;
 using Zalba.Data;
 using Zalba.Entities;
 using Zalba.Models;
+using Zalba.ServiceCalls;
 
 namespace Zalba.Controllers
 {
@@ -26,16 +27,20 @@ namespace Zalba.Controllers
         private readonly LinkGenerator linkGenerator;
         private readonly IMapper mapper;
         private readonly ILoggerService loggerService;
+        private readonly IFizickoLiceRepository fizickoLiceRepository;
+        private readonly IPravnoLiceRepository pravnoLiceRepository;
 
         /// <summary>
         /// Konstruktor kontrolera za zalbe
         /// </summary>
-        public ZalbaController(IZalbaRepository zalbaRepository, LinkGenerator linkGenerator, IMapper mapper, ILoggerService loggerService)
+        public ZalbaController(IZalbaRepository zalbaRepository, LinkGenerator linkGenerator, IMapper mapper, ILoggerService loggerService, IFizickoLiceRepository fizickoLiceRepository, IPravnoLiceRepository pravnoLiceRepository)
         {
             this.zalbaRepository = zalbaRepository;
             this.linkGenerator = linkGenerator;
             this.mapper = mapper;
             this.loggerService = loggerService;
+            this.fizickoLiceRepository = fizickoLiceRepository;
+            this.pravnoLiceRepository = pravnoLiceRepository;
         }
 
         /// <summary>
@@ -53,10 +58,18 @@ namespace Zalba.Controllers
         {
             var zalbe = zalbaRepository.GetZalbe(statusZalbe);
 
+            List<ZalbaM> zalbaList = zalbaRepository.GetZalbe(statusZalbe);
+
             if (zalbe == null || zalbe.Count == 0)
             {
                 loggerService.Log(LogLevel.Warning, "GetAllStatus", "Lista zalbi je prazna ili null");
                 return NoContent();
+            }
+
+            List<ZalbaDto> zalbaDtoList = mapper.Map<List<ZalbaDto>>(zalbaList);
+            foreach (ZalbaDto zalbaDto in zalbaDtoList)
+            {
+                zalbaDto.PodnosilacZalbeDto = fizickoLiceRepository.GetFizickoLiceByIdAsync(zalbaDto.PodnosilacZalbe, Request).Result;
             }
 
             loggerService.Log(LogLevel.Information, "GetAllStatus", "Lista zalbi je uspesno vracena!");
