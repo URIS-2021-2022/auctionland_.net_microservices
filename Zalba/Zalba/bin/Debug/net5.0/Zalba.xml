@@ -1,0 +1,781 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Zalba</name>
+    </assembly>
+    <members>
+        <member name="T:Zalba.Controllers.TipZalbeController">
+            <summary>
+            Kontroler za tipove zalbi
+            </summary>
+        </member>
+        <member name="M:Zalba.Controllers.TipZalbeController.#ctor(Zalba.Data.ITipZalbeRepository,Microsoft.AspNetCore.Routing.LinkGenerator,AutoMapper.IMapper,Zalba.Data.ILoggerService)">
+            <summary>
+            Konstruktor kontrolera za tipove zalbi
+            </summary>
+        </member>
+        <member name="M:Zalba.Controllers.TipZalbeController.GetExamRegistrations">
+            <summary>
+            Vraca sve tipove zalbi.
+            </summary>
+            <returns>Lista tipova zalbi</returns>
+            <response code="200">Vraca listu tipova zalbi</response>
+            <response code="404">Nije pronadjen ni jedna tip zalbe</response>
+        </member>
+        <member name="M:Zalba.Controllers.TipZalbeController.GetTipZalbe(System.Guid)">
+            <summary>
+            Vraća jedan tip zalbe osnovu ID-ja.
+            </summary>
+            <param name="tipZalbeId">ID tipa zalbe</param>
+            <returns></returns>
+            <response code="200">Vraća trazeni tip zalbe</response>
+        </member>
+        <member name="M:Zalba.Controllers.TipZalbeController.CreateTipZalbe(Zalba.Models.TipZalbeCreationDto)">
+             <summary>
+             Kreira novi tip zalbe.
+             </summary>
+             <param name="tipZalbe">Model tipa zalbe</param>
+             <returns>Potvrdu o kreiranoj prijavi.</returns>
+             <remarks>
+             Primer zahteva za kreiranje novog tipa zalbe \
+             POST /api/tipZalbe \
+             {     \
+                 "TipZalbeId": "2841defc-761e-40d8-b8a3-d3e58516dca7", \
+                 "NazivTipa": "Žalba na tok javnog nadmetanaja", \
+            }
+             </remarks>
+             <response code="200">Vraca kreirani tip zalbe</response>
+             <response code="500">Doslo je do greske na serveru</response>
+        </member>
+        <member name="M:Zalba.Controllers.TipZalbeController.UpdateTipZalbe(Zalba.Models.TipZalbeUpdateDto)">
+            <summary>
+            Azurira jedan tip zalbe.
+            </summary>
+            <param name="tipZalbe">Model zalbe koji se azurira</param>
+            <returns>Potvrdu o modifikovanom tipu zalbe.</returns>
+            <response code="200">Vraca azurirani tip zalbe</response>
+            <response code="400">Tip zalbe koji se azurira nije pronadjen</response>
+            <response code="500">Doslo je do greske na serveru prilikom azuriranja tipa zalbe</response>
+        </member>
+        <member name="M:Zalba.Controllers.TipZalbeController.DeleteTipZalbe(System.Guid)">
+            <summary>
+            Vrsi brisanje jednog tipa zalbe na osnovu ID-ja.
+            </summary>
+            <param name="tipZalbeId">ID tipa zalbe</param>
+            <returns>Status 204 (NoContent)</returns>
+            <response code="204">Tip zalbe uspesno obrisan</response>
+            <response code="404">Nije pronadjen tip zalbe za brisanje</response>
+            <response code="500">Doslo je do greske na serveru prilikom brisanja tipa zalbe</response>
+        </member>
+        <member name="M:Zalba.Controllers.TipZalbeController.GetExamRegistrationOptions">
+            <summary>
+            Vraca opcije za rad sa tipovima zalbi
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Zalba.Controllers.ZalbaController">
+            <summary>
+            Kontroler za zalbe
+            </summary>
+        </member>
+        <member name="M:Zalba.Controllers.ZalbaController.#ctor(Zalba.Data.IZalbaRepository,Microsoft.AspNetCore.Routing.LinkGenerator,AutoMapper.IMapper,Zalba.Data.ILoggerService)">
+            <summary>
+            Konstruktor kontrolera za zalbe
+            </summary>
+        </member>
+        <member name="M:Zalba.Controllers.ZalbaController.GetZalbe(System.String)">
+            <summary>
+            Vraća sve zalbe za zadate filtere.
+            </summary>
+            <param name="statusZalbe">Status zalbe (npr. otvorena)</param>
+            <returns>Lista zalbi</returns>
+            <response code="200">Vraća listu zalbi</response>
+            <response code="404">Nije pronađena ni jedna zalba</response>
+        </member>
+        <member name="M:Zalba.Controllers.ZalbaController.GetZalba(System.Guid)">
+            <summary>
+            Vraca jednu zalbu na osnovu ID-ja zalbe.
+            </summary>
+            <param name="zalbaId">ID zalbe</param>
+            <returns></returns>
+            <response code="200">Vraca trazenu zalbu</response>
+        </member>
+        <member name="M:Zalba.Controllers.ZalbaController.CreateZalba(Zalba.Models.ZalbaCreationDto)">
+             <summary>
+             Kreira novu prijavu zalbu.
+             </summary>
+             <param name="zalba">Model zalbe</param>
+             <returns>Potvrdu o kreiranoj zalbi.</returns>
+             <remarks>
+             Primer zahteva za kreiranje nove zalbe \
+             POST /api/zalba \
+             {     \
+                 "ZalbaId" = "6a411c13-a195-48f7-8dbd-67596c3974c0", \
+                 Tip = "044f3de0-a9dd-4c2e-b745-89976a1b2a36", \
+                 "DatumPodnosenjaZalbe" = "2020-11-15T09:00:00", \
+                 "PodnosilacZalbe" = "6a411c13-a195-48f7-8dbd-67596c3974c4", \
+                 "RazlogZalbe" = "razlog", \
+                 "Obrazlozenje" = "obrazlozenje", \
+                 "DatumResenja" = "2022-02-20T09:00:00", \
+                 "BrojResenja" = "S123", \
+                 "StatusZalbe" = "Otvorena", \
+                 "BrojOdluke" = "S001", \
+                 "RadnjaNaOsnovuZalbe" = "JN ne ide u drugi krug" \
+            }
+             </remarks>
+             <response code="200">Vraca kreiranu zalbu</response>
+             <response code="500">Doslo je do greske na serveru</response>
+        </member>
+        <member name="M:Zalba.Controllers.ZalbaController.UpdateZalba(Zalba.Models.ZalbaUpdateDto)">
+            <summary>
+            Azurira jednu zalbu.
+            </summary>
+            <param name="zalba">Model zalbe koja se ažurira</param>
+            <returns>Potvrdu o modifikovanoj zalbi.</returns>
+            <response code="200">Vraca azuriranu zalbu</response>
+            <response code="400">Zalba koja se azurira nije pronadjena</response>
+            <response code="500">Doslo je do greske na serveru prilikom azuriranja zalbe</response>
+        </member>
+        <member name="M:Zalba.Controllers.ZalbaController.DeleteZalba(System.Guid)">
+            <summary>
+            Vrsi brisanje jedne zalbe na osnovu ID-ja zalbe.
+            </summary>
+            <param name="zalbaId">ID zalbe</param>
+            <returns>Status 204 (NoContent)</returns>
+            <response code="204">Zalba uspesno obrisana</response>
+            <response code="404">Nije pronadjena zalba za brisanje</response>
+            <response code="500">Doslo je do greske na serveru prilikom brisanja zalbe</response>
+        </member>
+        <member name="M:Zalba.Controllers.ZalbaController.GetExamRegistrationOptions">
+            <summary>
+            Vraca opcije za rad sa zalbama
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Zalba.Data.ITipZalbeRepository">
+            <summary>
+            Interfejs za ZalbaRepository
+            </summary>
+        </member>
+        <member name="M:Zalba.Data.ITipZalbeRepository.GetTipoveZalbi">
+            <summary>
+            Metoda koja pribavlja podatke
+            </summary>
+        </member>
+        <member name="M:Zalba.Data.ITipZalbeRepository.GetTipZalbeById(System.Guid)">
+            <summary>
+            Metoda koja pribavlja podatke po ID-u
+            </summary>
+        </member>
+        <member name="M:Zalba.Data.ITipZalbeRepository.CreateTipZalbe(Zalba.Entities.TipZalbe)">
+            <summary>
+            Metoda koja upisuje podatke
+            </summary>
+        </member>
+        <member name="M:Zalba.Data.ITipZalbeRepository.UpdateTipZalbe(Zalba.Entities.TipZalbe)">
+            <summary>
+            Metoda koja azurira podatke
+            </summary>
+        </member>
+        <member name="M:Zalba.Data.ITipZalbeRepository.DeleteTipZalbe(System.Guid)">
+            <summary>
+            Metoda koja brise podatke
+            </summary>
+        </member>
+        <member name="M:Zalba.Data.ITipZalbeRepository.SaveChanges">
+            <summary>
+            Metoda koja cuva izmene
+            </summary>
+        </member>
+        <member name="T:Zalba.Data.IZalbaRepository">
+            <summary>
+            Interfejs za ZalbaRepository
+            </summary>
+        </member>
+        <member name="M:Zalba.Data.IZalbaRepository.GetZalbe(System.String)">
+            <summary>
+            Metoda koja pribavlja podatke
+            </summary>
+        </member>
+        <member name="M:Zalba.Data.IZalbaRepository.GetZalbaById(System.Guid)">
+            <summary>
+            Metoda koja pribavlja podatke po ID-u
+            </summary>
+        </member>
+        <member name="M:Zalba.Data.IZalbaRepository.CreateZalba(Zalba.Entities.ZalbaM)">
+            <summary>
+            Metoda koja upisuje podatke
+            </summary>
+        </member>
+        <member name="M:Zalba.Data.IZalbaRepository.UpdateZalba(Zalba.Entities.ZalbaM)">
+            <summary>
+            Metoda koja azurira podatke
+            </summary>
+        </member>
+        <member name="M:Zalba.Data.IZalbaRepository.DeleteZalba(System.Guid)">
+            <summary>
+            Metoda koja brise podatke
+            </summary>
+        </member>
+        <member name="M:Zalba.Data.IZalbaRepository.SaveChanges">
+            <summary>
+            Metoda koja cuva izmene
+            </summary>
+        </member>
+        <member name="T:Zalba.Data.TipZalbeRepository">
+            <summary>
+            Repozitorijum tipova zalbi
+            </summary>
+        </member>
+        <member name="M:Zalba.Data.TipZalbeRepository.#ctor(Zalba.Entities.ZalbaContext,AutoMapper.IMapper)">
+            <summary>
+            Konstruktor za repozitorijum tipova zalbi
+            </summary>
+        </member>
+        <member name="M:Zalba.Data.TipZalbeRepository.SaveChanges">
+            <summary>
+            Metoda koja cuva izmene
+            </summary>
+        </member>
+        <member name="M:Zalba.Data.TipZalbeRepository.GetTipoveZalbi">
+            <summary>
+            Metoda koja pribavlja podatke
+            </summary>
+        </member>
+        <member name="M:Zalba.Data.TipZalbeRepository.GetTipZalbeById(System.Guid)">
+            <summary>
+            Metoda koja pribavlja podatke po ID-u
+            </summary>
+        </member>
+        <member name="M:Zalba.Data.TipZalbeRepository.CreateTipZalbe(Zalba.Entities.TipZalbe)">
+            <summary>
+            Metoda koja upisuje podatke
+            </summary>
+        </member>
+        <member name="M:Zalba.Data.TipZalbeRepository.UpdateTipZalbe(Zalba.Entities.TipZalbe)">
+            <summary>
+            Metoda koja azurira podatke
+            </summary>
+        </member>
+        <member name="M:Zalba.Data.TipZalbeRepository.DeleteTipZalbe(System.Guid)">
+            <summary>
+            Metoda koja brise podatke
+            </summary>
+        </member>
+        <member name="T:Zalba.Data.ZalbaRepository">
+            <summary>
+            Repozitorijum tipova zalbi
+            </summary>
+        </member>
+        <member name="M:Zalba.Data.ZalbaRepository.#ctor(Zalba.Entities.ZalbaContext,AutoMapper.IMapper)">
+            <summary>
+            Konstruktor za repozitorijum tipova zalbi
+            </summary>
+        </member>
+        <member name="M:Zalba.Data.ZalbaRepository.SaveChanges">
+            <summary>
+            Metoda koja cuva izmene
+            </summary>
+        </member>
+        <member name="M:Zalba.Data.ZalbaRepository.GetZalbe(System.String)">
+            <summary>
+            Metoda koja pribavlja podatke
+            </summary>
+        </member>
+        <member name="M:Zalba.Data.ZalbaRepository.GetZalbaById(System.Guid)">
+            <summary>
+            Metoda koja pribavlja podatke po ID-u
+            </summary>
+        </member>
+        <member name="M:Zalba.Data.ZalbaRepository.CreateZalba(Zalba.Entities.ZalbaM)">
+            <summary>
+            Metoda koja upisuje podatke
+            </summary>
+        </member>
+        <member name="M:Zalba.Data.ZalbaRepository.UpdateZalba(Zalba.Entities.ZalbaM)">
+            <summary>
+            Metoda koja azurira podatke
+            </summary>
+        </member>
+        <member name="M:Zalba.Data.ZalbaRepository.DeleteZalba(System.Guid)">
+            <summary>
+            Metoda koja brise podatke
+            </summary>
+        </member>
+        <member name="T:Zalba.Entities.TipZalbe">
+            <summary>
+            Entitet tip zalbe
+            </summary>
+        </member>
+        <member name="P:Zalba.Entities.TipZalbe.TipZalbeId">
+            <summary>
+            Id tipa zalbe
+            </summary>
+        </member>
+        <member name="P:Zalba.Entities.TipZalbe.NazivTipa">
+            <summary>
+            Naziv tipa zalbe
+            </summary>
+        </member>
+        <member name="P:Zalba.Entities.TipZalbe.Zalbe">
+            <summary>
+            Lista zalbi
+            </summary>
+        </member>
+        <member name="T:Zalba.Entities.TipZalbeConfirmation">
+            <summary>
+            Potvrda za tipove zalbi
+            </summary>
+        </member>
+        <member name="P:Zalba.Entities.TipZalbeConfirmation.TipZalbeId">
+            <summary>
+            ID tipa zalbe
+            </summary>
+        </member>
+        <member name="P:Zalba.Entities.TipZalbeConfirmation.TipZalbe">
+            <summary>
+            Naziv tipa zalbe
+            </summary>
+        </member>
+        <member name="T:Zalba.Entities.ZalbaConfirmation">
+            <summary>
+            Potvrda za zalbe
+            </summary>
+        </member>
+        <member name="P:Zalba.Entities.ZalbaConfirmation.ZalbaId">
+            <summary>
+            ID zalbe
+            </summary>
+        </member>
+        <member name="P:Zalba.Entities.ZalbaConfirmation.Zalba">
+            <summary>
+            Osnovni podaci o zalbi
+            </summary>
+        </member>
+        <member name="T:Zalba.Entities.ZalbaContext">
+            <summary>
+            Kontekst za zalbe
+            </summary>
+        </member>
+        <member name="M:Zalba.Entities.ZalbaContext.#ctor(Microsoft.EntityFrameworkCore.DbContextOptions{Zalba.Entities.ZalbaContext},Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Konstruktor konteksta za zalbe
+            </summary>
+        </member>
+        <member name="P:Zalba.Entities.ZalbaContext.Zalbe">
+            <summary>
+            Deklaracija eniteta za smestanje u bazu
+            </summary>
+        </member>
+        <member name="P:Zalba.Entities.ZalbaContext.TipoviZalbi">
+            <summary>
+            Deklaracija eniteta za smestanje u bazu
+            </summary>
+        </member>
+        <member name="M:Zalba.Entities.ZalbaContext.OnConfiguring(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder)">
+            <summary>
+            Metoda OnConfiguring
+            </summary>
+        </member>
+        <member name="M:Zalba.Entities.ZalbaContext.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <summary>
+            Popunjava bazu sa nekim inicijalnim podacima
+            </summary>
+        </member>
+        <member name="T:Zalba.Entities.ZalbaM">
+            <summary>
+            Enitet zalba
+            </summary>
+        </member>
+        <member name="P:Zalba.Entities.ZalbaM.ZalbaId">
+            <summary>
+            ID zalbe
+            </summary>
+        </member>
+        <member name="P:Zalba.Entities.ZalbaM.TipId">
+            <summary>
+            ID tipa zalbe
+            </summary>
+        </member>
+        <member name="P:Zalba.Entities.ZalbaM.DatumPodnosenjaZalbe">
+            <summary>
+            Datum podnosenja zalbe
+            </summary>
+        </member>
+        <member name="P:Zalba.Entities.ZalbaM.RazlogZalbe">
+            <summary>
+            Razlog zalbe zalbe
+            </summary>
+        </member>
+        <member name="P:Zalba.Entities.ZalbaM.Obrazlozenje">
+            <summary>
+            Obrazlozenje zalbe
+            </summary>
+        </member>
+        <member name="P:Zalba.Entities.ZalbaM.DatumResenja">
+            <summary>
+            Datum resenja zalbe
+            </summary>
+        </member>
+        <member name="P:Zalba.Entities.ZalbaM.BrojResenja">
+            <summary>
+            Broj resenja zalbe
+            </summary>
+        </member>
+        <member name="P:Zalba.Entities.ZalbaM.StatusZalbe">
+            <summary>
+            Status zalbe
+            </summary>
+        </member>
+        <member name="P:Zalba.Entities.ZalbaM.BrojOdluke">
+            <summary>
+            Broj odluke zalbe
+            </summary>
+        </member>
+        <member name="P:Zalba.Entities.ZalbaM.RadnjaNaOsnovuZalbe">
+            <summary>
+            Radnja na osnovu zalbe
+            </summary>
+        </member>
+        <member name="T:Zalba.Models.TipZalbeConfirmationDto">
+            <summary>
+            Potvrda za tipove zalbi
+            </summary>
+        </member>
+        <member name="P:Zalba.Models.TipZalbeConfirmationDto.TipZalbeId">
+            <summary>
+            Id tipa zalbe
+            </summary>
+        </member>
+        <member name="P:Zalba.Models.TipZalbeConfirmationDto.TipZalbe">
+            <summary>
+            Naziv tipa zalbe
+            </summary>
+        </member>
+        <member name="T:Zalba.Models.TipZalbeCreationDto">
+            <summary>
+            DTO za kreiranje tipova zalbi
+            </summary>
+        </member>
+        <member name="P:Zalba.Models.TipZalbeCreationDto.NazivTipa">
+            <summary>
+            Naziv tipa zalbe
+            </summary>
+        </member>
+        <member name="T:Zalba.Models.TipZalbeCreationValidator">
+            <summary>
+            Validator za kreiranje tipova zalbi
+            </summary>
+        </member>
+        <member name="M:Zalba.Models.TipZalbeCreationValidator.#ctor">
+            <summary>
+            Konstruktor validatora kreiranje za tipova zalbi
+            </summary>
+        </member>
+        <member name="T:Zalba.Models.TipZalbeDto">
+            <summary>
+            DTO za tipove zalbi
+            </summary>
+        </member>
+        <member name="P:Zalba.Models.TipZalbeDto.NazivTipa">
+            <summary>
+            Naziv tipa zalbe
+            </summary>
+        </member>
+        <member name="T:Zalba.Models.TipZalbeUpdateDto">
+            <summary>
+            DTO za azuriranje tipova zalbi
+            </summary>
+        </member>
+        <member name="P:Zalba.Models.TipZalbeUpdateDto.TipZalbeId">
+            <summary>
+            Id tipa zalbe
+            </summary>
+        </member>
+        <member name="P:Zalba.Models.TipZalbeUpdateDto.NazivTipa">
+            <summary>
+            Naziv tipa zalbe
+            </summary>
+        </member>
+        <member name="T:Zalba.Models.TipZalbeUpdateValidator">
+            <summary>
+            Validator za azuriranje tipove zalbi
+            </summary>
+        </member>
+        <member name="M:Zalba.Models.TipZalbeUpdateValidator.#ctor">
+            <summary>
+            Konstruktor validatora za azuriranje tipova zalbi
+            </summary>
+        </member>
+        <member name="T:Zalba.Models.ZalbaConfirmationDto">
+            <summary>
+            Potvrda za zalbe zalbi
+            </summary>
+        </member>
+        <member name="P:Zalba.Models.ZalbaConfirmationDto.ZalbaId">
+            <summary>
+            ID zalbe
+            </summary>
+        </member>
+        <member name="P:Zalba.Models.ZalbaConfirmationDto.Zalba">
+            <summary>
+            Osnovni podaci o zalbi
+            </summary>
+        </member>
+        <member name="T:Zalba.Models.ZalbaCreationDto">
+            <summary>
+            DTO za kreiranje zalbi
+            </summary>
+        </member>
+        <member name="P:Zalba.Models.ZalbaCreationDto.TipId">
+            <summary>
+            ID tipa zalbe
+            </summary>
+        </member>
+        <member name="P:Zalba.Models.ZalbaCreationDto.DatumPodnosenjaZalbe">
+            <summary>
+            Datum podnosenja zalbe
+            </summary>
+        </member>
+        <member name="P:Zalba.Models.ZalbaCreationDto.RazlogZalbe">
+            <summary>
+            Razlog zalbe zalbe
+            </summary>
+        </member>
+        <member name="P:Zalba.Models.ZalbaCreationDto.Obrazlozenje">
+            <summary>
+            Obrazlozenje zalbe
+            </summary>
+        </member>
+        <member name="P:Zalba.Models.ZalbaCreationDto.DatumResenja">
+            <summary>
+            Datum resenja zalbe
+            </summary>
+        </member>
+        <member name="P:Zalba.Models.ZalbaCreationDto.BrojResenja">
+            <summary>
+            Broj resenja zalbe
+            </summary>
+        </member>
+        <member name="P:Zalba.Models.ZalbaCreationDto.StatusZalbe">
+            <summary>
+            Status zalbe
+            </summary>
+        </member>
+        <member name="P:Zalba.Models.ZalbaCreationDto.BrojOdluke">
+            <summary>
+            Broj odluke zalbe
+            </summary>
+        </member>
+        <member name="P:Zalba.Models.ZalbaCreationDto.RadnjaNaOsnovuZalbe">
+            <summary>
+            Radnja na osnovu zalbe
+            </summary>
+        </member>
+        <member name="T:Zalba.Models.ZalbaCreationValidator">
+            <summary>
+            Validator za kreiranje zalbi
+            </summary>
+        </member>
+        <member name="M:Zalba.Models.ZalbaCreationValidator.#ctor">
+            <summary>
+            Konstruktor validatora za kreiranje zalbi
+            </summary>
+        </member>
+        <member name="T:Zalba.Models.ZalbaDto">
+            <summary>
+            DTO za zalbe
+            </summary>
+        </member>
+        <member name="P:Zalba.Models.ZalbaDto.TipId">
+            <summary>
+            ID tipa zalbe
+            </summary>
+        </member>
+        <member name="P:Zalba.Models.ZalbaDto.DatumPodnosenjaZalbe">
+            <summary>
+            Datum podnosenja zalbe
+            </summary>
+        </member>
+        <member name="P:Zalba.Models.ZalbaDto.RazlogZalbe">
+            <summary>
+            Razlog zalbe zalbe
+            </summary>
+        </member>
+        <member name="P:Zalba.Models.ZalbaDto.Obrazlozenje">
+            <summary>
+            Obrazlozenje zalbe
+            </summary>
+        </member>
+        <member name="P:Zalba.Models.ZalbaDto.DatumResenja">
+            <summary>
+            Datum resenja zalbe
+            </summary>
+        </member>
+        <member name="P:Zalba.Models.ZalbaDto.BrojResenja">
+            <summary>
+            Broj resenja zalbe
+            </summary>
+        </member>
+        <member name="P:Zalba.Models.ZalbaDto.StatusZalbe">
+            <summary>
+            Status zalbe
+            </summary>
+        </member>
+        <member name="P:Zalba.Models.ZalbaDto.BrojOdluke">
+            <summary>
+            Broj odluke zalbe
+            </summary>
+        </member>
+        <member name="P:Zalba.Models.ZalbaDto.RadnjaNaOsnovuZalbe">
+            <summary>
+            Radnja na osnovu zalbe
+            </summary>
+        </member>
+        <member name="T:Zalba.Models.ZalbaUpdateDto">
+            <summary>
+            DTO za azuriranje zalbi
+            </summary>
+        </member>
+        <member name="P:Zalba.Models.ZalbaUpdateDto.ZalbaId">
+            <summary>
+            ID zalbe
+            </summary>
+        </member>
+        <member name="P:Zalba.Models.ZalbaUpdateDto.TipId">
+            <summary>
+            ID tipa zalbe
+            </summary>
+        </member>
+        <member name="P:Zalba.Models.ZalbaUpdateDto.DatumPodnosenjaZalbe">
+            <summary>
+            Datum podnosenja zalbe
+            </summary>
+        </member>
+        <member name="P:Zalba.Models.ZalbaUpdateDto.RazlogZalbe">
+            <summary>
+            Razlog zalbe zalbe
+            </summary>
+        </member>
+        <member name="P:Zalba.Models.ZalbaUpdateDto.Obrazlozenje">
+            <summary>
+            Obrazlozenje zalbe
+            </summary>
+        </member>
+        <member name="P:Zalba.Models.ZalbaUpdateDto.DatumResenja">
+            <summary>
+            Datum resenja zalbe
+            </summary>
+        </member>
+        <member name="P:Zalba.Models.ZalbaUpdateDto.BrojResenja">
+            <summary>
+            Broj resenja zalbe
+            </summary>
+        </member>
+        <member name="P:Zalba.Models.ZalbaUpdateDto.StatusZalbe">
+            <summary>
+            Status zalbe
+            </summary>
+        </member>
+        <member name="P:Zalba.Models.ZalbaUpdateDto.BrojOdluke">
+            <summary>
+            Broj odluke zalbe
+            </summary>
+        </member>
+        <member name="P:Zalba.Models.ZalbaUpdateDto.RadnjaNaOsnovuZalbe">
+            <summary>
+            Radnja na osnovu zalbe
+            </summary>
+        </member>
+        <member name="T:Zalba.Models.ZalbaUpdateValidator">
+            <summary>
+            Validator za azuriranje zalbi
+            </summary>
+        </member>
+        <member name="M:Zalba.Models.ZalbaUpdateValidator.#ctor">
+            <summary>
+            Konstruktor validatora za azuriranje zalbi
+            </summary>
+        </member>
+        <member name="T:Zalba.Profiles.TipZalbeConfirmationProfile">
+            <summary>
+            Profil za potvrdu tipova zalbi
+            </summary>
+        </member>
+        <member name="M:Zalba.Profiles.TipZalbeConfirmationProfile.#ctor">
+            <summary>
+            Konstruktor profila za potvrdu tipova zalbi
+            </summary>
+        </member>
+        <member name="T:Zalba.Profiles.TipZalbeProfile">
+            <summary>
+            Profil za tipove zalbi
+            </summary>
+        </member>
+        <member name="M:Zalba.Profiles.TipZalbeProfile.#ctor">
+            <summary>
+            Konstruktor rofila za tipove zalbi
+            </summary>
+        </member>
+        <member name="T:Zalba.Profiles.ZalbaConfirmationProfile">
+            <summary>
+            Profil za potvrdu zalbi
+            </summary>
+        </member>
+        <member name="M:Zalba.Profiles.ZalbaConfirmationProfile.#ctor">
+            <summary>
+            Konstruktor profila za potvrdu zalbi
+            </summary>
+        </member>
+        <member name="T:Zalba.Profiles.ZalbaMProfile">
+            <summary>
+            Profil za zalbe
+            </summary>
+        </member>
+        <member name="M:Zalba.Profiles.ZalbaMProfile.#ctor">
+            <summary>
+            Konstruktor profila za zalbe
+            </summary>
+        </member>
+        <member name="T:Zalba.Program">
+            <summary>
+            Osnovni program
+            </summary>
+        </member>
+        <member name="M:Zalba.Program.Main(System.String[])">
+            <summary>
+            Pocetna metoda
+            </summary>
+        </member>
+        <member name="M:Zalba.Program.CreateHostBuilder(System.String[])">
+            <summary>
+            Kreiranje host-a
+            </summary>
+        </member>
+        <member name="T:Zalba.Startup">
+            <summary>
+            Startup klasa
+            </summary>
+        </member>
+        <member name="M:Zalba.Startup.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Konstruktor startup klase
+            </summary>
+        </member>
+        <member name="P:Zalba.Startup.Configuration">
+            <summary>
+            Deklaracija Configuration-a
+            </summary>
+        </member>
+        <member name="M:Zalba.Startup.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            ConfigureServices metoda
+            </summary>
+        </member>
+        <member name="M:Zalba.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IWebHostEnvironment)">
+            <summary>
+            Configure metoda
+            </summary>
+        </member>
+    </members>
+</doc>
