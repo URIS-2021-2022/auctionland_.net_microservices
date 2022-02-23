@@ -32,6 +32,9 @@ namespace Oglas_Agregat.Models
         /// </summary>
         public Guid ObjavljenUListuId { get; set; }
 
+        public JavnoNadmetanjeDto JavnoNadmetanje { get; set; }
+
+        public Guid JavnoNadmetanjeId { get; set; }
    
     }
 }
