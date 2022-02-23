@@ -1099,6 +1099,21 @@
             Konstruktor validatora za azuriranje parceli
             </summary>
         </member>
+        <member name="T:Parcela.Models.Principal">
+            <summary>
+            Model na osnovu kojeg se vrsi autentifikacija
+            </summary>
+        </member>
+        <member name="P:Parcela.Models.Principal.KorisnickoIme">
+            <summary>
+            Korisnicko ime
+            </summary>
+        </member>
+        <member name="P:Parcela.Models.Principal.Lozinka">
+            <summary>
+            Lozinka
+            </summary>
+        </member>
         <member name="T:Parcela.Profiles.DeoParceleConfirmationProfile">
             <summary>
             Profil za potvrdu delova parcele

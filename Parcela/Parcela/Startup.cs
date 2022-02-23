@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Text;
 using System.Threading.Tasks;
 using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -17,9 +19,11 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Parcela.Data;
 using Parcela.Entities;
+using Parcela.Helpers;
 using Parcela.Models;
 
 namespace Parcela
@@ -95,6 +99,7 @@ namespace Parcela
             services.AddScoped<IOpstinaRepository, OpstinaRepository>();
 
             services.AddScoped<ILoggerService, LoggerService>();
+            services.AddScoped<IAuthHelper, AuthHelper>();
 
             //services.AddDbContextPool<ParcelaContext>(options => options.UseSqlServer(Configuration.GetConnectionString("ParceleDB")));
             //services.AddDbContextPool<DeoParceleContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DeloviParceleDB")));
@@ -127,6 +132,19 @@ namespace Parcela
                 setupAction.IncludeXmlComments(xmlCommentsPath);
             });
 
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
+            {
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidateLifetime = true,
+                    ValidateIssuerSigningKey = true,
+                    ValidIssuer = Configuration["Jwt:Issuer"],
+                    ValidAudience = Configuration["Jwt:Issuer"],
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Jwt:Key"]))
+                };
+            });
         }
 
         /// <summary>

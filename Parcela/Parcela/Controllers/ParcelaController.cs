@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using AutoMapper;
 using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
@@ -18,7 +19,7 @@ namespace Parcela.Controllers
     [ApiController]
     [Route("api/parcela")]
     [Produces("application/json", "application/xml")]
-    //[Authorize]
+    [Authorize]
     public class ParcelaController : ControllerBase
     {
         private readonly IParcelaRepository parcelaRepository;
