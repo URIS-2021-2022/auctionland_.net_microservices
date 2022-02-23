@@ -1,6 +1,7 @@
 ﻿using Licitacija_agregat.Data;
 using Licitacija_agregat.Entities;
 using Licitacija_agregat.Helpers;
+using Licitacija_agregat.ServiceCalls;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -49,6 +50,7 @@ namespace Licitacija_agregat
             services.AddScoped<ILoggerService, LoggerService>();
             services.AddScoped<IKorisnikRepository, KorisnikMockRepository>();
             services.AddScoped<IAuthHelper, AuthHelper>();
+            services.AddScoped<IProgramRepository, ProgramRepository>();
 
 
             services.AddSwaggerGen(setupAction =>

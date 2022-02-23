@@ -29,10 +29,10 @@ namespace Licitacija_agregat.Entities
             optionsBuilder.UseSqlServer(configuration.GetConnectionString("LicitacijaDB"));
         }
 
-        protected override void OnModelCreating(ModelBuilder builder)
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
 
-            builder.Entity<Licitacija>()
+            modelBuilder.Entity<Licitacija>()
                 .HasData(new
                 {
                     LicitacijaId = Guid.Parse("e1f1f516-a9c4-4209-baa7-02e1583484ce"),

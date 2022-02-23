@@ -18,7 +18,7 @@ namespace Licitacija_agregat.Controllers
     [ApiController]
     [Route("api/[controller]")]
     [Produces("application/json", "application/xml")]
-    [Authorize]
+  //  [Authorize]
     public class EtapaController : ControllerBase
     {
         private readonly IEtapaRepository etapaRepository;

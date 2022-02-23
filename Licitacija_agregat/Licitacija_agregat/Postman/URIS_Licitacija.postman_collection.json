@@ -1,0 +1,269 @@
+{
+	"info": {
+		"_postman_id": "30fef2a9-bc63-45d6-a98b-f8ed0536dcd5",
+		"name": "URIS_Licitacija",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GetEtape",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NDU2MzM2MzIsImlzcyI6IlVSSVMudW5zLmFjLnJzIn0.56Iz7Es2jtdfHcfcAW40AS6aXV0EHhixxZXfrspB1SU",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:44200/api/etapa/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "44200",
+					"path": [
+						"api",
+						"etapa",
+						""
+					],
+					"query": [
+						{
+							"key": "dan",
+							"value": "2015-05-16T05:50:06",
+							"disabled": true
+						},
+						{
+							"key": "",
+							"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MDY2NzYxODYsImlzcyI6IlVSSVMudW5zLmFjLnJzIiwiYXVkIjoiVVJJUy51bnMuYWMucnMifQ.hhaVIsfrDJ6WNszMGwgl9iQjLRguOFJaOedt9wQnaCI",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetEtapaById",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:44200/api/etapa/6A411C13-A195-48F7-8DBD-67596C3974C0",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "44200",
+					"path": [
+						"api",
+						"etapa",
+						"6A411C13-A195-48F7-8DBD-67596C3974C0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateEtapa",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"LicitacijaId\" : \"E1F1F516-A9C4-4209-BAA7-02E1583484CE\",\r\n    \"Dan\" : \"4485-05-16T05:50:06\",\r\n    \"BrojEtape\" : 33\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:44200/api/etapa",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "44200",
+					"path": [
+						"api",
+						"etapa"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteEtapa",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "etapaid",
+						"value": "b2b3b60d-e885-4a4f-8c17-74f739abb1f5s",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "javascript"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:44200/api/etapa/6E9B00D6-747A-4C52-53BC-08D9F6226C1A",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "44200",
+					"path": [
+						"api",
+						"etapa",
+						"6E9B00D6-747A-4C52-53BC-08D9F6226C1A"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateEtapa",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetLicitacije",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:44200/api/licitacija",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "44200",
+					"path": [
+						"api",
+						"licitacija"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetLicitacijaById",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:44200/api/licitacija/E1F1F516-A9C4-4209-BAA7-02E1583484CE",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "44200",
+					"path": [
+						"api",
+						"licitacija",
+						"E1F1F516-A9C4-4209-BAA7-02E1583484CE"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateLicitacija",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"Broj\" : 5,\r\n    \"Godina\" : 23,\r\n    \"Datum\" : \"2066-05-16T05:50:06\",\r\n    \"Ogranicenje\" : 23,\r\n    \"Korak_cene\" : 1235,\r\n    \"Lista_dokumentacije_fizicka_lica\" : [\"Vlado\", \"Kika\", \"Cile\"],\r\n    \"Lista_dokumentacije_pravna_lica\" : [\"Malena\", \"Flemi\", \"Djole\"],\r\n    \"JavnoNadmetanje\" : [\"Subotica\"],\r\n    \"Rok_za_dostavljanje_prijave\" : \"2005-06-16T05:50:06\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:44200/api/licitacija",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "44200",
+					"path": [
+						"api",
+						"licitacija"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateLicitacija",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "UpdateLicitacija",
+					"host": [
+						"UpdateLicitacija"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteLicitacija",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:44200/api/licitacija/6063ac7b-c31a-4ac0-bdf3-0e1ea099900e",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "44200",
+					"path": [
+						"api",
+						"licitacija",
+						"6063ac7b-c31a-4ac0-bdf3-0e1ea099900e"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Auth",
+			"request": {
+				"method": "POST",
+				"header": []
+			},
+			"response": []
+		}
+	]
+}

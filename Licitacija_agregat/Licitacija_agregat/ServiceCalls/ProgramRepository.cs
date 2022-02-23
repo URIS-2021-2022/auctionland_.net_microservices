@@ -25,10 +25,6 @@ namespace Licitacija_agregat.ServiceCalls
             {
                 Uri url = new Uri($"{ configuration["Services:ProgramService"] }/Program/{ProgramId}");
 
-               // string token = AuthHelper.GetToken(httpRequest);
-
-                //client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-
                 HttpResponseMessage response = client.GetAsync(url).Result;
 
                 var responseContent = await response.Content.ReadAsStringAsync();
