@@ -17,7 +17,7 @@ namespace Liciter___Agregat.DTOs.Kupac
         /// <summary>
         /// Prioritet kupca
         /// </summary>
-        public PrioritetEnum Prioritet { get; set; }
+        public Prioritet Prioritet { get; set; }
 
         /// <summary>
         /// Id fizičkog lica

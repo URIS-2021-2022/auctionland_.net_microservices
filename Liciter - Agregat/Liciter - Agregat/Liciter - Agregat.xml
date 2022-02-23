@@ -4,6 +4,13 @@
         <name>Liciter - Agregat</name>
     </assembly>
     <members>
+        <member name="M:Liciter___Agregat.Controllers.AuthController.Login(Liciter___Agregat.Models.Principal)">
+            <summary>
+            Služi za autentifikaciju korisnika
+            </summary>
+            <param name="principal">Model sa podacima na osnovu kojih se vrši autentifikacija</param>
+            <returns></returns>
+        </member>
         <member name="M:Liciter___Agregat.Controllers.FizickoLiceController.GetFizickaLicas(System.String)">
             <summary>
             Vraća sva fizička lica iz liste
@@ -546,7 +553,117 @@
         </member>
         <member name="P:Liciter___Agregat.DTOs.Liciter.LiciterUpdateDto.LiciterId">
             <summary>
-            L
+            Id licitera
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.Liciter.LiciterUpdateDto.KupacId">
+            <summary>
+            Id kupca
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.Liciter.LiciterUpdateDto.OvlascenoLiceId">
+            <summary>
+            Id ovlašćenog lica
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.OvlascenoLice.OvlascenoLiceCreationDto.Ime">
+            <summary>
+            Ime ovlašćenog lica
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.OvlascenoLice.OvlascenoLiceCreationDto.Prezime">
+            <summary>
+            Prezime ovlašćenog lica
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.OvlascenoLice.OvlascenoLiceCreationDto.JMBG_Br_Pasosa">
+            <summary>
+            JMBG ili broj pasoša ovlašćenog lica
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.OvlascenoLice.OvlascenoLiceCreationDto.Adresa">
+            <summary>
+            Adresa ovlašćenog lica
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.OvlascenoLice.OvlascenoLiceCreationDto.KupacId">
+            <summary>
+            Id kupca
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.OvlascenoLice.OvlascenoLiceCreationDto.Drzava">
+            <summary>
+            Država ovlašćenog lica
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.OvlascenoLice.OvlascenoLiceCreationDto.BrojTable">
+            <summary>
+            Lista brojeva tabele
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.OvlascenoLice.OvlascenoLiceDto.Ime_Prezime">
+            <summary>
+            Ime i prezime ovlašćenog lica
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.OvlascenoLice.OvlascenoLiceDto.JMBG_Br_Pasosa">
+            <summary>
+            JMBG ili Broj pasoša ovlašćenog lica
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.OvlascenoLice.OvlascenoLiceDto.Adresa">
+            <summary>
+            Adresa ovlašćenog lica
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.OvlascenoLice.OvlascenoLiceDto.Drzava">
+            <summary>
+            Država ovlašćenog lica
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.OvlascenoLice.OvlascenoLiceDto.BrojTable">
+            <summary>
+            Lista brojeva tabele
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.OvlascenoLice.OvlascenoLiceUpdateDto.OvlascenoLiceId">
+            <summary>
+            Id ovlašćenog lica
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.OvlascenoLice.OvlascenoLiceUpdateDto.Ime">
+            <summary>
+            Ime ovlašćenog lica
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.OvlascenoLice.OvlascenoLiceUpdateDto.Prezime">
+            <summary>
+            Prezime ovlašćenog lica
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.OvlascenoLice.OvlascenoLiceUpdateDto.JMBG_Br_Pasosa">
+            <summary>
+            JMBG ili Broj pasoša ovlašćenog lica
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.OvlascenoLice.OvlascenoLiceUpdateDto.Adresa">
+            <summary>
+            Adresa ovlašćenog lica
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.OvlascenoLice.OvlascenoLiceUpdateDto.KupacId">
+            <summary>
+            Id kupca 
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.OvlascenoLice.OvlascenoLiceUpdateDto.Drzava">
+            <summary>
+            Država ovlašćenog lica
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.OvlascenoLice.OvlascenoLiceUpdateDto.BrojTable">
+            <summary>
+            Lista brojeva tabele
             </summary>
         </member>
         <member name="P:Liciter___Agregat.DTOs.PravnoLice.PravnoLiceConfirmationDto.Naziv">
@@ -692,6 +809,16 @@
         <member name="P:Liciter___Agregat.DTOs.PravnoLice.PravnoLiceUpdateDto.BrojRacuna">
             <summary>
             Broj racuna pravnog lica
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.Models.Principal.KorisnickoIme">
+            <summary>
+            Korisničko ime
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.Models.Principal.Lozinka">
+            <summary>
+            Lozinka
             </summary>
         </member>
     </members>
