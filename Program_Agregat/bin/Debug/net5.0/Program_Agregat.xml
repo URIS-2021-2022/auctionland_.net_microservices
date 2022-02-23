@@ -4,6 +4,13 @@
         <name>Program_Agregat</name>
     </assembly>
     <members>
+        <member name="M:Program_Agregat.Controllers.AuthController.Login(Program_Agregat.Models.Principal)">
+            <summary>
+            Služi za autentifikaciju korisnika
+            </summary>
+            <param name="principal">Model sa podacima na osnovu kojih se vrši autentifikacija</param>
+            <returns></returns>
+        </member>
         <member name="M:Program_Agregat.Controllers.PredlogPlanaController.GetPredloziPlana(System.String)">
             <summary>
             Vraca sve predloge plana
@@ -185,6 +192,21 @@
             Datum objavljivanja dokumenta
             </summary>
         </member>
+        <member name="T:Program_Agregat.Models.Principal">
+            <summary>
+            Model na osnovu kojeg se vrsi autentifikacija
+            </summary>
+        </member>
+        <member name="P:Program_Agregat.Models.Principal.KorisnickoIme">
+            <summary>
+            Korisničko ime
+            </summary>
+        </member>
+        <member name="P:Program_Agregat.Models.Principal.Lozinka">
+            <summary>
+            Lozinka
+            </summary>
+        </member>
         <member name="T:Program_Agregat.Models.ProgramConfirmationDto">
             <summary>
             DTO za potvrdu programa
@@ -200,11 +222,6 @@
             Maksimalno ogranicenje
             </summary>
         </member>
-        <member name="P:Program_Agregat.Models.ProgramCreationDto.Licitacije">
-            <summary>
-            Licitacije na koje se odnosi zadati program
-            </summary>
-        </member>
         <member name="T:Program_Agregat.Models.ProgramDto">
             <summary>
             DTO za predlog plana
@@ -215,11 +232,6 @@
             Maksimalno ogranicenje
             </summary>
         </member>
-        <member name="P:Program_Agregat.Models.ProgramDto.Licitacije">
-            <summary>
-            Licitacije na koje se odnosi zadati program
-            </summary>
-        </member>
         <member name="T:Program_Agregat.Models.ProgramUpdateDto">
             <summary>
             DTO za azuriranje programa
@@ -228,11 +240,6 @@
         <member name="P:Program_Agregat.Models.ProgramUpdateDto.MaksimalnoOgranicenje">
             <summary>
             Maksimalno ogranicenje
-            </summary>
-        </member>
-        <member name="P:Program_Agregat.Models.ProgramUpdateDto.Licitacije">
-            <summary>
-            Licitacije na koje se odnosi zadati program
             </summary>
         </member>
     </members>

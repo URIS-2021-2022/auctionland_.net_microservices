@@ -51,7 +51,6 @@ namespace Program_Agregat.Data
 
             prog.ProgramId = program.ProgramId;
             prog.MaksimalnoOgranicenje = program.MaksimalnoOgranicenje;
-            prog.Licitacije = program.Licitacije;
 
 
             return new ProgramConfirmation

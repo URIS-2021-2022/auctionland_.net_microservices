@@ -10,7 +10,6 @@ namespace Program_Agregat.Models
     /// </summary>
     public class PredlogPlanaDto
     {
-        //public Guid PredlogPlanaId { get; set; }
         /// <summary>
         /// Broj dokumenta
         /// </summary>
