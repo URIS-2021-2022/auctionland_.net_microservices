@@ -1,0 +1,373 @@
+{
+	"info": {
+		"_postman_id": "c9948edd-135d-4de0-80b4-29ba9f4839d8",
+		"name": "URIS",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create",
+			"item": [
+				{
+					"name": "CreateOdlukaoDavanjuuZakup",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \r\n        \"datum_donosenja_odluke\": \"2022-02-02T00:00:00\",\r\n        \"validnost\": true\r\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:44200/api/odluke",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "44200",
+							"path": [
+								"api",
+								"odluke"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateUgovorOZakupu",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {\r\n        \r\n        \"javno_Nadmetanje\": \"Test\",\r\n        \"odluka\": \"TestOdluka\",\r\n        \"tip_garancije\": \"Jemstvo\",\r\n        \"lice\": \"TestLice\",\r\n        \"rokovi_dospeca\": \"2000-02-02T00:00:00\",\r\n        \"zavodni_Broj\": \"TestZavodniBroj\",\r\n        \"datum_zavodjenja\": \"2000-02-02T00:00:00\",\r\n        \"rok_za_vracanje_zemljista\": \"2023-02-02T00:00:00\",\r\n        \"mesto_potpisivanja\": \"VrbaS\",\r\n        \"datum_potpisa\": \"2010-02-02T00:00:00\",\r\n        \"odlukaoDavanjuuZakupID\": \"00f78e6b-a2bb-43b5-b3bb-f5708d1a5129\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:44200/api/UgovorOZakupu",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "44200",
+							"path": [
+								"api",
+								"UgovorOZakupu"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateUplataZakupnine",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "  {\r\n      \"UgovoroZakupuID\": \"00f78e6b-a2bb-43b5-b3bb-f5708d1a5129\",\r\n        \"broj_racuna\": \"53554604445850\",\r\n        \"poziv_na_broj\": \"179-0000-8301423123\",\r\n        \"iznos\": 100000,\r\n        \"svrha_uplate\": \"TestSvrha\",\r\n        \"datum\": \"2000-02-02T00:00:00\",\r\n        \"javno_nadmetanje\": \"TestJavnoNadmetanje\",\r\n        \"uplatilac\": \"TestUplatilac\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:44200/api/zakupnine",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "44200",
+							"path": [
+								"api",
+								"zakupnine"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateGarantPlacanja",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"UgovoroZakupuID\": \"3fb5cd6a-0f12-4627-9f94-d53045fce8fa\",\r\n        \"opis_garanta1\": \"TestOpis1\",\r\n        \"opis_garanta2\": \"TestOpis2\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:44200/api/garantPlacanja",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "44200",
+							"path": [
+								"api",
+								"garantPlacanja"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Get",
+			"item": [
+				{
+					"name": "GetZakupnine",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:44200/api/zakupnine",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "44200",
+							"path": [
+								"api",
+								"zakupnine"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NDU2MjY2NzMsImlzcyI6IlVSSVMudW5zLmFjLnJzIn0.0Pi2hLINaQqI__gRfCAj4FOnxySMGDOznjgI8RtA4_w",
+									"disabled": true
+								},
+								{
+									"key": null,
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NDU2Mjc0MDcsImlzcyI6IlVSSVMudW5zLmFjLnJzIn0.tLAIEJx_rK-pdjQ03E2VMZfLknMM6P17kvHwi-Exwiw",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetOdluke",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:44200/api/odluke/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "44200",
+							"path": [
+								"api",
+								"odluke",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetUgovori",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:44200/api/UgovorOZakupu",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "44200",
+							"path": [
+								"api",
+								"UgovorOZakupu"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetGaranti",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:44200/api/garantPlacanja",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "44200",
+							"path": [
+								"api",
+								"garantPlacanja"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Delete",
+			"item": [
+				{
+					"name": "DeleteZakupnine",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:44200/api/zakupnine/00f78e6b-a2bb-43b5-b3bb-f5708d1a5129",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "44200",
+							"path": [
+								"api",
+								"zakupnine",
+								"00f78e6b-a2bb-43b5-b3bb-f5708d1a5129"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteOdluke",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:44200/api/odluke/c3b0f654-0602-45d5-b7ad-8814ebba59ae",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "44200",
+							"path": [
+								"api",
+								"odluke",
+								"c3b0f654-0602-45d5-b7ad-8814ebba59ae"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteUgovori",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:44200/api/UgovorOZakupu/00f78e6b-a2bb-43b5-b3bb-f5708d1a5129",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "44200",
+							"path": [
+								"api",
+								"UgovorOZakupu",
+								"00f78e6b-a2bb-43b5-b3bb-f5708d1a5129"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteGaranti",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:44200/api/garantPlacanja/00f78e6b-a2bb-43b5-b3bb-f5708d1a5129",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "44200",
+							"path": [
+								"api",
+								"garantPlacanja",
+								"00f78e6b-a2bb-43b5-b3bb-f5708d1a5129"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Token request",
+			"item": [
+				{
+					"name": "Token retrieve",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
