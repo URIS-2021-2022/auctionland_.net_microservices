@@ -49,7 +49,7 @@ namespace Liciter___Agregat.Data
 
             catch(Exception ex)
             {
-                string greska =ex.Message;
+                
                 return false;
             }
         }
