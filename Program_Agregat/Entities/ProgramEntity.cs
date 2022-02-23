@@ -12,5 +12,7 @@ namespace Program_Agregat.Entities
         [Key]
         public Guid ProgramId { get; set; }
         public string MaksimalnoOgranicenje { get; set; }
+
+        
     }
 }

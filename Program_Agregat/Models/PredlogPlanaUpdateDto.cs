@@ -30,5 +30,7 @@ namespace Program_Agregat.Models
 
         public Guid? ProgramId { get; set; }
 
+        public Guid KomisijaId { get; set; }
+
     }
 }

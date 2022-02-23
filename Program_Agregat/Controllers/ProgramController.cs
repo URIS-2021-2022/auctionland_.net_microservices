@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using Program_Agregat.Entities;
 using Microsoft.AspNetCore.Authorization;
 
+
 namespace Program_Agregat.Controllers
 {
 
@@ -24,6 +25,7 @@ namespace Program_Agregat.Controllers
         private readonly LinkGenerator linkGenerator;
         private readonly IMapper mapper;
         private readonly ILoggerService loggerService;
+        
 
         public ProgramController(IProgramRepository programRepository, LinkGenerator linkGenerator, IMapper mapper, ILoggerService loggerService)
         {
@@ -31,6 +33,7 @@ namespace Program_Agregat.Controllers
             this.linkGenerator = linkGenerator;
             this.mapper = mapper;
             this.loggerService = loggerService;
+
         }
 
         /// <summary>
@@ -46,6 +49,7 @@ namespace Program_Agregat.Controllers
                 loggerService.Log(LogLevel.Warning, "GetAllStatus", "Lista programa je prazna ili null");
                 return NoContent();
             }
+            
             loggerService.Log(LogLevel.Information, "GetAllStatus", "Lista programa je uspesno vracena!");
             return Ok(mapper.Map<List<ProgramDto>>(programi));
         }

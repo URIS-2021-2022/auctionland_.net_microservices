@@ -92,6 +92,41 @@
             <response code="400">Program koji se azurira nije pronadjen</response>
             <response code="500">Doslo je do greske na serveru prilikom azuriranja programa</response>
         </member>
+        <member name="T:Program_Agregat.Models.ClanKomisijeDto">
+            <summary>
+            DTO za clana komisije
+            </summary>
+        </member>
+        <member name="P:Program_Agregat.Models.ClanKomisijeDto.ImeClana">
+            <summary>
+            Ime clana komisije
+            </summary>
+        </member>
+        <member name="P:Program_Agregat.Models.ClanKomisijeDto.PrezimeClana">
+            <summary>
+            Prezime clana komisije
+            </summary>
+        </member>
+        <member name="P:Program_Agregat.Models.ClanKomisijeDto.EmailClana">
+            <summary>
+            Email adresa clana komisije
+            </summary>
+        </member>
+        <member name="T:Program_Agregat.Models.KomisijaDto">
+            <summary>
+            DTO za komisiju
+            </summary>
+        </member>
+        <member name="P:Program_Agregat.Models.KomisijaDto.PredsednikKomisije">
+            <summary>
+            Predsednik komisije
+            </summary>
+        </member>
+        <member name="P:Program_Agregat.Models.KomisijaDto.Clanovi">
+            <summary>
+            Clanovi komisije
+            </summary>
+        </member>
         <member name="T:Program_Agregat.Models.PredlogPlanaConfirmationDto">
             <summary>
             DTO za potvrdu predloga plana
@@ -190,6 +225,26 @@
         <member name="P:Program_Agregat.Models.PredlogPlanaUpdateDto.DatumDokumenta">
             <summary>
             Datum objavljivanja dokumenta
+            </summary>
+        </member>
+        <member name="T:Program_Agregat.Models.PredsednikDto">
+            <summary>
+            DTO za predsednika komisije
+            </summary>
+        </member>
+        <member name="P:Program_Agregat.Models.PredsednikDto.ImePredsednika">
+            <summary>
+            Ime predsednika komisije
+            </summary>
+        </member>
+        <member name="P:Program_Agregat.Models.PredsednikDto.PrezimePredsednika">
+            <summary>
+            Prezime predsednika komisije
+            </summary>
+        </member>
+        <member name="P:Program_Agregat.Models.PredsednikDto.EmailPredsednika">
+            <summary>
+            Email predsednika komisije
             </summary>
         </member>
         <member name="T:Program_Agregat.Models.Principal">

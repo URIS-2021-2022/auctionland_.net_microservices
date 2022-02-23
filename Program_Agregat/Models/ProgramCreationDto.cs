@@ -15,6 +15,8 @@ namespace Program_Agregat.Models
         /// </summary>
         public string MaksimalnoOgranicenje { get; set; }
 
+        
+
 
 
     }

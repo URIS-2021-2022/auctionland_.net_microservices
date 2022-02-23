@@ -10,8 +10,8 @@ using Program_Agregat.Entities;
 namespace Program_Agregat.Migrations
 {
     [DbContext(typeof(ProgramContext))]
-    [Migration("20220223100213_update-database")]
-    partial class updatedatabase
+    [Migration("20220223153512_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -32,6 +32,9 @@ namespace Program_Agregat.Migrations
 
                     b.Property<DateTime>("DatumDokumenta")
                         .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("KomisijaId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("MisljenjeKomisije")
                         .HasColumnType("nvarchar(max)");
