@@ -1,0 +1,239 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Program_Agregat</name>
+    </assembly>
+    <members>
+        <member name="M:Program_Agregat.Controllers.PredlogPlanaController.GetPredloziPlana(System.String)">
+            <summary>
+            Vraca sve predloge plana
+            </summary>
+            <param name="BrojDokumenta"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Program_Agregat.Controllers.PredlogPlanaController.GetPredlogPlanaById(System.Guid)">
+            <summary>
+            Vraca predlog plana na osnovu ID-a
+            </summary>
+            <param name="predlogPlanaId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Program_Agregat.Controllers.PredlogPlanaController.CreatePredlogPlana(Program_Agregat.Models.PredlogPlanaCreationDto)">
+            <summary>
+            Dodaje novi predlog plana u listu
+            </summary>
+            <param name="predlogPlana"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Program_Agregat.Controllers.PredlogPlanaController.DeletePredlogPlana(System.Guid)">
+            <summary>
+            Brise predlog plana sa prosledjenim id-em iz liste
+            </summary>
+            <param name="predlogPlanaId"></param>
+            <returns>Status 204 (NoContent)</returns>
+            <response code="204">Predlog plana uspesno obrisan</response>
+            <response code="404">Nije pronadjen predlog plana za brisanje</response>
+            <response code="500">Doslo je do greske na serveru prilikom brisanja predloga plana</response>
+        </member>
+        <member name="M:Program_Agregat.Controllers.PredlogPlanaController.UpdatePredlogPlana(Program_Agregat.Models.PredlogPlanaUpdateDto)">
+            <summary>
+            Vrsi izmenu nad predlogom plana koji je prosledjen u body-u
+            </summary>
+            <param name="predlogPlana"></param>
+            <returns>Potvrda o modifikovanom predlogu plana</returns>
+            <response code="200">Vraca azurirani predlog plana</response>
+            <response code="400">Predlog plana koji se azurira nije pronadjen</response>
+            <response code="500">Doslo je do greske na serveru prilikom azuriranja predloga plana</response>
+        </member>
+        <member name="M:Program_Agregat.Controllers.ProgramController.GetProgrami">
+            <summary>
+            Vraca sve programe
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Program_Agregat.Controllers.ProgramController.GetProgramById(System.Guid)">
+            <summary>
+            Vraca program na osnovu ID-a
+            </summary>
+            <param name="programId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Program_Agregat.Controllers.ProgramController.CreateProgram(Program_Agregat.Models.ProgramCreationDto)">
+            <summary>
+            Dodaje novi program u listu
+            </summary>
+            <param name="program"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Program_Agregat.Controllers.ProgramController.DeleteProgram(System.Guid)">
+            <summary>
+            Brise program sa prosledjenim id-em iz liste
+            </summary>
+            <param name="programId"></param>
+            <returns>Status 204 (NoContent)</returns>
+            <response code="204">Program uspesno obrisan</response>
+            <response code="404">Nije pronadjen program za brisanje</response>
+            <response code="500">Doslo je do greske na serveru prilikom brisanja programa</response>
+        </member>
+        <member name="M:Program_Agregat.Controllers.ProgramController.UpdateProgram(Program_Agregat.Models.ProgramUpdateDto)">
+            <summary>
+            Vrsi izmenu programa koji se prosledio u body-u
+            </summary>
+            <param name="program"></param>
+            <returns>Potvrdu o modifikovanom programu</returns>
+            <response code="200">Vraca azurirani programe</response>
+            <response code="400">Program koji se azurira nije pronadjen</response>
+            <response code="500">Doslo je do greske na serveru prilikom azuriranja programa</response>
+        </member>
+        <member name="T:Program_Agregat.Models.PredlogPlanaConfirmationDto">
+            <summary>
+            DTO za potvrdu predloga plana
+            </summary>
+        </member>
+        <member name="P:Program_Agregat.Models.PredlogPlanaConfirmationDto.BrojDokumenta">
+            <summary>
+            Broj dokumenta
+            </summary>
+        </member>
+        <member name="P:Program_Agregat.Models.PredlogPlanaConfirmationDto.MisljenjeKomisije">
+            <summary>
+            Iskazano misljenje komisije o predlogu plana
+            </summary>
+        </member>
+        <member name="P:Program_Agregat.Models.PredlogPlanaConfirmationDto.Usvojen">
+            <summary>
+            Podatak da li je predlog plana usvojen ili ne
+            </summary>
+        </member>
+        <member name="P:Program_Agregat.Models.PredlogPlanaConfirmationDto.DatumDokumenta">
+            <summary>
+            Datum objavljivanja dokumenta
+            </summary>
+        </member>
+        <member name="T:Program_Agregat.Models.PredlogPlanaCreationDto">
+            <summary>
+            Model za kreiranje predloga plana
+            </summary>
+        </member>
+        <member name="P:Program_Agregat.Models.PredlogPlanaCreationDto.BrojDokumenta">
+            <summary>
+            Broj dokumenta
+            </summary>
+        </member>
+        <member name="P:Program_Agregat.Models.PredlogPlanaCreationDto.MisljenjeKomisije">
+            <summary>
+            Iskazano misljenje komisije o predlogu plana
+            </summary>
+        </member>
+        <member name="P:Program_Agregat.Models.PredlogPlanaCreationDto.Usvojen">
+            <summary>
+            Podatak da li je predlog plana usvojen ili ne
+            </summary>
+        </member>
+        <member name="P:Program_Agregat.Models.PredlogPlanaCreationDto.DatumDokumenta">
+            <summary>
+            Datum objavljivanja dokumenta
+            </summary>
+        </member>
+        <member name="T:Program_Agregat.Models.PredlogPlanaDto">
+            <summary>
+            DTO za predlog plana
+            </summary>
+        </member>
+        <member name="P:Program_Agregat.Models.PredlogPlanaDto.BrojDokumenta">
+            <summary>
+            Broj dokumenta
+            </summary>
+        </member>
+        <member name="P:Program_Agregat.Models.PredlogPlanaDto.MisljenjeKomisije">
+            <summary>
+            Iskazano misljenje komisije o predlogu plana
+            </summary>
+        </member>
+        <member name="P:Program_Agregat.Models.PredlogPlanaDto.Usvojen">
+            <summary>
+            Podatak da li je predlog plana usvojen ili ne
+            </summary>
+        </member>
+        <member name="P:Program_Agregat.Models.PredlogPlanaDto.DatumDokumenta">
+            <summary>
+            Datum objavljivanja dokumenta
+            </summary>
+        </member>
+        <member name="T:Program_Agregat.Models.PredlogPlanaUpdateDto">
+            <summary>
+            DTO za azuriranje predloga plana
+            </summary>
+        </member>
+        <member name="P:Program_Agregat.Models.PredlogPlanaUpdateDto.BrojDokumenta">
+            <summary>
+            Broj dokumenta
+            </summary>
+        </member>
+        <member name="P:Program_Agregat.Models.PredlogPlanaUpdateDto.MisljenjeKomisije">
+            <summary>
+            Iskazano misljenje komisije o predlogu plana
+            </summary>
+        </member>
+        <member name="P:Program_Agregat.Models.PredlogPlanaUpdateDto.Usvojen">
+            <summary>
+            Podatak da li je predlog plana usvojen ili ne
+            </summary>
+        </member>
+        <member name="P:Program_Agregat.Models.PredlogPlanaUpdateDto.DatumDokumenta">
+            <summary>
+            Datum objavljivanja dokumenta
+            </summary>
+        </member>
+        <member name="T:Program_Agregat.Models.ProgramConfirmationDto">
+            <summary>
+            DTO za potvrdu programa
+            </summary>
+        </member>
+        <member name="T:Program_Agregat.Models.ProgramCreationDto">
+            <summary>
+            Model za kreiranje programa
+            </summary>
+        </member>
+        <member name="P:Program_Agregat.Models.ProgramCreationDto.MaksimalnoOgranicenje">
+            <summary>
+            Maksimalno ogranicenje
+            </summary>
+        </member>
+        <member name="P:Program_Agregat.Models.ProgramCreationDto.Licitacije">
+            <summary>
+            Licitacije na koje se odnosi zadati program
+            </summary>
+        </member>
+        <member name="T:Program_Agregat.Models.ProgramDto">
+            <summary>
+            DTO za predlog plana
+            </summary>
+        </member>
+        <member name="P:Program_Agregat.Models.ProgramDto.MaksimalnoOgranicenje">
+            <summary>
+            Maksimalno ogranicenje
+            </summary>
+        </member>
+        <member name="P:Program_Agregat.Models.ProgramDto.Licitacije">
+            <summary>
+            Licitacije na koje se odnosi zadati program
+            </summary>
+        </member>
+        <member name="T:Program_Agregat.Models.ProgramUpdateDto">
+            <summary>
+            DTO za azuriranje programa
+            </summary>
+        </member>
+        <member name="P:Program_Agregat.Models.ProgramUpdateDto.MaksimalnoOgranicenje">
+            <summary>
+            Maksimalno ogranicenje
+            </summary>
+        </member>
+        <member name="P:Program_Agregat.Models.ProgramUpdateDto.Licitacije">
+            <summary>
+            Licitacije na koje se odnosi zadati program
+            </summary>
+        </member>
+    </members>
+</doc>
