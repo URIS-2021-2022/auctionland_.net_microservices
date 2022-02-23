@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using AutoMapper;
 using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
@@ -9,6 +10,7 @@ using Microsoft.Extensions.Logging;
 using Parcela.Data;
 using Parcela.Entities;
 using Parcela.Models;
+using Parcela.ServiceCalls;
 
 namespace Parcela.Controllers
 {
@@ -18,23 +20,27 @@ namespace Parcela.Controllers
     [ApiController]
     [Route("api/parcela")]
     [Produces("application/json", "application/xml")]
-    //[Authorize]
+    [Authorize]
     public class ParcelaController : ControllerBase
     {
         private readonly IParcelaRepository parcelaRepository;
         private readonly LinkGenerator linkGenerator;
         private readonly IMapper mapper;
         private readonly ILoggerService loggerService;
+        private readonly IFizickoLiceRepository fizickoLiceRepository;
+        private readonly IPravnoLiceRepository pravnoLiceRepository;
 
         /// <summary>
         /// Konstruktor kontrolera za parcele
         /// </summary>
-        public ParcelaController(IParcelaRepository parcelaRepository, LinkGenerator linkGenerator, IMapper mapper, ILoggerService loggerService)
+        public ParcelaController(IParcelaRepository parcelaRepository, LinkGenerator linkGenerator, IMapper mapper, ILoggerService loggerService, IFizickoLiceRepository fizickoLiceRepository, IPravnoLiceRepository pravnoLiceRepository)
         {
             this.parcelaRepository = parcelaRepository;
             this.linkGenerator = linkGenerator;
             this.mapper = mapper;
             this.loggerService = loggerService;
+            this.fizickoLiceRepository = fizickoLiceRepository;
+            this.pravnoLiceRepository = pravnoLiceRepository;
         }
 
         /// <summary>
@@ -52,10 +58,18 @@ namespace Parcela.Controllers
         {
             var parcele = parcelaRepository.GetParcele(kultura);
 
+            List<ParcelaM> parcelaList = parcelaRepository.GetParcele(kultura);
+
             if (parcele == null || parcele.Count == 0)
             {
                 loggerService.Log(LogLevel.Warning, "GetAllStatus", "Lista parcela je prazna ili null");
                 return NoContent();
+            }
+
+            List<ParcelaDto> parcelaDtoList = mapper.Map<List<ParcelaDto>>(parcelaList);
+            foreach (ParcelaDto parcelaDto in parcelaDtoList)
+            {
+                parcelaDto.KorisnikParceleDto = fizickoLiceRepository.GetFizickoLiceByIdAsync(parcelaDto.KorisnikParcele, Request).Result;
             }
 
             loggerService.Log(LogLevel.Information, "GetAllStatus", "Lista parcela je uspesno vracena!");
@@ -142,6 +156,8 @@ namespace Parcela.Controllers
             }
             catch (Exception ex)
             {
+                string greska = ex.Message;
+                Console.WriteLine(greska);
                 loggerService.Log(LogLevel.Warning, "PostStatus", "Parcela nije kreirana, doslo je do greske!");
                 return StatusCode(StatusCodes.Status500InternalServerError, "Create error");
             }

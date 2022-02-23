@@ -12,7 +12,7 @@ namespace Komisija_Agregat.Models
     public class KomisijaDto
     {
         
-        //public Guid KomisijaId { get; set; }
+
         /// <summary>
         /// Predsednik komisije
         /// </summary>

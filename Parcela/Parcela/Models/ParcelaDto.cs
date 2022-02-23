@@ -15,10 +15,14 @@ namespace Parcela.Models
         /// Datum podnosenja parcele
         /// </summary>
         public DateTime DatumPodnosenjaParcele { get; set; }
-        /*/// <summary>
+        /// <summary>
         /// ID podnosioca parcele
         /// </summary>
-        public Guid PodnosilacParcele { get; set; }*/
+        public Guid KorisnikParcele { get; set; }
+        /// <summary>
+        /// Dto fizicko lice
+        /// </summary>
+        public FizickoLiceDto KorisnikParceleDto { get; set; }
         /// <summary>
         /// Razlog parcele parcele
         /// </summary>

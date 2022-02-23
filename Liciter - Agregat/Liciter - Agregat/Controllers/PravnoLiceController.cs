@@ -2,6 +2,8 @@
 using Liciter___Agregat.Data;
 using Liciter___Agregat.DTOs.PravnoLice;
 using Liciter___Agregat.Models;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
@@ -15,7 +17,9 @@ namespace Liciter___Agregat.Controllers
 {
     [Route("api/pravnoLice")]
     [ApiController]
-   public class PravnoLiceController : ControllerBase
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+    [Authorize]
+    public class PravnoLiceController : ControllerBase
     {
         private readonly IPravnoLiceRepository pravnoLiceRepository;
         private readonly LinkGenerator linkGenerator;

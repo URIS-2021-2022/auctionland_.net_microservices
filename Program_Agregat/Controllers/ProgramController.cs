@@ -10,12 +10,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Program_Agregat.Entities;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Program_Agregat.Controllers
 {
 
     [ApiController]
     [Route("api/Program")]
+    [Authorize]
     public class ProgramController : ControllerBase
     {
         private readonly IProgramRepository programRepository;

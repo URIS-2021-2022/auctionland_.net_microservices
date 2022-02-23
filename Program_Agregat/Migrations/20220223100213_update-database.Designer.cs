@@ -10,8 +10,8 @@ using Program_Agregat.Entities;
 namespace Program_Agregat.Migrations
 {
     [DbContext(typeof(ProgramContext))]
-    [Migration("20220222223359_1")]
-    partial class _1
+    [Migration("20220223100213_update-database")]
+    partial class updatedatabase
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -57,9 +57,6 @@ namespace Program_Agregat.Migrations
                     b.Property<Guid>("ProgramId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Licitacije")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("MaksimalnoOgranicenje")
                         .HasColumnType("nvarchar(max)");

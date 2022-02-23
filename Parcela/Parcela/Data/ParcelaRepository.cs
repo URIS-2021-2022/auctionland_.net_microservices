@@ -35,8 +35,9 @@ namespace Parcela.Data
         /// <summary>
         /// Metoda koja pribavlja podatke
         /// </summary>
-        public List<ParcelaM> GetParcele(string kultura = null)
+        public List<ParcelaM> GetParcele(string kultura)
         {
+            //kultura = null;
             return context.Parcele.Where(e => (kultura == null || e.Kultura == kultura)).ToList();
         }
 
@@ -62,7 +63,7 @@ namespace Parcela.Data
         /// </summary>
         public void UpdateParcela(ParcelaM parcelaM)
         {
-
+            //azurira se automatski
         }
 
         /// <summary>

@@ -138,3 +138,4 @@ C:\Users\Korisnik\source\repos\tim-6---auctionland-tim-6-nopcommerce\Zalba\Zalba
 C:\Users\Korisnik\source\repos\tim-6---auctionland-tim-6-nopcommerce\Zalba\Zalba\obj\Debug\net5.0\ref\Zalba.dll
 C:\Users\Korisnik\source\repos\tim-6---auctionland-tim-6-nopcommerce\Zalba\Zalba\obj\Debug\net5.0\Zalba.pdb
 C:\Users\Korisnik\source\repos\tim-6---auctionland-tim-6-nopcommerce\Zalba\Zalba\obj\Debug\net5.0\Zalba.genruntimeconfig.cache
+C:\Users\Korisnik\source\repos\tim-6---auctionland-tim-6-nopcommerce\Zalba\Zalba\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll

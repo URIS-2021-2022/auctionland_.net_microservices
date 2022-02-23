@@ -2,6 +2,8 @@
 using Liciter___Agregat.Data;
 using Liciter___Agregat.DTOs.Kupac;
 using Liciter___Agregat.Models;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
@@ -15,19 +17,23 @@ namespace Liciter___Agregat.Controllers
 {
     [Route("api/kupac")]
     [ApiController]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+    [Authorize]
     public class KupacController : ControllerBase
     {
         private readonly IKupacRepository kupacRepository;
         private readonly LinkGenerator linkGenerator;
         private readonly IMapper mapper;
         private readonly ILoggerService loggerService;
+        private readonly IJavnaNadmetanjaService javnaNadmetanjaService;
 
-        public KupacController(IKupacRepository kupacRepository, LinkGenerator linkGenerator, IMapper mapper, ILoggerService loggerService)
+        public KupacController(IKupacRepository kupacRepository, LinkGenerator linkGenerator, IMapper mapper, ILoggerService loggerService, IJavnaNadmetanjaService javnaNadmetanjaService)
         {
             this.kupacRepository = kupacRepository;
             this.linkGenerator = linkGenerator;
             this.mapper = mapper;
             this.loggerService = loggerService;
+            this.javnaNadmetanjaService = javnaNadmetanjaService;
         }
         /// <summary>
         /// Vraća sve Kupce iz liste

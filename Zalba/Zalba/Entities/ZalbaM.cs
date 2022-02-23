@@ -23,11 +23,10 @@ namespace Zalba.Entities
         /// Datum podnosenja zalbe
         /// </summary>
         public DateTime DatumPodnosenjaZalbe { get; set; }
-        /*/// <summary>
+        /// <summary>
         /// ID podnosioca zalbe
         /// </summary>
-        [ForeignKey("FK_Korisnik")]
-        public Guid PodnosilacZalbe { get; set; }*/
+        public Guid? PodnosilacZalbe { get; set; }
         /// <summary>
         /// Razlog zalbe zalbe
         /// </summary>

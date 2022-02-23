@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Program_Agregat.Migrations
 {
-    public partial class _1 : Migration
+    public partial class updatedatabase : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -12,8 +12,7 @@ namespace Program_Agregat.Migrations
                 columns: table => new
                 {
                     ProgramId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    MaksimalnoOgranicenje = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Licitacije = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    MaksimalnoOgranicenje = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {

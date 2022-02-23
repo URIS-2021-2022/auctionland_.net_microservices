@@ -19,6 +19,10 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using AutoMapper;
+using Liciter___Agregat.Helpers;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace Liciter___Agregat
 {
@@ -73,7 +77,7 @@ namespace Liciter___Agregat
                             {
                                 ContentTypes = { "application/problem+json" }
                             };
-                        };
+                        }
 
                         //ukoliko postoji nešto što nije moglo da se parsira hoćemo da vraćamo status 400 kao i do sada
                         problemDetails.Status = StatusCodes.Status400BadRequest;
@@ -102,14 +106,14 @@ namespace Liciter___Agregat
                         {
                             Name = "Luka Zeljković",
                             Email = "zeljkovicluka17@gmail.com",
-                            Url = new Uri("http://www.ftn.uns.ac.rs/")
+                            Url = new Uri(Configuration["Swagger:Github"])
                         },
                         License = new Microsoft.OpenApi.Models.OpenApiLicense
                         {
                             Name = "FTN licence",
-                            Url = new Uri("http://www.ftn.uns.ac.rs/")
+                            Url = new Uri(Configuration["Swagger:Github"])
                         },
-                        TermsOfService = new Uri("http://www.ftn.uns.ac.rs/examRegistrationTermsOfService")
+                        TermsOfService = new Uri(Configuration["Swagger:Github"])
                     });
 
                 //Pomocu refleksije dobijamo ime XML fajla sa komentarima (ovako smo ga nazvali u Project -> Properties)
@@ -130,8 +134,24 @@ namespace Liciter___Agregat
             services.AddScoped<IKupacRepository, KupacRepository>();
             services.AddScoped<ILiciterRepository, LiciterRepository>();
             services.AddScoped<ILoggerService, LoggerService>();
+            services.AddScoped<IAuthHelper, AuthHelper>();
+            services.AddSingleton<IKorisnikRepository, KorisnikMockRepository>();
 
             services.AddDbContext<DataBaseContext>();
+
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
+            {
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidateLifetime = true,
+                    ValidateIssuerSigningKey = true,
+                    ValidIssuer = Configuration["Jwt:Issuer"],
+                    ValidAudience = Configuration["Jwt:Issuer"],
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Jwt:Key"]))
+                };
+            });
         }
 
         
@@ -162,6 +182,8 @@ namespace Liciter___Agregat
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseAuthentication();
 
             app.UseSwagger();
 

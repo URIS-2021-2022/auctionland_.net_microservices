@@ -10,8 +10,6 @@ namespace Komisija_Agregat.Models
     /// </summary>
     public class ClanKomisijeCreationDto
     {
-        // public Guid ClanId { get; set; }
-
         /// <summary>
         /// Ime clana komisije
         /// </summary>

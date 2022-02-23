@@ -50,8 +50,9 @@ namespace Oglas_Agregat.Data
 
         }
 
-        public void UpdateSluzbeniList(SluzbeniList sluzbeniListModel)
+        public void UpdateSluzbeniList(SluzbeniList sluzbeniList)
         {
+            //nije potrebna implementacija
         }
     }
 }
