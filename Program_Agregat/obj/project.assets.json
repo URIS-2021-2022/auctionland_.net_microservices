@@ -6094,11 +6094,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\marko\\source\\repos\\Program_Agregat\\Program_Agregat.csproj",
+      "projectUniqueName": "C:\\Users\\marko\\Documents\\GitHub\\tim-6---auctionland-tim-6-nopcommerce\\Program_Agregat\\Program_Agregat.csproj",
       "projectName": "Program_Agregat",
-      "projectPath": "C:\\Users\\marko\\source\\repos\\Program_Agregat\\Program_Agregat.csproj",
+      "projectPath": "C:\\Users\\marko\\Documents\\GitHub\\tim-6---auctionland-tim-6-nopcommerce\\Program_Agregat\\Program_Agregat.csproj",
       "packagesPath": "C:\\Users\\marko\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\marko\\source\\repos\\Program_Agregat\\obj\\",
+      "outputPath": "C:\\Users\\marko\\Documents\\GitHub\\tim-6---auctionland-tim-6-nopcommerce\\Program_Agregat\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\marko\\AppData\\Roaming\\NuGet\\NuGet.Config",

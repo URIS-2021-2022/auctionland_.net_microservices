@@ -56,9 +56,6 @@ namespace Program_Agregat.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("Licitacije")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("MaksimalnoOgranicenje")
                         .HasColumnType("nvarchar(max)");
 

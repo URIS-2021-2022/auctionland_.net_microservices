@@ -10,11 +10,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Program_Agregat.Controllers
 {
     [ApiController]
     [Route("api/PredlogPlana")]
+    [Authorize]
     public class PredlogPlanaController : ControllerBase
     {
         private readonly IPredlogPlanaRepository predlogPlanaRepository;

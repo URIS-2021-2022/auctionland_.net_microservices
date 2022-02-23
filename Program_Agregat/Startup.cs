@@ -22,7 +22,7 @@ using Program_Agregat.Models;
 using Program_Agregat.Profiles;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
-
+using Program_Agregat.Helpers;
 
 namespace Program_Agregat
 {
@@ -70,7 +70,7 @@ namespace Program_Agregat
                         {
                             ContentTypes = { "application/problem+json" }
                         };
-                    };
+                    }
 
                     problemDetails.Status = StatusCodes.Status400BadRequest;
                     problemDetails.Title = "Došlo je do greške prilikom parsiranja poslatog sadržaja.";
@@ -86,6 +86,8 @@ namespace Program_Agregat
             services.AddScoped<IPredlogPlanaRepository, PredlogPlanaRepository>();
             services.AddScoped<IProgramRepository, ProgramRepository>();
             services.AddScoped<ILoggerService, LoggerService>();
+            services.AddScoped<IAuthHelper, AuthHelper>();
+            services.AddScoped<IKorisnikRepository, KorisnikMockRepository>();
 
 
             services.AddSwaggerGen(c =>
@@ -112,7 +114,6 @@ namespace Program_Agregat
                 c.IncludeXmlComments(xmlCommentsPath);
             });
 
-            //services.AddDbContextPool<ProgramContext>(options => options.UseSqlServer(Configuration.GetConnectionString("ProgramDB")));
             services.AddDbContext<ProgramContext>();
         }
 

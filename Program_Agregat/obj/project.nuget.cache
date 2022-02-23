@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "S7JWMfjN40GJIAeTzPBgTlU8XTJfPH98725tCmONA9PaHsyDbwaqCxiOsHGU72huAAE9b0813dW6AvFyXLjHCg==",
+  "dgSpecHash": "KoBzJi9O82hWTLnR2ZGbN7RIREc9jaeQ8Md5/ty6/Fpea8Kq2Lh1+LPbpeCi6l7b1SUXGpbOtn+tQzE6pAJ0WQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\marko\\source\\repos\\Program_Agregat\\Program_Agregat.csproj",
+  "projectFilePath": "C:\\Users\\marko\\Documents\\GitHub\\tim-6---auctionland-tim-6-nopcommerce\\Program_Agregat\\Program_Agregat.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\marko\\.nuget\\packages\\automapper\\11.0.1\\automapper.11.0.1.nupkg.sha512",
     "C:\\Users\\marko\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\11.0.0\\automapper.extensions.microsoft.dependencyinjection.11.0.0.nupkg.sha512",
