@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Text;
 using System.Threading.Tasks;
 using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -17,9 +19,11 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Zalba.Data;
 using Zalba.Entities;
+using Zalba.Helpers;
 using Zalba.Models;
 
 namespace Zalba
@@ -92,7 +96,9 @@ namespace Zalba
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddScoped<ITipZalbeRepository, TipZalbeRepository>();
             services.AddScoped<IZalbaRepository, ZalbaRepository>();
+
             services.AddScoped<ILoggerService, LoggerService>();
+            services.AddScoped<IAuthHelper, AuthHelper>();
 
             //services.AddDbContextPool<ZalbaContext>(options => options.UseSqlServer(Configuration.GetConnectionString("ZalbeDB")));
             //services.AddDbContextPool<TipZalbeContext>(options => options.UseSqlServer(Configuration.GetConnectionString("TipoviZalbiDB")));
@@ -119,6 +125,20 @@ namespace Zalba
                 var xmlComments = $"{ Assembly.GetExecutingAssembly().GetName().Name }.xml";
                 var xmlCommentsPath = Path.Combine(AppContext.BaseDirectory, xmlComments);
                 setupAction.IncludeXmlComments(xmlCommentsPath);
+            });
+
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
+            {
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidateLifetime = true,
+                    ValidateIssuerSigningKey = true,
+                    ValidIssuer = Configuration["Jwt:Issuer"],
+                    ValidAudience = Configuration["Jwt:Issuer"],
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Jwt:Key"]))
+                };
             });
 
         }

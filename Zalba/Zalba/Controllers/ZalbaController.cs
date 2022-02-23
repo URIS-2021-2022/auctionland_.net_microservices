@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using AutoMapper;
 using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
@@ -18,7 +19,7 @@ namespace Zalba.Controllers
     [ApiController]
     [Route("api/zalba")]
     [Produces("application/json", "application/xml")]
-    //[Authorize]
+    [Authorize]
     public class ZalbaController : ControllerBase
     {
         private readonly IZalbaRepository zalbaRepository;
