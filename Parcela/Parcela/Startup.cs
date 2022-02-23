@@ -101,6 +101,8 @@ namespace Parcela
             services.AddScoped<ILoggerService, LoggerService>();
             services.AddScoped<IAuthHelper, AuthHelper>();
 
+            services.AddSingleton<IKorisnikRepository, KorisnikMockRepository>();
+
             services.AddDbContext<ParcelaContext>();
 
             services.AddMvc().AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<ParcelaCreationValidator>());
