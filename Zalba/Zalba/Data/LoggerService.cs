@@ -49,7 +49,7 @@ namespace Zalba.Data
 
             catch (Exception ex)
             {
-                string greska = ex.Message;
+                //string greska = ex.Message;
                 return false;
             }
         }
