@@ -46,23 +46,23 @@ namespace Parcela.Entities
         /// <summary>
         /// Popunjava bazu sa nekim inicijalnim podacima
         /// </summary>
-        protected override void OnModelCreating(ModelBuilder builder)
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            builder.Entity<Opstina>()
+            modelBuilder.Entity<Opstina>()
                 .HasData(new
                 {
                     OpstinaId = Guid.Parse("044f3de0-a9dd-4c2e-b745-89976a1b2a36"),
                     NazivOpstine = "Bajmok"
                 });
 
-            builder.Entity<Opstina>()
+            modelBuilder.Entity<Opstina>()
                 .HasData(new
                 {
                     OpstinaId = Guid.Parse("21ad52f8-0281-4241-98b0-481566d25e4f"),
                     NazivOpstine = "Bikovo"
                 });
 
-            builder.Entity<Opstina>()
+            modelBuilder.Entity<Opstina>()
                 .HasData(new
                 {
                     OpstinaId = Guid.Parse("9d8bab08-f442-4297-8ab5-ddfe08e335f3"),
@@ -70,7 +70,7 @@ namespace Parcela.Entities
                 });
 
 
-            builder.Entity<ParcelaM>()
+            modelBuilder.Entity<ParcelaM>()
                 .HasData(new
                 {
                     ParcelaId = Guid.Parse("6a411c13-a195-48f7-8dbd-67596c3974c0"),
@@ -92,7 +92,7 @@ namespace Parcela.Entities
                     OdvodnjavanjeStvarnoStanje = "ostalo"
                 });
 
-            builder.Entity<ParcelaM>()
+            modelBuilder.Entity<ParcelaM>()
                 .HasData(new
                 {
                     ParcelaId = Guid.Parse("1c7ea607-8ddb-493a-87fa-4bf5893e965b"),
@@ -117,7 +117,7 @@ namespace Parcela.Entities
 
 
 
-            builder.Entity<DeoParcele>()
+            modelBuilder.Entity<DeoParcele>()
                 .HasData(new
                 {
                     DeoParceleId = Guid.Parse("21ad52f8-0281-4241-98b0-481566d25e5f"),
@@ -126,7 +126,7 @@ namespace Parcela.Entities
                     RbrDelaParcele = 1
                 });
 
-            builder.Entity<DeoParcele>()
+            modelBuilder.Entity<DeoParcele>()
                 .HasData(new
                 {
                     DeoParceleId = Guid.Parse("21ad52f8-0281-4241-98b0-481566d25e4f"),

@@ -82,7 +82,7 @@ namespace Parcela
                         {
                             ContentTypes = { "application/problem+json" }
                         };
-                    };
+                    }
 
                     problemDetails.Status = StatusCodes.Status400BadRequest;
                     problemDetails.Title = "Došlo je do greske prilikom parsiranja poslatog sadrzaja.";
