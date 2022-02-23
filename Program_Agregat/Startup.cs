@@ -23,6 +23,9 @@ using Program_Agregat.Profiles;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using Program_Agregat.Helpers;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace Program_Agregat
 {
@@ -114,6 +117,20 @@ namespace Program_Agregat
                 c.IncludeXmlComments(xmlCommentsPath);
             });
 
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
+            {
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidateLifetime = true,
+                    ValidateIssuerSigningKey = true,
+                    ValidIssuer = Configuration["Jwt:Issuer"],
+                    ValidAudience = Configuration["Jwt:Issuer"],
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Jwt:Key"]))
+                };
+            });
+
             services.AddDbContext<ProgramContext>();
         }
 
@@ -144,6 +161,7 @@ namespace Program_Agregat
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseSwagger();

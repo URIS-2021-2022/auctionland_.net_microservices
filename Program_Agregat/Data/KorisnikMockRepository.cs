@@ -26,7 +26,7 @@ namespace Program_Agregat.Data
                     KorisnikId = Guid.Parse("91494072-4d24-4661-9c51-f20e42cc2dd7"),
                     Ime = "Vlado",
                     Prezime = "Cetkovic",
-                    KorisnickoIme = "dovla",
+                    KorisnickoIme = "vlado",
                     Lozinka = korisnik.Item1,
                     TipKorisnikaId = Guid.Parse("03032c98-d505-4062-9f52-b55e196201c8"),
                     Salt = korisnik.Item2
