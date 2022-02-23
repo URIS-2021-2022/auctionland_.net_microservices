@@ -159,6 +159,16 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="T:Zalba.Data.ILoggerService">
+            <summary>
+            Interfejs za LoggerService
+            </summary>
+        </member>
+        <member name="M:Zalba.Data.ILoggerService.Log(Microsoft.Extensions.Logging.LogLevel,System.String,System.String,System.Exception)">
+            <summary>
+            Metoda za LoggerService
+            </summary>
+        </member>
         <member name="T:Zalba.Data.ITipZalbeRepository">
             <summary>
             Interfejs za ZalbaRepository
@@ -227,6 +237,26 @@
         <member name="M:Zalba.Data.IZalbaRepository.SaveChanges">
             <summary>
             Metoda koja cuva izmene
+            </summary>
+        </member>
+        <member name="T:Zalba.Data.LoggerService">
+            <summary>
+            Klasa LoggerService
+            </summary>
+        </member>
+        <member name="F:Zalba.Data.LoggerService.configuration">
+            <summary>
+            Konfiguracija
+            </summary>
+        </member>
+        <member name="M:Zalba.Data.LoggerService.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Konfiguracija
+            </summary>
+        </member>
+        <member name="M:Zalba.Data.LoggerService.Log(Microsoft.Extensions.Logging.LogLevel,System.String,System.String,System.Exception)">
+            <summary>
+            Metoda Log
             </summary>
         </member>
         <member name="T:Zalba.Data.TipZalbeRepository">
@@ -307,6 +337,36 @@
         <member name="M:Zalba.Data.ZalbaRepository.DeleteZalba(System.Guid)">
             <summary>
             Metoda koja brise podatke
+            </summary>
+        </member>
+        <member name="T:Zalba.Entities.LogModel">
+            <summary>
+            Klasa LogModel
+            </summary>
+        </member>
+        <member name="P:Zalba.Entities.LogModel.Service">
+            <summary>
+            String Service
+            </summary>
+        </member>
+        <member name="P:Zalba.Entities.LogModel.Level">
+            <summary>
+            String Level
+            </summary>
+        </member>
+        <member name="P:Zalba.Entities.LogModel.Method">
+            <summary>
+            String Method
+            </summary>
+        </member>
+        <member name="P:Zalba.Entities.LogModel.Message">
+            <summary>
+            String Message
+            </summary>
+        </member>
+        <member name="P:Zalba.Entities.LogModel.Error">
+            <summary>
+            String Error
             </summary>
         </member>
         <member name="T:Zalba.Entities.TipZalbe">
@@ -407,6 +467,11 @@
         <member name="P:Zalba.Entities.ZalbaM.DatumPodnosenjaZalbe">
             <summary>
             Datum podnosenja zalbe
+            </summary>
+        </member>
+        <member name="P:Zalba.Entities.ZalbaM.PodnosilacZalbe">
+            <summary>
+            ID podnosioca zalbe
             </summary>
         </member>
         <member name="P:Zalba.Entities.ZalbaM.RazlogZalbe">
@@ -559,6 +624,11 @@
             Datum podnosenja zalbe
             </summary>
         </member>
+        <member name="P:Zalba.Models.ZalbaCreationDto.PodnosilacZalbe">
+            <summary>
+            ID podnosioca zalbe
+            </summary>
+        </member>
         <member name="P:Zalba.Models.ZalbaCreationDto.RazlogZalbe">
             <summary>
             Razlog zalbe zalbe
@@ -619,6 +689,11 @@
             Datum podnosenja zalbe
             </summary>
         </member>
+        <member name="P:Zalba.Models.ZalbaDto.PodnosilacZalbe">
+            <summary>
+            ID podnosioca zalbe
+            </summary>
+        </member>
         <member name="P:Zalba.Models.ZalbaDto.RazlogZalbe">
             <summary>
             Razlog zalbe zalbe
@@ -672,6 +747,11 @@
         <member name="P:Zalba.Models.ZalbaUpdateDto.DatumPodnosenjaZalbe">
             <summary>
             Datum podnosenja zalbe
+            </summary>
+        </member>
+        <member name="P:Zalba.Models.ZalbaUpdateDto.PodnosilacZalbe">
+            <summary>
+            ID podnosioca zalbe
             </summary>
         </member>
         <member name="P:Zalba.Models.ZalbaUpdateDto.RazlogZalbe">

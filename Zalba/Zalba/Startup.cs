@@ -100,12 +100,6 @@ namespace Zalba
             services.AddScoped<ILoggerService, LoggerService>();
             services.AddScoped<IAuthHelper, AuthHelper>();
 
-            //services.AddDbContextPool<ZalbaContext>(options => options.UseSqlServer(Configuration.GetConnectionString("ZalbeDB")));
-            //services.AddDbContextPool<TipZalbeContext>(options => options.UseSqlServer(Configuration.GetConnectionString("TipoviZalbiDB")));
-
-            //services.AddDbContext<ZalbaContext>(options => options.UseSqlServer(Configuration.GetConnectionString(nameof(ZalbaContext))));
-            //services.AddDbContext<TipZalbeContext>(options => options.UseSqlServer(Configuration.GetConnectionString(nameof(TipZalbeContext))));
-
             services.AddDbContext<ZalbaContext>();
 
             services.AddMvc().AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<ZalbaCreationValidator>());
@@ -170,7 +164,6 @@ namespace Zalba
             app.UseSwaggerUI(setupAction =>
             {
                 setupAction.SwaggerEndpoint("/swagger/ZalbaOpenApiSpecification/swagger.json", "Zalba API");
-                //setupAction.RoutePrefix = "";
             });
 
             app.UseRouting();

@@ -74,7 +74,7 @@ namespace Zalba.Entities
                     ZalbaId = Guid.Parse("6a411c13-a195-48f7-8dbd-67596c3974c0"),
                     TipId = Guid.Parse("044f3de0-a9dd-4c2e-b745-89976a1b2a36"),
                     DatumPodnosenjaZalbe = DateTime.Parse("2020-11-15T09:00:00"),
-                    //PodnosilacZalbe = Guid.Parse(""),
+                    
                     RazlogZalbe = "razlog",
                     Obrazlozenje = "obrazlozenje",
                     DatumResenja = DateTime.Parse("2022-02-20T09:00:00"),
@@ -90,7 +90,7 @@ namespace Zalba.Entities
                     ZalbaId = Guid.Parse("1c7ea607-8ddb-493a-87fa-4bf5893e965b"),
                     TipId = Guid.Parse("044f3de0-a9dd-4c2e-b745-89976a1b2a36"),
                     DatumPodnosenjaZalbe = DateTime.Parse("2020-11-15T09:00:00"),
-                    //PodnosilacZalbe = Guid.Parse(""),
+                    
                     RazlogZalbe = "razlog",
                     Obrazlozenje = "obrazlozenje",
                     DatumResenja = DateTime.Parse("2022-02-20T09:00:00"),

@@ -15,10 +15,10 @@ namespace Zalba.Models
         /// Datum podnosenja zalbe
         /// </summary>
         public DateTime DatumPodnosenjaZalbe { get; set; }
-        /*/// <summary>
+        /// <summary>
         /// ID podnosioca zalbe
         /// </summary>
-        public Guid PodnosilacZalbe { get; set; }*/
+        public Guid? PodnosilacZalbe { get; set; }
         /// <summary>
         /// Razlog zalbe zalbe
         /// </summary>
