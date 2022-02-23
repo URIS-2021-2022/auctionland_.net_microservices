@@ -23,34 +23,32 @@ namespace Javno_Nadmetanje_Agregat.Data
         {
             try
             {
-                using (HttpClient httpClient = new HttpClient())
+                using HttpClient httpClient = new();
+                string url = configuration["Services:LoggerService"];
+                var log = new LogModel
                 {
-                    string url = configuration["Services:LoggerService"];
-                    var log = new LogModel
-                    {
-                        Service = "Javno nadmetanje servis",
-                        Level = level,
-                        Message = message,
-                        Error = error,
-                        Method = method
-                    };
+                    Service = "Javno nadmetanje servis",
+                    Level = level,
+                    Message = message,
+                    Error = error,
+                    Method = method
+                };
 
-                    HttpContent content = new StringContent(JsonConvert.SerializeObject(log));
-                    content.Headers.ContentType.MediaType = "application/json";
+                HttpContent content = new StringContent(JsonConvert.SerializeObject(log));
+                content.Headers.ContentType.MediaType = "application/json";
 
-                    HttpResponseMessage response = httpClient.PostAsync(url, content).Result;
+                HttpResponseMessage response = httpClient.PostAsync(url, content).Result;
 
 
 
-                    return await Task.FromResult(response.IsSuccessStatusCode);
-
-                }
+                return await Task.FromResult(response.IsSuccessStatusCode);
             }
 
             catch (Exception ex)
             {
-                string greska = ex.Message;
+                Console.Write("Error occurred." + ex.Message);
                 return false;
+
             }
         }
     }
