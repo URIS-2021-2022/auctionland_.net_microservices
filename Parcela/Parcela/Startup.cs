@@ -25,6 +25,7 @@ using Parcela.Data;
 using Parcela.Entities;
 using Parcela.Helpers;
 using Parcela.Models;
+using Parcela.ServiceCalls;
 
 namespace Parcela
 {
@@ -97,6 +98,9 @@ namespace Parcela
             services.AddScoped<IDeoParceleRepository, DeoParceleRepository>();
             services.AddScoped<IParcelaRepository, ParcelaRepository>();
             services.AddScoped<IOpstinaRepository, OpstinaRepository>();
+
+            services.AddScoped<IFizickoLiceRepository, FizickoLiceRepository>();
+            services.AddScoped<IPravnoLiceRepository, PravnoLiceRepository>();
 
             services.AddScoped<ILoggerService, LoggerService>();
             services.AddScoped<IAuthHelper, AuthHelper>();
