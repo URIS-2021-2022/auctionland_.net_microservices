@@ -1,0 +1,276 @@
+{
+	"info": {
+		"_postman_id": "c0bbaa5d-3220-47f7-a25d-e6f79333634c",
+		"name": "Oglas-Agregat",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GetOglasi",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:44201/api/oglasi",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "44201",
+					"path": [
+						"api",
+						"oglasi"
+					],
+					"query": [
+						{
+							"key": "datumObjave",
+							"value": "2011-05-16T05:50:06",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetOglasById",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:44201/api/oglasi/00f78e6b-a2bb-43b5-b3bb-f5708d1a5129",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "44201",
+					"path": [
+						"api",
+						"oglasi",
+						"00f78e6b-a2bb-43b5-b3bb-f5708d1a5129"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PostOglas",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"DatumObjave\" : \"2005-05-16T05:50:06\",\r\n    \"RokZaZalbu\" : \"2020-05-28T05:50:06\",\r\n    \"OpisOglasa\" : \"fffffff\",\r\n    \"ObjavljenUListuId\": \"00f78e6b-a2bb-43b5-b3bb-f5708d1a5129\",\r\n    \"JavnoNadmetanjeId\": \"1ae8137b-1674-4c91-a4b5-87a133f5dd87\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:44201/api/oglasi",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "44201",
+					"path": [
+						"api",
+						"oglasi"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PutOglas",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\r\n        \"oglasId\": \"00f78e6b-a2bb-43b5-b3bb-f5708d1a5129\",\r\n        \"datumObjave\": \"2020-05-16T05:50:06\",\r\n        \"krajRokaZaZalbu\": \"2012-05-16T05:50:06\",\r\n        \"opisOglasa\": \" FFFFFFFFFFF\",\r\n        \"objavljenUListuId\": \"00f78e6b-a2bb-43b5-b3bb-f5708d1a5129\",\r\n        \"JavnoNadmetanjeId\": \"1ae8137b-1674-4c91-a4b5-87a133f5dd87\"\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:44201/api/oglasi",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "44201",
+					"path": [
+						"api",
+						"oglasi"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteOglas",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:44200/api/oglasi/61f009af-03aa-458f-6b5e-08d9f4adf16e",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "44200",
+					"path": [
+						"api",
+						"oglasi",
+						"61f009af-03aa-458f-6b5e-08d9f4adf16e"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetSluzbeniListovi",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:44201/api/sluzbeniList",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "44201",
+					"path": [
+						"api",
+						"sluzbeniList"
+					],
+					"query": [
+						{
+							"key": "brojLista",
+							"value": "888",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetSluzbeniListById",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:44201/api/sluzbeniList/00f78e6b-a2bb-43b5-b3bb-f5708d1a5129",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "44201",
+					"path": [
+						"api",
+						"sluzbeniList",
+						"00f78e6b-a2bb-43b5-b3bb-f5708d1a5129"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PostSluzbeniList",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"BrojLista\" : 3355,\r\n    \"DatumIzdanja\" : \"2006-05-16T05:50:06\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:44201/api/sluzbeniList",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "44201",
+					"path": [
+						"api",
+						"sluzbeniList"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PutSluzbeniList",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\r\n        \"sluzbeniListId\": \"00f78e6b-a2bb-43b5-b3bb-f5708d1a5129\",\r\n        \"datumIzdanja\": \"2001-01-01T00:00:00\",\r\n        \"brojLista\": 55555\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:44201/api/sluzbeniList",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "44201",
+					"path": [
+						"api",
+						"sluzbeniList"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteSluzbeniList",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:44201/api/sluzbeniList/00f78e6b-a2bb-43b5-b3bb-f5708d1a5129",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "44201",
+					"path": [
+						"api",
+						"sluzbeniList",
+						"00f78e6b-a2bb-43b5-b3bb-f5708d1a5129"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
