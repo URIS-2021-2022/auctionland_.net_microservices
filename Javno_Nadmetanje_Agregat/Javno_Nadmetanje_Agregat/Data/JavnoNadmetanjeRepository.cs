@@ -35,7 +35,7 @@ namespace Javno_Nadmetanje_Agregat.Data
 
             if (javnoNadmetanje == null)
             {
-                throw new ArgumentNullException("javnoNadmetanjeId");
+                throw new ArgumentNullException(nameof(javnoNadmetanjeId));
             }
 
             Context.JavnoNadmetanje.Remove(javnoNadmetanje);

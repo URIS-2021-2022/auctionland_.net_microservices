@@ -47,10 +47,10 @@ namespace Javno_Nadmetanje_Agregat.Data
                 }
             }
 
-            catch (Exception ex)
+            catch
             {
-                string greska = ex.Message;
-                return false;
+                return default;
+
             }
         }
     }

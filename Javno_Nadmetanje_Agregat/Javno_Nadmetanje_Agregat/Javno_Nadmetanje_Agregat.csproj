@@ -24,4 +24,6 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
   </ItemGroup>
 
+  <ProjectExtensions><VisualStudio><UserProperties appsettings_1json__JsonSchema="Javno_Nadmetanje_Agregat/Javno_Nadmetanje_Agregat/Data/JavnoNadmetanjeRepository.cs" /></VisualStudio></ProjectExtensions>
+
 </Project>
