@@ -1,0 +1,332 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Oglas_Agregat</name>
+    </assembly>
+    <members>
+        <member name="T:Oglas_Agregat.Controllers.OglasController">
+            <summary>
+            Predstavlja kontroler oglasa
+            </summary>
+        </member>
+        <member name="M:Oglas_Agregat.Controllers.OglasController.GetOglasi(System.DateTime)">
+            <summary>
+            Vraća sve oglase na osnovu prosleđenog filtera
+            </summary>
+            <param name="DatumObjave">Datum objave oglasa</param>
+            <returns>Listu oglasa</returns>
+        </member>
+        <member name="M:Oglas_Agregat.Controllers.OglasController.GetOglasById(System.Guid)">
+            <summary>
+            Vraća oglas po zadatoj vrednosti id-a
+            </summary>
+            <param name="oglasId"></param>
+            <returns>Objekat oglasa</returns>
+        </member>
+        <member name="M:Oglas_Agregat.Controllers.OglasController.CreateOglas(Oglas_Agregat.Models.OglasCreateDto)">
+            <summary>
+            Kreira novi oglas
+            </summary>
+            <param name="oglas"></param>
+            <returns>Potvrdu o kreiranom oglasu</returns>
+            <remarks>
+            Primer zahteva za kreiranje novog oglasa
+            {
+                "DatumObjave" : "2021-05-16T05:50:06",
+                "RokZaZalbu" : "2021-06-16T05:50:06",
+                "OpisOglasa" : "opis1"
+                "ObjavljenUListu" : "00f78e6b-a2bb-43b5-b3bb-f5708d1a5129"
+            }
+            </remarks>
+        </member>
+        <member name="M:Oglas_Agregat.Controllers.OglasController.DeleteOglas(System.Guid)">
+            <summary>
+            Briše oglas po zadatoj vrednosti id-a
+            </summary>
+            <param name="oglasId"></param>
+            <returns>Prazan payload</returns>
+        </member>
+        <member name="M:Oglas_Agregat.Controllers.OglasController.UpdateOglas(Oglas_Agregat.Models.OglasUpdateDto)">
+            <summary>
+            Menja vrednosti postojećeg oglasa
+            </summary>
+            <param name="oglas"></param>
+            <returns>Potvrdu o izmenjenom objektu</returns>
+            Primer zahteva za izmenu postojećeg oglasa
+            <remarks>
+            {        
+                "OglasId": "00f78e6b-a2bb-43b5-b3bb-f5708d1a5129",
+                "DatumObjave" : "2021-05-16T05:50:06",
+                "RokZaZalbu" : "2021-06-16T05:50:06",
+                "OpisOglasa" : "izmena",
+                "ObjavljenUListu" : "00f78e6b-a2bb-43b5-b3bb-f5708d1a5129"
+            }
+            </remarks>
+        </member>
+        <member name="M:Oglas_Agregat.Controllers.OglasController.GetOglasOptions">
+            <summary>
+            Prikazuje sve moguće tipove zahteva 
+            </summary>
+            <returns>Listu mogućih zahteva</returns>
+        </member>
+        <member name="T:Oglas_Agregat.Controllers.SluzbeniListController">
+            <summary>
+            Predstavlja kontroler službenog lista
+            </summary>
+        </member>
+        <member name="M:Oglas_Agregat.Controllers.SluzbeniListController.GetSluzbeniListovi(System.Int32)">
+            <summary>
+            Vraća sve službene listove na osnovu prosleđenog filtera
+            </summary>
+            <param name="BrojLista">Broj službenog lista</param>
+            <returns>Listu službenih listova</returns>
+        </member>
+        <member name="M:Oglas_Agregat.Controllers.SluzbeniListController.GetSluzbeniListById(System.Guid)">
+            <summary>
+            Vraća službeni list po zadatoj vrednosti id-a
+            </summary>
+            <param name="sluzbeniListId"></param>
+            <returns>Objekat službenog lista</returns>
+        </member>
+        <member name="M:Oglas_Agregat.Controllers.SluzbeniListController.CreateSluzbeniList(Oglas_Agregat.Models.SluzbeniListCreateDto)">
+            <summary>
+            Kreira novi službeni list
+            </summary>
+            <param name="sluzbeniList"></param>
+            <returns>Potvrdu o kreiranom službenom listu</returns>
+            <remarks>
+            Primer zahteva za kreiranje novog službenog lista
+            {
+                "BrojLista" : 3,
+                "DatumIzdanja" : "2006-05-16T05:50:06"
+            }
+            </remarks>
+        </member>
+        <member name="M:Oglas_Agregat.Controllers.SluzbeniListController.DeleteSluzbeniList(System.Guid)">
+            <summary>
+            Briše službeni list po zadatoj vrednosti id-a
+            </summary>
+            <param name="sluzbeniListId"></param>
+            <returns>Prazan payload</returns>
+        </member>
+        <member name="M:Oglas_Agregat.Controllers.SluzbeniListController.UpdateSluzbeniList(Oglas_Agregat.Models.SluzbeniListUpdateDto)">
+            <summary>
+            Menja vrednosti postojećeg službenog lista
+            </summary>
+            <param name="sluzbeniList"></param>
+            <returns>Potvrdu o izmenjenom objektu</returns>
+            <remarks>
+            Primer zahteva za izmenu postojećeg službenog lista
+            {
+                "SluzbeniListId": "00f78e6b-a2bb-43b5-b3bb-f5708d1a5129",
+                "BrojLista" : 3,
+                "DatumIzdanja" : "2006-05-16T05:50:06"
+            }
+            </remarks>
+        </member>
+        <member name="M:Oglas_Agregat.Controllers.SluzbeniListController.GetSluzbeniListOptions">
+            <summary>
+            Prikazuje sve moguće tipove zahteva 
+            </summary>
+            <returns>Listu mogućih zahteva</returns>
+        </member>
+        <member name="T:Oglas_Agregat.Data.IOglasRepository">
+            <summary>
+            Interfejs za OglasRepository
+            </summary>
+        </member>
+        <member name="T:Oglas_Agregat.Data.ISluzbeniListRepository">
+            <summary>
+            Interfejs za SluzbeniListRepository
+            </summary>
+        </member>
+        <member name="T:Oglas_Agregat.Models.OglasConfirmationDto">
+            <summary>
+            Predstavlja model potvrde oglasa
+            </summary>
+        </member>
+        <member name="P:Oglas_Agregat.Models.OglasConfirmationDto.OglasId">
+            <summary>
+            Id oglasa
+            </summary>
+        </member>
+        <member name="P:Oglas_Agregat.Models.OglasConfirmationDto.OpisOglasa">
+            <summary>
+            Opis oglasa
+            </summary>
+        </member>
+        <member name="T:Oglas_Agregat.Models.OglasCreateDto">
+            <summary>
+            Predstavlja model kreiranja oglasa
+            </summary>
+        </member>
+        <member name="P:Oglas_Agregat.Models.OglasCreateDto.DatumObjave">
+            <summary>
+            Datum objave oglasa
+            </summary>
+        </member>
+        <member name="P:Oglas_Agregat.Models.OglasCreateDto.OpisOglasa">
+            <summary>
+            Opis oglasa
+            </summary>
+        </member>
+        <member name="P:Oglas_Agregat.Models.OglasCreateDto.RokZaZalbu">
+            <summary>
+            Rok za žalbu
+            </summary>
+        </member>
+        <member name="P:Oglas_Agregat.Models.OglasCreateDto.ObjavljenUListuId">
+            <summary>
+            Id službenog lista u kom je objavljen oglas
+            </summary>
+        </member>
+        <member name="M:Oglas_Agregat.Models.OglasCreateDto.Validate(System.ComponentModel.DataAnnotations.ValidationContext)">
+            <summary>
+            Validacija da uneti datum objave oglasa nije veći od današnjeg datuma
+            </summary>
+            <param name="validationContext"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Oglas_Agregat.Models.OglasDto">
+            <summary>
+            Predstavlja model oglasa
+            </summary>
+        </member>
+        <member name="P:Oglas_Agregat.Models.OglasDto.DatumObjave">
+            <summary>
+            Datum objave oglasa
+            </summary>
+        </member>
+        <member name="P:Oglas_Agregat.Models.OglasDto.RokZaZalbu">
+            <summary>
+            Rok za žalbu na oglas
+            </summary>
+        </member>
+        <member name="P:Oglas_Agregat.Models.OglasDto.OpisOglasa">
+            <summary>
+            Opis oglasa
+            </summary>
+        </member>
+        <member name="P:Oglas_Agregat.Models.OglasDto.ObjavljenUListuId">
+            <summary>
+            Id službenog lista u kom je objavljen oglas
+            </summary>
+        </member>
+        <member name="T:Oglas_Agregat.Models.OglasUpdateDto">
+            <summary>
+            Predstavlja model za modifikaciju oglasa
+            </summary>
+        </member>
+        <member name="P:Oglas_Agregat.Models.OglasUpdateDto.OglasId">
+            <summary>
+            Id oglasa
+            </summary>
+        </member>
+        <member name="P:Oglas_Agregat.Models.OglasUpdateDto.DatumObjave">
+            <summary>
+            Datum objave oglasa
+            </summary>
+        </member>
+        <member name="P:Oglas_Agregat.Models.OglasUpdateDto.OpisOglasa">
+            <summary>
+            Opis oglasa
+            </summary>
+        </member>
+        <member name="P:Oglas_Agregat.Models.OglasUpdateDto.RokZaZalbu">
+            <summary>
+            Rok za žalbu na oglas
+            </summary>
+        </member>
+        <member name="P:Oglas_Agregat.Models.OglasUpdateDto.ObjavljenUListuId">
+            <summary>
+            Id službenog lista u kom je objavljen oglas
+            </summary>
+        </member>
+        <member name="M:Oglas_Agregat.Models.OglasUpdateDto.Validate(System.ComponentModel.DataAnnotations.ValidationContext)">
+            <summary>
+            Validacija da uneti datum objave oglasa nije veći od današnjeg datuma
+            </summary>
+            <param name="validationContext"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Oglas_Agregat.Models.SluzbeniListConfirmationDto">
+            <summary>
+            Predstavlja model potvrde službenog lista
+            </summary>
+        </member>
+        <member name="P:Oglas_Agregat.Models.SluzbeniListConfirmationDto.SluzbeniListId">
+            <summary>
+            Id službenog lista
+            </summary>
+        </member>
+        <member name="P:Oglas_Agregat.Models.SluzbeniListConfirmationDto.BrojLista">
+            <summary>
+            Broj lista
+            </summary>
+        </member>
+        <member name="T:Oglas_Agregat.Models.SluzbeniListCreateDto">
+            <summary>
+            Predstavlja model kreiranja službenog lista
+            </summary>
+        </member>
+        <member name="P:Oglas_Agregat.Models.SluzbeniListCreateDto.DatumIzdanja">
+            <summary>
+            Datum izdavanja službenog lista
+            </summary>
+        </member>
+        <member name="P:Oglas_Agregat.Models.SluzbeniListCreateDto.BrojLista">
+            <summary>
+            Broj lista
+            </summary>
+        </member>
+        <member name="M:Oglas_Agregat.Models.SluzbeniListCreateDto.Validate(System.ComponentModel.DataAnnotations.ValidationContext)">
+            <summary>
+            Validacija da uneti datum izdavanja službenog lista nije veći od današnjeg datuma
+            </summary>
+            <param name="validationContext"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Oglas_Agregat.Models.SluzbeniListDto">
+            <summary>
+            Predstavlja model službenog lista
+            </summary>
+        </member>
+        <member name="P:Oglas_Agregat.Models.SluzbeniListDto.DatumIzdanja">
+            <summary>
+            Datum izdavanja službenog lista
+            </summary>
+        </member>
+        <member name="P:Oglas_Agregat.Models.SluzbeniListDto.BrojLista">
+            <summary>
+            Broj lista
+            </summary>
+        </member>
+        <member name="T:Oglas_Agregat.Models.SluzbeniListUpdateDto">
+            <summary>
+            Predstavlja model za modifikaciju službenog lista
+            </summary>
+        </member>
+        <member name="P:Oglas_Agregat.Models.SluzbeniListUpdateDto.SluzbeniListId">
+            <summary>
+            Id službenog lista
+            </summary>
+        </member>
+        <member name="P:Oglas_Agregat.Models.SluzbeniListUpdateDto.DatumIzdanja">
+            <summary>
+            Datum izdavanja službenog lista
+            </summary>
+        </member>
+        <member name="P:Oglas_Agregat.Models.SluzbeniListUpdateDto.BrojLista">
+            <summary>
+            Broj lista
+            </summary>
+        </member>
+        <member name="M:Oglas_Agregat.Models.SluzbeniListUpdateDto.Validate(System.ComponentModel.DataAnnotations.ValidationContext)">
+            <summary>
+            Validacija da uneti datum izdavanja službenog lista nije veći od današnjeg datuma
+            </summary>
+            <param name="validationContext"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
