@@ -10,11 +10,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using Komisija_Agregat.Entities;
+using Microsoft.AspNetCore.Authorization;
+
 namespace Komisija_Agregat.Controllers
 {
     [Route("api/ClanKomisije")]
     [ApiController]
-
+    [Authorize]
     public class ClanKomisijeController : ControllerBase
     {
         private readonly IClanKomisijeRepository clanKomisijeRepository;

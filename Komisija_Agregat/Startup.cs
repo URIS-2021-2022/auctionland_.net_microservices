@@ -19,6 +19,10 @@ using System.Threading.Tasks;
 using Komisija_Agregat.Data;
 using Komisija_Agregat.Entities;
 using Microsoft.EntityFrameworkCore;
+using Komisija_Agregat.Helpers;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace Komisija_Agregat
 {
@@ -66,7 +70,7 @@ namespace Komisija_Agregat
                         {
                             ContentTypes = { "application/problem+json" }
                         };
-                    };
+                    }
 
                     problemDetails.Status = StatusCodes.Status400BadRequest;
                     problemDetails.Title = "Došlo je do greške prilikom parsiranja poslatog sadržaja.";
@@ -83,6 +87,8 @@ namespace Komisija_Agregat
             services.AddScoped<IClanKomisijeRepository, ClanKomisijeRepository>();
             services.AddScoped<IPredsednikRepository, PredsednikRepository>();
             services.AddScoped<ILoggerService, LoggerService>();
+            services.AddScoped<IKorisnikRepository, KorisnikMockRepository>();
+            services.AddScoped<IAuthHelper, AuthHelper>();
 
             services.AddSwaggerGen(c =>
             {
@@ -108,7 +114,20 @@ namespace Komisija_Agregat
                 c.IncludeXmlComments(xmlCommentsPath);
             });
 
-            //services.AddDbContext<KomisijaContext>(options => options.UseSqlServer(Configuration.GetConnectionString("KomisijaDB")));
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
+            {
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidateLifetime = true,
+                    ValidateIssuerSigningKey = true,
+                    ValidIssuer = Configuration["Jwt:Issuer"],
+                    ValidAudience = Configuration["Jwt:Issuer"],
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Jwt:Key"]))
+                };
+            });
+
             services.AddDbContext<KomisijaContext>();
         }
 
@@ -140,6 +159,8 @@ namespace Komisija_Agregat
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseAuthentication();
 
             app.UseSwagger();
 

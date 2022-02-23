@@ -11,7 +11,7 @@ namespace Komisija_Agregat.Migrations
 {
     [DbContext(typeof(KomisijaContext))]
     [Migration("20220222223206_1")]
-    partial class _1
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
