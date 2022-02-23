@@ -11,12 +11,14 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Komisija_Agregat.Entities;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 namespace Komisija_Agregat.Controllers
 {
     [Route("api/ClanKomisije")]
     [ApiController]
     [Authorize]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public class ClanKomisijeController : ControllerBase
     {
         private readonly IClanKomisijeRepository clanKomisijeRepository;

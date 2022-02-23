@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
-namespace Komisija_Agregat.Entities
+namespace Komisija_Agregat.Data
 {
     public class Korisnik
     {

@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Komisija_Agregat.Migrations
 {
     [DbContext(typeof(KomisijaContext))]
-    [Migration("20220222223206_1")]
+    [Migration("20220223134627_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

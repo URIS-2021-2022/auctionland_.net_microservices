@@ -6,6 +6,7 @@ using System.Linq;
 using System.Security.Cryptography;
 
 namespace Komisija_Agregat.Data
+
 {
     public class KorisnikMockRepository : IKorisnikRepository
     {
