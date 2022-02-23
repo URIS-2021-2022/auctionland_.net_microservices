@@ -98,7 +98,7 @@ namespace Komisija_Agregat
                        Title = "Komisija API",
                        Version = "1",
 
-                       Description = "Pomocu ovog API-ja moze da se vrsi...",
+                       Description = "Pomocu ovog API-ja moze da se vrsi pregled i izmena komisije, njenog predsednika i njenih calnova",
                        Contact = new Microsoft.OpenApi.Models.OpenApiContact
                        {
                            Name = "Damjan Ivetic",
