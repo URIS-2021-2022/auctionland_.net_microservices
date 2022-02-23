@@ -25,10 +25,6 @@ namespace Parcela.ServiceCalls
             {
                 Uri url = new Uri($"{ configuration["Services:FizickoLiceService"] }/fizickoLice/{FizickoLiceId}");
 
-                // string token = AuthHelper.GetToken(httpRequest);
-
-                //client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-
                 HttpResponseMessage response = client.GetAsync(url).Result;
 
                 var responseContent = await response.Content.ReadAsStringAsync();
