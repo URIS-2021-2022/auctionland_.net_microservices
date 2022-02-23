@@ -22,10 +22,10 @@ namespace Zalba.Models
         /// Datum podnosenja zalbe
         /// </summary>
         public DateTime DatumPodnosenjaZalbe { get; set; }
-        /*/// <summary>
+        /// <summary>
         /// ID podnosioca zalbe
         /// </summary>
-        public Guid PodnosilacZalbe { get; set; }*/
+        public Guid? PodnosilacZalbe { get; set; }
         /// <summary>
         /// Razlog zalbe zalbe
         /// </summary>
@@ -71,7 +71,7 @@ namespace Zalba.Models
 
             RuleFor(x => x.TipId).NotEmpty().WithMessage("Tip zalbe ne moze biti prazan");
             RuleFor(x => x.DatumPodnosenjaZalbe).NotEmpty().WithMessage("Datm podnosenja zalbe ne moze biti prazan");
-            //RuleFor(x => x.PodnosilacZalbe).NotEmpty().WithMessage("Podnosilac zalbe mora biti unesen");
+
             RuleFor(x => x.RazlogZalbe).NotEmpty().WithMessage("Razlog zalbe ne moze biti prazan");
             RuleFor(x => x.DatumResenja).NotEmpty().WithMessage("Datum resenja ne moze biti prazan");
             RuleFor(x => x.Obrazlozenje).NotEmpty().WithMessage("Obrazlozenje ne moze biti prazno");

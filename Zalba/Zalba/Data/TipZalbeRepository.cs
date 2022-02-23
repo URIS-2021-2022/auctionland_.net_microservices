@@ -61,7 +61,7 @@ namespace Zalba.Data
         /// </summary>
         public void UpdateTipZalbe(TipZalbe tipZalbe)
         {
-
+            //azurira se automatski
         }
 
         /// <summary>
