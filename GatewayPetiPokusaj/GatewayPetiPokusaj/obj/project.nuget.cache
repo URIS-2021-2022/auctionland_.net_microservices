@@ -1,0 +1,22 @@
+{
+  "version": 2,
+  "dgSpecHash": "S2Gzl8bgF34tH0KmYXIY4fnao6iHFj1mKYG/dzXg1/bnNhht0v2PssGEuwDCFyglWAJxSy/Iu1fvE63qGM0EzQ==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\ADMIN\\Documents\\FAKULTET\\tim-6---auctionland-tim-6-nopcommerce\\GatewayPetiPokusaj\\GatewayPetiPokusaj\\GatewayPetiPokusaj.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\ADMIN\\.nuget\\packages\\fluentvalidation\\8.6.1\\fluentvalidation.8.6.1.nupkg.sha512",
+    "C:\\Users\\ADMIN\\.nuget\\packages\\microsoft.aspnetcore.jsonpatch\\3.1.1\\microsoft.aspnetcore.jsonpatch.3.1.1.nupkg.sha512",
+    "C:\\Users\\ADMIN\\.nuget\\packages\\microsoft.aspnetcore.middlewareanalysis\\3.1.1\\microsoft.aspnetcore.middlewareanalysis.3.1.1.nupkg.sha512",
+    "C:\\Users\\ADMIN\\.nuget\\packages\\microsoft.aspnetcore.mvc.newtonsoftjson\\3.1.1\\microsoft.aspnetcore.mvc.newtonsoftjson.3.1.1.nupkg.sha512",
+    "C:\\Users\\ADMIN\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
+    "C:\\Users\\ADMIN\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\3.1.1\\microsoft.extensions.dependencyinjection.abstractions.3.1.1.nupkg.sha512",
+    "C:\\Users\\ADMIN\\.nuget\\packages\\microsoft.extensions.diagnosticadapter\\3.1.1\\microsoft.extensions.diagnosticadapter.3.1.1.nupkg.sha512",
+    "C:\\Users\\ADMIN\\.nuget\\packages\\newtonsoft.json\\12.0.2\\newtonsoft.json.12.0.2.nupkg.sha512",
+    "C:\\Users\\ADMIN\\.nuget\\packages\\newtonsoft.json.bson\\1.0.2\\newtonsoft.json.bson.1.0.2.nupkg.sha512",
+    "C:\\Users\\ADMIN\\.nuget\\packages\\ocelot\\15.0.6\\ocelot.15.0.6.nupkg.sha512",
+    "C:\\Users\\ADMIN\\.nuget\\packages\\system.componentmodel.annotations\\4.4.1\\system.componentmodel.annotations.4.4.1.nupkg.sha512",
+    "C:\\Users\\ADMIN\\.nuget\\packages\\system.diagnostics.diagnosticsource\\4.7.0\\system.diagnostics.diagnosticsource.4.7.0.nupkg.sha512",
+    "C:\\Users\\ADMIN\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\3.1.12\\microsoft.netcore.app.host.win-x64.3.1.12.nupkg.sha512"
+  ],
+  "logs": []
+}
