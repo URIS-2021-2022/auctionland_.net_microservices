@@ -25,13 +25,15 @@ namespace Liciter___Agregat.Controllers
         private readonly LinkGenerator linkGenerator;
         private readonly IMapper mapper;
         private readonly ILoggerService loggerService;
+        private readonly IJavnaNadmetanjaService javnaNadmetanjaService;
 
-        public KupacController(IKupacRepository kupacRepository, LinkGenerator linkGenerator, IMapper mapper, ILoggerService loggerService)
+        public KupacController(IKupacRepository kupacRepository, LinkGenerator linkGenerator, IMapper mapper, ILoggerService loggerService, IJavnaNadmetanjaService javnaNadmetanjaService)
         {
             this.kupacRepository = kupacRepository;
             this.linkGenerator = linkGenerator;
             this.mapper = mapper;
             this.loggerService = loggerService;
+            this.javnaNadmetanjaService = javnaNadmetanjaService;
         }
         /// <summary>
         /// Vraća sve Kupce iz liste

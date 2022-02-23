@@ -1,5 +1,6 @@
 ﻿using Liciter___Agregat.Data;
 using Liciter___Agregat.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System;
@@ -40,6 +41,11 @@ namespace Liciter___Agregat.Helpers
             var token = new JwtSecurityToken(configuration["Jwt:Issuer"], configuration["Jwt:Issuer"], null, expires: DateTime.Now.AddMinutes(120), signingCredentials: credentials);
 
             return new JwtSecurityTokenHandler().WriteToken(token);
+        }
+
+        public string GetToken(HttpRequest request)
+        {
+            return request.Headers["Authorization"].ToString().Split(" ")[1];
         }
     }
 }

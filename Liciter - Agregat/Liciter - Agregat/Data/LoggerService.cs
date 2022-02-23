@@ -45,7 +45,7 @@ namespace Liciter___Agregat.Data
                 }
             }
 
-            catch(Exception ex)
+            catch
             {
                 
                 return false;
