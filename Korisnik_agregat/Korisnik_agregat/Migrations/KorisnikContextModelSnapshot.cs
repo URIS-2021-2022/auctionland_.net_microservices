@@ -55,9 +55,9 @@ namespace Korisnik_agregat.Migrations
                             KorisnikId = new Guid("34f11383-cb12-481d-9ff7-2fd458dc7e2b"),
                             Ime = "Vlado",
                             KorisnickoIme = "Vlado",
-                            Lozinka = "8/JNvMljilVshFqar8lp/rIrunkDe4CgnBjq6mIYyyvBDZZheUgYfByVv5CHudsuOwqEf5YkFkLrXHLYx1Nz/WhlwPC1xlYDB+mZMhT3PzMhPzo+X6X4gcRZ7/1lWduGDAw95fAyBhLoW6dcVDn6uqytY9U/l86kz0ECWKNLLHRasIa6nOf+Ksy5nW6y8Xx+CsdUn9/dmxOt8mSEM7UPIY/xwZWTAyUjVfNO48dT2jXdlsY+wfUiaFXAT8s/KbXr+t9EALXYORtzH6LDRb9VCCa4yYEWLQ5ttN6kIJR1XaNlj0xzXrErlpWKR+aR2v4yMOfjhHUPg1rE3gF17vrw9g==",
+                            Lozinka = "vlxWiBSU3c6iHIBfIzQCDwtbXDLCvV8HhhIzfR/+3J1pQhtW/N1fN8h6wklPoZQjOo0LFwLzaHg+NvdEiRrPq9oGyJ72S5uLMky+mErDkPVZM3gMDeZ0yt7G7OdMbI+T1EfT62uy0em9WFYPrRqkDAdy7SKNGzDdPjt5xCWMTQds2RmJPz5V0Pujc+hFDOpqlSTuqGdm3AZop73P7BqBFBiYXS+vfXqcWWlLLFOX7YHGxJ3LGNPwKoKLMZ8UiVD3Euk22NE4D2YXbFo97+E5Wb60AYZkT3Tgvigr79MyXheQ0CWZmZ0urdRk3KpUMn5j6Nd/vMkVMMIDLrmDYoyr9g==",
                             Prezime = "Cetkovic",
-                            Salt = "8UOUiiNvsZHZ+Q==",
+                            Salt = "msj8kM+p6PEyGA==",
                             TipKorisnikaId = new Guid("577a8f2b-1a55-4e91-a3ea-3d5cf16814a6")
                         });
                 });

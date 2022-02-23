@@ -1,0 +1,226 @@
+{
+	"info": {
+		"_postman_id": "10177317-a312-44d8-839e-39ca78fd93de",
+		"name": "URIS_Korisnik",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GetKorisnik",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:44200/api/korisnik/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "44200",
+					"path": [
+						"api",
+						"korisnik",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetKorisnikById",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:44200/api/korisnik/34F11383-CB12-481D-9FF7-2FD458DC7E2B",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "44200",
+					"path": [
+						"api",
+						"korisnik",
+						"34F11383-CB12-481D-9FF7-2FD458DC7E2B"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PostKorisnik",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\r\n        \"TipKorisnikaid\" : \"B02616E3-E14D-4548-BA2B-C064B6F21A98\",\r\n        \"KorisnickoIme\" : \"Kik\",\r\n        \"Ime\": \"Nikolina\",\r\n        \"Prezime\": \"Vuković\",\r\n        \"lozinka\" : \"kika123456\"\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:44200/api/korisnik",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "44200",
+					"path": [
+						"api",
+						"korisnik"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteKorisnik",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:44200/api/korisnik/3568D5D4-5C68-4CB5-A2DD-88C7BD4BAD42",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "44200",
+					"path": [
+						"api",
+						"korisnik",
+						"3568D5D4-5C68-4CB5-A2DD-88C7BD4BAD42"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateKorisnik",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\r\n        \"KorisnikId\" : \"9FE62217-84D4-4DE4-8645-B10F0400D8B8\",\r\n        \"TipKorisnikaid\" : \"62D026F1-CAF7-4EAE-BF1A-261A95F7F0BB\",\r\n        \"Ime\": \"Nikolina\",\r\n        \"Prezime\": \"Vuković\",\r\n        \"lozinka\" : \"kika123\"\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:44200/api/korisnik/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "44200",
+					"path": [
+						"api",
+						"korisnik",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetTipKorisnika",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NDU2MzE5NTUsImlzcyI6IlVSSVMudW5zLmFjLnJzIiwiYXVkIjoiVVJJUy51bnMuYWMucnMifQ.aP1f4Z4L8koWsc1hyZ0thILXbqrej9_NPtgswNKxhcY",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:44200/api/tipkorisnika/?=Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MDY2NzYxODYsImlzcyI6IlVSSVMudW5zLmFjLnJzIiwiYXVkIjoiVVJJUy51bnMuYWMucnMifQ.hhaVIsfrDJ6WNszMGwgl9iQjLRguOFJaOedt9wQnaCI",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "44200",
+					"path": [
+						"api",
+						"tipkorisnika",
+						""
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MDY2NzYxODYsImlzcyI6IlVSSVMudW5zLmFjLnJzIiwiYXVkIjoiVVJJUy51bnMuYWMucnMifQ.hhaVIsfrDJ6WNszMGwgl9iQjLRguOFJaOedt9wQnaCI"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetTipKorisnikaById",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:44200/api/tipkorisnika/577A8F2B-1A55-4E91-A3EA-3D5CF16814A6",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "44200",
+					"path": [
+						"api",
+						"tipkorisnika",
+						"577A8F2B-1A55-4E91-A3EA-3D5CF16814A6"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Auth",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"korisnickoime\" : \"Vlado\",\r\n    \"lozinka\" : \"urisftnftn\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:44200/api/auth/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "44200",
+					"path": [
+						"api",
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

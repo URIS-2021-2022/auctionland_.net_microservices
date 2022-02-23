@@ -17,6 +17,7 @@ namespace Korisnik_agregat.Controllers
     [ApiController]
     [Route("api/[controller]")]
     [Produces("application/json")]
+    [Authorize]
     public class KorisnikController : ControllerBase
     {
         private readonly IKorisnikRepository korisnikRepository;
