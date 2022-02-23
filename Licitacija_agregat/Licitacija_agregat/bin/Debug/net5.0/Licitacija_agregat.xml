@@ -1,0 +1,363 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Licitacija_agregat</name>
+    </assembly>
+    <members>
+        <member name="M:Licitacija_agregat.Controllers.EtapaController.GetEtapas(System.DateTime)">
+            <summary>
+            Vraća sve etape na osnovu prosleđenog filtera
+            </summary>
+            <param name="dan">Dan etape</param>
+            <returns>Listu etapa</returns>
+        </member>
+        <member name="M:Licitacija_agregat.Controllers.EtapaController.GetEtapaById(System.Guid)">
+            <summary>
+            Vraća etapu po zadatoj vrednosti id-a
+            </summary>
+            <param name="etapaId"></param>
+            <returns>Objekat etape</returns>
+        </member>
+        <member name="M:Licitacija_agregat.Controllers.EtapaController.CreateEtapa(Licitacija_agregat.Models.EtapaCreationDto)">
+            <summary>
+            Kreira novu Etapu
+            </summary>
+            <param name="etapa"></param>
+            <returns>Potvrdu o kreiranoj etapi</returns>
+            <remarks>
+            Primer zahteva za kreiranje nove etape
+            {
+                "Dan" : "3085-05-16T05:50:05",
+                "BrojEtape" : 4
+            }
+            </remarks>
+        </member>
+        <member name="M:Licitacija_agregat.Controllers.EtapaController.DeleteEtapa(System.Guid)">
+            <summary>
+            Briše etapu po zadatoj vrednosti id-a
+            </summary>
+            <param name="etapaId"></param>
+            <returns>Prazan payload</returns>
+        </member>
+        <member name="M:Licitacija_agregat.Controllers.EtapaController.UpdateEtapa(Licitacija_agregat.Models.EtapaUpdateDto)">
+            <summary>
+            Menja vrednosti zadate etape
+            </summary>
+            <param name="etapa"></param>
+            <returns>Potvrdu o izmenjenom objektu</returns>
+        </member>
+        <member name="M:Licitacija_agregat.Controllers.EtapaController.GetEtapaOptions">
+            <summary>
+            Prikazuje sve moguće tipove zahteva 
+            </summary>
+            <returns>Listu mogućih zahteva</returns>
+        </member>
+        <member name="M:Licitacija_agregat.Controllers.LicitacijaController.GetLicitacijas(System.DateTime)">
+            <summary>
+            Vraća sve licitacije na osnovu prosleđenog parametra
+            </summary>
+            <param name="datum"></param>
+            <returns>Listu licitacija</returns>
+        </member>
+        <member name="M:Licitacija_agregat.Controllers.LicitacijaController.GetLicitacijaById(System.Guid)">
+            <summary>
+            Vraća licitaciju po zadatoj vrednosti id-a
+            </summary>
+            <param name="licitacijaId"></param>
+            <returns>Objekat licitacije</returns>
+        </member>
+        <member name="M:Licitacija_agregat.Controllers.LicitacijaController.CreateLicitacija(Licitacija_agregat.Models.LicitacijaCreationDto)">
+            <summary>
+            Kreira novu Licitaciju
+            </summary>
+            <param name="licitacija"></param>
+            <returns>Potvrdu o kreiranoj licitaciji</returns>
+            <remarks> Primer zahteva za kreiranje nove licitacije
+            {
+                "Broj" : 5,
+                "Godina" : 23,
+                "Datum" : "2066-05-16T05:50:06",
+                "Ogranicenje" : 234,
+                "Korak_cene" : 1235,
+                "Lista_dokumentacije_fizicka_lica" : ["Vlado", "Kika", "Cile"],
+                "Lista_dokumentacije_pravna_lica" : ["Malena", "Flemi", "Djole"],
+                "JavnoNadmetanje" : ["Subotica"],
+                "Rok_za_dostavljanje_prijave" : "2005-06-16T05:50:06"
+            }
+            </remarks>
+        </member>
+        <member name="M:Licitacija_agregat.Controllers.LicitacijaController.DeleteLicitacija(System.Guid)">
+            <summary>
+            Briše licitaciju po zadatoj vrednosti id-a
+            </summary>
+            <param name="licitacijaId"></param>
+            <returns>Prazan payload</returns>
+        </member>
+        <member name="M:Licitacija_agregat.Controllers.LicitacijaController.UpdateLicitacija(Licitacija_agregat.Models.LicitacijaUpdateDto)">
+            <summary>
+            Menja vrednost zadate licitacije
+            </summary>
+            <param name="licitacija"></param>
+            <returns>Potvrdu o izmenjenom objektu</returns>
+        </member>
+        <member name="M:Licitacija_agregat.Controllers.LicitacijaController.GetExamRegistrationOptions">
+            <summary>
+            Prikazuje sve moguće tipove zahteva 
+            </summary>
+            <returns>Listu mogućih zahteva</returns>
+        </member>
+        <member name="T:Licitacija_agregat.Models.EtapaConfirmationDto">
+            <summary>
+            Predstavlja model potvrde etape
+            </summary>
+        </member>
+        <member name="P:Licitacija_agregat.Models.EtapaConfirmationDto.Dan">
+            <summary>
+            Dan etape
+            </summary>
+        </member>
+        <member name="T:Licitacija_agregat.Models.EtapaCreationDto">
+            <summary>
+            Predstavlja model kreiranja etape
+            </summary>
+        </member>
+        <member name="P:Licitacija_agregat.Models.EtapaCreationDto.Dan">
+            <summary>
+            Dan etape
+            </summary>
+        </member>
+        <member name="P:Licitacija_agregat.Models.EtapaCreationDto.BrojEtape">
+            <summary>
+            Broj etape
+            </summary>
+        </member>
+        <member name="M:Licitacija_agregat.Models.EtapaCreationDto.Validate(System.ComponentModel.DataAnnotations.ValidationContext)">
+            <summary>
+            Potrebno je da broj etape bude pozitivan broj i da datum bude u budućnosti
+            </summary>
+            <param name="validationContext"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Licitacija_agregat.Models.EtapaDto">
+            <summary>
+            Predstavlja model etape
+            </summary>
+        </member>
+        <member name="P:Licitacija_agregat.Models.EtapaDto.Dan">
+            <summary>
+            Dan etape
+            </summary>
+        </member>
+        <member name="P:Licitacija_agregat.Models.EtapaDto.BrojEtape">
+            <summary>
+            Broj etape
+            </summary>
+        </member>
+        <member name="T:Licitacija_agregat.Models.EtapaUpdateDto">
+            <summary>
+            Predstavlja model za modifikaciju etape
+            </summary>
+        </member>
+        <member name="P:Licitacija_agregat.Models.EtapaUpdateDto.EtapaId">
+            <summary>
+            Id etape
+            </summary>
+        </member>
+        <member name="P:Licitacija_agregat.Models.EtapaUpdateDto.Dan">
+            <summary>
+            Dan etape
+            </summary>
+        </member>
+        <member name="P:Licitacija_agregat.Models.EtapaUpdateDto.BrojEtape">
+            <summary>
+            Broj etape
+            </summary>
+        </member>
+        <member name="M:Licitacija_agregat.Models.EtapaUpdateDto.Validate(System.ComponentModel.DataAnnotations.ValidationContext)">
+            <summary>
+            Potrebno je da broj etape bude pozitivan broj i da datum bude u budućnosti
+            </summary>
+            <param name="validationContext"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Licitacija_agregat.Models.LicitacijaConfirmationDto">
+            <summary>
+            DTO za potvrdu kreiranja licitacije
+            </summary>
+        </member>
+        <member name="P:Licitacija_agregat.Models.LicitacijaConfirmationDto.Broj">
+            <summary>
+            Broj licitacije
+            </summary>
+        </member>
+        <member name="P:Licitacija_agregat.Models.LicitacijaConfirmationDto.Datum">
+            <summary>
+            Datum licitacije
+            </summary>
+        </member>
+        <member name="T:Licitacija_agregat.Models.LicitacijaCreationDto">
+            <summary>
+            Predstavlja model kreiranja licitacije
+            </summary>
+        </member>
+        <member name="P:Licitacija_agregat.Models.LicitacijaCreationDto.Broj">
+            <summary>
+            Broj licitacije
+            </summary>
+        </member>
+        <member name="P:Licitacija_agregat.Models.LicitacijaCreationDto.Godina">
+            <summary>
+            Godina licitacije
+            </summary>
+        </member>
+        <member name="P:Licitacija_agregat.Models.LicitacijaCreationDto.Datum">
+            <summary>
+            Datum licitacije
+            </summary>
+        </member>
+        <member name="P:Licitacija_agregat.Models.LicitacijaCreationDto.Ogranicenje">
+            <summary>
+            Ograničenje licitacije
+            </summary>
+        </member>
+        <member name="P:Licitacija_agregat.Models.LicitacijaCreationDto.Korak_cene">
+            <summary>
+            Korak uvećanja cene licitacije
+            </summary>
+        </member>
+        <member name="P:Licitacija_agregat.Models.LicitacijaCreationDto.Lista_dokumentacije_fizicka_lica">
+            <summary>
+            Lista koja sadrži dokumentaciju za fizička lica
+            </summary>
+        </member>
+        <member name="P:Licitacija_agregat.Models.LicitacijaCreationDto.Lista_dokumentacije_pravna_lica">
+            <summary>
+            Lista koja sadrži dokumentaciju za pravna lica
+            </summary>
+        </member>
+        <member name="P:Licitacija_agregat.Models.LicitacijaCreationDto.JavnoNadmetanje">
+            <summary>
+            Lista javnih nadmetanja
+            </summary>
+        </member>
+        <member name="P:Licitacija_agregat.Models.LicitacijaCreationDto.Rok_za_dostavljanje_prijave">
+            <summary>
+            Datum koji predstavlja rok za dostavljanje prijave
+            </summary>
+        </member>
+        <member name="M:Licitacija_agregat.Models.LicitacijaCreationDto.Validate(System.ComponentModel.DataAnnotations.ValidationContext)">
+            <summary>
+            Broj licitacije i korak cene moraju da budu pozitivni, datum mora da bude u budućnost
+            </summary>
+            <param name="validationContext"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Licitacija_agregat.Models.LicitacijaDto">
+            <summary>
+            Predstavlja model licitacije
+            </summary>
+        </member>
+        <member name="P:Licitacija_agregat.Models.LicitacijaDto.Broj">
+            <summary>
+            Broj licitacije
+            </summary>
+        </member>
+        <member name="P:Licitacija_agregat.Models.LicitacijaDto.Godina">
+            <summary>
+            Godina licitacije
+            </summary>
+        </member>
+        <member name="P:Licitacija_agregat.Models.LicitacijaDto.Datum">
+            <summary>
+            Datum licitacije
+            </summary>
+        </member>
+        <member name="P:Licitacija_agregat.Models.LicitacijaDto.Ogranicenje">
+            <summary>
+            Ograničenje licitacije
+            </summary>
+        </member>
+        <member name="P:Licitacija_agregat.Models.LicitacijaDto.Korak_cene">
+            <summary>
+            Korak uvećanja cene licitacije
+            </summary>
+        </member>
+        <member name="P:Licitacija_agregat.Models.LicitacijaDto.Lista_dokumentacije_fizicka_lica">
+            <summary>
+            Lista koja sadrži dokumentaciju za fizička lica
+            </summary>
+        </member>
+        <member name="P:Licitacija_agregat.Models.LicitacijaDto.Lista_dokumentacije_pravna_lica">
+            <summary>
+            Lista koja sadrži dokumentaciju za pravna lica
+            </summary>
+        </member>
+        <member name="P:Licitacija_agregat.Models.LicitacijaDto.JavnoNadmetanje">
+            <summary>
+            Lista javnih nadmetanja
+            </summary>
+        </member>
+        <member name="P:Licitacija_agregat.Models.LicitacijaDto.Rok_za_dostavljanje_prijave">
+            <summary>
+            Datum koji predstavlja rok za dostavljanje prijave
+            </summary>
+        </member>
+        <member name="P:Licitacija_agregat.Models.LicitacijaUpdateDto.LicitacijaId">
+            <summary>
+            Ključ licitacije
+            </summary>
+        </member>
+        <member name="P:Licitacija_agregat.Models.LicitacijaUpdateDto.Broj">
+            <summary>
+            Broj licitacije
+            </summary>
+        </member>
+        <member name="P:Licitacija_agregat.Models.LicitacijaUpdateDto.Godina">
+            <summary>
+            Godina licitacije
+            </summary>
+        </member>
+        <member name="P:Licitacija_agregat.Models.LicitacijaUpdateDto.Datum">
+            <summary>
+            Datum licitacije
+            </summary>
+        </member>
+        <member name="P:Licitacija_agregat.Models.LicitacijaUpdateDto.Ogranicenje">
+            <summary>
+            Ograničenje licitacije
+            </summary>
+        </member>
+        <member name="P:Licitacija_agregat.Models.LicitacijaUpdateDto.Korak_cene">
+            <summary>
+            Korak uvećanja cene licitacije
+            </summary>
+        </member>
+        <member name="P:Licitacija_agregat.Models.LicitacijaUpdateDto.Lista_dokumentacije_fizicka_lica">
+            <summary>
+            Lista koja sadrži dokumentaciju za fizička lica
+            </summary>
+        </member>
+        <member name="P:Licitacija_agregat.Models.LicitacijaUpdateDto.Lista_dokumentacije_pravna_lica">
+            <summary>
+            Lista koja sadrži dokumentaciju za pravna lica
+            </summary>
+        </member>
+        <member name="P:Licitacija_agregat.Models.LicitacijaUpdateDto.JavnoNadmetanje">
+            <summary>
+            Lista javnih nadmetanja
+            </summary>
+        </member>
+        <member name="P:Licitacija_agregat.Models.LicitacijaUpdateDto.Rok_za_dostavljanje_prijave">
+            <summary>
+            Datum koji predstavlja rok za dostavljanje prijave
+            </summary>
+        </member>
+        <member name="M:Licitacija_agregat.Models.LicitacijaUpdateDto.Validate(System.ComponentModel.DataAnnotations.ValidationContext)">
+            <summary>
+            Broj licitacije i korak cene moraju da budu pozitivni, datum mora da bude u budućnost
+            </summary>
+            <param name="validationContext"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,698 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Liciter - Agregat</name>
+    </assembly>
+    <members>
+        <member name="M:Liciter___Agregat.Controllers.FizickoLiceController.GetFizickaLicas(System.String)">
+            <summary>
+            Vraća sva fizička lica iz liste
+            </summary>
+            <param name="JMBG"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Liciter___Agregat.Controllers.FizickoLiceController.GetFizickoLicebyId(System.Guid)">
+            <summary>
+            Vraća fizičko lice na osnovu id-a
+            </summary>
+            <param name="fizickoLiceId"></param>
+            <returns></returns>
+             [ProducesResponseType(StatusCodes.Status404NotFound)]
+        </member>
+        <member name="M:Liciter___Agregat.Controllers.FizickoLiceController.CreateFizickoLice(Liciter___Agregat.DTOs.FizickoLice.FizickoLiceCreationDto)">
+            <summary>
+            Dodaje novo fizičko lice u listu
+            </summary>
+            <param name="fizickoLice"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Liciter___Agregat.Controllers.FizickoLiceController.DeleteFizickoLice(System.Guid)">
+            <summary>
+            Briše fizičko lice sa prosledjenim id-em iz liste
+            </summary>
+            <param name="fizickoLiceId"></param>
+            <returns>Potvrdu o izbrisanom fizickom licu</returns>
+             <response code="200">Vraća izbrisano fizičko lice</response>
+            <response code="400">Fizičko lice koje se brise nije pronađena</response>
+            <response code="500">Došlo je do greške na serveru prilikom brisanja fizičkog lica</response>
+        </member>
+        <member name="M:Liciter___Agregat.Controllers.FizickoLiceController.UpdateFizickoLice(Liciter___Agregat.DTOs.FizickoLice.FizickoLiceUpdateDto)">
+            <summary>
+            Vrši izmenu nad fizičkim licem koji se prosledio u body-u
+            </summary>
+            <param name="fizickoLice"></param>
+            <returns>Status 204 (NoContent)</returns>
+            <response code="204">Fizičko lice uspešno ažurirano</response>
+            <response code="404">Nije pronađeno fizičko lice za ažuriranje</response>
+            <response code="500">Došlo je do greške na serveru prilikom ažuriranja fizičkog lica</response>
+        </member>
+        <member name="M:Liciter___Agregat.Controllers.KupacController.GetKupci(System.String)">
+            <summary>
+            Vraća sve Kupce iz liste
+            </summary>
+            <param name="JMBG_MaticniBroj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Liciter___Agregat.Controllers.KupacController.GetKupacbyId(System.Guid)">
+            <summary>
+            Vraca kupca na osnovu id-a
+            </summary>
+            <param name="kupacId"></param>
+            <returns></returns>
+             [ProducesResponseType(StatusCodes.Status404NotFound)]
+        </member>
+        <member name="M:Liciter___Agregat.Controllers.KupacController.CreateKupac(Liciter___Agregat.DTOs.Kupac.KupacCreationDto)">
+            <summary>
+            Dodaje novog kupca na listu
+            </summary>
+            <param name="kupac"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Liciter___Agregat.Controllers.KupacController.DeleteKupac(System.Guid)">
+            <summary>
+            Brise kupca sa prosledjenim id-em iz liste
+            </summary>
+            <param name="kupacId"></param>
+            /// <returns>Potvrdu o izbrisanom fizickom licu</returns>
+             <response code="200">Vraća izbrisanog kupca</response>
+            <response code="400">Kupac koji se brise nije pronađena</response>
+            <response code="500">Došlo je do greške na serveru prilikom brisanja kupca</response>
+        </member>
+        <member name="M:Liciter___Agregat.Controllers.KupacController.UpdateKupac(Liciter___Agregat.DTOs.Kupac.KupacUpdateDto)">
+            <summary>
+            Vrši izmenu nad kupcem koji se prosledio u body-u
+            </summary>
+            <param name="kupac"></param>
+            <returns>Status 204 (NoContent)</returns>
+            <response code="204">Kupac uspešno ažuriran</response>
+            <response code="404">Nije pronađen kupac za ažuriranje</response>
+            <response code="500">Došlo je do greške na serveru prilikom ažuriranja kupca</response>
+        </member>
+        <member name="M:Liciter___Agregat.Controllers.LiciterController.GetLiciteri(System.String)">
+            <summary>
+            Vraca licitere iz liste
+            </summary>
+            <param name="JMBG_MaticniBroj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Liciter___Agregat.Controllers.LiciterController.GetLiciterbyId(System.Guid)">
+            <summary>
+            Vraca licitera na osnovu id-a kojeg mu prosledimo
+            </summary>
+            <param name="liciterId"></param>
+            <returns></returns>
+            
+        </member>
+        <member name="M:Liciter___Agregat.Controllers.LiciterController.CreateLiciter(Liciter___Agregat.DTOs.Liciter.LiciterCreationDto)">
+            <summary>
+            
+            </summary>
+            <param name="liciter"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Liciter___Agregat.Controllers.LiciterController.DeleteLiciter(System.Guid)">
+            <summary>
+            Briše licitera sa prosledjenim id-em iz liste
+            </summary>
+            <param name="liciterId"></param>
+            <returns>Potvrdu o izbrisanom liciteru</returns>
+             <response code="200">Vraća izbrisanog licitera</response>
+            <response code="400">Liciter koji se brise nije pronađena</response>
+            <response code="500">Došlo je do greške na serveru prilikom brisanja Licitera</response>
+        </member>
+        <member name="M:Liciter___Agregat.Controllers.OvlascenoLiceController.GetOvlascenaLicas(System.String)">
+            <summary>
+            Vraća sva ovlascena lica iz liste
+            </summary>
+            <param name="JMBG_BrPasosa"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Liciter___Agregat.Controllers.OvlascenoLiceController.GetOvlascenoLicebyId(System.Guid)">
+            <summary>
+            Vraća ovlasceno lice na osnovu id-a
+            </summary>
+            <param name="ovlascenoLiceId"></param>
+            <returns></returns>
+             [ProducesResponseType(StatusCodes.Status404NotFound)]
+        </member>
+        <member name="M:Liciter___Agregat.Controllers.OvlascenoLiceController.CreateOvlascenoLice(Liciter___Agregat.DTOs.OvlascenoLice.OvlascenoLiceCreationDto)">
+            <summary>
+            Dodaje novo ovlasceno lice u listu
+            </summary>
+            <param name="ovlascenoLice"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Liciter___Agregat.Controllers.OvlascenoLiceController.DeleteOvlascenoLice(System.Guid)">
+            <summary>
+            Briše ovlasceno lice sa prosledjenim id-em iz liste
+            </summary>
+            <param name="ovlascenoLiceId"></param>
+            <returns>Potvrdu o modifikovanom ovlascenom licu</returns>
+             <response code="200">Vraća ažurirano ovlasceno lice</response>
+            <response code="400">Ovlasceno lice koje se ažurira nije pronađena</response>
+            <response code="500">Došlo je do greške na serveru prilikom ažuriranja ovlascenog lica</response>
+        </member>
+        <member name="M:Liciter___Agregat.Controllers.OvlascenoLiceController.UpdateOvlascenoLice(Liciter___Agregat.DTOs.OvlascenoLice.OvlascenoLiceUpdateDto)">
+            <summary>
+            Vrši izmenu nad ovlascenim licem koji se prosledio u body-u
+            </summary>
+            <param name="ovlascenoLice"></param>
+            <returns>Status 204 (NoContent)</returns>
+            <response code="204">Ovlasceno lice uspešno obrisano</response>
+            <response code="404">Nije pronađeno ovlasceno lice za brisanje</response>
+            <response code="500">Došlo je do greške na serveru prilikom brisanja ovlascenog lica</response>
+        </member>
+        <member name="M:Liciter___Agregat.Controllers.PravnoLiceController.GetPravnaLicas(System.String)">
+            <summary>
+            Vraća sva pravna lica iz liste
+            </summary>
+            <param name="MaticniBroj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Liciter___Agregat.Controllers.PravnoLiceController.GetPravnoLicebyId(System.Guid)">
+            <summary>
+            Vraća pravno lice na osnovu id-a
+            </summary>
+            <param name="pravnoLiceId"></param>
+            <returns></returns>
+             [ProducesResponseType(StatusCodes.Status404NotFound)]
+        </member>
+        <member name="M:Liciter___Agregat.Controllers.PravnoLiceController.CreatePravnoLice(Liciter___Agregat.DTOs.PravnoLice.PravnoLiceCreationDto)">
+            <summary>
+            Dodaje novo pravno lice u listu
+            </summary>
+            <param name="pravnoLice"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Liciter___Agregat.Controllers.PravnoLiceController.DeletePravnoLice(System.Guid)">
+            <summary>
+            Briše pravno lice sa prosledjenim id-em iz liste
+            </summary>
+            <param name="pravnoLiceId"></param>
+            <returns>Potvrdu o modifikovanom pravnom licu</returns>
+             <response code="200">Vraća ažurirano pravno lice</response>
+            <response code="400">Pravno lice koje se ažurira nije pronađena</response>
+            <response code="500">Došlo je do greške na serveru prilikom ažuriranja pravnog lica</response>
+        </member>
+        <member name="M:Liciter___Agregat.Controllers.PravnoLiceController.UpdatePravnoLice(Liciter___Agregat.DTOs.PravnoLice.PravnoLiceUpdateDto)">
+            <summary>
+            Vrši izmenu nad pravnim licem koji se prosledio u body-u
+            </summary>
+            <param name="pravnoLice"></param>
+            <returns>Status 204 (NoContent)</returns>
+            <response code="204">Pravno lice uspešno obrisano</response>
+            <response code="404">Nije pronađeno pravno lice za brisanje</response>
+            <response code="500">Došlo je do greške na serveru prilikom brisanja pravnog lica</response>
+        </member>
+        <member name="T:Liciter___Agregat.DTOs.FizickoLice.FizickoLiceConfirmationDto">
+            <summary>
+            DTO za potvrdu fizickog lica
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.FizickoLice.FizickoLiceConfirmationDto.Ime">
+            <summary>
+            Ime fizickog  lica
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.FizickoLice.FizickoLiceConfirmationDto.Prezime">
+            <summary>
+            Prezime fizickog lica
+            </summary>
+        </member>
+        <member name="T:Liciter___Agregat.DTOs.FizickoLice.FizickoLiceCreationDto">
+            <summary>
+            Model za kreiranje fizickog lica
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.FizickoLice.FizickoLiceCreationDto.Ime">
+            <summary>
+            Ime fizickog lica
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.FizickoLice.FizickoLiceCreationDto.Prezime">
+            <summary>
+            Prezime fizickog lica
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.FizickoLice.FizickoLiceCreationDto.JMBG">
+            <summary>
+            JMBG fizickog lica
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.FizickoLice.FizickoLiceCreationDto.Adresa">
+            <summary>
+            Adresa fizickog lica
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.FizickoLice.FizickoLiceCreationDto.BrojTelefona1">
+            <summary>
+            Prvi broj telefona fizickog lica
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.FizickoLice.FizickoLiceCreationDto.BrojTelefona2">
+            <summary>
+            Drugi broj telefona fizickog lica
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.FizickoLice.FizickoLiceCreationDto.Email">
+            <summary>
+            Email fizickog lica
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.FizickoLice.FizickoLiceCreationDto.BrojRacuna">
+            <summary>
+            Broj racuna fizickog lica
+            </summary>
+        </member>
+        <member name="T:Liciter___Agregat.DTOs.FizickoLice.FizickoLiceDto">
+            <summary>
+            DTO za fizicko lica
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.FizickoLice.FizickoLiceDto.Ime_Prezime">
+            <summary>
+            Ime i prezime fizickog lica
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.FizickoLice.FizickoLiceDto.JMBG">
+            <summary>
+            JMBG fizickog lica
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.FizickoLice.FizickoLiceDto.Adresa">
+            <summary>
+            Adresa fizickog lica
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.FizickoLice.FizickoLiceDto.BrojeviTelefona">
+            <summary>
+            Brojevi telefona fizickog lica
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.FizickoLice.FizickoLiceDto.Email">
+            <summary>
+            Email fizickog lica
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.FizickoLice.FizickoLiceDto.BrojRacuna">
+            <summary>
+            Broj racuna fizickog lica
+            </summary>
+        </member>
+        <member name="T:Liciter___Agregat.DTOs.FizickoLice.FizickoLiceUpdateDto">
+            <summary>
+            DTO za azuriranje fizickog lica
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.FizickoLice.FizickoLiceUpdateDto.FizickoLiceId">
+            <summary>
+            ID fizickog lica
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.FizickoLice.FizickoLiceUpdateDto.Ime">
+            <summary>
+            Ime fizickog lica
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.FizickoLice.FizickoLiceUpdateDto.Prezime">
+            <summary>
+            Prezime fizickog lica
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.FizickoLice.FizickoLiceUpdateDto.JMBG">
+            <summary>
+            JMBG fizickog lica
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.FizickoLice.FizickoLiceUpdateDto.Adresa">
+            <summary>
+            Adresa fizickog lica
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.FizickoLice.FizickoLiceUpdateDto.BrojTelefona1">
+            <summary>
+            Prvi broj telefona fizickog lica
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.FizickoLice.FizickoLiceUpdateDto.BrojTelefona2">
+            <summary>
+            Drugi broj telefona fizickog lica
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.FizickoLice.FizickoLiceUpdateDto.Email">
+            <summary>
+            Email fizickog lica
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.FizickoLice.FizickoLiceUpdateDto.BrojRacuna">
+            <summary>
+            Broj racuna fizickog lica
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.Kupac.KupacConfirmationDto.Prioritet">
+            <summary>
+            Prioritet kupca
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.Kupac.KupacConfirmationDto.OstvarenaPovrsina">
+            <summary>
+            Ostvarena površina kupca
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.Kupac.KupacConfirmationDto.ImaZabranu">
+            <summary>
+            Obeležje koje govori da li kupac ima zabranu
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.Kupac.KupacCreationDto.Prioritet">
+            <summary>
+            Prioritet kupca
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.Kupac.KupacCreationDto.OstvarenaPovrsina">
+            <summary>
+            Ostvarena površina kupca
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.Kupac.KupacCreationDto.ImaZabranu">
+            <summary>
+            Obeležje koje govori da li kupac ima zabranu
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.Kupac.KupacCreationDto.DatumPocetkaZabrane">
+            <summary>
+            Datum početka zabrane
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.Kupac.KupacCreationDto.DuzinaTrajanjaZabraneGod">
+            <summary>
+            Dužina trajanje zabrane u godinama
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.Kupac.KupacCreationDto.DatumPrestankaZabrane">
+            <summary>
+            Datum prestanka zabrane
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.Kupac.KupacCreationDto.OvlascenoLiceId">
+            <summary>
+            Id ovlašćenog lica
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.Kupac.KupacCreationDto.FizickoLiceId">
+            <summary>
+            Id fizičkog lica
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.Kupac.KupacCreationDto.PravnoLiceId">
+            <summary>
+            Id pravnog lica
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.Kupac.KupacCreationDto.JavnaNadmetanja">
+            <summary>
+            Lista Id-eva javnih nadmetanja
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.Kupac.KupacDto.Prioritet">
+            <summary>
+            Prioritet kupca
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.Kupac.KupacDto.FizickoLice">
+            <summary>
+            Fizičko lice DTO
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.Kupac.KupacDto.PravnoLice">
+            <summary>
+            Pravno lice DTO
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.Kupac.KupacDto.OstvarenaPovrsina">
+            <summary>
+            Ostvarena površina kupca
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.Kupac.KupacDto.OvlascenaLica">
+            <summary>
+            Lista Ovlašćenih lica
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.Kupac.KupacDto.ImaZabranu">
+            <summary>
+            Obeležje koje govori da li kupac ima zabranu
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.Kupac.KupacDto.DatumPocetkaZabrane">
+            <summary>
+            Datum početka zabrane
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.Kupac.KupacDto.DuzinaTrajanjaZabraneGod">
+            <summary>
+            Dužina trajanje zabrane u godinama
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.Kupac.KupacDto.DatumPrestankaZabrane">
+            <summary>
+            Datum prestanka zabrane
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.Kupac.KupacDto.JavnaNadmetanja">
+            <summary>
+            Lista Id-eva javnih nadmetanja
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.Kupac.KupacUpdateDto.KupacId">
+            <summary>
+            Id kupca
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.Kupac.KupacUpdateDto.Prioritet">
+            <summary>
+            Prioritet kupca
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.Kupac.KupacUpdateDto.FizickoLiceId">
+            <summary>
+            Id fizičkog lica
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.Kupac.KupacUpdateDto.PravnoLiceId">
+            <summary>
+            Id pravnog lica
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.Kupac.KupacUpdateDto.OstvarenaPovrsina">
+            <summary>
+            Ostvarena površina kupca
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.Kupac.KupacUpdateDto.OvlascenoLiceId">
+            <summary>
+            Id ovlašćenog lica
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.Kupac.KupacUpdateDto.ImaZabranu">
+            <summary>
+            Obeležje koje govori da li kupac ima zabranu
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.Kupac.KupacUpdateDto.DatumPocetkaZabrane">
+            <summary>
+            Datum početka zabrane
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.Kupac.KupacUpdateDto.DuzinaTrajanjaZabraneGod">
+            <summary>
+            Dužina trajanja zabrane u godinama
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.Kupac.KupacUpdateDto.DatumPrestankaZabrane">
+            <summary>
+            Datum prestanka zabrane
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.Kupac.KupacUpdateDto.JavnaNadmetanja">
+            <summary>
+            Lista Id-eva javnih nadmetanja
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.Liciter.LiciterConfirmationDto.LiciterId">
+            <summary>
+            Id licitera
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.Liciter.LiciterCreationDto.KupacId">
+            <summary>
+            Id kupca
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.Liciter.LiciterCreationDto.OvlascenoLiceId">
+            <summary>
+            Id ovlašćenog lica
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.Liciter.LiciterDto.Kupac">
+            <summary>
+            Kupac DTO
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.Liciter.LiciterDto.OvlascenoLice">
+            <summary>
+            Ovlašćeno lice DTO
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.Liciter.LiciterUpdateDto.LiciterId">
+            <summary>
+            L
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.PravnoLice.PravnoLiceConfirmationDto.Naziv">
+            <summary>
+            Naziv pravnog lica
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.PravnoLice.PravnoLiceConfirmationDto.MaticniBroj">
+            <summary>
+            Maticni broj pravnog lica
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.PravnoLice.PravnoLiceCreationDto.Naziv">
+            <summary>
+            Naziv pravnog lica
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.PravnoLice.PravnoLiceCreationDto.MaticniBroj">
+            <summary>
+            Maticni broj pravnog preduzeca
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.PravnoLice.PravnoLiceCreationDto.KontaktOsoba">
+            <summary>
+            Kontakt osoba pravnog lica
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.PravnoLice.PravnoLiceCreationDto.Adresa">
+            <summary>
+            Adresa pravnog lica
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.PravnoLice.PravnoLiceCreationDto.BrojTelefona1">
+            <summary>
+            Prvi broj telefona pravnog lica
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.PravnoLice.PravnoLiceCreationDto.BrojTelefona2">
+            <summary>
+            Drugi broj telefona pravnog lica
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.PravnoLice.PravnoLiceCreationDto.Faks">
+            <summary>
+            Faks pravnog lica
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.PravnoLice.PravnoLiceCreationDto.Email">
+            <summary>
+            Email pravnog lica
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.PravnoLice.PravnoLiceCreationDto.BrojRacuna">
+            <summary>
+            Broj racuna pravnog lica
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.PravnoLice.PravnoLiceDto.Naziv">
+            <summary>
+            Naziv pravnog lica
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.PravnoLice.PravnoLiceDto.MaticniBroj">
+            <summary>
+            Maticni broj pravnog lica
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.PravnoLice.PravnoLiceDto.KontaktOsoba">
+            <summary>
+            Kontakt osoba pravnog lica
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.PravnoLice.PravnoLiceDto.Adresa">
+            <summary>
+            Adresa pravnog lica
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.PravnoLice.PravnoLiceDto.BrojeviTelefona">
+            <summary>
+            Brojevi telefona pravnog lica
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.PravnoLice.PravnoLiceDto.Faks">
+            <summary>
+            Faks pravnog lica
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.PravnoLice.PravnoLiceDto.Email">
+            <summary>
+            Email pravnog lica
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.PravnoLice.PravnoLiceDto.BrojRacuna">
+            <summary>
+            Broj racuna pravnog lica
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.PravnoLice.PravnoLiceUpdateDto.PravnoLiceId">
+            <summary>
+            Id pravnog lica
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.PravnoLice.PravnoLiceUpdateDto.Naziv">
+            <summary>
+            Naziv pravnog lica
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.PravnoLice.PravnoLiceUpdateDto.MaticniBroj">
+            <summary>
+            Maticni broj pravnog lica
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.PravnoLice.PravnoLiceUpdateDto.KontaktOsoba">
+            <summary>
+            Kontakt osoba pravnog lica
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.PravnoLice.PravnoLiceUpdateDto.Adresa">
+            <summary>
+            Adresa pravnog lica
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.PravnoLice.PravnoLiceUpdateDto.BrojTelefona1">
+            <summary>
+            Prvi broj telefona pravnog lica
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.PravnoLice.PravnoLiceUpdateDto.BrojTelefona2">
+            <summary>
+            Drugi broj telefona pravnog lica
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.PravnoLice.PravnoLiceUpdateDto.Faks">
+            <summary>
+            Faks pravnog lica
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.PravnoLice.PravnoLiceUpdateDto.Email">
+            <summary>
+            Email pravnog lica
+            </summary>
+        </member>
+        <member name="P:Liciter___Agregat.DTOs.PravnoLice.PravnoLiceUpdateDto.BrojRacuna">
+            <summary>
+            Broj racuna pravnog lica
+            </summary>
+        </member>
+    </members>
+</doc>
