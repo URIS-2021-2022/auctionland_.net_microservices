@@ -24,10 +24,10 @@ namespace Oglas_Agregat.Entities
         public DbSet<Oglas> Oglasi { get; set; } //direktno se namapira na objekte u bazi
         public DbSet<SluzbeniList> SluzbeniListovi { get; set; }
 
-        protected override void OnModelCreating(ModelBuilder builder) //nakon sto mi pokrenemo izvrsavanje programa
+        protected override void OnModelCreating(ModelBuilder modelBuilder) //nakon sto mi pokrenemo izvrsavanje programa
         {
 
-            builder.Entity<SluzbeniList>()
+            modelBuilder.Entity<SluzbeniList>()
                 .HasData(new
                 {
                     SluzbeniListId = Guid.Parse("00f78e6b-a2bb-43b5-b3bb-f5708d1a5129"),
@@ -35,7 +35,7 @@ namespace Oglas_Agregat.Entities
                     BrojLista = 33
                 });
 
-            builder.Entity<Oglas>()
+            modelBuilder.Entity<Oglas>()
                 .HasData(new
                 {
                     OglasId = Guid.Parse("00f78e6b-a2bb-43b5-b3bb-f5708d1a5129"),
