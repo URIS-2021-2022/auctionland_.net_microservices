@@ -14,6 +14,9 @@ namespace Oglas_Agregat.Entities
         public string OpisOglasa { get; set; }
         public Guid ObjavljenUListuId { get; set; }
 
+        public Guid? JavnoNadmetanjeId { get; set; }
+
+
         [JsonIgnore]
         public SluzbeniList ObjavljenUListu { get; set; }
     }

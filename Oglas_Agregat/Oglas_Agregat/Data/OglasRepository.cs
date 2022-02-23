@@ -49,20 +49,9 @@ namespace Oglas_Agregat.Data
             return context.Oglasi.Where(e => (DatumObjave == default || e.DatumObjave.Equals(DatumObjave))).ToList();
         }
 
-        public void UpdateOglas(Oglas oglasModel)
+        public void UpdateOglas(Oglas oglas)
         {
-/*            var oglas = GetOglasById(oglasModel.OglasId);
 
-            oglas.OglasId = oglasModel.OglasId;
-            oglas.DatumObjave = oglasModel.DatumObjave;
-            oglas.RokZaZalbu = oglasModel.RokZaZalbu;
-            oglas.OpisOglasa = oglasModel.OpisOglasa;
-
-            return new OglasConfirmation()
-            {
-                OglasId = oglas.OglasId,
-                OpisOglasa = oglas.OpisOglasa
-            };*/
         }
     }
 }
