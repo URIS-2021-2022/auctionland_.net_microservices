@@ -26,7 +26,7 @@ namespace Program_Agregat.ServiceCalls
         {
             using (HttpClient client = new HttpClient())
             {
-                Uri url = new Uri($"{ Configuration["Services:KomisijaService"] }/javno-nadmetanje/{komisijaId}"); //ovde da li je dobro
+                Uri url = new Uri($"{ Configuration["Services:Komisija"] }/Komisija/{komisijaId}"); //ovde da li je dobro
 
                 //string token = AuthHelper.GetToken(httpRequest);
 

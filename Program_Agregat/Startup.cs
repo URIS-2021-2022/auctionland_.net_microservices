@@ -103,7 +103,7 @@ namespace Program_Agregat
                        Title = "Program API",
                        Version = "1",
 
-                       Description = "Pomocu ovog API-ja moze da se vrsi...",
+                       Description = "Pomocu ovog API-ja moze da se vrsi pregled i izmena Programa i Predloga Plana",
                        Contact = new Microsoft.OpenApi.Models.OpenApiContact
                        {
                            Name = "Damjan Ivetic",
