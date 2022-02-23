@@ -10,7 +10,6 @@ namespace OdlukaODavanjuUZakup.Models
     /// </summary>
     public class GarantPlacanjaCreationDto
     {
-        //  public Guid GarantPlacanjaID { get; set; }
         /// <summary>
         /// Jemstvo, bankarska garancija, garancija nekretninom, zirantska, uplata gotovinom
         /// </summary>

@@ -13,7 +13,6 @@ namespace OdlukaODavanjuUZakup.Data
     {
         private readonly DatabaseContext context;
         private readonly IMapper mapper;
-  //      public static List<UplataZakupnine> UplateZakupnine { get; set; } = new List<UplataZakupnine>();
 
         public UplataZakupnineRepository (DatabaseContext context, IMapper mapper)
         {
@@ -27,26 +26,15 @@ namespace OdlukaODavanjuUZakup.Data
         
         public UplataZakupnineConfirmation CreateUplataZakupnine(UplataZakupnine uplataZakupnine)
         {
-        /*     uplataZakupnine.UplataZakupnineID = Guid.NewGuid();
-             UplateZakupnine.Add(uplataZakupnine); 
-             UplataZakupnine zakupnina = GetUplataZakupnineById(uplataZakupnine.UplataZakupnineID);
-
-             return new UplataZakupnineConfirmation
-             {
-                 UplataZakupnineID = zakupnina.UplataZakupnineID,
-                 broj_racuna = zakupnina.broj_racuna,
-                 datum = zakupnina.datum
-             }; */
         var createdEntity = context.Add(uplataZakupnine);
         return mapper.Map<UplataZakupnineConfirmation>(createdEntity.Entity);
 
     }
 
-        public void DeleteUplataZakupnine(Guid uplataZakupnineId)
+        public void DeleteUplataZakupnine(Guid UplataZakupnineId)
         {
-            var uplata = GetUplataZakupnineById(uplataZakupnineId);
+            var uplata = GetUplataZakupnineById(UplataZakupnineId);
             context.Remove(uplata);
-       //     context.Remove(UplataZakupnine.FirstOrDefault(e => e.UplataZakupnineID == UplataZakupnineId));
         }
 
         public UplataZakupnine GetUplataZakupnineById(Guid UplataZakupnineId)

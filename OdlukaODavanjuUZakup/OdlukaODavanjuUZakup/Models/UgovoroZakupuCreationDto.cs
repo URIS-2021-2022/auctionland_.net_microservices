@@ -10,7 +10,6 @@ namespace OdlukaODavanjuUZakup.Models
     /// </summary>
     public class UgovoroZakupuCreationDto
     {
-     //   public Guid UgovoroZakupuID { get; set; }
      /// <summary>
      /// Javno nadmetanje na koje se ugovor odnosi
      /// </summary>

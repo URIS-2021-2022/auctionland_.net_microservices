@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
+using Microsoft.Extensions.Logging;
 using OdlukaODavanjuUZakup.Data;
 using OdlukaODavanjuUZakup.Entities;
 using OdlukaODavanjuUZakup.Models;
@@ -56,8 +57,12 @@ namespace OdlukaODavanjuUZakup.Controllers
 
             if (uplate == null || uplate.Count == 0)
             {
+
+                loggerService.Log(LogLevel.Warning, "GetAllStatus", "Lista uplata je prazna ili null.");
                 return NoContent();
             }
+
+            loggerService.Log(LogLevel.Information, "GetAllStatus", "Lista uplata je uspešno vraćena!");
             return Ok(mapper.Map<List<UplataZakupnineDto>>(uplate));
         }
         /// <summary>
@@ -76,8 +81,10 @@ namespace OdlukaODavanjuUZakup.Controllers
 
             if (uplata == null)
             {
+                loggerService.Log(LogLevel.Warning, "GetByIdStatus", "Uplata sa tim id-em nije pronađena.");
                 return NotFound();
             }
+            loggerService.Log(LogLevel.Information, "GetByIdStatus", "Uplata sa zadatim id-em je uspešno vraćena!");
             return Ok(mapper.Map<UplataZakupnineDto>(uplata));
         }
         /// <summary>
@@ -111,14 +118,16 @@ namespace OdlukaODavanjuUZakup.Controllers
                 var confirmation = uplataZakupnineRepository.CreateUplataZakupnine(uplataZakupnineEntity);
                 uplataZakupnineRepository.SaveChanges();
                 string location = linkGenerator.GetPathByAction("GetUplate", "UplataZakupnine", new { uplataZakupnineID = confirmation.UplataZakupnineID });
+                loggerService.Log(LogLevel.Information, "PostStatus", "Uplata je uspešno kreirana!");
                 return Created(location, mapper.Map<UplataZakupnineConfirmationDto>(confirmation));
             }
             catch
             {
+                loggerService.Log(LogLevel.Warning, "PostStatus", "Uplata nije kreirana, došlo je do greške!");
                 return StatusCode(StatusCodes.Status500InternalServerError, "Create error");
             }
         }
-        private bool ValidateUplataZakupnine(UplataZakupnineCreationDto uplataZakupnine)
+        private static bool ValidateUplataZakupnine(UplataZakupnineCreationDto uplataZakupnine)
         {
             if (uplataZakupnine.iznos < 100)
             {
@@ -148,15 +157,20 @@ namespace OdlukaODavanjuUZakup.Controllers
 
                 if (uplata == null)
                 {
+
+                    loggerService.Log(LogLevel.Warning, "DeleteStatus", "Uplata sa zadatim id-em nije pronađena!");
                     return NotFound();
 
                 }
                 uplataZakupnineRepository.DeleteUplataZakupnine(uplataZakupnineID);
                 uplataZakupnineRepository.SaveChanges();
+
+                loggerService.Log(LogLevel.Information, "DeleteStatus", "Uplata je uspešno obrisana!");
                 return NoContent();
             }
             catch (Exception)
             {
+                loggerService.Log(LogLevel.Warning, "DeleteStatus", "Uplata nije obrisana, došlo je do greške!");
                 return StatusCode(StatusCodes.Status500InternalServerError, "Delete error");
             }
 
@@ -169,6 +183,7 @@ namespace OdlukaODavanjuUZakup.Controllers
         public IActionResult GetUplataZakupnineOptions()
         {
             Response.Headers.Add("Allow", "GET, POST, PUT, DELETE");
+            loggerService.Log(LogLevel.Information, "GetStatus", "Opcije su uspešno vraćene!");
             return Ok();
         }
 
@@ -191,7 +206,8 @@ namespace OdlukaODavanjuUZakup.Controllers
             {
                 //Proveriti da li uopšte postoji prijava koju pokušavamo da ažuriramo.
                 if (uplataZakupnineRepository.GetUplataZakupnineById(uplata.UplataZakupnineID) == null)
-                { 
+                {
+                    loggerService.Log(LogLevel.Warning, "PutStatus", "Uplata sa zadatim id-em nije pronađena!");
                     return NotFound(); //Ukoliko ne postoji vratiti status 404 (NotFound).
                 }
 
@@ -202,6 +218,7 @@ namespace OdlukaODavanjuUZakup.Controllers
             }
             catch (Exception)
             {
+                loggerService.Log(LogLevel.Warning, "PutStatus", "Uplata nije izmenjena, došlo je do greške!");
                 return StatusCode(StatusCodes.Status500InternalServerError, "Update error");
             }
         }

@@ -13,7 +13,7 @@ namespace OdlukaODavanjuUZakup.Data
     {
         private readonly DatabaseContext context;
         private readonly IMapper mapper;
-        //    public static List<UgovoroZakupu> UgovorioZakupu { get; set; } = new List<UgovoroZakupu>();
+
 
         public UgovoroZakupuRepository(DatabaseContext context, IMapper mapper)
         {
@@ -26,16 +26,7 @@ namespace OdlukaODavanjuUZakup.Data
         }
         public UgovoroZakupuConfirmation CreateUgovorOZakupu(UgovoroZakupu ugovoroZakupu)
         {
-            /*  ugovoroZakupu.UgovoroZakupuID = Guid.NewGuid();
-              UgovorioZakupu.Add(ugovoroZakupu);
-              UgovoroZakupu ugovor = GetUgovoriOZakupuById(ugovoroZakupu.UgovoroZakupuID);
 
-              return new UgovoroZakupuConfirmation
-              {
-                  UgovoroZakupuID = ugovor.UgovoroZakupuID,
-                  datum_potpisa = ugovor.datum_potpisa,
-                  zavodni_Broj = ugovor.zavodni_Broj
-              }; */
             var createdEntity = context.Add(ugovoroZakupu);
             return mapper.Map<UgovoroZakupuConfirmation>(createdEntity.Entity);
 
@@ -45,7 +36,6 @@ namespace OdlukaODavanjuUZakup.Data
         {
             var ugovor = GetUgovoriOZakupuById(UgovoroZakupuId);
             context.Remove(ugovor);
-            //    context.Remove(UgovoroZakupu.FirstOrDefault(e => e.UgovoroZakupuID == UgovoroZakupuId));
         }
 
         public List<UgovoroZakupu> GetUgovoriOZakupu(string zavodni_broj = null)

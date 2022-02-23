@@ -16,11 +16,6 @@ namespace OdlukaODavanjuUZakup.Entities
             this.configuration = configuration;
         }
 
-    /*    public DatabaseContext()
-        {
-
-        } */
-
         public DbSet<GarantPlacanja> GarantPlacanja { get; set; }
         public DbSet<UgovoroZakupu> UgovoroZakupu { get; set; }
         public DbSet<OdlukaoDavanjuuZakup> OdlukaoDavanjuuZakup { get; set; }
@@ -30,16 +25,16 @@ namespace OdlukaODavanjuUZakup.Entities
         {
             optionsBuilder.UseSqlServer(configuration.GetConnectionString("OdlukaDB"));
         }
-        protected override void OnModelCreating(ModelBuilder builder)
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            builder.Entity<GarantPlacanja>()
+            modelBuilder.Entity<GarantPlacanja>()
                 .HasData(new
                 {
                     GarantPlacanjaID = Guid.Parse("00f78e6b-a2bb-43b5-b3bb-f5708d1a5129"),
                     Opis_garanta1 = "Jemstvo",
                     Opis_garanta2 = "Jemstvo"
                 });
-            builder.Entity<UplataZakupnine>()
+            modelBuilder.Entity<UplataZakupnine>()
                 .HasData(new
                 {
                     UplataZakupnineID = Guid.Parse("00f78e6b-a2bb-43b5-b3bb-f5708d1a5129"),
@@ -51,14 +46,14 @@ namespace OdlukaODavanjuUZakup.Entities
                     javno_nadmetanje = "javno",
                     uplatilac = "uplatilac"
                 });
-            builder.Entity<OdlukaoDavanjuuZakup>()
+            modelBuilder.Entity<OdlukaoDavanjuuZakup>()
                 .HasData(new
                 {
                     OdlukaoDavanjuuZakupID = Guid.Parse("00f78e6b-a2bb-43b5-b3bb-f5708d1a5129"),
                     datum_donosenja_odluke = DateTime.Parse("02-02-2000"),
                     validnost = true
                 });
-            builder.Entity<UgovoroZakupu>()
+            modelBuilder.Entity<UgovoroZakupu>()
                 .HasData(new
                 {
                     UgovoroZakupuID = Guid.Parse("00f78e6b-a2bb-43b5-b3bb-f5708d1a5129"),
