@@ -138,3 +138,4 @@ C:\Users\Korisnik\source\repos\tim-6---auctionland-tim-6-nopcommerceParcela\Parc
 C:\Users\Korisnik\source\repos\tim-6---auctionland-tim-6-nopcommerceParcela\Parcela\Parcela\obj\Debug\net5.0\ref\Parcela.dll
 C:\Users\Korisnik\source\repos\tim-6---auctionland-tim-6-nopcommerceParcela\Parcela\Parcela\obj\Debug\net5.0\Parcela.pdb
 C:\Users\Korisnik\source\repos\tim-6---auctionland-tim-6-nopcommerceParcela\Parcela\Parcela\obj\Debug\net5.0\Parcela.genruntimeconfig.cache
+C:\Users\Korisnik\source\repos\tim-6---auctionland-tim-6-nopcommerceParcela\Parcela\Parcela\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll

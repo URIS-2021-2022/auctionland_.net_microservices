@@ -14,10 +14,10 @@ namespace Parcela.Models
         /// Povrsina parcele
         /// </summary>
         public int Povrsina { get; set; }
-        /*/// <summary>
+        /// <summary>
         /// ID korisnika parcele
         /// </summary>
-        public Guid KorisnikParcele { get; set; }*/
+        public Guid? KorisnikParcele { get; set; }
         /// <summary>
         /// Broj parcele
         /// </summary>
@@ -92,7 +92,7 @@ namespace Parcela.Models
             List<string> conditions5 = new List<string>() { "Privatna svojina" , "Državna svojina RS" , "Državna svojina" , "Društvena svojina" , "Zadružna svojina" , "Mešovita svojina" , "Drugi oblici" };
 
             RuleFor(x => x.Povrsina).NotEmpty().WithMessage("Povrsina parcele mora biti unesena");
-            //RuleFor(x => x.KorisnikParcele).NotEmpty().WithMessage("Podnosilac parcele mora biti unesen");
+            
             RuleFor(x => x.BrojParcele).NotEmpty().WithMessage("Broj parcele mora biti unesen");
             RuleFor(x => x.KatastarskaOpstina).NotEmpty().WithMessage("Katastarska opstina parcele mora biti unesena");
             RuleFor(x => x.BrojListaNepokretnosti).NotEmpty().WithMessage("Broj lista nepokretnosti parcele mora biti unesen");

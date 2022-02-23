@@ -61,7 +61,7 @@ namespace Parcela.Data
         /// </summary>
         public void UpdateDeoParcele(DeoParcele deoParcele)
         {
-
+            //azurira se automatski
         }
 
         /// <summary>
