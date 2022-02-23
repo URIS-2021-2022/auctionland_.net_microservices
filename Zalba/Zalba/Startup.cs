@@ -25,6 +25,7 @@ using Zalba.Data;
 using Zalba.Entities;
 using Zalba.Helpers;
 using Zalba.Models;
+using Zalba.ServiceCalls;
 
 namespace Zalba
 {
@@ -97,6 +98,8 @@ namespace Zalba
             services.AddScoped<ITipZalbeRepository, TipZalbeRepository>();
             services.AddScoped<IZalbaRepository, ZalbaRepository>();
 
+            services.AddScoped<IFizickoLiceRepository, FizickoLiceRepository>();
+            services.AddScoped<IPravnoLiceRepository, PravnoLiceRepository>();
 
             services.AddSingleton<IKorisnikRepository, KorisnikMockRepository>();
 
