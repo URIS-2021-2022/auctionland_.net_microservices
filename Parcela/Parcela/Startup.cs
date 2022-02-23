@@ -119,7 +119,7 @@ namespace Parcela
                     {
                         Title = "Parcela service API",
                         Version = "1",
-                        Description = "Pomocu ovog API-ja moze da se vrsi pregled, prisanje, dodavenje i modifikacija parceli i delova parcele.",
+                        Description = "Pomocu ovog API-ja moze da se vrsi pregled, brisanje, dodavanje i modifikacija opstina, parcela i delova parcela.",
                     });
                 var xmlComments = $"{ Assembly.GetExecutingAssembly().GetName().Name }.xml";
                 var xmlCommentsPath = Path.Combine(AppContext.BaseDirectory, xmlComments);

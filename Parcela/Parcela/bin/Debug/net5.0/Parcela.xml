@@ -156,7 +156,7 @@
             Kontroler za parcele
             </summary>
         </member>
-        <member name="M:Parcela.Controllers.ParcelaController.#ctor(Parcela.Data.IParcelaRepository,Microsoft.AspNetCore.Routing.LinkGenerator,AutoMapper.IMapper,Parcela.Data.ILoggerService)">
+        <member name="M:Parcela.Controllers.ParcelaController.#ctor(Parcela.Data.IParcelaRepository,Microsoft.AspNetCore.Routing.LinkGenerator,AutoMapper.IMapper,Parcela.Data.ILoggerService,Parcela.ServiceCalls.IFizickoLiceRepository,Parcela.ServiceCalls.IPravnoLiceRepository)">
             <summary>
             Konstruktor kontrolera za parcele
             </summary>
@@ -851,6 +851,41 @@
             Konstruktor validatora za azuriranje delova parcele
             </summary>
         </member>
+        <member name="P:Parcela.Models.FizickoLiceDto.FizickoLiceId">
+            <summary>
+            Id fizickog lica
+            </summary>
+        </member>
+        <member name="P:Parcela.Models.FizickoLiceDto.Ime_Prezime">
+            <summary>
+            Ime i prezime fizickog lica
+            </summary>
+        </member>
+        <member name="P:Parcela.Models.FizickoLiceDto.JMBG">
+            <summary>
+            JMBG fizickog lica
+            </summary>
+        </member>
+        <member name="P:Parcela.Models.FizickoLiceDto.Adresa">
+            <summary>
+            Adresa fizickog lica
+            </summary>
+        </member>
+        <member name="P:Parcela.Models.FizickoLiceDto.BrojeviTelefona">
+            <summary>
+            Brojevi telefona fizickog lica
+            </summary>
+        </member>
+        <member name="P:Parcela.Models.FizickoLiceDto.Email">
+            <summary>
+            Email fizickog lica
+            </summary>
+        </member>
+        <member name="P:Parcela.Models.FizickoLiceDto.BrojRacuna">
+            <summary>
+            Broj racuna fizickog lica
+            </summary>
+        </member>
         <member name="T:Parcela.Models.OpstinaConfirmationDto">
             <summary>
             Potvrda za opstine
@@ -1046,9 +1081,14 @@
             Datum podnosenja parcele
             </summary>
         </member>
-        <member name="P:Parcela.Models.ParcelaDto.PodnosilacParcele">
+        <member name="P:Parcela.Models.ParcelaDto.KorisnikParcele">
             <summary>
             ID podnosioca parcele
+            </summary>
+        </member>
+        <member name="P:Parcela.Models.ParcelaDto.KorisnikParceleDto">
+            <summary>
+            Dto fizicko lice
             </summary>
         </member>
         <member name="P:Parcela.Models.ParcelaDto.RazlogParcele">
@@ -1184,6 +1224,51 @@
         <member name="M:Parcela.Models.ParcelaUpdateValidator.#ctor">
             <summary>
             Konstruktor validatora za azuriranje parceli
+            </summary>
+        </member>
+        <member name="P:Parcela.Models.PravnoLiceDto.PravnoLiceId">
+            <summary>
+            Id fizickog lica
+            </summary>
+        </member>
+        <member name="P:Parcela.Models.PravnoLiceDto.Naziv">
+            <summary>
+            Naziv pravnog lica
+            </summary>
+        </member>
+        <member name="P:Parcela.Models.PravnoLiceDto.MaticniBroj">
+            <summary>
+            Maticni broj pravnog lica
+            </summary>
+        </member>
+        <member name="P:Parcela.Models.PravnoLiceDto.KontaktOsoba">
+            <summary>
+            Kontakt osoba pravnog lica
+            </summary>
+        </member>
+        <member name="P:Parcela.Models.PravnoLiceDto.Adresa">
+            <summary>
+            Adresa pravnog lica
+            </summary>
+        </member>
+        <member name="P:Parcela.Models.PravnoLiceDto.BrojeviTelefona">
+            <summary>
+            Brojevi telefona pravnog lica
+            </summary>
+        </member>
+        <member name="P:Parcela.Models.PravnoLiceDto.Faks">
+            <summary>
+            Faks pravnog lica
+            </summary>
+        </member>
+        <member name="P:Parcela.Models.PravnoLiceDto.Email">
+            <summary>
+            Email pravnog lica
+            </summary>
+        </member>
+        <member name="P:Parcela.Models.PravnoLiceDto.BrojRacuna">
+            <summary>
+            Broj racuna pravnog lica
             </summary>
         </member>
         <member name="T:Parcela.Models.Principal">
