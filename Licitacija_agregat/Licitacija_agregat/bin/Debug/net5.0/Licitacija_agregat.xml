@@ -202,6 +202,9 @@
         </member>
         <member name="P:Licitacija_agregat.Models.LicitacijaCreationDto.Broj">
             <summary>
+            Id programa
+            </summary>
+            <summary>
             Broj licitacije
             </summary>
         </member>
@@ -240,6 +243,11 @@
             Lista javnih nadmetanja
             </summary>
         </member>
+        <member name="P:Licitacija_agregat.Models.LicitacijaCreationDto.ListaEtapa">
+            <summary>
+            Lista etapa određene licitacije
+            </summary>
+        </member>
         <member name="P:Licitacija_agregat.Models.LicitacijaCreationDto.Rok_za_dostavljanje_prijave">
             <summary>
             Datum koji predstavlja rok za dostavljanje prijave
@@ -257,9 +265,17 @@
             Predstavlja model licitacije
             </summary>
         </member>
-        <member name="P:Licitacija_agregat.Models.LicitacijaDto.Broj">
+        <member name="P:Licitacija_agregat.Models.LicitacijaDto.Program">
+            <summary>
+            Id programa
+            </summary>
             <summary>
             Broj licitacije
+            </summary>
+        </member>
+        <member name="P:Licitacija_agregat.Models.LicitacijaDto.Broj">
+            <summary>
+            Program objekat
             </summary>
         </member>
         <member name="P:Licitacija_agregat.Models.LicitacijaDto.Godina">
@@ -297,6 +313,11 @@
             Lista javnih nadmetanja
             </summary>
         </member>
+        <member name="P:Licitacija_agregat.Models.LicitacijaDto.ListaEtapa">
+            <summary>
+            Lista etapa određene licitacije
+            </summary>
+        </member>
         <member name="P:Licitacija_agregat.Models.LicitacijaDto.Rok_za_dostavljanje_prijave">
             <summary>
             Datum koji predstavlja rok za dostavljanje prijave
@@ -307,9 +328,14 @@
             Ključ licitacije
             </summary>
         </member>
-        <member name="P:Licitacija_agregat.Models.LicitacijaUpdateDto.Broj">
+        <member name="P:Licitacija_agregat.Models.LicitacijaUpdateDto.ProgramId">
             <summary>
             Broj licitacije
+            </summary>
+        </member>
+        <member name="P:Licitacija_agregat.Models.LicitacijaUpdateDto.Broj">
+            <summary>
+            Id programa
             </summary>
         </member>
         <member name="P:Licitacija_agregat.Models.LicitacijaUpdateDto.Godina">
@@ -345,6 +371,11 @@
         <member name="P:Licitacija_agregat.Models.LicitacijaUpdateDto.JavnoNadmetanje">
             <summary>
             Lista javnih nadmetanja
+            </summary>
+        </member>
+        <member name="P:Licitacija_agregat.Models.LicitacijaUpdateDto.ListaEtapa">
+            <summary>
+            Lista etapa određene licitacije
             </summary>
         </member>
         <member name="P:Licitacija_agregat.Models.LicitacijaUpdateDto.Rok_za_dostavljanje_prijave">

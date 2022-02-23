@@ -52,17 +52,7 @@ namespace Licitacija_agregat.Data
 
         public void UpdateEtapa(Etapa etapaModel)
         {
-/*            var etapa = GetEtapaById(etapaModel.EtapaId);
-
-            etapa.EtapaId = etapaModel.EtapaId;
-            etapa.Dan = etapaModel.Dan;
-            etapa.BrojEtape = etapaModel.BrojEtape;
-
-            return new EtapaConfirmation()
-            {
-                EtapaId = etapa.EtapaId,
-                Dan = etapa.Dan
-            };*/
+            // Nema potrebe za implementacijom
         }
     }
 }

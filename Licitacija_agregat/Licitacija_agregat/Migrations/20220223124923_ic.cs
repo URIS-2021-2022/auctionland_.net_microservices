@@ -12,6 +12,7 @@ namespace Licitacija_agregat.Migrations
                 columns: table => new
                 {
                     LicitacijaId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    ProgramId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     Broj = table.Column<int>(type: "int", nullable: false),
                     Godina = table.Column<int>(type: "int", nullable: false),
                     Datum = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -46,8 +47,8 @@ namespace Licitacija_agregat.Migrations
 
             migrationBuilder.InsertData(
                 table: "Licitacije",
-                columns: new[] { "LicitacijaId", "Broj", "Datum", "Godina", "Korak_cene", "Ogranicenje", "Rok_za_dostavljanje_prijave" },
-                values: new object[] { new Guid("e1f1f516-a9c4-4209-baa7-02e1583484ce"), 5, new DateTime(2023, 11, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), 2005, 5, 5, new DateTime(2023, 11, 15, 0, 0, 0, 0, DateTimeKind.Unspecified) });
+                columns: new[] { "LicitacijaId", "Broj", "Datum", "Godina", "Korak_cene", "Ogranicenje", "ProgramId", "Rok_za_dostavljanje_prijave" },
+                values: new object[] { new Guid("e1f1f516-a9c4-4209-baa7-02e1583484ce"), 5, new DateTime(2023, 11, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), 2005, 5, 5, new Guid("d684e88a-a3ef-40b8-a3c5-c73012d1cf26"), new DateTime(2023, 11, 15, 0, 0, 0, 0, DateTimeKind.Unspecified) });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Etape_LicitacijaId",
