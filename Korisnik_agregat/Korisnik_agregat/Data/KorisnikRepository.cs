@@ -54,7 +54,7 @@ namespace Korisnik_agregat.Data
 
             if (korisnik == null)
             {
-                throw new ArgumentNullException("korisnikId");
+                throw new ArgumentNullException("KorisnikId");
             }
 
             context.Korisnici.Remove(korisnik);
