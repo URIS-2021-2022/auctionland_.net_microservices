@@ -104,7 +104,674 @@
       ],
       "UpstreamPathTemplate": "/zakupnine/{id}",
       "UpstreamHttpMethod": [ "Get", "Delete" ]
+    },
+    {
+      ///ClanKomisije
+
+      "DownstreamPathTemplate": "/api/ClanKomisije",
+      "DownstreamPathScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "44310"
+        }
+      ],
+      "UpstreamPathTemplate": "/ClanKomisije",
+      "UpstreamHttpMethod": [ "Get", "Post", "Put" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/ClanKomisije/{id}",
+      "DownstreamPathScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "44310"
+        }
+      ],
+      "UpstreamPathTemplate": "/ClanKomisije/{id}",
+      "UpstreamHttpMethod": [ "Get", "Delete" ]
+    },
+    {
+      ///Komisija
+
+      "DownstreamPathTemplate": "/api/Komisija",
+      "DownstreamPathScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "44310"
+        }
+      ],
+      "UpstreamPathTemplate": "/Komisija",
+      "UpstreamHttpMethod": [ "Get", "Post", "Put" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/Komisija/{id}",
+      "DownstreamPathScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "44310"
+        }
+      ],
+      "UpstreamPathTemplate": "/Komisija/{id}",
+      "UpstreamHttpMethod": [ "Get", "Delete" ]
+    },
+    {
+      ///Predsednik
+
+      "DownstreamPathTemplate": "/api/Predsednik",
+      "DownstreamPathScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "44310"
+        }
+      ],
+      "UpstreamPathTemplate": "/Predsednik",
+      "UpstreamHttpMethod": [ "Get", "Post", "Put" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/Predsednik/{id}",
+      "DownstreamPathScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "44310"
+        }
+      ],
+      "UpstreamPathTemplate": "/Predsednik/{id}",
+      "UpstreamHttpMethod": [ "Get", "Delete" ]
+    },
+
+
+
+    {
+      ///Program
+
+      "DownstreamPathTemplate": "/api/Program",
+      "DownstreamPathScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "44323"
+        }
+      ],
+      "UpstreamPathTemplate": "/Program",
+      "UpstreamHttpMethod": [ "Get", "Post", "Put" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/Program/{id}",
+      "DownstreamPathScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "44323"
+        }
+      ],
+      "UpstreamPathTemplate": "/Program/{id}",
+      "UpstreamHttpMethod": [ "Get", "Delete" ]
+    },
+    {
+      ///PredlogPlana
+
+      "DownstreamPathTemplate": "/api/PredlogPlana",
+      "DownstreamPathScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "44323"
+        }
+      ],
+      "UpstreamPathTemplate": "/PredlogPlana",
+      "UpstreamHttpMethod": [ "Get", "Post", "Put" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/PredlogPlana/{id}",
+      "DownstreamPathScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "44323"
+        }
+      ],
+      "UpstreamPathTemplate": "/PredlogPana/{id}",
+      "UpstreamHttpMethod": [ "Get", "Delete" ]
+    },
+    {
+      ///FizickoLice
+
+      "DownstreamPathTemplate": "/api/fizickoLice",
+      "DownstreamPathScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "44364"
+        }
+      ],
+      "UpstreamPathTemplate": "/fizickoLice",
+      "UpstreamHttpMethod": [ "Get", "Post", "Put" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/fizickoLice/{id}",
+      "DownstreamPathScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "44364"
+        }
+      ],
+      "UpstreamPathTemplate": "/fizickoLice/{id}",
+      "UpstreamHttpMethod": [ "Get", "Delete" ]
+    },
+    {
+      ///PravnoLice
+
+      "DownstreamPathTemplate": "/api/pravnoLice",
+      "DownstreamPathScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "44364"
+        }
+      ],
+      "UpstreamPathTemplate": "/pravnoLice",
+      "UpstreamHttpMethod": [ "Get", "Post", "Put" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/pravnoLice/{id}",
+      "DownstreamPathScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "44364"
+        }
+      ],
+      "UpstreamPathTemplate": "/pravnoLice/{id}",
+      "UpstreamHttpMethod": [ "Get", "Delete" ]
+    },
+    {
+      ///OvlascenoLice
+
+      "DownstreamPathTemplate": "/api/ovlascenoLice",
+      "DownstreamPathScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "44364"
+        }
+      ],
+      "UpstreamPathTemplate": "/ovlascenoLice",
+      "UpstreamHttpMethod": [ "Get", "Post", "Put" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/ovlascenoLice/{id}",
+      "DownstreamPathScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "44364"
+        }
+      ],
+      "UpstreamPathTemplate": "/ovlascenoLice/{id}",
+      "UpstreamHttpMethod": [ "Get", "Delete" ]
+    },
+
+
+
+    {
+      ///Kupac
+
+      "DownstreamPathTemplate": "/api/kupac",
+      "DownstreamPathScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "44364"
+        }
+      ],
+      "UpstreamPathTemplate": "/kupac",
+      "UpstreamHttpMethod": [ "Get", "Post", "Put" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/kupac/{id}",
+      "DownstreamPathScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "44364"
+        }
+      ],
+      "UpstreamPathTemplate": "/kupac/{id}",
+      "UpstreamHttpMethod": [ "Get", "Delete" ]
+    },
+    {
+      ///Liciter
+
+      "DownstreamPathTemplate": "/api/liciter",
+      "DownstreamPathScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "44364"
+        }
+      ],
+      "UpstreamPathTemplate": "/liciter",
+      "UpstreamHttpMethod": [ "Get", "Post", "Put" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/liciter/{id}",
+      "DownstreamPathScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "44364"
+        }
+      ],
+      "UpstreamPathTemplate": "/liciter/{id}",
+      "UpstreamHttpMethod": [ "Get", "Delete" ]
+    },
+    "AGREGAT",
+    "OGLAS",
+
+    {
+      ///Oglas
+
+      "DownstreamPathTemplate": "/api/oglasi",
+      "DownstreamPathScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "44330"
+        }
+      ],
+      "UpstreamPathTemplate": "/oglasi",
+      "UpstreamHttpMethod": [ "Get", "Post", "Put" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/oglasi/{id}",
+      "DownstreamPathScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "44330"
+        }
+      ],
+      "UpstreamPathTemplate": "/oglasi/{id}",
+      "UpstreamHttpMethod": [ "Get", "Delete" ]
+    },
+
+
+    {
+      ///Sluzbeni list
+
+      "DownstreamPathTemplate": "/api/SluzbeniList",
+      "DownstreamPathScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "44330"
+        }
+      ],
+      "UpstreamPathTemplate": "/sluzbeni-list",
+      "UpstreamHttpMethod": [ "Get", "Post", "Put" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/SluzbeniList/{id}",
+      "DownstreamPathScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "44330"
+        }
+      ],
+      "UpstreamPathTemplate": "/sluzbeni-list/{id}",
+      "UpstreamHttpMethod": [ "Get", "Delete" ]
+    },
+
+    "AGREGAT",
+    "JAVNO",
+    "NADMETANJE",
+
+    {
+      ///Javno nadmetanje
+
+      "DownstreamPathTemplate": "/api/javno-nadmetanje",
+      "DownstreamPathScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "44330"
+        }
+      ],
+      "UpstreamPathTemplate": "/javno-nadmetanje",
+      "UpstreamHttpMethod": [ "Get", "Post", "Put" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/javno-nadmetanje/{id}",
+      "DownstreamPathScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "44330"
+        }
+      ],
+      "UpstreamPathTemplate": "/javno-nadmetanje/{id}",
+      "UpstreamHttpMethod": [ "Get", "Delete" ]
+    },
+
+    {
+      ///Tip javnog nadmetanja
+
+      "DownstreamPathTemplate": "/api/tip-javnog-nadmetanja",
+      "DownstreamPathScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "44330"
+        }
+      ],
+      "UpstreamPathTemplate": "/tip-javnog-nadmetanja",
+      "UpstreamHttpMethod": [ "Get", "Post", "Put" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/tip-javnog-nadmetanja/{id}",
+      "DownstreamPathScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "44330"
+        }
+      ],
+      "UpstreamPathTemplate": "/tip-javnog-nadmetanja/{id}",
+      "UpstreamHttpMethod": [ "Get", "Delete" ]
+    },
+
+    {
+      ///Status javnog nadmetanja
+
+      "DownstreamPathTemplate": "/api/status-javnog-nadmetanja",
+      "DownstreamPathScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "44330"
+        }
+      ],
+      "UpstreamPathTemplate": "/status-javnog-nadmetanja",
+      "UpstreamHttpMethod": [ "Get", "Post", "Put" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/status-javnog-nadmetanja/{id}",
+      "DownstreamPathScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "44330"
+        }
+      ],
+      "UpstreamPathTemplate": "/status-javnog-nadmetanja/{id}",
+      "UpstreamHttpMethod": [ "Get", "Delete" ]
+    },
+    {
+      ///Etapa
+
+      "DownstreamPathTemplate": "/api/Etapa",
+      "DownstreamPathScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "44369"
+        }
+      ],
+      "UpstreamPathTemplate": "/etapa",
+      "UpstreamHttpMethod": [ "Get", "Post", "Put" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/Etapa/{id}",
+      "DownstreamPathScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "44369"
+        }
+      ],
+      "UpstreamPathTemplate": "/Etapa/{id}",
+      "UpstreamHttpMethod": [ "Get", "Delete" ]
+    },
+    {
+      ///Licitacija
+
+      "DownstreamPathTemplate": "/api/Licitacija",
+      "DownstreamPathScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "44369"
+        }
+      ],
+      "UpstreamPathTemplate": "/licitacija",
+      "UpstreamHttpMethod": [ "Get", "Post", "Put" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/Licitacija/{id}",
+      "DownstreamPathScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "44369"
+        }
+      ],
+      "UpstreamPathTemplate": "/Licitacija/{id}",
+      "UpstreamHttpMethod": [ "Get", "Delete" ]
+    },
+    {
+      ///Auth
+
+      "DownstreamPathTemplate": "/api/Auth/login",
+      "DownstreamPathScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "44343"
+        }
+      ],
+      "UpstreamPathTemplate": "/Auth/login",
+      "UpstreamHttpMethod": [ "Post" ]
+    },
+    {
+      ///TipKorisnika
+
+      "DownstreamPathTemplate": "/api/TipKorisnika",
+      "DownstreamPathScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "44343"
+        }
+      ],
+      "UpstreamPathTemplate": "/TipKorisnika",
+      "UpstreamHttpMethod": [ "Get" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/TipKorisnika/{id}",
+      "DownstreamPathScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "44343"
+        }
+      ],
+      "UpstreamPathTemplate": "/TipKorisnikaKorisnik/{id}",
+      "UpstreamHttpMethod": [ "Get" ]
+    },
+
+    {
+      ///Korisnik
+
+      "DownstreamPathTemplate": "/api/Korisnik",
+      "DownstreamPathScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "44343"
+        }
+      ],
+      "UpstreamPathTemplate": "/korisnik",
+      "UpstreamHttpMethod": [ "Get", "Post", "Put" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/Korisnik/{id}",
+      "DownstreamPathScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "44343"
+        }
+      ],
+      "UpstreamPathTemplate": "/Korisnik/{id}",
+      "UpstreamHttpMethod": [ "Get", "Delete" ]
+    },
+    {
+      "ZalbaM": null,
+
+      "DownstreamPathTemplate": "/api/zalba",
+      "DownstreamPathScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "5001"
+        }
+      ],
+      "UpstreamPathTemplate": "/zalba",
+      "UpstreamHttpMethod": [ "Get", "Post", "Put" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/zalba/{zalbaId}",
+      "DownstreamPathScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "5001"
+        }
+      ],
+      "UpstreamPathTemplate": "/zalba/{zalbaId}",
+      "UpstreamHttpMethod": [ "Get", "Delete" ]
+    },
+
+
+    {
+      "TipZalbe": null,
+
+      "DownstreamPathTemplate": "/api/tipZalbe",
+      "DownstreamPathScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "5001"
+        }
+      ],
+      "UpstreamPathTemplate": "/tipZalbe",
+      "UpstreamHttpMethod": [ "Get", "Post", "Put" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/tipZalbe/{tipZalbeId}",
+      "DownstreamPathScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "5001"
+        }
+      ],
+      "UpstreamPathTemplate": "/tipZalbe/{tipZalbeId}",
+      "UpstreamHttpMethod": [ "Get", "Delete" ]
+    },
+    {
+      "ParcelaM": null,
+
+      "DownstreamPathTemplate": "/api/parcela",
+      "DownstreamPathScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "5002"
+        }
+      ],
+      "UpstreamPathTemplate": "/parcela",
+      "UpstreamHttpMethod": [ "Get", "Post", "Put" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/parcela/{parcelaId}",
+      "DownstreamPathScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "5002"
+        }
+      ],
+      "UpstreamPathTemplate": "/parcela/{parcelaId}",
+      "UpstreamHttpMethod": [ "Get", "Delete" ]
+    },
+
+
+
+
+    {
+      "Opstina": null,
+
+      "DownstreamPathTemplate": "/api/opstina",
+      "DownstreamPathScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "5002"
+        }
+      ],
+      "UpstreamPathTemplate": "/opstina",
+      "UpstreamHttpMethod": [ "Get", "Post", "Put" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/opstina/{opstinaId}",
+      "DownstreamPathScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "5002"
+        }
+      ],
+      "UpstreamPathTemplate": "/opstina/{opstinaId}",
+      "UpstreamHttpMethod": [ "Get", "Delete" ]
+    },
+    {
+      "DeoParcele": null,
+
+      "DownstreamPathTemplate": "/api/deoParcele",
+      "DownstreamPathScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "5002"
+        }
+      ],
+      "UpstreamPathTemplate": "/deoParcele",
+      "UpstreamHttpMethod": [ "Get", "Post", "Put" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/deoParcele/{deoParceleId}",
+      "DownstreamPathScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "5002"
+        }
+      ],
+      "UpstreamPathTemplate": "/deoParcele/{deoParceleId}",
+      "UpstreamHttpMethod": [ "Get", "Delete" ]
     }
+
+
+
+
 
   ],
   "GlobalConfiguration": {
