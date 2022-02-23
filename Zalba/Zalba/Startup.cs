@@ -97,6 +97,9 @@ namespace Zalba
             services.AddScoped<ITipZalbeRepository, TipZalbeRepository>();
             services.AddScoped<IZalbaRepository, ZalbaRepository>();
 
+
+            services.AddSingleton<IKorisnikRepository, KorisnikMockRepository>();
+
             services.AddScoped<ILoggerService, LoggerService>();
             services.AddScoped<IAuthHelper, AuthHelper>();
 

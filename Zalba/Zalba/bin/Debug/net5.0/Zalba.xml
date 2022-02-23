@@ -4,13 +4,6 @@
         <name>Zalba</name>
     </assembly>
     <members>
-        <member name="M:Korisnik_agregat.Controllers.AuthController.Login(Zalba.Models.Principal)">
-            <summary>
-            Služi za autentifikaciju korisnika
-            </summary>
-            <param name="principal">Model sa podacima na osnovu kojih se vrši autentifikacija</param>
-            <returns></returns>
-        </member>
         <member name="T:Zalba.Controllers.TipZalbeController">
             <summary>
             Kontroler za tipove zalbi

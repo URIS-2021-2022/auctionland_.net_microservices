@@ -8,7 +8,7 @@ namespace Zalba.Data
 {
     public class KorisnikMockRepository : IKorisnikRepository
     {
-        //public List<Korisnik> KorisnikList { get; set; } = new List<Korisnik>();
+        public List<Korisnik> KorisnikList { get; set; } = new List<Korisnik>();
 
         public KorisnikMockRepository()
         {
@@ -17,7 +17,21 @@ namespace Zalba.Data
 
         private void FillData()
         {
-            
+            var korisnik = HashPassword("urisftnftn");
+
+            KorisnikList.AddRange(new List<Korisnik>
+            {
+                new Korisnik
+                {
+                    KorisnikId = Guid.Parse("34f11383-cb12-481d-9ff7-2fd458dc7e2b"),
+                    Ime = "Vlado",
+                    Prezime = "Cetkovic",
+                    KorisnickoIme = "Vlado",
+                    Lozinka = korisnik.Item1,
+                    TipKorisnikaId = Guid.Parse("577a8f2b-1a55-4e91-a3ea-3d5cf16814a6"),
+                    Salt = korisnik.Item2
+                }
+            });
         }
 
         private Tuple<string, string> HashPassword(string lozinka)
@@ -42,7 +56,7 @@ namespace Zalba.Data
 
         public bool UserWithCredentialsExists(string korisnickoIme, string lozinka)
         {
-            /*Korisnik korisnik = KorisnikList.FirstOrDefault(k => k.KorisnickoIme == korisnickoIme);
+            Korisnik korisnik = KorisnikList.FirstOrDefault(k => k.KorisnickoIme == korisnickoIme);
 
             if (korisnik == null)
             {
@@ -52,7 +66,7 @@ namespace Zalba.Data
             if (VerifyPassword(lozinka, korisnik.Lozinka, korisnik.Salt))
             {
                 return true;
-            }*/
+            }
 
             return false;
         }
