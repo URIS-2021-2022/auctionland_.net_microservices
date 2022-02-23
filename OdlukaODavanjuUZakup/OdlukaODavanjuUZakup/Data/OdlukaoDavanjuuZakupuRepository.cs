@@ -10,7 +10,7 @@ namespace OdlukaODavanjuUZakup.Data
 {
     public class OdlukaoDavanjuuZakupRepository :IOdlukaoDavanjuuZakupRepository
     {
-        //    public static List<OdlukaoDavanjuuZakup> odlukeoDavanjuuZakup { get; set; } = new List<OdlukaoDavanjuuZakup>();
+
 
         private readonly DatabaseContext context;
         private readonly IMapper mapper;
@@ -36,15 +36,7 @@ namespace OdlukaODavanjuUZakup.Data
 
         public OdlukaoDavanjuuZakupConfirmation CreateOdluka(OdlukaoDavanjuuZakup OdlukaoDavanjuuZakup)
         {
-            /*    OdlukaoDavanjuuZakup.OdlukaoDavanjuuZakupID = Guid.NewGuid();
-                odlukeoDavanjuuZakup.Add(OdlukaoDavanjuuZakup);
-                OdlukaoDavanjuuZakup odluka = GetOdlukaById(OdlukaoDavanjuuZakup.OdlukaoDavanjuuZakupID);
 
-                return new OdlukaoDavanjuuZakupConfirmation
-                {
-                    OdlukaoDavanjuuZakupID = odluka.OdlukaoDavanjuuZakupID,
-                    validnost = odluka.validnost
-                }; */
             var createdEntity = context.Add(OdlukaoDavanjuuZakup);
             return mapper.Map<OdlukaoDavanjuuZakupConfirmation>(createdEntity.Entity);
         }
@@ -67,7 +59,6 @@ namespace OdlukaODavanjuUZakup.Data
         {
             var odluka = GetOdlukaById(OdlukaoDavanjuuZakupId);
             context.Remove(odluka);
-        //    odlukeoDavanjuuZakup.Remove(odlukeoDavanjuuZakup.FirstOrDefault(e => e.OdlukaoDavanjuuZakupID == OdlukaoDavanjuuZakupId));
         }
     }
 }

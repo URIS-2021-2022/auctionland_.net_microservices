@@ -4,6 +4,13 @@
         <name>Komisija_Agregat</name>
     </assembly>
     <members>
+        <member name="M:Komisija_Agregat.Controllers.AuthController.Login(Komisija_Agregat.Models.Principal)">
+            <summary>
+            Služi za autentifikaciju korisnika
+            </summary>
+            <param name="principal">Model sa podacima na osnovu kojih se vrši autentifikacija</param>
+            <returns></returns>
+        </member>
         <member name="M:Komisija_Agregat.Controllers.ClanKomisijeController.GetClanovi(System.String,System.String,System.String)">
             <summary>
             Vraca sve clanove komisije
@@ -343,6 +350,21 @@
         <member name="P:Komisija_Agregat.Models.PredsednikUpdateDto.EmailPredsednika">
             <summary>
             Email predsednika komisije
+            </summary>
+        </member>
+        <member name="T:Komisija_Agregat.Models.Principal">
+            <summary>
+            Model na osnovu kojeg se vrsi autentifikacija
+            </summary>
+        </member>
+        <member name="P:Komisija_Agregat.Models.Principal.KorisnickoIme">
+            <summary>
+            Korisničko ime
+            </summary>
+        </member>
+        <member name="P:Komisija_Agregat.Models.Principal.Lozinka">
+            <summary>
+            Lozinka
             </summary>
         </member>
     </members>

@@ -22,6 +22,8 @@ namespace Oglas_Agregat.MappingProfiles
 
             CreateMap<Oglas, Oglas>();
 
+            //CreateMap<List<Oglas>, List<OglasDto>>();
+
 
         }
     }

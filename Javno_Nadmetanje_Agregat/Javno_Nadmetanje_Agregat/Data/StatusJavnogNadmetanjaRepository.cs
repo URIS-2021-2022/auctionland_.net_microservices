@@ -36,7 +36,7 @@ namespace Javno_Nadmetanje_Agregat.Data
 
             if (statusJavnogNadmetanja == null)
             {
-                throw new ArgumentNullException("statusJavnogNadmetanjaId");
+                throw new ArgumentNullException(nameof(statusJavnogNadmetanjaId));
             }
 
             Context.StatusJavnogNadmetanja.Remove(statusJavnogNadmetanja);

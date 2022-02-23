@@ -140,6 +140,71 @@
             Interfejs za SluzbeniListRepository
             </summary>
         </member>
+        <member name="P:Oglas_Agregat.Models.JavnoNadmetanjeDto.JavnoNadmetanjeId">
+            <summary>
+            Id javnog nadmetanja
+            </summary>
+        </member>
+        <member name="P:Oglas_Agregat.Models.JavnoNadmetanjeDto.TipJavnogNadmetanjaId">
+            <summary>
+            Id tipa javnog nadmetanja
+            </summary>
+        </member>
+        <member name="P:Oglas_Agregat.Models.JavnoNadmetanjeDto.StatusJavnogNadmetanjaId">
+            <summary>
+            Id statusa javnog nadmetanja
+            </summary>
+        </member>
+        <member name="P:Oglas_Agregat.Models.JavnoNadmetanjeDto.Datum">
+            <summary>
+            Datum javnog nadmetanja
+            </summary>
+        </member>
+        <member name="P:Oglas_Agregat.Models.JavnoNadmetanjeDto.VremePocetka">
+            <summary>
+            Vreme pocetka javnog nadmetanja
+            </summary>
+        </member>
+        <member name="P:Oglas_Agregat.Models.JavnoNadmetanjeDto.VremeKraja">
+            <summary>
+            Vreme zavrsetka javnog nadmetanja
+            </summary>
+        </member>
+        <member name="P:Oglas_Agregat.Models.JavnoNadmetanjeDto.PocetnaCenaHektar">
+            <summary>
+            Pocetna cena hektara za jednu godinu zakupa
+            </summary>
+        </member>
+        <member name="P:Oglas_Agregat.Models.JavnoNadmetanjeDto.Izuzeto">
+            <summary>
+            Da li je javno nadmetanje predvidjeno programom ali je uklonjeno iz licitacije
+            </summary>
+        </member>
+        <member name="P:Oglas_Agregat.Models.JavnoNadmetanjeDto.IzlicitiranaCena">
+            <summary>
+            Izlicitirana cena
+            </summary>
+        </member>
+        <member name="P:Oglas_Agregat.Models.JavnoNadmetanjeDto.PeriodZakupa">
+            <summary>
+            Period zakupa
+            </summary>
+        </member>
+        <member name="P:Oglas_Agregat.Models.JavnoNadmetanjeDto.BrojUcesnika">
+            <summary>
+            Broj ucesnika u nadmetanju
+            </summary>
+        </member>
+        <member name="P:Oglas_Agregat.Models.JavnoNadmetanjeDto.VisinaDopuneDepozita">
+            <summary>
+            Visina dopune depozita
+            </summary>
+        </member>
+        <member name="P:Oglas_Agregat.Models.JavnoNadmetanjeDto.Krug">
+            <summary>
+            Krug javnog nadmetanja
+            </summary>
+        </member>
         <member name="T:Oglas_Agregat.Models.OglasConfirmationDto">
             <summary>
             Predstavlja model potvrde oglasa
@@ -279,6 +344,11 @@
             Broj lista
             </summary>
         </member>
+        <member name="P:Oglas_Agregat.Models.SluzbeniListCreateDto.ListaOglasa">
+            <summary>
+            Lista oglasa koji su objavljeni u službenom listu
+            </summary>
+        </member>
         <member name="M:Oglas_Agregat.Models.SluzbeniListCreateDto.Validate(System.ComponentModel.DataAnnotations.ValidationContext)">
             <summary>
             Validacija da uneti datum izdavanja službenog lista nije veći od današnjeg datuma
@@ -299,6 +369,11 @@
         <member name="P:Oglas_Agregat.Models.SluzbeniListDto.BrojLista">
             <summary>
             Broj lista
+            </summary>
+        </member>
+        <member name="P:Oglas_Agregat.Models.SluzbeniListDto.ListaOglasa">
+            <summary>
+            Lista oglasa koji su objavljeni u službenom listu
             </summary>
         </member>
         <member name="T:Oglas_Agregat.Models.SluzbeniListUpdateDto">

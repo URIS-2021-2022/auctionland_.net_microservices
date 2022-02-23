@@ -2,6 +2,8 @@
 using Licitacija_agregat.Data;
 using Licitacija_agregat.Entities;
 using Licitacija_agregat.Models;
+using Licitacija_agregat.ServiceCalls;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
@@ -16,20 +18,22 @@ namespace Licitacija_agregat.Controllers
     [ApiController]
     [Route("api/[controller]")]
     [Produces("application/json", "application/xml")]
-
+    [Authorize]
     public class LicitacijaController : ControllerBase
     {
         private readonly ILicitacijaRepository licitacijaRepository;
         private readonly LinkGenerator link;
         private readonly IMapper mapper;
         private readonly ILoggerService loggerService;
+        private readonly IProgramRepository programRepository;
 
-        public LicitacijaController(ILicitacijaRepository licitacijaRepository, LinkGenerator link, IMapper mapper, ILoggerService loggerService)
+        public LicitacijaController(ILicitacijaRepository licitacijaRepository, LinkGenerator link, IMapper mapper, ILoggerService loggerService, IProgramRepository programRepository)
         {
             this.licitacijaRepository = licitacijaRepository;
             this.link = link;
             this.mapper = mapper;
             this.loggerService = loggerService;
+            this.programRepository = programRepository;
         }
 
         /// <summary>
@@ -43,12 +47,24 @@ namespace Licitacija_agregat.Controllers
         [HttpHead]
         public ActionResult<List<LicitacijaDto>> GetLicitacijas(DateTime datum)
         {
+
+            List<Licitacija> licitacijaList = licitacijaRepository.GetLicitacijas();
+
             var licitacije = licitacijaRepository.GetLicitacijas(datum);
             if (licitacije == null || licitacije.Count == 0)
             {
                 loggerService.Log(LogLevel.Warning, "GetAllStatus", "Lista licitacija je prazna ili null.");
                 return NoContent();
             }
+
+            List<LicitacijaDto> licitacijaDtoList = mapper.Map<List<LicitacijaDto>>(licitacijaList);
+
+
+            foreach (LicitacijaDto lDto in licitacijaDtoList)
+            {
+                lDto.Program = programRepository.GetProgramByIdAsync(lDto.ProgramId, Request).Result;
+            }
+
             loggerService.Log(LogLevel.Information, "GetAllStatus", "Lista licitacija je uspešno vraćena!");
             return Ok(mapper.Map<List<LicitacijaDto>>(licitacije));
         }

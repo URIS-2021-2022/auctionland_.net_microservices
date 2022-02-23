@@ -1,7 +1,10 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
+using Microsoft.Extensions.Logging;
 using OdlukaODavanjuUZakup.Data;
 using OdlukaODavanjuUZakup.Entities;
 using OdlukaODavanjuUZakup.Models;
@@ -58,8 +61,12 @@ namespace OdlukaODavanjuUZakup.Controllers
 
             if (ugovori == null || ugovori.Count == 0)
             {
+
+                loggerService.Log(LogLevel.Warning, "GetAllStatus", "Lista ugovora je prazna ili null.");
                 return NoContent();
             }
+
+            loggerService.Log(LogLevel.Information, "GetAllStatus", "Lista ugovora je uspešno vraćena!");
             return Ok(mapper.Map<List<UgovoroZakupuDto>>(ugovori));
         }
         /// <summary>
@@ -78,8 +85,10 @@ namespace OdlukaODavanjuUZakup.Controllers
             var ugovor = ugovoroZakupuRepository.GetUgovoriOZakupuById(UgovoroZakupuID);
             if (ugovor == null)
             {
+                loggerService.Log(LogLevel.Warning, "GetByIdStatus", "Ugovor sa tim id-em nije pronađen.");
                 return NotFound();
             }
+            loggerService.Log(LogLevel.Information, "GetByIdStatus", "Ugovor sa zadatim id-em je uspešno vraćen!");
             return Ok(mapper.Map<UgovoroZakupuDto>(ugovor));
         }
         /// <summary>
@@ -99,7 +108,7 @@ namespace OdlukaODavanjuUZakup.Controllers
         {
             try
             {
-                bool modelValid = ValidateUgovoroZakupu(ugovoroZakupu);
+                bool modelValid = ValidateUgovoroZakupu();
 
                 if (!modelValid)
                 {
@@ -108,15 +117,18 @@ namespace OdlukaODavanjuUZakup.Controllers
                 var ugovoroZakupuEntity = mapper.Map<UgovoroZakupu>(ugovoroZakupu);
                 var confirmation = ugovoroZakupuRepository.CreateUgovorOZakupu(ugovoroZakupuEntity);
                 ugovoroZakupuRepository.SaveChanges();
+               
                 string location = linkGenerator.GetPathByAction("getUgovori", "UgovorOZakupu", new { UgovoroZakupuID = confirmation.UgovoroZakupuID });
+                loggerService.Log(LogLevel.Information, "PostStatus", "Ugovor je uspešno kreiran!");
                 return Created(location, mapper.Map<UgovoroZakupuConfirmationDto>(confirmation));
             }
             catch 
             {
+                loggerService.Log(LogLevel.Warning, "PostStatus", "Ugovor nije kreiran, došlo je do greške!");
                 return StatusCode(StatusCodes.Status500InternalServerError, "Create error");
             }
         }
-        private bool ValidateUgovoroZakupu(UgovoroZakupuCreationDto ugovoroZakupu)
+        private static bool ValidateUgovoroZakupu()
         {
             return true;
         }
@@ -136,26 +148,31 @@ namespace OdlukaODavanjuUZakup.Controllers
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         public IActionResult DeleteUgovoroZakupu (Guid UgovoroZakupuID)
         {
-            {
+            
                 try
                 {
                     var ugovor = ugovoroZakupuRepository.GetUgovoriOZakupuById(UgovoroZakupuID);
 
                     if (ugovor == null)
                     {
-                        return NotFound();
+
+                    loggerService.Log(LogLevel.Warning, "DeleteStatus", "Ugovor sa zadatim id-em nije pronađen!");
+                    return NotFound();
 
                     }
                     ugovoroZakupuRepository.DeleteUgovorOZakupu(UgovoroZakupuID);
                     ugovoroZakupuRepository.SaveChanges();
-                    return NoContent();
+
+                loggerService.Log(LogLevel.Information, "DeleteStatus", "Ugovor je uspešno obrisan!");
+                return NoContent();
                 }
                 catch (Exception)
                 {
-                    return StatusCode(StatusCodes.Status500InternalServerError, "Delete error");
+                loggerService.Log(LogLevel.Warning, "DeleteStatus", "Ugovor nije obrisan, došlo je do greške!");
+                return StatusCode(StatusCodes.Status500InternalServerError, "Delete error");
                 }
 
-            }
+            
         }
         /// <summary>
         /// Azuriranje ugovora
@@ -177,6 +194,7 @@ namespace OdlukaODavanjuUZakup.Controllers
                 //Proveriti da li uopšte postoji prijava koju pokušavamo da ažuriramo.
                 if  (ugovoroZakupuRepository.GetUgovoriOZakupuById(ugovor.UgovoroZakupuID) == null)
                 {
+                    loggerService.Log(LogLevel.Warning, "PutStatus", "Ugovor sa zadatim id-em nije pronađen!");
                     return NotFound(); //Ukoliko ne postoji vratiti status 404 (NotFound).
                 }
                 UgovoroZakupu ugovor2 = mapper.Map<UgovoroZakupu>(ugovor);
@@ -185,6 +203,7 @@ namespace OdlukaODavanjuUZakup.Controllers
             }
             catch (Exception)
             {
+                loggerService.Log(LogLevel.Warning, "PutStatus", "Ugovor nije izmenjen, došlo je do greške!");
                 return StatusCode(StatusCodes.Status500InternalServerError, "Update error");
             }
         }
@@ -192,6 +211,7 @@ namespace OdlukaODavanjuUZakup.Controllers
         public IActionResult GetUgovoroZakupuOptions()
         {
             Response.Headers.Add("Allow", "GET, POST, PUT, DELETE");
+            loggerService.Log(LogLevel.Information, "GetStatus", "Opcije su uspešno vraćene!");
             return Ok();
         }
     }

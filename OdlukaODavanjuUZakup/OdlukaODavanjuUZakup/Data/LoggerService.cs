@@ -48,9 +48,8 @@ namespace OdlukaODavanjuUZakup.Data
                 }
             }
 
-            catch (Exception ex)
+            catch
             {
-                string greska = ex.Message;
                 return false;
             }
         }

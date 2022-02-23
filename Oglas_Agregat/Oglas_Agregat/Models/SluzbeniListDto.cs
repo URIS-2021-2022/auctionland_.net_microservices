@@ -11,8 +11,6 @@ namespace Oglas_Agregat.Models
     /// </summary>
     public class SluzbeniListDto
     {
-        //public Guid SluzbeniListId { get; set; }
-
         /// <summary>
         /// Datum izdavanja službenog lista
         /// </summary>

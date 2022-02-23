@@ -22,7 +22,10 @@ using Program_Agregat.Models;
 using Program_Agregat.Profiles;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
-
+using Program_Agregat.Helpers;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace Program_Agregat
 {
@@ -70,7 +73,7 @@ namespace Program_Agregat
                         {
                             ContentTypes = { "application/problem+json" }
                         };
-                    };
+                    }
 
                     problemDetails.Status = StatusCodes.Status400BadRequest;
                     problemDetails.Title = "Došlo je do greške prilikom parsiranja poslatog sadržaja.";
@@ -86,6 +89,8 @@ namespace Program_Agregat
             services.AddScoped<IPredlogPlanaRepository, PredlogPlanaRepository>();
             services.AddScoped<IProgramRepository, ProgramRepository>();
             services.AddScoped<ILoggerService, LoggerService>();
+            services.AddScoped<IAuthHelper, AuthHelper>();
+            services.AddScoped<IKorisnikRepository, KorisnikMockRepository>();
 
 
             services.AddSwaggerGen(c =>
@@ -112,7 +117,20 @@ namespace Program_Agregat
                 c.IncludeXmlComments(xmlCommentsPath);
             });
 
-            //services.AddDbContextPool<ProgramContext>(options => options.UseSqlServer(Configuration.GetConnectionString("ProgramDB")));
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
+            {
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidateLifetime = true,
+                    ValidateIssuerSigningKey = true,
+                    ValidIssuer = Configuration["Jwt:Issuer"],
+                    ValidAudience = Configuration["Jwt:Issuer"],
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Jwt:Key"]))
+                };
+            });
+
             services.AddDbContext<ProgramContext>();
         }
 
@@ -143,6 +161,7 @@ namespace Program_Agregat
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseSwagger();

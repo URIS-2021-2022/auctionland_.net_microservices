@@ -258,6 +258,13 @@
             <response code ="500">Doslo je do greske prilikom azuriranja</response>
             <response code = "404">Nije pronadjena uplata sa tim ID</response>
         </member>
+        <member name="M:OdlukaODavanjuUZakup.Helpers.AuthController.Login(OdlukaODavanjuUZakup.Models.Principal)">
+            <summary>
+            Služi za autentifikaciju korisnika
+            </summary>
+            <param name="principal">Model sa podacima na osnovu kojih se vrši autentifikacija</param>
+            <returns></returns>
+        </member>
         <member name="T:OdlukaODavanjuUZakup.Models.GarantPlacanjaConfirmationDto">
             <summary>
             Vraca se kao odgovor da je kreiran
