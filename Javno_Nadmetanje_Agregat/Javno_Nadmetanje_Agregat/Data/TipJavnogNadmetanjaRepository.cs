@@ -36,7 +36,7 @@ namespace Javno_Nadmetanje_Agregat.Data
 
             if (tipJavnogNadmetanja == null)
             {
-                throw new ArgumentNullException("tipJavnogNadmetanjaId");
+                throw new ArgumentNullException(nameof(tipJavnogNadmetanjaId));
             }
 
             Context.TipJavnogNadmetanja.Remove(tipJavnogNadmetanja);

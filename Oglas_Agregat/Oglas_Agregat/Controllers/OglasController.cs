@@ -6,6 +6,7 @@ using Microsoft.Extensions.Logging;
 using Oglas_Agregat.Data;
 using Oglas_Agregat.Entities;
 using Oglas_Agregat.Models;
+using Oglas_Agregat.ServiceCalls;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,14 +26,17 @@ namespace Oglas_Agregat.Controllers
         private readonly LinkGenerator link;
         private readonly IMapper mapper;
         private readonly ILoggerService loggerService;
+        private readonly IJavnoNadmetanjeService JavnoNadmetanjeService;
 
 
-        public OglasController(IOglasRepository oglasRepository, LinkGenerator link, IMapper mapper, ILoggerService loggerService) //kad se kreira objekat kontrolera mora da se prosledi nesto sto implementira ovaj interfejs, kod mene oglasConfirmation
+        public OglasController(IOglasRepository oglasRepository, LinkGenerator link, IMapper mapper, 
+            ILoggerService loggerService, IJavnoNadmetanjeService javnoNadmetanjeService) //kad se kreira objekat kontrolera mora da se prosledi nesto sto implementira ovaj interfejs, kod mene oglasConfirmation
         {
             this.oglasRepository = oglasRepository;
             this.link = link;
             this.mapper = mapper;
             this.loggerService = loggerService;
+            this.JavnoNadmetanjeService = javnoNadmetanjeService;
 
         }
 
@@ -48,12 +52,21 @@ namespace Oglas_Agregat.Controllers
         public ActionResult<List<OglasDto>> GetOglasi(DateTime DatumObjave)
         {
             //treba da zavisimo od apstrakcije a ne od konkretne implementacije, ne treba da pravimo instancu klase i direktno pozivamo metodu sto nije dobro, zato smo pravili interfejs
-            var oglasi = oglasRepository.GetOglasi(DatumObjave);
+            List<Oglas> oglasi = oglasRepository.GetOglasi(DatumObjave);
             if (oglasi == null || oglasi.Count == 0)
             {
                 loggerService.Log(LogLevel.Warning, "GetAllStatus", "Lista oglasa je prazna ili null.");
                 return NoContent();
             }
+
+            List<OglasDto> oglasDtoList = mapper.Map<List<OglasDto>>(oglasi);
+
+            foreach (OglasDto odto in oglasDtoList)
+            {
+                
+                odto.JavnoNadmetanje = JavnoNadmetanjeService.GetJavnoNadmetanjeByIdAsync(odto.JavnoNadmetanjeId, Request).Result;
+            }
+
             loggerService.Log(LogLevel.Information, "GetAllStatus", "Lista oglasa je uspesno vracena!");
             return Ok(mapper.Map<List<OglasDto>>(oglasi));
         }
@@ -72,11 +85,11 @@ namespace Oglas_Agregat.Controllers
 
             if (oglas == null)
             {
-                loggerService.Log(LogLevel.Warning, "GetByIdStatus", "Oglas sa datim id-em nije pronadjeo.");
+                loggerService.Log(LogLevel.Warning, "GetByIdStatus", "Oglas sa datim id-em nije pronadjen.");
                 return NotFound();
             }
             loggerService.Log(LogLevel.Information, "GetByIdStatus", "Oglas sa datim id-em je uspesno vracen!");
-            return Ok(mapper.Map<OglasDto>(oglas));
+            return Ok(mapper.Map<OglasConfirmationDto>(oglas));
         }
 
         /// <summary>

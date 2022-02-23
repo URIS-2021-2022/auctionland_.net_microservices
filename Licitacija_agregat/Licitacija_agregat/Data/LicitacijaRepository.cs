@@ -52,7 +52,7 @@ namespace Licitacija_agregat.Data
 
         public void UpdateLicitacija(Licitacija licitacijaModel)
         {
-
+            // Nema potrebe za implementacijom
         }
 
 

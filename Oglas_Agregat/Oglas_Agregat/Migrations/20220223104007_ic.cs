@@ -28,7 +28,8 @@ namespace Oglas_Agregat.Migrations
                     DatumObjave = table.Column<DateTime>(type: "datetime2", nullable: false),
                     RokZaZalbu = table.Column<DateTime>(type: "datetime2", nullable: false),
                     OpisOglasa = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ObjavljenUListuId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    ObjavljenUListuId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    JavnoNadmetanjeId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -48,8 +49,8 @@ namespace Oglas_Agregat.Migrations
 
             migrationBuilder.InsertData(
                 table: "Oglasi",
-                columns: new[] { "OglasId", "DatumObjave", "ObjavljenUListuId", "OpisOglasa", "RokZaZalbu" },
-                values: new object[] { new Guid("00f78e6b-a2bb-43b5-b3bb-f5708d1a5129"), new DateTime(2000, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new Guid("00f78e6b-a2bb-43b5-b3bb-f5708d1a5129"), "fdafdafa", new DateTime(2000, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified) });
+                columns: new[] { "OglasId", "DatumObjave", "JavnoNadmetanjeId", "ObjavljenUListuId", "OpisOglasa", "RokZaZalbu" },
+                values: new object[] { new Guid("00f78e6b-a2bb-43b5-b3bb-f5708d1a5129"), new DateTime(2000, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new Guid("1ae8137b-1674-4c91-a4b5-87a133f5dd87"), new Guid("00f78e6b-a2bb-43b5-b3bb-f5708d1a5129"), "fdafdafa", new DateTime(2000, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified) });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Oglasi_ObjavljenUListuId",

@@ -16,6 +16,11 @@ namespace Oglas_Agregat
             CreateHostBuilder(args).Build().Run();
         }
 
+        protected Program()
+        {
+
+        }
+
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>

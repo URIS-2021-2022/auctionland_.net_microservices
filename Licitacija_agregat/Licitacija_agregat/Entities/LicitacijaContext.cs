@@ -36,6 +36,7 @@ namespace Licitacija_agregat.Entities
                 .HasData(new
                 {
                     LicitacijaId = Guid.Parse("e1f1f516-a9c4-4209-baa7-02e1583484ce"),
+                    ProgramId = Guid.Parse("d684e88a-a3ef-40b8-a3c5-c73012d1cf26"),
                     Datum = DateTime.Parse("2023-11-15"),
                     Rok_za_dostavljanje_prijave = DateTime.Parse("2023-11-15"),
                     Broj = 5,

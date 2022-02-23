@@ -38,6 +38,9 @@ namespace Oglas_Agregat.Models
         /// </summary>
         public Guid ObjavljenUListuId { get; set; }
 
+        public Guid JavnoNadmetanjeId { get; set; }
+
+
         /// <summary>
         /// Validacija da uneti datum objave oglasa nije veći od današnjeg datuma
         /// </summary>

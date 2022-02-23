@@ -16,6 +16,7 @@ using System.Reflection;
 using System.IO;
 using Oglas_Agregat.Entities;
 using Microsoft.EntityFrameworkCore;
+using Oglas_Agregat.ServiceCalls;
 
 namespace Oglas_Agregat
 {
@@ -42,6 +43,7 @@ namespace Oglas_Agregat
             services.AddScoped<IOglasRepository, OglasRepository>(); //kada sretnes da se trazi prvo prosledi drugo tj napravi instancu drugog i koristi je, singleton je zivotni ciklus drugog
             services.AddScoped<ISluzbeniListRepository, SluzbeniListRepository>();
             services.AddScoped<ILoggerService, LoggerService>();
+            services.AddScoped<IJavnoNadmetanjeService, JavnoNadmetanjeService>();
 
             services.AddSwaggerGen(setupAction =>
             {

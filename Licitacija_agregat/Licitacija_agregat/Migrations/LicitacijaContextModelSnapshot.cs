@@ -62,6 +62,9 @@ namespace Licitacija_agregat.Migrations
                     b.Property<int>("Ogranicenje")
                         .HasColumnType("int");
 
+                    b.Property<Guid?>("ProgramId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<DateTime>("Rok_za_dostavljanje_prijave")
                         .HasColumnType("datetime2");
 
@@ -78,6 +81,7 @@ namespace Licitacija_agregat.Migrations
                             Godina = 2005,
                             Korak_cene = 5,
                             Ogranicenje = 5,
+                            ProgramId = new Guid("d684e88a-a3ef-40b8-a3c5-c73012d1cf26"),
                             Rok_za_dostavljanje_prijave = new DateTime(2023, 11, 15, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         });
                 });

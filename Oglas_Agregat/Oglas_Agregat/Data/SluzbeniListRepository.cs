@@ -27,9 +27,9 @@ namespace Oglas_Agregat.Data
         }
 
 
-        public SluzbeniListConfirmation CreateSluzbeniList(SluzbeniList sluzbeniListModel)
+        public SluzbeniListConfirmation CreateSluzbeniList(SluzbeniList sluzbeniList)
         {
-            var createdEntity = context.Add(sluzbeniListModel);
+            var createdEntity = context.Add(sluzbeniList);
             return mapper.Map<SluzbeniListConfirmation>(createdEntity.Entity);
         }
 
