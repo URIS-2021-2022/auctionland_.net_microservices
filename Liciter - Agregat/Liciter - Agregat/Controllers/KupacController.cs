@@ -2,6 +2,7 @@
 using Liciter___Agregat.Data;
 using Liciter___Agregat.DTOs.Kupac;
 using Liciter___Agregat.Models;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -16,6 +17,7 @@ namespace Liciter___Agregat.Controllers
 {
     [Route("api/kupac")]
     [ApiController]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     [Authorize]
     public class KupacController : ControllerBase
     {
