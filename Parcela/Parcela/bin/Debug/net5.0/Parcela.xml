@@ -4,6 +4,13 @@
         <name>Parcela</name>
     </assembly>
     <members>
+        <member name="M:Parcela.Controllers.AuthController.Login(Parcela.Models.Principal)">
+            <summary>
+            Služi za autentifikaciju korisnika
+            </summary>
+            <param name="principal">Model sa podacima na osnovu kojih se vrši autentifikacija</param>
+            <returns></returns>
+        </member>
         <member name="T:Parcela.Controllers.DeoParceleController">
             <summary>
             Kontroler za delove parcele
