@@ -68,3 +68,4 @@ C:\Users\ADMIN\Documents\FAKULTET\tim-6---auctionland-tim-6-nopcommerce\OdlukaOD
 C:\Users\ADMIN\Documents\FAKULTET\tim-6---auctionland-tim-6-nopcommerce\OdlukaODavanjuUZakup\OdlukaODavanjuUZakup\obj\Debug\net5.0\ref\OdlukaODavanjuUZakup.dll
 C:\Users\ADMIN\Documents\FAKULTET\tim-6---auctionland-tim-6-nopcommerce\OdlukaODavanjuUZakup\OdlukaODavanjuUZakup\obj\Debug\net5.0\OdlukaODavanjuUZakup.pdb
 C:\Users\ADMIN\Documents\FAKULTET\tim-6---auctionland-tim-6-nopcommerce\OdlukaODavanjuUZakup\OdlukaODavanjuUZakup\obj\Debug\net5.0\OdlukaODavanjuUZakup.genruntimeconfig.cache
+C:\Users\ADMIN\Documents\FAKULTET\tim-6---auctionland-tim-6-nopcommerce\OdlukaODavanjuUZakup\OdlukaODavanjuUZakup\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
