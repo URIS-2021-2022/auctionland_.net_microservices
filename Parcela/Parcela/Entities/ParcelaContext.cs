@@ -75,7 +75,7 @@ namespace Parcela.Entities
                 {
                     ParcelaId = Guid.Parse("6a411c13-a195-48f7-8dbd-67596c3974c0"),
                     Povrsina = 10000,
-                    
+                    KorisnikParcele = Guid.Parse("044f3de0-a9dd-4c2e-b745-89976a1b2a55"),
                     BrojParcele = "12a",
                     KatastarskaOpstina = Guid.Parse("21ad52f8-0281-4241-98b0-481566d25e4f"),
                     BrojListaNepokretnosti = "1234",
@@ -97,7 +97,7 @@ namespace Parcela.Entities
                 {
                     ParcelaId = Guid.Parse("1c7ea607-8ddb-493a-87fa-4bf5893e965b"),
                     Povrsina = 3000,
-                    
+                    KorisnikParcele = Guid.Parse("044f3de0-a9dd-4c2e-b745-89976a1b2a55"),
                     BrojParcele = "15a",
                     KatastarskaOpstina = Guid.Parse("21ad52f8-0281-4241-98b0-481566d25e4f"),
                     BrojListaNepokretnosti = "12345435",
