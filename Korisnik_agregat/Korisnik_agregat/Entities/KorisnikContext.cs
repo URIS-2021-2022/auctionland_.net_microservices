@@ -10,12 +10,10 @@ namespace Korisnik_agregat.Entities
 {
     public class KorisnikContext : DbContext
     {
-        private readonly DbContextOptions options;
         private readonly IConfiguration configuration;
 
         public KorisnikContext(DbContextOptions options, IConfiguration configuration) : base(options)
         {
-            this.options = options;
             this.configuration = configuration;
         }
 

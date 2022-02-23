@@ -103,7 +103,6 @@ namespace Korisnik_agregat.Controllers
 
                 loggerService.Log(LogLevel.Information, "PostStatus", "Korisnik je uspešno kreiran!");
                 return Created(location, mapper.Map<KorisnikConfirmationDto>(confirmation));
-                throw new Exception();
 
             }
             catch (Exception ex)

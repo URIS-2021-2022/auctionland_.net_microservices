@@ -48,7 +48,7 @@ namespace Korisnik_agregat.Data
 
             catch (Exception ex)
             {
-                string greska = ex.Message;
+                Console.Write("Error occurred." + ex.Message);
                 return false;
             }
         }
