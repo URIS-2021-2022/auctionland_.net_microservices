@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Program_Agregat.Migrations
 {
-    public partial class updatedatabase : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -29,7 +29,8 @@ namespace Program_Agregat.Migrations
                     Usvojen = table.Column<bool>(type: "bit", nullable: false),
                     DatumDokumenta = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ProgramPlanaProgramId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
-                    ProgramId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
+                    ProgramId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    KomisijaId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
                 },
                 constraints: table =>
                 {

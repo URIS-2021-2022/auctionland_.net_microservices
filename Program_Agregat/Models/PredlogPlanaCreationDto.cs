@@ -28,5 +28,7 @@ namespace Program_Agregat.Models
         public DateTime DatumDokumenta { get; set; }
 
         public Guid? ProgramId { get; set; }
+
+        public Guid KomisijaId { get; set; }
     }
 }

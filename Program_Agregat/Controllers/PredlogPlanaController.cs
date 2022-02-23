@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+using Program_Agregat.ServiceCalls;
 
 namespace Program_Agregat.Controllers
 {
@@ -23,13 +24,15 @@ namespace Program_Agregat.Controllers
         private readonly LinkGenerator linkGenerator;
         private readonly IMapper mapper;
         private readonly ILoggerService loggerService;
+        private readonly IKomisijaService KomisijaService;
 
-        public PredlogPlanaController(IPredlogPlanaRepository predlogPlanaRepository, LinkGenerator linkGenerator, IMapper mapper, ILoggerService loggerService)
+        public PredlogPlanaController(IPredlogPlanaRepository predlogPlanaRepository, LinkGenerator linkGenerator, IMapper mapper, ILoggerService loggerService, IKomisijaService komisijaService)
         {
             this.predlogPlanaRepository = predlogPlanaRepository;
             this.linkGenerator = linkGenerator;
             this.mapper = mapper;
             this.loggerService = loggerService;
+            this.KomisijaService = komisijaService;
         }
         /// <summary>
         /// Vraca sve predloge plana
@@ -39,12 +42,20 @@ namespace Program_Agregat.Controllers
         [HttpGet]
         public ActionResult<List<PredlogPlanaDto>> GetPredloziPlana(string BrojDokumenta)
         {
-            var predloziPlana = predlogPlanaRepository.GetPredloziPlana(BrojDokumenta);
+            List<PredlogPlana> predloziPlana = predlogPlanaRepository.GetPredloziPlana(BrojDokumenta);
             if (predloziPlana == null || predloziPlana.Count == 0)
             {
                 loggerService.Log(LogLevel.Warning, "GetAllStatus", "Lista predloga planova je prazna ili null");
                 return NoContent();
             }
+            List<PredlogPlanaDto> predlogPlanaDtoList = mapper.Map<List<PredlogPlanaDto>>(predloziPlana);
+
+            foreach (PredlogPlanaDto odto in predlogPlanaDtoList)
+            {
+
+                odto.Komisija = KomisijaService.GetKomisijaByIdAsync(odto.KomisijaId, Request).Result;
+            }
+
             loggerService.Log(LogLevel.Information, "GetAllStatus", "Lista predloga planova je uspesno vracena!");
             return Ok(mapper.Map<List<PredlogPlanaDto>>(predloziPlana));
         }

@@ -26,6 +26,7 @@ using Program_Agregat.Helpers;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using Program_Agregat.ServiceCalls;
 
 namespace Program_Agregat
 {
@@ -90,6 +91,7 @@ namespace Program_Agregat
             services.AddScoped<IProgramRepository, ProgramRepository>();
             services.AddScoped<ILoggerService, LoggerService>();
             services.AddScoped<IAuthHelper, AuthHelper>();
+            services.AddScoped<IKomisijaService, KomisijaService>();
             services.AddScoped<IKorisnikRepository, KorisnikMockRepository>();
 
 
@@ -101,7 +103,7 @@ namespace Program_Agregat
                        Title = "Program API",
                        Version = "1",
 
-                       Description = "Pomocu ovog API-ja moze da se vrsi...",
+                       Description = "Pomocu ovog API-ja moze da se vrsi pregled i izmena Programa i Predloga Plana",
                        Contact = new Microsoft.OpenApi.Models.OpenApiContact
                        {
                            Name = "Damjan Ivetic",

@@ -132,4 +132,3 @@ C:\Users\marko\Documents\GitHub\tim-6---auctionland-tim-6-nopcommerce\Program_Ag
 C:\Users\marko\Documents\GitHub\tim-6---auctionland-tim-6-nopcommerce\Program_Agregat\bin\Debug\net5.0\Microsoft.AspNetCore.JsonPatch.dll
 C:\Users\marko\Documents\GitHub\tim-6---auctionland-tim-6-nopcommerce\Program_Agregat\bin\Debug\net5.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
 C:\Users\marko\Documents\GitHub\tim-6---auctionland-tim-6-nopcommerce\Program_Agregat\bin\Debug\net5.0\Newtonsoft.Json.Bson.dll
-C:\Users\marko\Documents\GitHub\tim-6---auctionland-tim-6-nopcommerce\Program_Agregat\obj\Debug\net5.0\Program_Agregat.csproj.CopyComplete

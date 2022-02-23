@@ -18,5 +18,7 @@ namespace Program_Agregat.Entities
         public ProgramEntity ProgramPlana { get; set; }
         public Guid? ProgramId { get; set; }
 
+        public Guid? KomisijaId { get; set; }
+
     }
 }

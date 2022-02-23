@@ -31,6 +31,9 @@ namespace Program_Agregat.Migrations
                     b.Property<DateTime>("DatumDokumenta")
                         .HasColumnType("datetime2");
 
+                    b.Property<Guid?>("KomisijaId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<string>("MisljenjeKomisije")
                         .HasColumnType("nvarchar(max)");
 

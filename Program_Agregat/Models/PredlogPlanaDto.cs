@@ -29,5 +29,8 @@ namespace Program_Agregat.Models
 
         public ProgramDto ProgramPlana { get; set; }
 
+        public KomisijaDto Komisija { get; set; }
+        public Guid KomisijaId { get; set; }
+
     }
 }
