@@ -10,11 +10,15 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using Komisija_Agregat.Entities;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 namespace Komisija_Agregat.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public class PredsednikController : ControllerBase
     {
         private readonly IPredsednikRepository predsednikRepository;

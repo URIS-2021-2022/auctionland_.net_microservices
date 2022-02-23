@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\marko\\source\\repos\\Komisija_Agregat\\Komisija_Agregat.csproj": {}
+    "C:\\Users\\marko\\Documents\\GitHub\\tim-6---auctionland-tim-6-nopcommerce\\Komisija_Agregat\\Komisija_Agregat.csproj": {}
   },
   "projects": {
-    "C:\\Users\\marko\\source\\repos\\Komisija_Agregat\\Komisija_Agregat.csproj": {
+    "C:\\Users\\marko\\Documents\\GitHub\\tim-6---auctionland-tim-6-nopcommerce\\Komisija_Agregat\\Komisija_Agregat.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\marko\\source\\repos\\Komisija_Agregat\\Komisija_Agregat.csproj",
+        "projectUniqueName": "C:\\Users\\marko\\Documents\\GitHub\\tim-6---auctionland-tim-6-nopcommerce\\Komisija_Agregat\\Komisija_Agregat.csproj",
         "projectName": "Komisija_Agregat",
-        "projectPath": "C:\\Users\\marko\\source\\repos\\Komisija_Agregat\\Komisija_Agregat.csproj",
+        "projectPath": "C:\\Users\\marko\\Documents\\GitHub\\tim-6---auctionland-tim-6-nopcommerce\\Komisija_Agregat\\Komisija_Agregat.csproj",
         "packagesPath": "C:\\Users\\marko\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\marko\\source\\repos\\Komisija_Agregat\\obj\\",
+        "outputPath": "C:\\Users\\marko\\Documents\\GitHub\\tim-6---auctionland-tim-6-nopcommerce\\Komisija_Agregat\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\marko\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -47,6 +47,14 @@
             "AutoMapper.Extensions.Microsoft.DependencyInjection": {
               "target": "Package",
               "version": "[11.0.0, )"
+            },
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[5.0.13, )"
+            },
+            "Microsoft.AspNetCore.Mvc.NewtonsoftJson": {
+              "target": "Package",
+              "version": "[5.0.13, )"
             },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",

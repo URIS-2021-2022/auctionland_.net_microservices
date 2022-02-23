@@ -6,20 +6,17 @@ using System.Threading.Tasks;
 namespace Komisija_Agregat.Models
 {
     /// <summary>
-    /// Model za kreiranje komisije
+    /// Model na osnovu kojeg se vrsi autentifikacija
     /// </summary>
-    public class KomisijaCreationDto
+    public class Principal
     {
-
-
         /// <summary>
-        /// Predsednik komisije
+        /// Korisničko ime
         /// </summary>
-        public Guid? PredsednikId { get; set; }
+        public string KorisnickoIme { get; set; }
         /// <summary>
-        /// Clanovi komisije
+        /// Lozinka
         /// </summary>
-        public Guid ClanoviId { get; set; }
-
+        public string Lozinka { get; set; }
     }
 }
