@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
@@ -19,6 +21,7 @@ namespace OdlukaODavanjuUZakup.Controllers
     [ApiController]
     [Route("api/garantPlacanja")]
     [Produces("application/json", "application/xml")]
+  //  [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public class GarantPlacanjaController : ControllerBase
     {
         private readonly LinkGenerator linkGenerator;
