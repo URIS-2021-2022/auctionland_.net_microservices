@@ -119,10 +119,12 @@ namespace Licitacija_agregat
                 setupAction.RoutePrefix = "";
             });
 
+
             app.UseRouting();
 
             app.UseAuthentication();
             app.UseAuthorization();
+
 
             app.UseEndpoints(endpoints =>
             {
