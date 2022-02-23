@@ -71,6 +71,9 @@ namespace Zalba.Migrations
                     b.Property<string>("Obrazlozenje")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<Guid?>("PodnosilacZalbe")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<string>("RadnjaNaOsnovuZalbe")
                         .HasColumnType("nvarchar(max)");
 

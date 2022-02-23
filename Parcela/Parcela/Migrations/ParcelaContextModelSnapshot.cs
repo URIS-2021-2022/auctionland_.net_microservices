@@ -112,6 +112,9 @@ namespace Parcela.Migrations
                     b.Property<string>("KlasaStvarnoStanje")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<Guid?>("KorisnikParcele")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<string>("Kultura")
                         .HasColumnType("nvarchar(max)");
 

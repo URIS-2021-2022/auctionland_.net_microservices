@@ -35,9 +35,10 @@ namespace Zalba.Data
         /// <summary>
         /// Metoda koja pribavlja podatke
         /// </summary>
-        public List<ZalbaM> GetZalbe(string brojResenja = null)
+        public List<ZalbaM> GetZalbe(string statusZalbe)
         {
-            return context.Zalbe.Where(e => (brojResenja == null || e.BrojResenja == brojResenja)).ToList();
+            //statusZalbe = null;
+            return context.Zalbe.Where(e => (statusZalbe == null || e.StatusZalbe == statusZalbe)).ToList();
         }
 
         /// <summary>
@@ -62,7 +63,7 @@ namespace Zalba.Data
         /// </summary>
         public void UpdateZalba(ZalbaM zalbaM)
         {
-
+            //azuriranje je automatsko
         }
 
         /// <summary>

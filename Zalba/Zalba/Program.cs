@@ -12,7 +12,7 @@ namespace Zalba
     /// <summary>
     /// Osnovni program
     /// </summary>
-    public class Program
+    public static class Program
     {
         /// <summary>
         /// Pocetna metoda
