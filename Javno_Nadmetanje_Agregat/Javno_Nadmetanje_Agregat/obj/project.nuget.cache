@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "dokcVRGBFGo48s6PZsNOPUSLGAiBVlIjvTiKFu/03WKbpLIRqEHZVP6qvpFaMLufTPzxoM0Y5ZnGmjtDqgZfBg==",
+  "dgSpecHash": "UiJ2oNGJaVK9SC1Zadz/baifVSkebO/xX8uP/zVEvizW/kf+5fSkWvmbarxYUZT+Q8zFHZPooELNDeEKeIeVYA==",
   "success": true,
-  "projectFilePath": "D:\\Faks\\7. semestar\\New folder\\Javno_Nadmetanje_Agregat\\Javno_Nadmetanje_Agregat\\Javno_Nadmetanje_Agregat.csproj",
+  "projectFilePath": "C:\\Users\\Dell\\Documents\\GitHub\\tim-6---auctionland-tim-6-nopcommerce\\Javno_Nadmetanje_Agregat\\Javno_Nadmetanje_Agregat\\Javno_Nadmetanje_Agregat.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Dell\\.nuget\\packages\\automapper\\11.0.0\\automapper.11.0.0.nupkg.sha512",
     "C:\\Users\\Dell\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\11.0.0\\automapper.extensions.microsoft.dependencyinjection.11.0.0.nupkg.sha512",
