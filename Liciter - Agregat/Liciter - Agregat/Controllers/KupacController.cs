@@ -2,6 +2,7 @@
 using Liciter___Agregat.Data;
 using Liciter___Agregat.DTOs.Kupac;
 using Liciter___Agregat.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
@@ -15,6 +16,7 @@ namespace Liciter___Agregat.Controllers
 {
     [Route("api/kupac")]
     [ApiController]
+    [Authorize]
     public class KupacController : ControllerBase
     {
         private readonly IKupacRepository kupacRepository;

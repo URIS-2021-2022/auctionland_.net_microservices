@@ -2,6 +2,7 @@
 using Liciter___Agregat.Data;
 using Liciter___Agregat.DTOs.OvlascenoLice;
 using Liciter___Agregat.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
@@ -16,6 +17,7 @@ namespace Liciter___Agregat.Controllers
     [Route("api/ovlascenoLice")]
     [ApiController]
     [Produces("application/json", "application/xml")]
+    [Authorize]
     public class OvlascenoLiceController : ControllerBase
     {
         private readonly IOvlascenoLiceRepository ovlascenoLiceRepository;

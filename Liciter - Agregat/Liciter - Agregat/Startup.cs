@@ -20,6 +20,9 @@ using System.Reflection;
 using System.Threading.Tasks;
 using AutoMapper;
 using Liciter___Agregat.Helpers;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace Liciter___Agregat
 {
@@ -132,8 +135,23 @@ namespace Liciter___Agregat
             services.AddScoped<ILiciterRepository, LiciterRepository>();
             services.AddScoped<ILoggerService, LoggerService>();
             services.AddScoped<IAuthHelper, AuthHelper>();
+            services.AddSingleton<IKorisnikRepository, KorisnikMockRepository>();
 
             services.AddDbContext<DataBaseContext>();
+
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
+            {
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidateLifetime = true,
+                    ValidateIssuerSigningKey = true,
+                    ValidIssuer = Configuration["Jwt:Issuer"],
+                    ValidAudience = Configuration["Jwt:Issuer"],
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Jwt:Key"]))
+                };
+            });
         }
 
         
@@ -164,6 +182,8 @@ namespace Liciter___Agregat
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseAuthentication();
 
             app.UseSwagger();
 

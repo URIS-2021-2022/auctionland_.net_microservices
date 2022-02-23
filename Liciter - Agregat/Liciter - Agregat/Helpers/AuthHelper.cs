@@ -15,20 +15,20 @@ namespace Liciter___Agregat.Helpers
     {
          
         private readonly IConfiguration configuration;
-        private readonly ILiciterRepository korisnikRepository;
+        private readonly IKorisnikRepository korisnikRepository;
 
-        public AuthHelper(IConfiguration configuration, ILiciterRepository korisnikRepository)
+        public AuthHelper(IConfiguration configuration, IKorisnikRepository korisnikRepository)
         {
             this.configuration = configuration;
             this.korisnikRepository = korisnikRepository;
         }
         public bool AuthenticatePrincipal(Principal principal)
         {
-           /* if (korisnikRepository.UserWithCredentialsExists(principal.KorisnickoIme, principal.Lozinka))
+           if (korisnikRepository.UserWithCredentialsExists(principal.KorisnickoIme, principal.Lozinka))
             {
                 return true;
             }
-           */
+           
 
             return false;
         }

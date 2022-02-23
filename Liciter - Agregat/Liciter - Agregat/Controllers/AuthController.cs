@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Liciter___Agregat.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/auth")]
     [ApiController]
     public class AuthController : ControllerBase
     {
