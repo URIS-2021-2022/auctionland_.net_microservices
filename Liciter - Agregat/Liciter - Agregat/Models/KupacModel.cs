@@ -14,7 +14,7 @@ namespace Liciter___Agregat.Models
         public Guid KupacId { get; set; }
 
         [Required]
-        public PrioritetEnum Prioritet { get; set; }
+        public Prioritet Prioritet { get; set; }
         public int OstvarenaPovrsina { get; set; }
         public bool ImaZabranu { get; set; }
         public DateTime DatumPocetkaZabrane { get; set; }

@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Liciter___Agregat.Models.Enums
 {
-    public enum PrioritetEnum
+    public enum Prioritet
     {
         prvaOpcija,
         drugaOpcija,
