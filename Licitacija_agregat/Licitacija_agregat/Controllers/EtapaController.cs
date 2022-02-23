@@ -2,6 +2,7 @@
 using Licitacija_agregat.Data;
 using Licitacija_agregat.Entities;
 using Licitacija_agregat.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
@@ -16,6 +17,7 @@ namespace Licitacija_agregat.Controllers
     [ApiController]
     [Route("api/[controller]")]
     [Produces("application/json", "application/xml")]
+    [Authorize]
     public class EtapaController : ControllerBase
     {
         private readonly IEtapaRepository etapaRepository;

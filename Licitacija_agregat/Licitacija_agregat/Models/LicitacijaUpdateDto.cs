@@ -16,6 +16,10 @@ namespace Licitacija_agregat.Models
         /// <summary>
         /// Broj licitacije
         /// </summary>
+        public Guid ProgramId { get; set; }
+        /// <summary>
+        /// Id programa
+        /// </summary>
         public int Broj { get; set; }
         /// <summary>
         /// Godina licitacije
