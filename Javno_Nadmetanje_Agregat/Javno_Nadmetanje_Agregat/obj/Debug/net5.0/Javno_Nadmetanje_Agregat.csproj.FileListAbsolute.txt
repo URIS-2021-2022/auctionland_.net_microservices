@@ -199,4 +199,3 @@ D:\Faks\7. semestar\New folder\Javno_Nadmetanje_Agregat\Javno_Nadmetanje_Agregat
 D:\Faks\7. semestar\New folder\Javno_Nadmetanje_Agregat\Javno_Nadmetanje_Agregat\obj\Debug\net5.0\ref\Javno_Nadmetanje_Agregat.dll
 D:\Faks\7. semestar\New folder\Javno_Nadmetanje_Agregat\Javno_Nadmetanje_Agregat\obj\Debug\net5.0\Javno_Nadmetanje_Agregat.pdb
 D:\Faks\7. semestar\New folder\Javno_Nadmetanje_Agregat\Javno_Nadmetanje_Agregat\obj\Debug\net5.0\Javno_Nadmetanje_Agregat.genruntimeconfig.cache
-C:\Users\Dell\Documents\GitHub\tim-6---auctionland-tim-6-nopcommerce\Javno_Nadmetanje_Agregat\Javno_Nadmetanje_Agregat\obj\Debug\net5.0\Javno_Nadmetanje_Agregat.csproj.CopyComplete
